@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * FinCore token validation and CSS generation.
+ * Sorleed token validation and CSS generation.
  *
  * Zero dependencies. Validates tokens/tokens.json, checks the component
  * colour pairs, control boundaries and focus ring against WCAG 2.2 AA
@@ -181,7 +181,7 @@ function aliasTarget(value) {
 }
 
 function cssVar(name) {
-  return `--fc-${name.split(".").join("-")}`;
+  return `--sl-${name.split(".").join("-")}`;
 }
 
 // JSON.parse silently keeps the last of two identical keys, which would let a
@@ -340,7 +340,7 @@ try {
   raw = readFileSync(SOURCE, "utf8");
   walk(JSON.parse(raw), [], undefined);
 } catch (error) {
-  console.error(`FinCore tokens — FAILED\n  Cannot read or parse ${SOURCE}\n  ${error.message}`);
+  console.error(`Sorleed tokens — FAILED\n  Cannot read or parse ${SOURCE}\n  ${error.message}`);
   process.exit(1);
 }
 
@@ -1007,7 +1007,7 @@ function buildCss() {
   ];
 
   const lines = [
-    "/* FinCore design tokens — generated file. Do not edit by hand. */",
+    "/* Sorleed design tokens — generated file. Do not edit by hand. */",
     `/* Source: tokens/tokens.json (sha256: ${digest}) */`,
     "/* Theme: light only (v0.1). Dark theme is not implemented. */",
     "/* Regenerate: node tokens/check.mjs --write */",
@@ -1071,7 +1071,7 @@ const structureFailCount = structural.filter((entry) => !entry.ok).length;
 const requiredPassCount = requiredRows.filter((row) => row.pass).length;
 const advisoryBelow = advisoryRows.filter((row) => !row.pass).length;
 
-console.log("FinCore tokens — validation");
+console.log("Sorleed tokens — validation");
 console.log(`Source: ${SOURCE.replace(`${ROOT}/`, "")}`);
 console.log("Theme: light only (v0.1). Dark theme is not implemented.");
 console.log("");

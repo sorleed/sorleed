@@ -1,8 +1,13 @@
 # Transaction history example
 
-A small, runnable financial interface built with FinCore's existing **Button** and
+A small, runnable financial interface built with Sorleed's existing **Button** and
 **Input** components. The page layout, table/list, filtering and formatting are
 application code; the component styles are not copied or recreated.
+
+PasswordInput and PhoneInput are also implemented, but this example does not use
+them. See their reference pages in
+[`../../components/password-input`](../../components/password-input/README.md)
+and [`../../components/phone-input`](../../components/phone-input/README.md).
 
 The ten records are illustrative demo data. They are not a real account or
 transaction history.
@@ -25,7 +30,7 @@ Serving the root keeps the token and component stylesheet paths valid.
 
 ## What it demonstrates
 
-- The actual `.fc-button` and `.fc-input` markup, loaded from the component CSS.
+- The actual `.sl-button` and `.sl-input` markup, loaded from the component CSS.
 - Token CSS loaded before the component stylesheets.
 - One underlying dataset and one filter used by both the desktop table and the
   narrow-screen list.
@@ -41,7 +46,7 @@ Serving the root keeps the token and component stylesheet paths valid.
 | File | Purpose |
 |---|---|
 | `index.html` | Page structure and the native Button/Input markup. |
-| `example.css` | Page layout only. It defines no `.fc-*` selectors, no `--fc-*` tokens and no colour literals. |
+| `example.css` | Page layout only. It defines no `.sl-*` selectors, no `--sl-*` tokens and no colour literals. |
 | `example.js` | Demo data, filtering, rendering, status text and focus return. |
 | `README.md` | This guide. |
 
@@ -49,14 +54,16 @@ Serving the root keeps the token and component stylesheet paths valid.
 
 1. Keep `tokens/dist/tokens.css` loaded before `button.css` and `input.css`.
    The component stylesheets do not import tokens.
-2. Set a page font. The components use `font-family: inherit` and FinCore ships
+2. Set a page font. The components use `font-family: inherit` and Sorleed ships
    no font file or font-family token.
-3. Use the native `.fc-button` and `.fc-input` markup. The application owns
+3. Use the native `.sl-button` and `.sl-input` markup. The application owns
    filtering, validation, error copy, submission and focus.
 4. Replace the demo dataset and page-specific `.example-*` CSS with your own
    application code. Do not copy the component CSS into this file.
 
-There is no package manager, build step or FinCore JavaScript runtime.
+This example uses no package manager, build step or Sorleed JavaScript runtime.
+The canonical component layer is CSS plus native HTML; this example does not use
+the private-alpha React adapter or CLI.
 
 ## Verify the setup
 

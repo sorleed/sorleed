@@ -1,8 +1,8 @@
 /*
- * FinCore Input — production styles for a native <input>.
+ * Sorleed Input — production styles for a native <input>.
  * Contract: components/input/contract.json (1.0.0)
  *
- * Consumes only --fc-input-* component tokens from tokens/dist/tokens.css.
+ * Consumes only --sl-input-* component tokens from tokens/dist/tokens.css.
  * State precedence: Disabled > Error > Hover > Default.
  * Focus is an independent overlay, shown for keyboard/pointer focus and
  * suppressed by the native disabled attribute.
@@ -12,7 +12,7 @@
  * aria-invalid="true" so the visual and semantic error states cannot drift.
  */
 
-.fc-input {
+.sl-input {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -20,20 +20,20 @@
   margin: 0;
 }
 
-.fc-input__label {
+.sl-input__label {
   margin: 0;
-  margin-block-end: var(--fc-input-label-gap);
-  color: var(--fc-input-label-color);
-  font-size: var(--fc-input-font-size);
-  font-weight: var(--fc-input-label-font-weight);
-  line-height: var(--fc-input-line-height);
+  margin-block-end: var(--sl-input-label-gap);
+  color: var(--sl-input-label-color);
+  font-size: var(--sl-input-font-size);
+  font-weight: var(--sl-input-label-font-weight);
+  line-height: var(--sl-input-line-height);
 }
 
 /*
  * Visually hidden, never removed. The label remains the accessible name and
  * keeps its for/id association when hideLabel is requested.
  */
-.fc-input__label--visually-hidden {
+.sl-input__label--visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -45,108 +45,108 @@
   border: 0;
 }
 
-.fc-input__control {
+.sl-input__control {
   position: relative;
   min-width: 0;
 }
 
-.fc-input__field {
+.sl-input__field {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  min-height: var(--fc-input-height);
+  min-height: var(--sl-input-height);
   margin: 0;
   padding-block: calc(
-    (var(--fc-input-height) - var(--fc-input-line-height) - (2 * var(--fc-input-border-width))) / 2
+    (var(--sl-input-height) - var(--sl-input-line-height) - (2 * var(--sl-input-border-width))) / 2
   );
-  padding-inline: var(--fc-input-padding-x);
-  border: var(--fc-input-border-width) solid var(--fc-input-border);
-  border-radius: var(--fc-input-radius);
-  background-color: var(--fc-input-background);
-  color: var(--fc-input-text);
+  padding-inline: var(--sl-input-padding-x);
+  border: var(--sl-input-border-width) solid var(--sl-input-border);
+  border-radius: var(--sl-input-radius);
+  background-color: var(--sl-input-background);
+  color: var(--sl-input-text);
   font-family: inherit;
-  font-size: var(--fc-input-font-size);
-  font-weight: var(--fc-input-font-weight);
-  line-height: var(--fc-input-line-height);
+  font-size: var(--sl-input-font-size);
+  font-weight: var(--sl-input-font-weight);
+  line-height: var(--sl-input-line-height);
   appearance: none;
 }
 
-.fc-input__field::placeholder {
-  color: var(--fc-input-placeholder);
+.sl-input__field::placeholder {
+  color: var(--sl-input-placeholder);
   opacity: 1;
 }
 
 /* Hover is below Error and Disabled in the precedence chain. */
-.fc-input__field:not(:disabled):hover {
-  border-color: var(--fc-input-border-hover);
+.sl-input__field:not(:disabled):hover {
+  border-color: var(--sl-input-border-hover);
 }
 
 /*
  * Error is rendered only with the application-owned aria-invalid state.
  * The application must also render the error message; never a red border alone.
  */
-.fc-input__field[aria-invalid="true"]:not(:disabled) {
-  border-color: var(--fc-input-border-error);
+.sl-input__field[aria-invalid="true"]:not(:disabled) {
+  border-color: var(--sl-input-border-error);
 }
 
 /* Disabled wins over Hover, Error and Focus. */
-.fc-input__field:disabled {
-  border-color: var(--fc-input-border-disabled);
-  background-color: var(--fc-input-background-disabled);
-  color: var(--fc-input-text-disabled);
+.sl-input__field:disabled {
+  border-color: var(--sl-input-border-disabled);
+  background-color: var(--sl-input-background-disabled);
+  color: var(--sl-input-text-disabled);
   cursor: not-allowed;
 }
 
-.fc-input__field:disabled::placeholder {
-  color: var(--fc-input-text-disabled);
+.sl-input__field:disabled::placeholder {
+  color: var(--sl-input-text-disabled);
 }
 
-.fc-input__message {
+.sl-input__message {
   margin: 0;
-  margin-block-start: var(--fc-input-helper-gap);
-  color: var(--fc-input-helper-color);
-  font-size: var(--fc-input-helper-font-size);
-  font-weight: var(--fc-input-font-weight);
-  line-height: var(--fc-input-helper-line-height);
+  margin-block-start: var(--sl-input-helper-gap);
+  color: var(--sl-input-helper-color);
+  font-size: var(--sl-input-helper-font-size);
+  font-weight: var(--sl-input-font-weight);
+  line-height: var(--sl-input-helper-line-height);
 }
 
-.fc-input__message--error {
-  color: var(--fc-input-text-error);
+.sl-input__message--error {
+  color: var(--sl-input-text-error);
 }
 
 /* The ring is a sibling overlay around the control, not a fifth state. */
-.fc-input__control::after {
+.sl-input__control::after {
   content: "";
   position: absolute;
-  inset: calc(-1 * var(--fc-input-focus-offset));
-  border: var(--fc-input-focus-width) solid transparent;
-  border-radius: var(--fc-input-focus-radius);
+  inset: calc(-1 * var(--sl-input-focus-offset));
+  border: var(--sl-input-focus-width) solid transparent;
+  border-radius: var(--sl-input-focus-radius);
   pointer-events: none;
 }
 
-.fc-input__field:focus {
+.sl-input__field:focus {
   outline: none;
 }
 
-.fc-input__control:has(.fc-input__field:focus-visible)::after {
-  border-color: var(--fc-input-focus-color);
+.sl-input__control:has(.sl-input__field:focus-visible)::after {
+  border-color: var(--sl-input-focus-color);
 }
 
-.fc-input__control:has(.fc-input__field:disabled)::after {
+.sl-input__control:has(.sl-input__field:disabled)::after {
   display: none;
 }
 
 /* Preserve a visible boundary and focus indicator with system colours. */
 @media (forced-colors: active) {
-  .fc-input__field {
+  .sl-input__field {
     border-color: ButtonText;
   }
 
-  .fc-input__control::after {
+  .sl-input__control::after {
     display: none;
   }
 
-  .fc-input__control:has(.fc-input__field:focus-visible)::after {
+  .sl-input__control:has(.sl-input__field:focus-visible)::after {
     display: block;
     border-color: Highlight;
   }

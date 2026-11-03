@@ -1,12 +1,11 @@
 {
-  "name": "@weft-ui/cli",
+  "name": "@sorleed/cli",
   "version": "0.1.0-alpha.0",
-  "description": "Source-distribution CLI for Weft components",
+  "description": "Source-distribution CLI for Sorleed components",
   "private": true,
   "type": "module",
   "bin": {
-    "weft": "./bin/weft.mjs",
-    "fincore": "./bin/fincore.mjs"
+    "sorleed": "./bin/sorleed.mjs"
   },
   "scripts": {
     "prepare": "node scripts/copy-templates.mjs",

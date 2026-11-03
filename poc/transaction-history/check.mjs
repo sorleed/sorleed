@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /*
- * Zero-dependency compliance checker for the FinCore transaction-history PoC.
+ * Zero-dependency compliance checker for the Sorleed transaction-history PoC.
  *
  * It reads the five PoC files plus the generated token/component CSS and fails
- * with a non-zero exit code when the PoC breaks a documented FinCore usage rule.
+ * with a non-zero exit code when the PoC breaks a documented Sorleed usage rule.
  * It never writes or regenerates anything.
  */
 
@@ -101,7 +101,7 @@ const tags = parseTags(html);
 
 const tokenCss = readFileSync(join(ROOT, "tokens", "dist", "tokens.css"), "utf8");
 const definedTokens = new Set(
-  [...tokenCss.matchAll(/(--fc-[a-z0-9-]+)\s*:/g)].map((match) => match[1]),
+  [...tokenCss.matchAll(/(--sl-[a-z0-9-]+)\s*:/g)].map((match) => match[1]),
 );
 
 const componentCss =
@@ -109,7 +109,7 @@ const componentCss =
   "\n" +
   readFileSync(join(ROOT, "components", "input", "input.css"), "utf8");
 const definedComponentClasses = new Set(
-  [...componentCss.matchAll(/\.(fc-[a-z0-9_-]+)/gi)].map((match) => match[1]),
+  [...componentCss.matchAll(/\.(sl-[a-z0-9_-]+)/gi)].map((match) => match[1]),
 );
 
 // ---------------------------------------------------------------------------
@@ -128,13 +128,13 @@ check("files: five authorised files exist", () => {
 // 2-5. Stylesheet rules
 // ---------------------------------------------------------------------------
 
-check("css: every referenced --fc-* token exists in tokens.css", () => {
+check("css: every referenced --sl-* token exists in tokens.css", () => {
   const used = new Set(
-    [...cssNoComments.matchAll(/var\(\s*(--fc-[a-z0-9-]+)/g)].map(
+    [...cssNoComments.matchAll(/var\(\s*(--sl-[a-z0-9-]+)/g)].map(
       (match) => match[1],
     ),
   );
-  assert(used.size > 0, "no --fc-* tokens are used");
+  assert(used.size > 0, "no --sl-* tokens are used");
   const unknown = [...used].filter((token) => !definedTokens.has(token));
   assert(
     unknown.length === 0,
@@ -143,11 +143,11 @@ check("css: every referenced --fc-* token exists in tokens.css", () => {
   return `${used.size} tokens resolved`;
 });
 
-check("css: no local --fc-* token definitions", () => {
-  const definitions = [...cssNoComments.matchAll(/(^|[\s;{])--fc-[a-z0-9-]+\s*:/gm)];
+check("css: no local --sl-* token definitions", () => {
+  const definitions = [...cssNoComments.matchAll(/(^|[\s;{])--sl-[a-z0-9-]+\s*:/gm)];
   assert(
     definitions.length === 0,
-    `poc.css defines ${definitions.length} local --fc-* token(s)`,
+    `poc.css defines ${definitions.length} local --sl-* token(s)`,
   );
   assert(
     !/<style\b/i.test(htmlNoComments),
@@ -172,11 +172,11 @@ check("css: no hardcoded colour literals", () => {
 
 check("css: no component selectors or state overrides", () => {
   const componentSelectors = [
-    ...cssNoComments.matchAll(/\.fc-[a-z0-9_-]+/gi),
+    ...cssNoComments.matchAll(/\.sl-[a-z0-9_-]+/gi),
   ].map((match) => match[0]);
   assert(
     componentSelectors.length === 0,
-    `poc.css selects FinCore classes: ${componentSelectors.join(", ")}`,
+    `poc.css selects Sorleed classes: ${componentSelectors.join(", ")}`,
   );
   assert(
     !/@import\b/i.test(cssNoComments),
@@ -190,15 +190,15 @@ check("css: no component selectors or state overrides", () => {
 // 6-17. Markup rules
 // ---------------------------------------------------------------------------
 
-check("html: documented FinCore classes only", () => {
+check("html: documented Sorleed classes only", () => {
   const used = [...new Set(tags.flatMap(classList))].filter((name) =>
-    name.startsWith("fc-"),
+    name.startsWith("sl-"),
   );
-  assert(used.length > 0, "no FinCore component classes are used");
+  assert(used.length > 0, "no Sorleed component classes are used");
   const unknown = used.filter((name) => !definedComponentClasses.has(name));
   assert(
     unknown.length === 0,
-    `undocumented FinCore classes: ${unknown.join(", ")}`,
+    `undocumented Sorleed classes: ${unknown.join(", ")}`,
   );
   return used.join(", ");
 });
@@ -242,20 +242,20 @@ check("html: explicit button types and one primary action", () => {
   const primaries = buttons.filter((button) => {
     const classes = classList(button);
     return (
-      classes.includes("fc-button") &&
-      !classes.includes("fc-button--secondary") &&
-      !classes.includes("fc-button--ghost")
+      classes.includes("sl-button") &&
+      !classes.includes("sl-button--secondary") &&
+      !classes.includes("sl-button--ghost")
     );
   });
   assert(primaries.length === 1, `expected exactly one primary action, found ${primaries.length}`);
   assert(attr(primaries[0], "type") === "submit", "the primary action must submit the filter form");
   const secondaries = buttons.filter((button) =>
-    classList(button).includes("fc-button--secondary"),
+    classList(button).includes("sl-button--secondary"),
   );
   assert(secondaries.length === 1, "expected exactly one secondary action");
   assert(attr(secondaries[0], "type") === "button", "the secondary Clear action must be type=button");
   assert(
-    !buttons.some((button) => classList(button).includes("fc-button--ghost")),
+    !buttons.some((button) => classList(button).includes("sl-button--ghost")),
     "Ghost is intentionally omitted from this interface",
   );
   return "1 primary (submit), 1 secondary (button), no disabled or ghost actions";
@@ -267,7 +267,7 @@ check("html: filter input has an id and an associated label", () => {
   const field = inputs[0];
   const id = attr(field, "id");
   assert(id, "the filter input has no id");
-  assert(classList(field).includes("fc-input__field"), "the filter input is missing fc-input__field");
+  assert(classList(field).includes("sl-input__field"), "the filter input is missing sl-input__field");
   assert(attr(field, "type") === "text", "the filter must be a text input");
   assert(attr(field, "name") === "filter", "the filter input needs name=\"filter\"");
   assert(attr(field, "autocomplete") === "off", "the filter input needs autocomplete=\"off\"");
@@ -276,9 +276,9 @@ check("html: filter input has an id and an associated label", () => {
     (tag) =>
       tag.name === "label" &&
       attr(tag, "for") === id &&
-      classList(tag).includes("fc-input__label"),
+      classList(tag).includes("sl-input__label"),
   );
-  assert(labels.length === 1, `no fc-input__label with for="${id}"`);
+  assert(labels.length === 1, `no sl-input__label with for="${id}"`);
   return `label[for="${id}"] → input#${id}`;
 });
 
@@ -296,8 +296,8 @@ check("html: aria-describedby references resolve", () => {
   const field = tags.find((tag) => attr(tag, "id") === "tx-filter");
   const helper = ids.get(attr(field, "aria-describedby"));
   assert(
-    helper && classList(helper).includes("fc-input__message"),
-    "the filter helper is not a fc-input__message",
+    helper && classList(helper).includes("sl-input__message"),
+    "the filter helper is not a sl-input__message",
   );
   return references
     .map((tag) => `${attr(tag, "id")} → ${attr(tag, "aria-describedby")}`)
@@ -652,7 +652,7 @@ check("readme: documents scope, serving, checker and limits", () => {
     [/python3 -m http\.server/i, "local server command"],
     [/illustrative/i, "illustrative-data note"],
     [/primitive/i, "primitive-token exception"],
-    [/not\s+(?:a\s+)?FinCore\s+component/i, "application-scaffolding note"],
+    [/not\s+(?:a\s+)?Sorleed\s+component/i, "application-scaffolding note"],
     [/screen reader/i, "manual accessibility note"],
     [/static/i, "static-check note"],
     [/browser/i, "browser-check note"],
@@ -670,7 +670,7 @@ check("readme: documents scope, serving, checker and limits", () => {
 
 const failures = results.filter((result) => !result.pass);
 
-console.log("FinCore PoC — transaction-history compliance");
+console.log("Sorleed PoC — transaction-history compliance");
 console.log(`Source: ${POC_DIR}`);
 console.log("");
 
@@ -686,8 +686,8 @@ console.log(`  Checks: ${results.length - failures.length} passed, ${failures.le
 console.log("");
 
 if (failures.length > 0) {
-  console.log("FAILED — the proof of concept breaks a documented FinCore usage rule.");
+  console.log("FAILED — the proof of concept breaks a documented Sorleed usage rule.");
   process.exitCode = 1;
 } else {
-  console.log("PASSED — the proof of concept follows the FinCore usage rules.");
+  console.log("PASSED — the proof of concept follows the Sorleed usage rules.");
 }

@@ -1,9 +1,9 @@
 "use strict";
 
 /*
- * FinCore proof of concept — transaction history and filtering.
+ * Sorleed proof of concept — transaction history and filtering.
  *
- * This is application code, not a FinCore component. It renders a static,
+ * This is application code, not a Sorleed component. It renders a static,
  * illustrative data set into a native table and filters it by description.
  * It makes no network requests and has no dependencies.
  */

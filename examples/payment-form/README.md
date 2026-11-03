@@ -1,8 +1,13 @@
 # Payment form example
 
-A small, runnable demo payment form built with FinCore's existing **Button** and
+A small, runnable demo payment form built with Sorleed's existing **Button** and
 **Input** components. It is illustrative only: no payment is sent, no money
 moves, no backend is called, and no real credentials are requested.
+
+PasswordInput and PhoneInput are also implemented, but this example does not use
+them. See their reference pages in
+[`../../components/password-input`](../../components/password-input/README.md)
+and [`../../components/phone-input`](../../components/phone-input/README.md).
 
 ## Run it
 
@@ -32,27 +37,27 @@ The page loads these existing files from its own directory:
 
 Token CSS must load first. The component stylesheets do not import it. The
 page also sets a body font because the components use `font-family: inherit`;
-FinCore ships no font file or font-family token.
+Sorleed ships no font file or font-family token.
 
-## FinCore components reused
+## Sorleed components reused
 
-- **Button:** the native `.fc-button` primary action (`Review payment` and
-  `Edit details`) and `.fc-button--secondary` actions (`Clear` and
+- **Button:** the native `.sl-button` primary action (`Review payment` and
+  `Edit details`) and `.sl-button--secondary` actions (`Clear` and
   `Reset demo`).
-- **Input:** the full `.fc-input` field anatomy for recipient name, account
+- **Input:** the full `.sl-input` field anatomy for recipient name, account
   number, bank, optional payment reference and amount. The example uses the
   Default state and the application-driven Error state
-  (`aria-invalid="true"` plus `.fc-input__message--error`). Focus is the
+  (`aria-invalid="true"` plus `.sl-input__message--error`). Focus is the
   component's native focus overlay.
 - The source account is a static application summary rather than an Input. No
   field is genuinely unavailable, so the Input disabled state is not used.
 
-The example does not copy component CSS, add `fc-` selectors or tokens, or add
-a framework, package manager, bundler or JavaScript runtime from FinCore.
+The example does not copy component CSS, add `sl-` selectors or tokens, or add
+a framework, package manager, bundler or JavaScript runtime from Sorleed.
 
 ## What belongs to the example
 
-FinCore supplies the Button and Input CSS and their documented native APIs. The
+Sorleed supplies the Button and Input CSS and their documented native APIs. The
 example owns:
 
 - the demo source-account summary and demo bank list;
@@ -62,12 +67,13 @@ example owns:
 - the review summary, edit/reset transitions and focus management;
 - the live status messages and the explicit “no payment sent” wording.
 
-The amount is a native text input with `inputmode="decimal"` because FinCore has
+The amount is a native text input with `inputmode="decimal"` because Sorleed has
 no currency-input component. The bank field is a native Input with a
 `<datalist>` of demo banks; there is no Select component in v0.1.
 
-The example needs JavaScript for validation, review and reset. FinCore supplies
-no JavaScript runtime; all interaction code is page-owned.
+The example needs JavaScript for validation, review and reset. The canonical
+component layer supplies no JavaScript runtime; all interaction code is
+page-owned and this example does not use the private-alpha React adapter.
 
 ## Try it with demo data
 

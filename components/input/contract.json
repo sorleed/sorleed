@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.input",
+    "id": "sorleed.input",
     "name": "Input",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore's single-line text field: label + control + helper, four mutually exclusive Figma states, an independent keyboard-focus ring and 28 component tokens. Validation is owned by the consuming application, not the component. Implemented as framework-agnostic CSS with native HTML reference markup; no runtime package or adapter.",
+    "summary": "Sorleed's single-line text field: label + control + helper, four mutually exclusive Figma states, an independent keyboard-focus ring and 28 component tokens. Validation is owned by the consuming application, not the component. Implemented as framework-agnostic CSS with native HTML reference markup; no runtime package or adapter.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no runtime package",
     "lastUpdated": "2026-10-26",
     "canonical": {
@@ -328,7 +328,7 @@
       "name": "Value",
       "figmaType": "TEXT",
       "figmaKey": "Value#99:5",
-      "figmaDefault": "ada@fincore.dev",
+      "figmaDefault": "ada@example.com",
       "required": false,
       "description": "The entered value. In Figma it is a text layer controlled by Filled.",
       "translation": "renamed",
@@ -836,7 +836,7 @@
       {
         "name": "input.height",
         "type": "dimension",
-        "cssVar": "--fc-input-height",
+        "cssVar": "--sl-input-height",
         "alias": "size.control.md",
         "resolved": "40px",
         "role": "Control height",
@@ -845,7 +845,7 @@
       {
         "name": "input.padding-x",
         "type": "dimension",
-        "cssVar": "--fc-input-padding-x",
+        "cssVar": "--sl-input-padding-x",
         "alias": "space.3",
         "resolved": "12px",
         "role": "Control horizontal padding",
@@ -854,7 +854,7 @@
       {
         "name": "input.radius",
         "type": "dimension",
-        "cssVar": "--fc-input-radius",
+        "cssVar": "--sl-input-radius",
         "alias": "radius.md",
         "resolved": "6px",
         "role": "Control corner radius",
@@ -863,7 +863,7 @@
       {
         "name": "input.border-width",
         "type": "dimension",
-        "cssVar": "--fc-input-border-width",
+        "cssVar": "--sl-input-border-width",
         "alias": "size.border.width",
         "resolved": "1px",
         "role": "Control border width, INSIDE",
@@ -872,7 +872,7 @@
       {
         "name": "input.font-size",
         "type": "dimension",
-        "cssVar": "--fc-input-font-size",
+        "cssVar": "--sl-input-font-size",
         "alias": "font.size.sm",
         "resolved": "14px",
         "role": "Value and label font size",
@@ -881,7 +881,7 @@
       {
         "name": "input.line-height",
         "type": "dimension",
-        "cssVar": "--fc-input-line-height",
+        "cssVar": "--sl-input-line-height",
         "alias": "font.line-height.sm",
         "resolved": "20px",
         "role": "Value and label line height",
@@ -890,7 +890,7 @@
       {
         "name": "input.font-weight",
         "type": "fontWeight",
-        "cssVar": "--fc-input-font-weight",
+        "cssVar": "--sl-input-font-weight",
         "alias": "font.weight.regular",
         "resolved": 400,
         "role": "Value and helper font weight",
@@ -899,7 +899,7 @@
       {
         "name": "input.label-gap",
         "type": "dimension",
-        "cssVar": "--fc-input-label-gap",
+        "cssVar": "--sl-input-label-gap",
         "alias": "space.2",
         "resolved": "8px",
         "role": "Label-to-control gap",
@@ -908,7 +908,7 @@
       {
         "name": "input.helper-gap",
         "type": "dimension",
-        "cssVar": "--fc-input-helper-gap",
+        "cssVar": "--sl-input-helper-gap",
         "alias": "space.1",
         "resolved": "4px",
         "role": "Control-to-helper gap",
@@ -917,7 +917,7 @@
       {
         "name": "input.focus.color",
         "type": "color",
-        "cssVar": "--fc-input-focus-color",
+        "cssVar": "--sl-input-focus-color",
         "alias": "color.border.focus",
         "resolved": "#2563EB",
         "role": "Focus ring colour",
@@ -926,7 +926,7 @@
       {
         "name": "input.focus.width",
         "type": "dimension",
-        "cssVar": "--fc-input-focus-width",
+        "cssVar": "--sl-input-focus-width",
         "alias": "size.focus-ring.width",
         "resolved": "2px",
         "role": "Focus ring stroke width",
@@ -935,7 +935,7 @@
       {
         "name": "input.focus.offset",
         "type": "dimension",
-        "cssVar": "--fc-input-focus-offset",
+        "cssVar": "--sl-input-focus-offset",
         "alias": "size.focus-ring.offset",
         "resolved": "2px",
         "role": "Focus ring offset and padding",
@@ -944,7 +944,7 @@
       {
         "name": "input.focus.radius",
         "type": "dimension",
-        "cssVar": "--fc-input-focus-radius",
+        "cssVar": "--sl-input-focus-radius",
         "alias": "radius.lg",
         "resolved": "8px",
         "role": "Concentric focus ring radius (6px + 2px)",
@@ -953,7 +953,7 @@
       {
         "name": "input.background",
         "type": "color",
-        "cssVar": "--fc-input-background",
+        "cssVar": "--sl-input-background",
         "alias": "color.surface.default",
         "resolved": "#FFFFFF",
         "role": "Control fill in Default, Hover and Error",
@@ -962,7 +962,7 @@
       {
         "name": "input.border",
         "type": "color",
-        "cssVar": "--fc-input-border",
+        "cssVar": "--sl-input-border",
         "alias": "color.border.control",
         "resolved": "#71717A",
         "role": "Default control boundary",
@@ -971,7 +971,7 @@
       {
         "name": "input.text",
         "type": "color",
-        "cssVar": "--fc-input-text",
+        "cssVar": "--sl-input-text",
         "alias": "color.content.primary",
         "resolved": "#18181B",
         "role": "Entered value",
@@ -980,7 +980,7 @@
       {
         "name": "input.placeholder",
         "type": "color",
-        "cssVar": "--fc-input-placeholder",
+        "cssVar": "--sl-input-placeholder",
         "alias": "color.content.tertiary",
         "resolved": "#71717A",
         "role": "Placeholder text",
@@ -989,7 +989,7 @@
       {
         "name": "input.border-hover",
         "type": "color",
-        "cssVar": "--fc-input-border-hover",
+        "cssVar": "--sl-input-border-hover",
         "alias": "color.border.control-hover",
         "resolved": "#52525B",
         "role": "Hovered control boundary",
@@ -998,7 +998,7 @@
       {
         "name": "input.border-error",
         "type": "color",
-        "cssVar": "--fc-input-border-error",
+        "cssVar": "--sl-input-border-error",
         "alias": "color.border.error",
         "resolved": "#DC2626",
         "role": "Invalid control boundary",
@@ -1007,7 +1007,7 @@
       {
         "name": "input.text-error",
         "type": "color",
-        "cssVar": "--fc-input-text-error",
+        "cssVar": "--sl-input-text-error",
         "alias": "color.feedback.error-foreground",
         "resolved": "#991B1B",
         "role": "Error message text",
@@ -1016,7 +1016,7 @@
       {
         "name": "input.background-disabled",
         "type": "color",
-        "cssVar": "--fc-input-background-disabled",
+        "cssVar": "--sl-input-background-disabled",
         "alias": "color.surface.muted",
         "resolved": "#E4E4E7",
         "role": "Disabled control fill",
@@ -1025,7 +1025,7 @@
       {
         "name": "input.border-disabled",
         "type": "color",
-        "cssVar": "--fc-input-border-disabled",
+        "cssVar": "--sl-input-border-disabled",
         "alias": "color.border.disabled",
         "resolved": "#E4E4E7",
         "role": "Disabled control boundary, matching the fill",
@@ -1034,7 +1034,7 @@
       {
         "name": "input.text-disabled",
         "type": "color",
-        "cssVar": "--fc-input-text-disabled",
+        "cssVar": "--sl-input-text-disabled",
         "alias": "color.content.disabled",
         "resolved": "#A1A1AA",
         "role": "Disabled value and placeholder",
@@ -1043,7 +1043,7 @@
       {
         "name": "input.label.color",
         "type": "color",
-        "cssVar": "--fc-input-label-color",
+        "cssVar": "--sl-input-label-color",
         "alias": "color.content.secondary",
         "resolved": "#3F3F46",
         "role": "Label text, including disabled fields",
@@ -1052,7 +1052,7 @@
       {
         "name": "input.label.font-weight",
         "type": "fontWeight",
-        "cssVar": "--fc-input-label-font-weight",
+        "cssVar": "--sl-input-label-font-weight",
         "alias": "font.weight.medium",
         "resolved": 500,
         "role": "Label weight",
@@ -1061,7 +1061,7 @@
       {
         "name": "input.helper.color",
         "type": "color",
-        "cssVar": "--fc-input-helper-color",
+        "cssVar": "--sl-input-helper-color",
         "alias": "color.content.helper",
         "resolved": "#52525B",
         "role": "Helper text in Default, Hover and Disabled",
@@ -1070,7 +1070,7 @@
       {
         "name": "input.helper.font-size",
         "type": "dimension",
-        "cssVar": "--fc-input-helper-font-size",
+        "cssVar": "--sl-input-helper-font-size",
         "alias": "font.size.xs",
         "resolved": "12px",
         "role": "Helper and error message font size",
@@ -1079,7 +1079,7 @@
       {
         "name": "input.helper.line-height",
         "type": "dimension",
-        "cssVar": "--fc-input-helper-line-height",
+        "cssVar": "--sl-input-helper-line-height",
         "alias": "font.line-height.xs",
         "resolved": "16px",
         "role": "Helper and error message line height",
@@ -1683,7 +1683,7 @@
     },
     {
       "id": "filled-and-placeholder",
-      "configuration": "<Input filled={true} showPlaceholder={true} value=\"ada@fincore.dev\" />",
+      "configuration": "<Input filled={true} showPlaceholder={true} value=\"ada@example.com\" />",
       "why": "Value and placeholder would overlap in the same text area. The booleans are complementary, not independent.",
       "correct": "Derive both from the value: filled when non-empty, placeholder when empty."
     },
@@ -1982,7 +1982,7 @@
         "id": "tokens-count",
         "given": "This contract.",
         "when": "The dependency list is compared with tokens/tokens.json.",
-        "then": "All 28 input.* dependencies exist, resolve to the stated values, and map to the stated --fc-* CSS variables."
+        "then": "All 28 input.* dependencies exist, resolve to the stated values, and map to the stated --sl-* CSS variables."
       },
       {
         "id": "tokens-state-binding",
@@ -2179,7 +2179,7 @@
       "Set aria-invalid and the error association from errorMessage in the application; do not duplicate them inconsistently.",
       "Use only text, email, tel, number and url. Do not fake password, search, textarea, select, OTP, currency or PIN.",
       "Preserve native keyboard behaviour and Tab order, and supply the correct autoComplete token. Do not add custom key handlers, keyboard traps or a roving tabindex.",
-      "Treat the native class/attribute API as canonical: .fc-input structure, native input value, application-owned aria-invalid and error association, and native disabled/type/autocomplete/required/inputMode attributes. Do not require a JavaScript runtime or React adapter.",
+      "Treat the native class/attribute API as canonical: .sl-input structure, native input value, application-owned aria-invalid and error association, and native disabled/type/autocomplete/required/inputMode attributes. Do not require a JavaScript runtime or React adapter.",
       "Target Chrome/Edge 105+, Safari 15.4+ and Firefox 121+. The focus overlay and disabled suppression require :has(); no fallback is bundled.",
       "Never place the full field on inverse or dark surfaces.",
       "Do not modify tokens/tokens.json, tokens/check.mjs or tokens/dist/tokens.css to make an implementation easier. If a role is missing, stop and report it."
@@ -2268,13 +2268,13 @@
       {
         "title": "Value and placeholder overlap",
         "language": "tsx",
-        "code": "<Input id=\"email\" label=\"Email\" value=\"ada@fincore.dev\" filled showPlaceholder />",
+        "code": "<Input id=\"email\" label=\"Email\" value=\"ada@example.com\" filled showPlaceholder />",
         "explanation": "Filled=true and ShowPlaceholder=true are invalid; both layers would occupy the same text area."
       },
       {
         "title": "Inverse surface",
         "language": "tsx",
-        "code": "<div style={{ background: \"var(--fc-color-surface-inverse)\" }}><Input id=\"email\" label=\"Email\" value={email} onChange={setEmail} helperText=\"We never share this.\" /></div>",
+        "code": "<div style={{ background: \"var(--sl-color-surface-inverse)\" }}><Input id=\"email\" label=\"Email\" value={email} onChange={setEmail} helperText=\"We never share this.\" /></div>",
         "explanation": "Label, helper, error text and hover border fail contrast on inverse. The full field is unsupported on dark surfaces."
       },
       {

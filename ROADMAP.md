@@ -1,34 +1,57 @@
-# FinCore Roadmap
+# Sorleed Roadmap
 
 ## Vision
 
 Build the open-source AI-native design infrastructure for financial products.
 
+Status vocabulary used in this roadmap:
+
+- **Implemented** — canonical CSS, native HTML reference and validated contract
+  exist.
+- **Private alpha** — working code exists in this repository but is not published
+  and may change.
+- **Planned** — recorded here; no implementation or contract exists.
+- **Deferred** — explicitly outside the current release.
+
 ---
 
-# Version 0.1 — Button/Input Component-System Release
+# Version 0.1 — Four-Component System Release
 
-Goal: deliver a framework-agnostic, native HTML/CSS Button and Input system that
-developers can consume today without a framework, package manager or build step.
+Goal: deliver a framework-agnostic, native HTML/CSS component system that
+developers can consume today without a framework, package manager or build step,
+with an optional private-alpha React adapter and source-distribution CLI.
 
-### Delivered
+### Implemented
 
-* Native HTML/CSS Button and Input components.
-* Generated design-token CSS and machine-readable component contracts.
-* Existing token, contract and implementation checks.
-* Component catalogue, contract-first usage guide and native reference pages.
+* Button, Input, PasswordInput and PhoneInput as native HTML/CSS components.
+* 229 generated `--sl-*` design tokens and machine-readable contracts for all
+  four components.
+* Token, contract, implementation and CLI-template parity checks.
+* Component catalogue, contract-first usage guide, implementation guide and
+  native reference pages.
 * Color System, [Design Principles](docs/foundation/principles.md) and Token
   Architecture documentation.
 * Runnable transaction-history and payment-form examples.
+* Transaction-history proof of concept.
 
-### Not part of v0.1
+### Private alpha
+
+* `@sorleed/react` 0.1.0-alpha.1 — React wrappers for all four components, with
+  tests and typecheck. Not published.
+* `@sorleed/cli` 0.1.0-alpha.0 — source-distribution CLI for all four components.
+  Not published.
+
+### Deferred
 
 * Card and other planned components.
 * Remaining foundation guides: Typography, Spacing, Radius, Sizing, Border,
   Elevation and Motion. Color System, Design Principles and Token Architecture
   are available.
 * AI Context Layer.
-* Package/distribution and framework adapters.
+* Figma Community Library. The PasswordInput and PhoneInput Figma references are
+  unresolved and recorded as `null`; no node ID is invented.
+* Documentation website.
+* Tailwind package and other framework adapters.
 * Verified cross-browser and assistive-technology support. Unrun environments
   are not claimed as passing.
 
@@ -36,7 +59,7 @@ developers can consume today without a framework, package manager or build step.
 
 # Version 0.2 — Core Components
 
-### Components
+### Planned components
 
 * Badge
 * Avatar
@@ -48,17 +71,17 @@ developers can consume today without a framework, package manager or build step.
 * Tooltip
 * Toast
 
-### Documentation Improvements
+### Documentation improvements
 
-* Component Examples
-* Best Practices
-* Accessibility Testing
+* Component examples
+* Best practices
+* Accessibility testing
 
 ---
 
 # Version 0.3 — Fintech Components
 
-### Financial Components
+### Planned financial components
 
 * OTP Input
 * Currency Input
@@ -72,7 +95,7 @@ developers can consume today without a framework, package manager or build step.
 
 # Version 0.4 — Financial Patterns
 
-### User Flows
+### Planned user flows
 
 * Authentication
 * Onboarding
@@ -86,12 +109,12 @@ developers can consume today without a framework, package manager or build step.
 
 # Version 1.0
 
-### Ecosystem Release
+### Ecosystem release
 
-* Full Documentation Site
+* Full documentation site
 * Storybook
-* React Package
-* Tailwind Package
+* Published React package
+* Tailwind package
 * Figma Community Library
 * AI Context Layer
-* Community Contributions
+* Community contributions

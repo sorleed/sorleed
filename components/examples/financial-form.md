@@ -72,7 +72,7 @@ If focus moves to that field, it renders **Error + Focused**: the red border and
 
 ## 3. Component code — contract-shaped pseudocode (not runnable)
 
-> The TSX below is pseudocode for contract vocabulary only. FinCore does not export a React component; the runnable API is native HTML/CSS, as shown in the reference pages linked above.
+> The TSX below is pseudocode for contract vocabulary only. Sorleed does not export a React component; the runnable API is native HTML/CSS, as shown in the reference pages linked above.
 
 ```tsx
 // CONTRACT-SHAPED PSEUDOCODE ONLY. Not an exported API or a runnable page.
@@ -281,7 +281,7 @@ Each line below breaks a specific rule from the contracts.
 <Input id="reference" placeholder="Reference (optional)" value={reference} onChange={setReference} />
 
 // 7. Inverse surface: label 1.70:1, helper 2.29:1, error 2.13:1.
-<div style={{ background: "var(--fc-color-surface-inverse)" }}>
+<div style={{ background: "var(--sl-color-surface-inverse)" }}>
   <Input id="email" label="Email" value={email} onChange={setEmail} />
 </div>
 
@@ -311,7 +311,7 @@ Each line below breaks a specific rule from the contracts.
 - It does not add a currency mask, formatting layer, async validation or submit API.
 - It does not use an inverse or dark surface.
 - It does not show a success state, because Input has none.
-- It does not claim the layout, copy or validation rules are FinCore standards; they are illustrative.
+- It does not claim the layout, copy or validation rules are Sorleed standards; they are illustrative.
 
 ---
 

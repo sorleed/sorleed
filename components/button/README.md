@@ -1,8 +1,8 @@
 # Button
 
-**Contract 1.0.0 · Component v0.1 · Implementation: framework-agnostic CSS + native HTML (Stage 2)**
+**Contract 1.0.0 · Component v0.1 · Implementation: framework-agnostic CSS + native HTML (canonical)**
 
-Button is FinCore's action control. It has one text label, three visual variants and five mutually exclusive Figma states. It is 40px high, borderless, and uses only `button.*` component tokens.
+Button is Sorleed's action control. It has one text label, three visual variants and five mutually exclusive Figma states. It is 40px high, borderless, and uses only `button.*` component tokens.
 
 This guide is the human-readable companion to the canonical machine contract:
 
@@ -16,7 +16,11 @@ This guide is the human-readable companion to the canonical machine contract:
 - Figma evidence: file `llp3APU7qaknEGJWq7vTI4`, page `1:3`, set `87:37` (15 variants, 204/204 bindings; Ghost/Focus corrected to `button.ghost.foreground`)
 - Illustrative composition: [`../examples/financial-form.md`](../examples/financial-form.md)
 
-> This repository includes production CSS and native HTML reference markup. There is no React, Vue, Web Component or JavaScript runtime package; contract-level props are a mapping to native classes, attributes and browser states, not exported code.
+> This repository includes production CSS and native HTML reference markup as the
+> canonical implementation. A private-alpha React adapter exists in
+> [`../../react/button/index.tsx`](../../react/button/index.tsx) but is not
+> published; contract-level props map to native classes, attributes and browser
+> states.
 
 ---
 
@@ -139,18 +143,18 @@ The framework-agnostic implementation uses the following mapping. No JavaScript 
 
 | Contract-level prop / concept | Native implementation |
 |---|---|
-| `variant="primary"` | `class="fc-button"` (primary is the default); `fc-button--primary` is an optional explicit alias |
-| `variant="secondary"` | `class="fc-button fc-button--secondary"` |
-| `variant="ghost"` | `class="fc-button fc-button--ghost"` |
+| `variant="primary"` | `class="sl-button"` (primary is the default); `sl-button--primary` is an optional explicit alias |
+| `variant="secondary"` | `class="sl-button sl-button--secondary"` |
+| `variant="ghost"` | `class="sl-button sl-button--ghost"` |
 | `label` | The button's text content; required and non-empty |
 | `disabled` | Native `disabled` attribute |
 | `type` | Native `type="button"`, `"submit"` or `"reset"`; always set it explicitly |
-| `onClick` | Application-owned `click` listener or form `submit` handler; no runtime is shipped |
+| `onClick` | Application-owned `click` listener or form `submit` handler; the canonical CSS adds no behaviour |
 | `className` | Native `class` attribute for layout only |
 | State | Browser-native `:hover`, `:active`, `:focus-visible` and `:disabled`; there is no state prop |
 | Pass-through attributes | Native attributes such as `id`, `name`, `value`, `form` and `aria-*` |
 
-The focus ring is drawn by `.fc-button::after` and `.fc-button:focus-visible::after`. Ghost uses `button.ghost.foreground` for every state; the Figma Ghost/Focus label `87:34` was corrected to that token in Stage 5C-1.
+The focus ring is drawn by `.sl-button::after` and `.sl-button:focus-visible::after`. Ghost uses `button.ghost.foreground` for every state; the Figma Ghost/Focus label `87:34` was corrected to that token in Stage 5C-1.
 
 ---
 
@@ -188,28 +192,28 @@ Button consumes 22 component tokens. Colour tokens alias Semantic roles; geometr
 
 | Token | CSS variable | Resolves to | Role |
 |---|---|---|---|
-| `button.height` | `--fc-button-height` | 40px | Control height |
-| `button.padding-x` | `--fc-button-padding-x` | 16px | Horizontal padding |
-| `button.radius` | `--fc-button-radius` | 6px | Corner radius |
-| `button.font-size` | `--fc-button-font-size` | 14px | Label size |
-| `button.font-weight` | `--fc-button-font-weight` | 500 | Label weight |
-| `button.line-height` | `--fc-button-line-height` | 20px | Label line height |
-| `button.focus.color` | `--fc-button-focus-color` | `#2563EB` | Focus ring colour |
-| `button.focus.width` | `--fc-button-focus-width` | 2px | Ring width |
-| `button.focus.offset` | `--fc-button-focus-offset` | 2px | Ring offset/padding |
-| `button.primary.background` | `--fc-button-primary-background` | `#2563EB` | Primary default/focus surface |
-| `button.primary.background-hover` | `--fc-button-primary-background-hover` | `#1D4ED8` | Primary hover surface |
-| `button.primary.background-active` | `--fc-button-primary-background-active` | `#1E40AF` | Primary active surface |
-| `button.primary.foreground` | `--fc-button-primary-foreground` | `#FFFFFF` | Primary label |
-| `button.secondary.background` | `--fc-button-secondary-background` | `#F4F4F5` | Secondary default/focus surface |
-| `button.secondary.background-hover` | `--fc-button-secondary-background-hover` | `#E4E4E7` | Secondary hover surface |
-| `button.secondary.background-active` | `--fc-button-secondary-background-active` | `#D4D4D8` | Secondary active surface |
-| `button.secondary.foreground` | `--fc-button-secondary-foreground` | `#18181B` | Secondary label |
-| `button.ghost.foreground` | `--fc-button-ghost-foreground` | `#18181B` | Ghost label |
-| `button.ghost.background-hover` | `--fc-button-ghost-background-hover` | `#F4F4F5` | Ghost hover surface |
-| `button.ghost.background-active` | `--fc-button-ghost-background-active` | `#E4E4E7` | Ghost active surface |
-| `button.disabled.background` | `--fc-button-disabled-background` | `#E4E4E7` | Disabled surface for Primary/Secondary |
-| `button.disabled.foreground` | `--fc-button-disabled-foreground` | `#A1A1AA` | Disabled label for all variants |
+| `button.height` | `--sl-button-height` | 40px | Control height |
+| `button.padding-x` | `--sl-button-padding-x` | 16px | Horizontal padding |
+| `button.radius` | `--sl-button-radius` | 6px | Corner radius |
+| `button.font-size` | `--sl-button-font-size` | 14px | Label size |
+| `button.font-weight` | `--sl-button-font-weight` | 500 | Label weight |
+| `button.line-height` | `--sl-button-line-height` | 20px | Label line height |
+| `button.focus.color` | `--sl-button-focus-color` | `#2563EB` | Focus ring colour |
+| `button.focus.width` | `--sl-button-focus-width` | 2px | Ring width |
+| `button.focus.offset` | `--sl-button-focus-offset` | 2px | Ring offset/padding |
+| `button.primary.background` | `--sl-button-primary-background` | `#2563EB` | Primary default/focus surface |
+| `button.primary.background-hover` | `--sl-button-primary-background-hover` | `#1D4ED8` | Primary hover surface |
+| `button.primary.background-active` | `--sl-button-primary-background-active` | `#1E40AF` | Primary active surface |
+| `button.primary.foreground` | `--sl-button-primary-foreground` | `#FFFFFF` | Primary label |
+| `button.secondary.background` | `--sl-button-secondary-background` | `#F4F4F5` | Secondary default/focus surface |
+| `button.secondary.background-hover` | `--sl-button-secondary-background-hover` | `#E4E4E7` | Secondary hover surface |
+| `button.secondary.background-active` | `--sl-button-secondary-background-active` | `#D4D4D8` | Secondary active surface |
+| `button.secondary.foreground` | `--sl-button-secondary-foreground` | `#18181B` | Secondary label |
+| `button.ghost.foreground` | `--sl-button-ghost-foreground` | `#18181B` | Ghost label |
+| `button.ghost.background-hover` | `--sl-button-ghost-background-hover` | `#F4F4F5` | Ghost hover surface |
+| `button.ghost.background-active` | `--sl-button-ghost-background-active` | `#E4E4E7` | Ghost active surface |
+| `button.disabled.background` | `--sl-button-disabled-background` | `#E4E4E7` | Disabled surface for Primary/Secondary |
+| `button.disabled.foreground` | `--sl-button-disabled-foreground` | `#A1A1AA` | Disabled label for all variants |
 
 ### Token rules
 
@@ -374,7 +378,7 @@ More invalid and valid examples are in [`contract.json`](./contract.json).
 ### Tokens
 
 - Every reference is a `button.*` token; zero primitive/Semantic references; zero hardcoded values covered by a token.
-- All 22 dependencies exist, resolve to the stated values and map to the stated `--fc-*` variables.
+- All 22 dependencies exist, resolve to the stated values and map to the stated `--sl-*` variables.
 - Every variant uses the tokens in its `stateMapping`.
 - No danger, success or loading variant and no Ghost default background token exists.
 

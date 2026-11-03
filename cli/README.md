@@ -1,6 +1,8 @@
-# Weft CLI (Alpha)
+# Sorleed CLI (Alpha)
 
-Source-distribution CLI for Weft components. Instead of installing compiled packages, the CLI copies canonical source files from this repository into your consumer project.
+**Status: private alpha. `@sorleed/cli` 0.1.0-alpha.0 is not published.**
+
+Source-distribution CLI for Sorleed components. Instead of installing compiled packages, the CLI copies canonical source files from this repository into your consumer project.
 
 ## Prerequisites
 
@@ -10,17 +12,17 @@ Source-distribution CLI for Weft components. Instead of installing compiled pack
 
 ## Supported components
 
-- `button` - Weft Button (React + TypeScript)
-- `input` - Weft Input (React + TypeScript)
-- `password-input` - Weft PasswordInput (React + TypeScript)
-- `phone-input` - Weft PhoneInput (React + TypeScript)
+- `button` - Sorleed Button (React + TypeScript)
+- `input` - Sorleed Input (React + TypeScript)
+- `password-input` - Sorleed PasswordInput (React + TypeScript)
+- `phone-input` - Sorleed PhoneInput (React + TypeScript)
 
 ## Usage
 
-Using `npx` (from installed package):
+Using `npx` when the private package is available in your environment:
 
 ```bash
-npx weft add button --dir /path/to/consumer
+npx sorleed add button --dir /path/to/consumer
 ```
 
 Or from the repository:
@@ -29,17 +31,17 @@ Or from the repository:
 Add `--dry-run` to inspect what would be copied without writing any files:
 
 ```bash
-node cli/bin/weft.mjs add button --dir /path/to/consumer --dry-run
+node cli/bin/sorleed.mjs add button --dir /path/to/consumer --dry-run
 ```
 
 ### Installation
 Omit `--dry-run` to actually copy files into your consumer project:
 
 ```bash
-node cli/bin/weft.mjs add button --dir /path/to/consumer
-node cli/bin/weft.mjs add input --dir /path/to/consumer
-node cli/bin/weft.mjs add password-input --dir /path/to/consumer
-node cli/bin/weft.mjs add phone-input --dir /path/to/consumer
+node cli/bin/sorleed.mjs add button --dir /path/to/consumer
+node cli/bin/sorleed.mjs add input --dir /path/to/consumer
+node cli/bin/sorleed.mjs add password-input --dir /path/to/consumer
+node cli/bin/sorleed.mjs add phone-input --dir /path/to/consumer
 ```
 
 ## Installing into a chosen directory
@@ -49,39 +51,39 @@ Use `--dir` to specify the consumer project root. Paths are resolved and must st
 ## What gets copied
 
 Each component copies:
-- Component wrapper: `components/fincore/<component>/index.tsx` (e.g., `password-input/index.tsx`)
-- Shared types: `components/fincore/types/index.ts` (shared across Button, Input, PasswordInput, PhoneInput)
-- Component CSS: `styles/fincore/<component>.css` (e.g., `password-input.css`)
-- Tokens CSS: `styles/fincore/tokens.css` (shared)
+- Component wrapper: `components/sorleed/<component>/index.tsx` (e.g., `password-input/index.tsx`)
+- Shared types: `components/sorleed/types/index.ts` (shared across Button, Input, PasswordInput, PhoneInput)
+- Component CSS: `styles/sorleed/<component>.css` (e.g., `password-input.css`)
+- Tokens CSS: `styles/sorleed/tokens.css` (shared)
 
 ## Required CSS imports (order matters)
 
 Import tokens first, then component styles in your app entry point:
 
 ```tsx
-import "./styles/fincore/tokens.css";
-import "./styles/fincore/button.css";
-// or ./styles/fincore/input.css
-// or ./styles/fincore/phone-input.css
+import "./styles/sorleed/tokens.css";
+import "./styles/sorleed/button.css";
+// or ./styles/sorleed/input.css
+// or ./styles/sorleed/phone-input.css
 ```
 
 CSS imports require a bundler that supports CSS imports. Tokens must be loaded before component CSS.
 
 ## Dependencies
 
-- **Button and Input**: No extra runtime dependencies (peer deps: `react >=18.0.0`, `react-dom >=18.0.0`)
+- **Button, Input and PasswordInput**: No extra runtime dependencies (peer deps: `react >=18.0.0`, `react-dom >=18.0.0`)
 - **PhoneInput**: Requires `libphonenumber-js` at runtime for phone-number parsing and validation. Install it in your consumer project:
   ```bash
   npm install libphonenumber-js
   ```
-  Button and Input do not require this dependency.
-  - Note: `@types/node` is **not** a requirement of PhoneInput or Weft. If a consumer project encounters TypeScript errors for `node:*` imports (such as `node:path`), this typically originates from the consumer's own build tooling or Node-based configuration (e.g. `vite.config.ts`); diagnose the consumer's configuration rather than treating it as a PhoneInput requirement.
+  Button, Input and PasswordInput do not require this dependency.
+  - Note: `@types/node` is **not** a requirement of PhoneInput or Sorleed. If a consumer project encounters TypeScript errors for `node:*` imports (such as `node:path`), this typically originates from the consumer's own build tooling or Node-based configuration (e.g. `vite.config.ts`); diagnose the consumer's configuration rather than treating it as a PhoneInput requirement.
 
 ## Minimal usage examples
 
 ### Button
 ```tsx
-import { Button } from "./components/fincore/button";
+import { Button } from "./components/sorleed/button";
 
 <Button variant="primary">Click me</Button>
 <Button variant="secondary">Secondary</Button>
@@ -91,18 +93,30 @@ import { Button } from "./components/fincore/button";
 
 ### Input
 ```tsx
-import { Input } from "./components/fincore/input";
+import { Input } from "./components/sorleed/input";
 
 <Input label="Email" type="email" placeholder="you@example.com" />
 <Input label="Name" helperText="Enter your full name" />
 <Input label="Account Number" errorMessage="This field is required" />
 ```
 
-> **Note on Input types:** Weft `Input` strictly supports the following `type` attributes per its component contract: `"text"`, `"email"`, `"tel"`, `"number"`, and `"url"`. Other input types (such as `password`, `search`, `textarea`, `select`, `checkbox`, `otp`, `currency`, or `pin`) are outside the current Input contract. A future Password Input would be a separate component proposal.
+> **Note on Input types:** Sorleed `Input` strictly supports the following `type` attributes per its component contract: `"text"`, `"email"`, `"tel"`, `"number"`, and `"url"`. Other input types (such as `password`, `search`, `textarea`, `select`, `checkbox`, `otp`, `currency`, or `pin`) are outside the current Input contract. Use the separate `PasswordInput` component for passwords.
+
+### PasswordInput
+```tsx
+import { PasswordInput } from "./components/sorleed/password-input";
+
+<PasswordInput
+  label="Password"
+  autoComplete="current-password"
+  helperText="Use at least 12 characters."
+/>
+<PasswordInput label="New password" autoComplete="new-password" />
+```
 
 ### PhoneInput
 ```tsx
-import { PhoneInput } from "./components/fincore/phone-input";
+import { PhoneInput } from "./components/sorleed/phone-input";
 
 <PhoneInput label="Phone" defaultCountry="US" onChange={(result) => {
   console.log(result.inputValue, result.e164, result.isValid);
@@ -111,7 +125,7 @@ import { PhoneInput } from "./components/fincore/phone-input";
 
 ## Conflict behaviour and shared-file reuse
 
-- **Shared files** (`components/fincore/types/index.ts`, `styles/fincore/tokens.css`) are reused only if their contents are byte-identical to the canonical sources.
+- **Shared files** (`components/sorleed/types/index.ts`, `styles/sorleed/tokens.css`) are reused only if their contents are byte-identical to the canonical sources.
 - **If identical**: The file is reused (not copied) and reported as `REUSE`.
 - **If different**: A conflict is reported and installation is aborted before copying any files. Existing files are never overwritten.
 - **Component files**: If any destination exists, installation aborts before copying anything (no partial installs).
@@ -140,14 +154,15 @@ declare module "*.css" {
 ## Current alpha limitations
 
 - No `--force` or `--skip` flags.
-- Only Button, Input, and PhoneInput are supported.
+- Supports Button, Input, PasswordInput and PhoneInput.
+- Not published; the package and executables are private alpha.
 - No browser rendering verification is performed by the CLI.
 - Path traversal is rejected; some edge cases may be reported.
 - The tool copies files from the repository; it does **not** publish components or overwrite existing files.
 
 ## Notes
 
-- Copies from existing canonical sources in the repository (no duplicated templates)
-- The shared `react/types/index.ts` file includes Button, Input, and PhoneInput types
-- CSS imports require a bundler that supports CSS imports
-- Tokens must be loaded before component CSS
+- Copies from canonical sources in the repository; templates are parity-checked.
+- The shared `react/types/index.ts` file includes Button, Input, PasswordInput and PhoneInput types.
+- CSS imports require a bundler that supports CSS imports.
+- Tokens must be loaded before component CSS.

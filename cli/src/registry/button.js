@@ -3,14 +3,14 @@ import { resolveTemplatePath } from '../utils/paths.js';
 export const buttonRegistry = {
   name: 'button',
   displayName: 'Button',
-  description: 'Weft Button component (React + TypeScript wrapper)',
+  description: 'Sorleed Button component (React + TypeScript wrapper)',
   framework: 'react',
   language: 'typescript',
   files: [
     {
       id: 'button-wrapper',
       source: resolveTemplatePath('components/button/index.tsx'),
-      dest: ['components', 'fincore', 'button', 'index.tsx'],
+      dest: ['components', 'sorleed', 'button', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const buttonRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'button-css',
       source: resolveTemplatePath('styles/button.css'),
-      dest: ['styles', 'fincore', 'button.css'],
+      dest: ['styles', 'sorleed', 'button.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const buttonRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

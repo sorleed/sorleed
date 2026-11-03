@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
-  <title>Send a payment — FinCore example</title>
+  <title>Send a payment — Sorleed example</title>
   <link rel="stylesheet" href="../../tokens/dist/tokens.css">
   <link rel="stylesheet" href="../../components/button/button.css">
   <link rel="stylesheet" href="../../components/input/input.css">
@@ -13,10 +13,10 @@
 <body>
   <main class="example-page">
     <header class="example-header">
-      <p class="example-eyebrow">FinCore example</p>
+      <p class="example-eyebrow">Sorleed example</p>
       <h1 class="example-title">Send a payment</h1>
       <p class="example-intro">
-        A demo transfer form built with FinCore's existing Button and Input
+        A demo transfer form built with Sorleed's existing Button and Input
         components. No money moves, no payment service is connected, and no real
         credentials are requested.
       </p>
@@ -48,11 +48,11 @@
 
         <form class="example-form" id="payment-form" novalidate>
           <div class="example-field">
-            <div class="fc-input">
-              <label class="fc-input__label" for="recipient-name">Recipient name</label>
-              <div class="fc-input__control">
+            <div class="sl-input">
+              <label class="sl-input__label" for="recipient-name">Recipient name</label>
+              <div class="sl-input__control">
                 <input
-                  class="fc-input__field"
+                  class="sl-input__field"
                   id="recipient-name"
                   name="recipientName"
                   type="text"
@@ -62,18 +62,18 @@
                   aria-describedby="recipient-name-message"
                 >
               </div>
-              <p class="fc-input__message" id="recipient-name-message">
+              <p class="sl-input__message" id="recipient-name-message">
                 Use a fictional recipient name for this demo.
               </p>
             </div>
           </div>
 
           <div class="example-field">
-            <div class="fc-input">
-              <label class="fc-input__label" for="account-number">Recipient account number</label>
-              <div class="fc-input__control">
+            <div class="sl-input">
+              <label class="sl-input__label" for="account-number">Recipient account number</label>
+              <div class="sl-input__control">
                 <input
-                  class="fc-input__field"
+                  class="sl-input__field"
                   id="account-number"
                   name="accountNumber"
                   type="text"
@@ -84,18 +84,18 @@
                   aria-describedby="account-number-message"
                 >
               </div>
-              <p class="fc-input__message" id="account-number-message">
+              <p class="sl-input__message" id="account-number-message">
                 Use 6–17 digits. This is fictional demo data.
               </p>
             </div>
           </div>
 
           <div class="example-field">
-            <div class="fc-input">
-              <label class="fc-input__label" for="bank-name">Bank</label>
-              <div class="fc-input__control">
+            <div class="sl-input">
+              <label class="sl-input__label" for="bank-name">Bank</label>
+              <div class="sl-input__control">
                 <input
-                  class="fc-input__field"
+                  class="sl-input__field"
                   id="bank-name"
                   name="bankName"
                   type="text"
@@ -106,7 +106,7 @@
                   aria-describedby="bank-name-message"
                 >
               </div>
-              <p class="fc-input__message" id="bank-name-message">
+              <p class="sl-input__message" id="bank-name-message">
                 Choose a demo bank: Northwind Bank, Harbor Credit Union or Summit Savings.
               </p>
             </div>
@@ -119,11 +119,11 @@
           </datalist>
 
           <div class="example-field">
-            <div class="fc-input">
-              <label class="fc-input__label" for="payment-reference">Payment reference (optional)</label>
-              <div class="fc-input__control">
+            <div class="sl-input">
+              <label class="sl-input__label" for="payment-reference">Payment reference (optional)</label>
+              <div class="sl-input__control">
                 <input
-                  class="fc-input__field"
+                  class="sl-input__field"
                   id="payment-reference"
                   name="paymentReference"
                   type="text"
@@ -133,18 +133,18 @@
                   aria-describedby="payment-reference-message"
                 >
               </div>
-              <p class="fc-input__message" id="payment-reference-message">
+              <p class="sl-input__message" id="payment-reference-message">
                 Optional demo reference, up to 18 characters.
               </p>
             </div>
           </div>
 
           <div class="example-field">
-            <div class="fc-input">
-              <label class="fc-input__label" for="amount">Amount (USD)</label>
-              <div class="fc-input__control">
+            <div class="sl-input">
+              <label class="sl-input__label" for="amount">Amount (USD)</label>
+              <div class="sl-input__control">
                 <input
-                  class="fc-input__field"
+                  class="sl-input__field"
                   id="amount"
                   name="amount"
                   type="text"
@@ -155,15 +155,15 @@
                   aria-describedby="amount-message"
                 >
               </div>
-              <p class="fc-input__message" id="amount-message">
+              <p class="sl-input__message" id="amount-message">
                 Enter a demo amount from $1.00 to $5,000.00, for example 250.00.
               </p>
             </div>
           </div>
 
           <div class="example-actions">
-            <button class="fc-button fc-button--secondary" id="payment-clear" type="button">Clear</button>
-            <button class="fc-button" type="submit">Review payment</button>
+            <button class="sl-button sl-button--secondary" id="payment-clear" type="button">Clear</button>
+            <button class="sl-button" type="submit">Review payment</button>
           </div>
         </form>
       </section>
@@ -204,15 +204,15 @@
         </dl>
 
         <div class="example-actions">
-          <button class="fc-button" id="payment-edit" type="button">Edit details</button>
-          <button class="fc-button fc-button--secondary" id="payment-reset" type="button">Reset demo</button>
+          <button class="sl-button" id="payment-edit" type="button">Edit details</button>
+          <button class="sl-button sl-button--secondary" id="payment-reset" type="button">Reset demo</button>
         </div>
       </section>
     </div>
 
     <footer class="example-footer">
       <p>
-        Demo only. Built with FinCore's existing Button and Input components.
+        Demo only. Built with Sorleed's existing Button and Input components.
         Validation, review and reset behaviour are application code.
       </p>
     </footer>

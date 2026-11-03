@@ -1,8 +1,13 @@
-# FinCore components
+# Sorleed components
 
-FinCore's Button and Input are **production CSS plus native HTML**. They ship no
-JavaScript runtime, package, bundler or build step. The application owns
-filtering, validation, error presentation, submission and focus management.
+Sorleed's implemented components are **production CSS plus native HTML**. The
+canonical component layer ships no JavaScript runtime, package, bundler or build
+step. The application owns filtering, validation, error presentation,
+submission and focus management.
+
+A private-alpha React adapter (`@sorleed/react`) and source-distribution CLI
+(`@sorleed/cli`) also exist. They are not published and are not required to use
+the components.
 
 A component is consumed by loading the generated token CSS and the component
 stylesheet, then using the native element with the documented classes and
@@ -14,6 +19,8 @@ attributes.
   unsupported functionality.
 - [Contract-first usage guide](USAGE-GUIDE.md) — the repeatable discovery,
   implementation and verification workflow.
+- [Implementation guide](IMPLEMENTATION.md) — current architecture, APIs, token
+  compliance and verification.
 
 ## Quickstart
 
@@ -35,26 +42,30 @@ For a page at the repository root:
 <link rel="stylesheet" href="tokens/dist/tokens.css">
 <link rel="stylesheet" href="components/button/button.css">
 <link rel="stylesheet" href="components/input/input.css">
+<link rel="stylesheet" href="components/password-input/password-input.css">
+<link rel="stylesheet" href="components/phone-input/phone-input.css">
 ```
 
-If the page is nested, prefix the paths to match its depth. The
+Load only the component stylesheets you use. If the page is nested, prefix the
+paths to match its depth. The
 [transaction-history example](../examples/transaction-history/index.html) uses
 `../../tokens/...` and `../../components/...`.
 
-The component stylesheets **do not import** token CSS. Loading `button.css` or
-`input.css` without `tokens/dist/tokens.css` leaves the component variables
+The component stylesheets **do not import** token CSS. Loading a component
+stylesheet without `tokens/dist/tokens.css` leaves the component variables
 undefined. See [tokens/README.md](../tokens/README.md).
 
 ### 3. Use the documented native APIs
 
-FinCore does not export React, Vue or Web Component wrappers. Use native HTML.
+Use native HTML for the canonical implementation. The React adapter mirrors the
+same classes and tokens but is a private alpha.
 
 ```html
-<div class="fc-input">
-  <label class="fc-input__label" for="filter">Description</label>
-  <div class="fc-input__control">
+<div class="sl-input">
+  <label class="sl-input__label" for="filter">Description</label>
+  <div class="sl-input__control">
     <input
-      class="fc-input__field"
+      class="sl-input__field"
       id="filter"
       name="filter"
       type="text"
@@ -62,24 +73,30 @@ FinCore does not export React, Vue or Web Component wrappers. Use native HTML.
       aria-describedby="filter-help"
     >
   </div>
-  <p class="fc-input__message" id="filter-help">
+  <p class="sl-input__message" id="filter-help">
     Matches description text only.
   </p>
 </div>
 
-<button class="fc-button fc-button--secondary" type="button">Clear</button>
-<button class="fc-button" type="submit">Apply filter</button>
+<button class="sl-button sl-button--secondary" type="button">Clear</button>
+<button class="sl-button" type="submit">Apply filter</button>
 ```
 
-- `.fc-button` is Primary by default. Add `.fc-button--secondary` for a quieter
+- `.sl-button` is Primary by default. Add `.sl-button--secondary` for a quieter
   action. Set an explicit `type` on every button.
-- Input is the full `.fc-input` field anatomy. Keep the visible label associated
+- Input is the full `.sl-input` field anatomy. Keep the visible label associated
   with `for`/`id`; never use the placeholder as the label. Use
   `aria-describedby` for helper or error text.
-- Supported input types are `text`, `email`, `tel`, `number` and `url`.
+- PasswordInput composes `input.*` and `button.*` tokens. Its toggle is a native
+  `<button type="button">` with an accessible name and `aria-pressed`, and the
+  entered value is preserved when visibility changes.
+- PhoneInput keeps a native country `<select>` and a native `type="tel"` input.
+  It never forces a default country and never uses IP geolocation. Calling codes
+  are not unique country identifiers.
+- Supported Input types are `text`, `email`, `tel`, `number` and `url`.
   Validation, error copy, `aria-invalid` and focus management are application
   responsibilities.
-- Set a page font. Both components use `font-family: inherit`; no font file or
+- Set a page font. All components use `font-family: inherit`; no font file or
   font-family token is shipped.
 
 ## Verify the setup
@@ -95,18 +112,21 @@ The page runs native DOM and computed-style checks and should end with
 [test/BROWSER-TESTING.md](test/BROWSER-TESTING.md).
 
 The approved modern-browser baseline is Chrome/Edge 105+, Safari 15.4+ and
-Firefox 121+. Input uses `:has()` for its focus overlay and disabled
-suppression; no fallback is bundled.
+Firefox 121+. Input, PasswordInput and PhoneInput use `:has()` for their focus
+overlay and disabled suppression; no fallback is bundled.
 
-## Working example
+## Working examples
 
 [examples/transaction-history](../examples/transaction-history/README.md) is a
 runnable financial interface that links the real token and component CSS and
-uses the actual `.fc-button` and `.fc-input` markup. Its filtering and layout
+uses the actual `.sl-button` and `.sl-input` markup. Its filtering and layout
 are application code.
 
 The [payment-form example](../examples/payment-form/README.md) is a second
 runnable composition with inline validation and a review state.
+
+Neither example uses PasswordInput or PhoneInput; use their own reference pages
+for those components.
 
 ## Component references
 
@@ -114,6 +134,8 @@ runnable composition with inline validation and a review state.
 |---|---|---|---|
 | Button | [button/README.md](button/README.md) | [button/button.html](button/button.html) | [button/contract.json](button/contract.json) |
 | Input | [input/README.md](input/README.md) | [input/input.html](input/input.html) | [input/contract.json](input/contract.json) |
+| PasswordInput | [password-input/README.md](password-input/README.md) | [password-input/password-input.html](password-input/password-input.html) | [password-input/contract.json](password-input/contract.json) |
+| PhoneInput | [phone-input/README.md](phone-input/README.md) | [phone-input/phone-input.html](phone-input/phone-input.html) | [phone-input/contract.json](phone-input/contract.json) |
 
 Also useful:
 
@@ -127,5 +149,14 @@ Also useful:
 
 Copy `tokens/dist/tokens.css` and the component stylesheets you use, keep the
 token file loaded first, and use the native markup above. No package manager,
-build command or JavaScript runtime is required. The generated token CSS must
-not be edited by hand; see [tokens/README.md](../tokens/README.md).
+build command or JavaScript runtime is required.
+
+Alternatively, the private-alpha CLI copies the canonical source files into a
+consumer project:
+
+```sh
+node cli/bin/sorleed.mjs add button --dir /path/to/consumer
+```
+
+The generated token CSS must not be edited by hand; see
+[tokens/README.md](../tokens/README.md). The CLI is not published.

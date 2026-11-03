@@ -34,16 +34,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       .filter(Boolean)
       .join(" ");
 
-    const wrapperClasses = ["fc-input", className].filter(Boolean).join(" ");
-    const labelClasses = ["fc-input__label", hideLabel ? "fc-input__label--visually-hidden" : ""]
+    const wrapperClasses = ["sl-input", className].filter(Boolean).join(" ");
+    const labelClasses = ["sl-input__label", hideLabel ? "sl-input__label--visually-hidden" : ""]
       .filter(Boolean)
       .join(" ");
-    const messageClasses = ["fc-input__message", hasError ? "fc-input__message--error" : ""]
+    const messageClasses = ["sl-input__message", hasError ? "sl-input__message--error" : ""]
       .filter(Boolean)
       .join(" ");
 
-    // Ensure required FinCore classes are always present
-    if (!wrapperClasses.includes("fc-input")) {
+    // Ensure required Sorleed classes are always present
+    if (!wrapperClasses.includes("sl-input")) {
       // defensive - className should not remove required classes
     }
 
@@ -52,12 +52,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <label className={labelClasses} htmlFor={id}>
           {label}
         </label>
-        <div className="fc-input__control">
+        <div className="sl-input__control">
           <input
             ref={ref}
             id={id}
             type={type}
-            className="fc-input__field"
+            className="sl-input__field"
             required={required}
             disabled={disabled}
             aria-invalid={hasError ? true : undefined}

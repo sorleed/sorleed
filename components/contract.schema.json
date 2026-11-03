@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:fincore:component-contract:1.0.0",
-  "title": "FinCore Component Contract",
-  "description": "Stage 1 machine-readable contract format for FinCore components. The contract separates design evidence from production requirements and never invents component capabilities.",
+  "$id": "urn:sorleed:component-contract:1.0.0",
+  "title": "Sorleed Component Contract",
+  "description": "Stage 1 machine-readable contract format for Sorleed components. The contract separates design evidence from production requirements and never invents component capabilities.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -43,7 +43,7 @@
     },
     "properties": {
       "type": "array",
-      "minItems": 1,
+      "minItems": 0,
       "items": {
         "$ref": "#/$defs/property"
       }
@@ -118,7 +118,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^fincore\\.[a-z][a-z0-9-]*$"
+          "pattern": "^sorleed\\.[a-z][a-z0-9-]*$"
         },
         "name": {
           "type": "string",
@@ -159,7 +159,14 @@
       "required": ["figma", "tokens", "css", "evidence"],
       "properties": {
         "figma": {
-          "$ref": "#/$defs/figma"
+          "anyOf": [
+            {
+              "$ref": "#/$defs/figma"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "tokens": {
           "type": "string",
@@ -498,7 +505,7 @@
           "minLength": 1
         },
         "figmaNodeId": {
-          "type": "string",
+          "type": ["string", "null"],
           "pattern": "^[0-9]+:[0-9]+$"
         },
         "tokens": {
@@ -631,6 +638,14 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "allowedPrefixes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     },
@@ -657,10 +672,10 @@
         },
         "cssVar": {
           "type": "string",
-          "pattern": "^--fc-[a-z0-9-]+$"
+          "pattern": "^--sl-[a-z0-9-]+$"
         },
         "alias": {
-          "type": "string",
+          "type": ["string", "null"],
           "minLength": 1
         },
         "resolved": {

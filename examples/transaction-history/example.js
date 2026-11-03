@@ -1,9 +1,9 @@
 "use strict";
 
 /*
- * Application code for the FinCore transaction-history example.
+ * Application code for the Sorleed transaction-history example.
  *
- * FinCore supplies the Button and Input CSS only. This file owns the demo
+ * Sorleed supplies the Button and Input CSS only. This file owns the demo
  * dataset, filtering, rendering, status text and focus return.
  */
 

@@ -1,9 +1,9 @@
 "use strict";
 
 /*
- * Application code for the FinCore payment-form example.
+ * Application code for the Sorleed payment-form example.
  *
- * FinCore supplies the Button and Input CSS only. This file owns validation,
+ * Sorleed supplies the Button and Input CSS only. This file owns validation,
  * review state, reset behaviour and focus management. No network request is
  * made and no payment is submitted.
  */
@@ -136,13 +136,13 @@ for (const field of fields) {
 function setFieldError(field, message) {
   field.input.setAttribute("aria-invalid", "true");
   field.message.textContent = message;
-  field.message.classList.add("fc-input__message--error");
+  field.message.classList.add("sl-input__message--error");
 }
 
 function clearFieldError(field) {
   field.input.removeAttribute("aria-invalid");
   field.message.textContent = field.helper;
-  field.message.classList.remove("fc-input__message--error");
+  field.message.classList.remove("sl-input__message--error");
 }
 
 function clearErrors() {

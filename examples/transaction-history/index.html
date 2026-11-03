@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
-  <title>Transaction history — FinCore example</title>
+  <title>Transaction history — Sorleed example</title>
   <link rel="stylesheet" href="../../tokens/dist/tokens.css">
   <link rel="stylesheet" href="../../components/button/button.css">
   <link rel="stylesheet" href="../../components/input/input.css">
@@ -13,7 +13,7 @@
 <body>
   <main class="example-page">
     <header class="example-header">
-      <p class="example-eyebrow">FinCore example</p>
+      <p class="example-eyebrow">Sorleed example</p>
       <h1 class="example-title">Transactions</h1>
       <p class="example-account">
         Everyday Checking
@@ -36,11 +36,11 @@
 
       <form class="example-filter-form" id="example-filter-form">
         <div class="example-filter-field">
-          <div class="fc-input">
-            <label class="fc-input__label" for="example-filter">Description</label>
-            <div class="fc-input__control">
+          <div class="sl-input">
+            <label class="sl-input__label" for="example-filter">Description</label>
+            <div class="sl-input__control">
               <input
-                class="fc-input__field"
+                class="sl-input__field"
                 id="example-filter"
                 name="filter"
                 type="text"
@@ -49,15 +49,15 @@
                 aria-describedby="example-filter-help"
               >
             </div>
-            <p class="fc-input__message" id="example-filter-help">
+            <p class="sl-input__message" id="example-filter-help">
               Matches description text only. Amounts, references and statuses are not searched.
             </p>
           </div>
         </div>
 
         <div class="example-filter-actions">
-          <button class="fc-button fc-button--secondary" id="example-clear" type="button">Clear</button>
-          <button class="fc-button" type="submit">Apply filter</button>
+          <button class="sl-button sl-button--secondary" id="example-clear" type="button">Clear</button>
+          <button class="sl-button" type="submit">Apply filter</button>
         </div>
       </form>
     </section>
@@ -105,7 +105,7 @@
 
     <footer class="example-footer">
       <p>
-        Built with FinCore's existing Button and Input components. The page layout,
+        Built with Sorleed's existing Button and Input components. The page layout,
         table, list, filtering and formatting are application code.
       </p>
     </footer>

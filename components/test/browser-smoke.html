@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FinCore browser smoke fixture</title>
+  <title>Sorleed browser smoke fixture</title>
   <link rel="stylesheet" href="../../tokens/dist/tokens.css">
   <link rel="stylesheet" href="../button/button.css">
   <link rel="stylesheet" href="../input/input.css">
@@ -23,7 +23,7 @@
 </head>
 <body>
   <main>
-    <h1>FinCore browser smoke fixture</h1>
+    <h1>Sorleed browser smoke fixture</h1>
     <p>
       This is a dependency-free browser fixture for the existing Button and Input
       CSS. It is not a production page. Open it through the local server described
@@ -34,23 +34,23 @@
     <section aria-labelledby="button-cases">
       <h2 id="button-cases">Button cases</h2>
       <div class="row">
-        <button id="btn-primary" class="fc-button" type="button">Primary</button>
-        <button id="btn-secondary" class="fc-button fc-button--secondary" type="button">Secondary</button>
-        <button id="btn-ghost" class="fc-button fc-button--ghost" type="button">Ghost</button>
-        <button id="btn-disabled-primary" class="fc-button" type="button" disabled>Disabled primary</button>
-        <button id="btn-disabled-secondary" class="fc-button fc-button--secondary" type="button" disabled>Disabled secondary</button>
-        <button id="btn-disabled-ghost" class="fc-button fc-button--ghost" type="button" disabled>Disabled ghost</button>
+        <button id="btn-primary" class="sl-button" type="button">Primary</button>
+        <button id="btn-secondary" class="sl-button sl-button--secondary" type="button">Secondary</button>
+        <button id="btn-ghost" class="sl-button sl-button--ghost" type="button">Ghost</button>
+        <button id="btn-disabled-primary" class="sl-button" type="button" disabled>Disabled primary</button>
+        <button id="btn-disabled-secondary" class="sl-button sl-button--secondary" type="button" disabled>Disabled secondary</button>
+        <button id="btn-disabled-ghost" class="sl-button sl-button--ghost" type="button" disabled>Disabled ghost</button>
       </div>
     </section>
 
     <section aria-labelledby="input-cases">
       <h2 id="input-cases">Input cases</h2>
 
-      <div class="fc-input field">
-        <label class="fc-input__label" for="input-default">Default field</label>
-        <div class="fc-input__control">
+      <div class="sl-input field">
+        <label class="sl-input__label" for="input-default">Default field</label>
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="input-default"
             name="defaultField"
             type="text"
@@ -58,14 +58,14 @@
             aria-describedby="input-default-helper"
           >
         </div>
-        <p class="fc-input__message" id="input-default-helper">Helper copy.</p>
+        <p class="sl-input__message" id="input-default-helper">Helper copy.</p>
       </div>
 
-      <div class="fc-input field">
-        <label class="fc-input__label" for="input-disabled">Disabled field</label>
-        <div class="fc-input__control">
+      <div class="sl-input field">
+        <label class="sl-input__label" for="input-disabled">Disabled field</label>
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="input-disabled"
             name="disabledField"
             type="text"
@@ -74,14 +74,14 @@
             disabled
           >
         </div>
-        <p class="fc-input__message" id="input-disabled-helper">Not available.</p>
+        <p class="sl-input__message" id="input-disabled-helper">Not available.</p>
       </div>
 
-      <div class="fc-input field">
-        <label class="fc-input__label" for="input-error">Error field</label>
-        <div class="fc-input__control">
+      <div class="sl-input field">
+        <label class="sl-input__label" for="input-error">Error field</label>
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="input-error"
             name="errorField"
             type="text"
@@ -91,18 +91,18 @@
           >
         </div>
         <!-- Static example: no role="alert" on first paint. The application may add role="alert" when it inserts this message after validation. -->
-        <p class="fc-input__message fc-input__message--error" id="input-error-message">
+        <p class="sl-input__message sl-input__message--error" id="input-error-message">
           Enter a valid value.
         </p>
       </div>
 
-      <div class="fc-input field">
-        <label class="fc-input__label fc-input__label--visually-hidden" for="input-hidden-label">
+      <div class="sl-input field">
+        <label class="sl-input__label sl-input__label--visually-hidden" for="input-hidden-label">
           Hidden transaction reference
         </label>
-        <div class="fc-input__control">
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="input-hidden-label"
             name="transactionReference"
             type="text"
@@ -186,8 +186,8 @@
 
       check("token CSS variables are present", () => {
         const root = getComputedStyle(document.documentElement);
-        const value = root.getPropertyValue("--fc-button-primary-background").trim();
-        assert(value.length > 0, "--fc-button-primary-background is empty");
+        const value = root.getPropertyValue("--sl-button-primary-background").trim();
+        assert(value.length > 0, "--sl-button-primary-background is empty");
         return value;
       });
 
@@ -273,7 +273,7 @@
         const input = byId("input-hidden-label");
         assert(label, "hidden label is missing");
         assert(
-          label.classList.contains("fc-input__label--visually-hidden"),
+          label.classList.contains("sl-input__label--visually-hidden"),
           "hidden label class is missing",
         );
         assert(input.labels.length === 1 && input.labels[0] === label, "input.labels association failed");
@@ -305,7 +305,7 @@
         ),
       ].join("\n");
 
-      window.__fincoreBrowserSmoke = checks;
+      window.__sorleedBrowserSmoke = checks;
     })();
   </script>
 </body>

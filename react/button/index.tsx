@@ -2,15 +2,15 @@ import React from "react";
 import type { ButtonProps } from "../types";
 
 const variantClassMap = {
-  primary: "fc-button--primary",
-  secondary: "fc-button--secondary",
-  ghost: "fc-button--ghost",
+  primary: "sl-button--primary",
+  secondary: "sl-button--secondary",
+  ghost: "sl-button--ghost",
 } as const;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = "primary", className, type = "button", children, ...props }, ref) => {
     const classes = [
-      "fc-button",
+      "sl-button",
       variantClassMap[variant],
       className,
     ]

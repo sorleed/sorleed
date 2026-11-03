@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FinCore Input — reference markup</title>
+  <title>Sorleed Input — reference markup</title>
   <link rel="stylesheet" href="../../tokens/dist/tokens.css">
   <link rel="stylesheet" href="./input.css">
 </head>
@@ -19,11 +19,11 @@
     <section aria-labelledby="input-default">
       <h2 id="input-default">Default with helper</h2>
 
-      <div class="fc-input">
-        <label class="fc-input__label" for="recipient-email">Recipient email (required)</label>
-        <div class="fc-input__control">
+      <div class="sl-input">
+        <label class="sl-input__label" for="recipient-email">Recipient email (required)</label>
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="recipient-email"
             name="recipientEmail"
             type="email"
@@ -33,7 +33,7 @@
             required
           >
         </div>
-        <p class="fc-input__message" id="recipient-email-helper">
+        <p class="sl-input__message" id="recipient-email-helper">
           We'll email a receipt to this address.
         </p>
       </div>
@@ -47,11 +47,11 @@
         error element inserted after validation, not for first paint.
       </p>
 
-      <div class="fc-input">
-        <label class="fc-input__label" for="amount">Amount (USD) (required)</label>
-        <div class="fc-input__control">
+      <div class="sl-input">
+        <label class="sl-input__label" for="amount">Amount (USD) (required)</label>
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="amount"
             name="amount"
             type="text"
@@ -64,7 +64,7 @@
           >
         </div>
         <!-- Static example: no role="alert" on first paint. The application may add role="alert" when it inserts this message after validation. -->
-        <p class="fc-input__message fc-input__message--error" id="amount-error">
+        <p class="sl-input__message sl-input__message--error" id="amount-error">
           Enter an amount of at least 10.00.
         </p>
       </div>
@@ -77,11 +77,11 @@
         <code>aria-invalid</code> on a disabled field.
       </p>
 
-      <div class="fc-input">
-        <label class="fc-input__label" for="account-number">Account number</label>
-        <div class="fc-input__control">
+      <div class="sl-input">
+        <label class="sl-input__label" for="account-number">Account number</label>
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="account-number"
             name="accountNumber"
             type="text"
@@ -91,7 +91,7 @@
             disabled
           >
         </div>
-        <p class="fc-input__message" id="account-number-helper">
+        <p class="sl-input__message" id="account-number-helper">
           Selected from the account above.
         </p>
       </div>
@@ -100,13 +100,13 @@
     <section aria-labelledby="input-hidden-label">
       <h2 id="input-hidden-label">Visually hidden but accessible label</h2>
 
-      <div class="fc-input">
-        <label class="fc-input__label fc-input__label--visually-hidden" for="transaction-reference">
+      <div class="sl-input">
+        <label class="sl-input__label sl-input__label--visually-hidden" for="transaction-reference">
           Transaction reference
         </label>
-        <div class="fc-input__control">
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="transaction-reference"
             name="transactionReference"
             type="text"
@@ -120,11 +120,11 @@
     <section aria-labelledby="input-types">
       <h2 id="input-types">Other supported native types</h2>
 
-      <div class="fc-input">
-        <label class="fc-input__label" for="phone">Telephone</label>
-        <div class="fc-input__control">
+      <div class="sl-input">
+        <label class="sl-input__label" for="phone">Telephone</label>
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="phone"
             name="phone"
             type="tel"
@@ -134,11 +134,11 @@
         </div>
       </div>
 
-      <div class="fc-input">
-        <label class="fc-input__label" for="website">Website</label>
-        <div class="fc-input__control">
+      <div class="sl-input">
+        <label class="sl-input__label" for="website">Website</label>
+        <div class="sl-input__control">
           <input
-            class="fc-input__field"
+            class="sl-input__field"
             id="website"
             name="website"
             type="url"

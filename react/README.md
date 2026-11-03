@@ -1,10 +1,23 @@
-# Weft React Components (Alpha)
+# Sorleed React Components (Alpha)
 
-Package: `@weft-ui/react`  
-Version: `0.1.0-alpha.1`  
-Status: Private alpha  
-Peer dependencies: `react >=18.0.0`, `react-dom >=18.0.0`  
-Optional: `libphonenumber-js >=1.10.0` (for full PhoneInput validation/inference)
+- Package: `@sorleed/react`
+- Version: `0.1.0-alpha.1`
+- Status: Private alpha; not published
+- Peer dependencies: `react >=18.0.0`, `react-dom >=18.0.0`
+- Optional: `libphonenumber-js >=1.10.0` (for full PhoneInput validation/inference)
+
+This package is an optional adapter over the canonical framework-agnostic CSS
+and native HTML in `components/`. It mirrors the same classes and tokens. It is
+not required to use Sorleed.
+
+## Contract sources
+
+| Component | Contract |
+|---|---|
+| Button | [`components/button/contract.json`](../components/button/contract.json) |
+| Input | [`components/input/contract.json`](../components/input/contract.json) |
+| PasswordInput | [`components/password-input/contract.json`](../components/password-input/contract.json) |
+| PhoneInput | [`components/phone-input/contract.json`](../components/phone-input/contract.json) |
 
 ## Installation
 
@@ -13,8 +26,8 @@ This package is private and not published. Install from a local build/tarball or
 ## Imports
 
 ```tsx
-import { Button, Input, PasswordInput } from "@weft-ui/react";
-import { PhoneInput } from "@weft-ui/react/phone-input";
+import { Button, Input, PasswordInput } from "@sorleed/react";
+import { PhoneInput } from "@sorleed/react/phone-input";
 ```
 
 ### Button
@@ -83,26 +96,26 @@ Notes on PhoneInput semantics:
 Load token CSS before component CSS where required. CSS must be imported explicitly (components do not auto-load styles).
 
 Package export paths (from `react/package.json`):
-- `@weft-ui/react/styles/tokens.css`
-- `@weft-ui/react/styles/button.css`
-- `@weft-ui/react/styles/input.css`
-- `@weft-ui/react/styles/password-input.css`
-- `@weft-ui/react/styles/phone-input.css`
+- `@sorleed/react/styles/tokens.css`
+- `@sorleed/react/styles/button.css`
+- `@sorleed/react/styles/input.css`
+- `@sorleed/react/styles/password-input.css`
+- `@sorleed/react/styles/phone-input.css`
 
 Example for Button, Input and PasswordInput:
 ```tsx
-import "@weft-ui/react/styles/tokens.css";
-import "@weft-ui/react/styles/button.css";
-import "@weft-ui/react/styles/input.css";
-import "@weft-ui/react/styles/password-input.css";
-import { Button, Input, PasswordInput } from "@weft-ui/react";
+import "@sorleed/react/styles/tokens.css";
+import "@sorleed/react/styles/button.css";
+import "@sorleed/react/styles/input.css";
+import "@sorleed/react/styles/password-input.css";
+import { Button, Input, PasswordInput } from "@sorleed/react";
 ```
 
 Example for PhoneInput:
 ```tsx
-import "@weft-ui/react/styles/tokens.css";
-import "@weft-ui/react/styles/phone-input.css";
-import { PhoneInput } from "@weft-ui/react/phone-input";
+import "@sorleed/react/styles/tokens.css";
+import "@sorleed/react/styles/phone-input.css";
+import { PhoneInput } from "@sorleed/react/phone-input";
 ```
 
 CSS imports require a bundler or environment that supports CSS imports (e.g., Vite, webpack, Next.js). In Node ESM without a loader, CSS imports may error; this is a consumer/environment configuration issue, not necessarily a package defect.
@@ -116,3 +129,15 @@ CSS imports require a bundler or environment that supports CSS imports (e.g., Vi
 - No browser verification has been performed in this environment.
 - API is alpha and may change.
 - No automatic CSS injection.
+- PasswordInput and PhoneInput have no verified Figma reference; their contracts record `canonical.figma: null`.
+
+## Local checks
+
+```sh
+npm test
+npm run typecheck
+npm run build
+```
+
+Run these from `react/`. The repository has no root workspace; this package is
+tested independently.

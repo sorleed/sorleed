@@ -1,8 +1,8 @@
-# FinCore Token Architecture
+# Sorleed Token Architecture
 
 ## Overview
 
-FinCore uses a three-layer token architecture:
+Sorleed uses a three-layer token architecture:
 
 Primitive Tokens
 ↓
@@ -12,7 +12,7 @@ Component Tokens
 
 ## Relationship to Principles
 
-This architecture supports the principles defined in [FinCore Principles](principles.md).
+This architecture supports the principles defined in [Sorleed Principles](principles.md).
 
 ---
 
@@ -90,4 +90,4 @@ React Component
 ↓
 AI Documentation
 
-This architecture allows FinCore to remain themeable, scalable, and implementation-agnostic.
+This architecture allows Sorleed to remain themeable, scalable, and implementation-agnostic.

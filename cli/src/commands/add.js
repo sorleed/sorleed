@@ -30,7 +30,7 @@ export async function addCommand(args) {
   
   if (!component) {
     console.error('Error: Component name required');
-    console.error('Usage: weft add <component> [--dir <path>] [--dry-run]');
+    console.error('Usage: sorleed add <component> [--dir <path>] [--dry-run]');
     console.error('Components: button, input, password-input, phone-input');
     process.exit(1);
   }
@@ -45,7 +45,7 @@ export async function addCommand(args) {
   const consumerDir = flags['--dir'] || flags.dir || process.cwd();
   const consumerResolved = path.resolve(consumerDir);
   
-  console.log(isDryRun ? 'Weft CLI (dry-run)' : 'Weft CLI');
+  console.log(isDryRun ? 'Sorleed CLI (dry-run)' : 'Sorleed CLI');
   console.log('=====================');
   console.log(`Consumer directory: ${consumerResolved}`);
   console.log(`Component: ${registry.displayName}`);
@@ -130,13 +130,13 @@ export async function addCommand(args) {
   if (component === 'phone-input' || component === 'phoneinput') {
     console.log('Important: PhoneInput requires the "libphonenumber-js" package at runtime.');
     console.log('  Install it in your consumer project: npm install libphonenumber-js');
-    console.log('  Button and Input do not require this dependency.');
+    console.log('  Button, Input and PasswordInput do not require this dependency.');
     console.log('');
   }
   
   console.log('Required CSS imports (order matters):');
-  console.log(`  1. import "./styles/fincore/tokens.css";`);
-  console.log(`  2. import "./styles/fincore/${component === 'phone-input' || component === 'phoneinput' ? 'phone-input' : component}.css";`);
+  console.log(`  1. import "./styles/sorleed/tokens.css";`);
+  console.log(`  2. import "./styles/sorleed/${component === 'phone-input' || component === 'phoneinput' ? 'phone-input' : component}.css";`);
   console.log('');
   console.log('  Note: CSS imports require a bundler that supports CSS imports.');
   console.log('  Tokens must be loaded before component CSS.');

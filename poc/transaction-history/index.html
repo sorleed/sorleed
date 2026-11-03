@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Transactions — FinCore proof of concept</title>
+  <title>Transactions — Sorleed proof of concept</title>
   <link rel="stylesheet" href="../../tokens/dist/tokens.css">
   <link rel="stylesheet" href="../../components/button/button.css">
   <link rel="stylesheet" href="../../components/input/input.css">
@@ -19,7 +19,7 @@
         <span class="tx-account__number">•••• 4821</span>
       </p>
       <p class="tx-disclaimer">
-        Illustrative data for a FinCore proof of concept. This is not a real customer account.
+        Illustrative data for a Sorleed proof of concept. This is not a real customer account.
       </p>
     </header>
 
@@ -34,11 +34,11 @@
 
       <form class="tx-filter-form" id="tx-filter-form">
         <div class="tx-filter-field">
-          <div class="fc-input">
-            <label class="fc-input__label" for="tx-filter">Description</label>
-            <div class="fc-input__control">
+          <div class="sl-input">
+            <label class="sl-input__label" for="tx-filter">Description</label>
+            <div class="sl-input__control">
               <input
-                class="fc-input__field"
+                class="sl-input__field"
                 id="tx-filter"
                 name="filter"
                 type="text"
@@ -47,15 +47,15 @@
                 aria-describedby="tx-filter-helper"
               >
             </div>
-            <p class="fc-input__message" id="tx-filter-helper">
+            <p class="sl-input__message" id="tx-filter-helper">
               Matches description text only. Amounts, references and statuses are not searched.
             </p>
           </div>
         </div>
 
         <div class="tx-filter-actions">
-          <button class="fc-button fc-button--secondary" id="tx-clear" type="button">Clear</button>
-          <button class="fc-button" type="submit">Apply filter</button>
+          <button class="sl-button sl-button--secondary" id="tx-clear" type="button">Clear</button>
+          <button class="sl-button" type="submit">Apply filter</button>
         </div>
       </form>
     </section>
@@ -103,9 +103,9 @@
 
     <footer class="tx-footer">
       <p>
-        FinCore proof of concept. Button and Input are FinCore components.
+        Sorleed proof of concept. Button and Input are Sorleed components.
         The page layout, table, filtering and formatting are ordinary application code,
-        not FinCore components.
+        not Sorleed components.
       </p>
     </footer>
   </main>

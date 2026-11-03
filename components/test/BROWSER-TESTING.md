@@ -1,11 +1,13 @@
-# FinCore browser smoke testing
+# Sorleed browser smoke testing
 
 This runbook covers the dependency-free browser fixture at
 [`browser-smoke.html`](./browser-smoke.html). It uses the existing generated
 tokens and component CSS; no package, bundler or test framework is required.
 
 The fixture is a development aid, not a production page. It does not replace
-screen-reader, forced-colours, zoom, RTL or cross-browser certification.
+screen-reader, forced-colours, zoom, RTL or cross-browser certification. It
+covers Button and Input only; inspect the PasswordInput and PhoneInput reference
+pages separately for those components.
 
 ## 1. Serve the repository root
 

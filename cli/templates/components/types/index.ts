@@ -5,7 +5,7 @@ export type ButtonVariant = "primary" | "secondary" | "ghost";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Visual variant. Defaults to "primary".
-   * Maps to fc-button--primary/secondary/ghost classes per contract.
+   * Maps to sl-button--primary/secondary/ghost classes per contract.
    */
   variant?: ButtonVariant;
 }

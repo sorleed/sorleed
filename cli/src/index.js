@@ -2,8 +2,8 @@ import { addCommand } from './commands/add.js';
 
 export async function run(argv) {
   if (argv.length === 0) {
-    console.log('Weft CLI');
-    console.log('Usage: weft add <component> [--dir <path>] [--dry-run]');
+    console.log('Sorleed CLI');
+    console.log('Usage: sorleed add <component> [--dir <path>] [--dry-run]');
     console.log('Components: button, input, password-input, phone-input');
     console.log('');
     console.log('Notes:');
@@ -24,6 +24,6 @@ export async function run(argv) {
   }
   
   console.error(`Error: Unknown command "${command}"`);
-  console.error('Usage: weft add <component> [--dir <path>] [--dry-run]');
+  console.error('Usage: sorleed add <component> [--dir <path>] [--dry-run]');
   return 1;
 }

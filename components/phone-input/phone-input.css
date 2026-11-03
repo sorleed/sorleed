@@ -1,8 +1,8 @@
 /*
- * FinCore PhoneInput — production styles for an international phone field.
+ * Sorleed PhoneInput — production styles for an international phone field.
  * Contract: components/phone-input/contract.json (1.0.0)
  *
- * Consumes only --fc-phone-input-* component tokens from tokens/dist/tokens.css.
+ * Consumes only --sl-phone-input-* component tokens from tokens/dist/tokens.css.
  * State precedence: Disabled > Error > Hover > Default.
  * Focus is an independent overlay, shown for keyboard/pointer focus and
  * suppressed by the native disabled attribute.
@@ -14,7 +14,7 @@
  * full country names. No IP geolocation or forced default country.
  */
 
-.fc-phone-input {
+.sl-phone-input {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,20 +22,20 @@
   margin: 0;
 }
 
-.fc-phone-input__label {
+.sl-phone-input__label {
   margin: 0;
-  margin-block-end: var(--fc-phone-input-label-gap);
-  color: var(--fc-phone-input-label-color);
-  font-size: var(--fc-phone-input-font-size);
-  font-weight: var(--fc-phone-input-label-font-weight);
-  line-height: var(--fc-phone-input-line-height);
+  margin-block-end: var(--sl-phone-input-label-gap);
+  color: var(--sl-phone-input-label-color);
+  font-size: var(--sl-phone-input-font-size);
+  font-weight: var(--sl-phone-input-label-font-weight);
+  line-height: var(--sl-phone-input-line-height);
 }
 
 /*
  * Visually hidden, never removed. The label remains the accessible name and
  * keeps its for/id association when hideLabel is requested.
  */
-.fc-phone-input__label--visually-hidden {
+.sl-phone-input__label--visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -50,10 +50,10 @@
 /*
  * Row containing country selector and number input.
  */
-.fc-phone-input__row {
+.sl-phone-input__row {
   display: flex;
   align-items: stretch;
-  gap: var(--fc-phone-input-gap);
+  gap: var(--sl-phone-input-gap);
   width: 100%;
   min-width: 0;
 }
@@ -61,19 +61,19 @@
 /*
  * Country selector container.
  */
-.fc-phone-input__country {
+.sl-phone-input__country {
   position: relative;
   display: flex;
   align-items: center;
   flex: 0 0 auto;
-  min-width: var(--fc-phone-input-country-width);
+  min-width: var(--sl-phone-input-country-width);
   max-width: 40%;
 }
 
 /*
  * Country selector label (visually hidden by default, keep for a11y).
  */
-.fc-phone-input__country-label {
+.sl-phone-input__country-label {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -88,20 +88,20 @@
 /*
  * Country select element.
  */
-.fc-phone-input__country-select {
+.sl-phone-input__country-select {
   width: 100%;
-  height: var(--fc-phone-input-height);
-  padding-inline: var(--fc-phone-input-country-select-padding-x);
-  padding-block: var(--fc-phone-input-padding-y);
+  height: var(--sl-phone-input-height);
+  padding-inline: var(--sl-phone-input-country-select-padding-x);
+  padding-block: var(--sl-phone-input-padding-y);
   margin: 0;
-  color: var(--fc-phone-input-text);
-  background-color: var(--fc-phone-input-background);
-  border: var(--fc-phone-input-border-width) solid var(--fc-phone-input-border);
-  border-radius: var(--fc-phone-input-radius);
+  color: var(--sl-phone-input-text);
+  background-color: var(--sl-phone-input-background);
+  border: var(--sl-phone-input-border-width) solid var(--sl-phone-input-border);
+  border-radius: var(--sl-phone-input-radius);
   font-family: inherit;
-  font-size: var(--fc-phone-input-font-size);
-  font-weight: var(--fc-phone-input-font-weight);
-  line-height: var(--fc-phone-input-line-height);
+  font-size: var(--sl-phone-input-font-size);
+  font-weight: var(--sl-phone-input-font-weight);
+  line-height: var(--sl-phone-input-line-height);
   box-sizing: border-box;
   appearance: auto;
   transition: border-color 120ms ease-in-out;
@@ -110,7 +110,7 @@
 /*
  * Control wrapper for the number input.
  */
-.fc-phone-input__control {
+.sl-phone-input__control {
   position: relative;
   display: flex;
   flex: 1 1 auto;
@@ -120,52 +120,52 @@
 /*
  * The number input itself.
  */
-.fc-phone-input__field {
+.sl-phone-input__field {
   width: 100%;
-  height: var(--fc-phone-input-height);
-  padding-inline: var(--fc-phone-input-padding-x);
-  padding-block: var(--fc-phone-input-padding-y);
+  height: var(--sl-phone-input-height);
+  padding-inline: var(--sl-phone-input-padding-x);
+  padding-block: var(--sl-phone-input-padding-y);
   margin: 0;
-  color: var(--fc-phone-input-text);
-  background-color: var(--fc-phone-input-background);
-  border: var(--fc-phone-input-border-width) solid var(--fc-phone-input-border);
-  border-radius: var(--fc-phone-input-radius);
+  color: var(--sl-phone-input-text);
+  background-color: var(--sl-phone-input-background);
+  border: var(--sl-phone-input-border-width) solid var(--sl-phone-input-border);
+  border-radius: var(--sl-phone-input-radius);
   font-family: inherit;
-  font-size: var(--fc-phone-input-font-size);
-  font-weight: var(--fc-phone-input-font-weight);
-  line-height: var(--fc-phone-input-line-height);
+  font-size: var(--sl-phone-input-font-size);
+  font-weight: var(--sl-phone-input-font-weight);
+  line-height: var(--sl-phone-input-line-height);
   box-sizing: border-box;
   transition: border-color 120ms ease-in-out;
 }
 
-.fc-phone-input__field::placeholder {
-  color: var(--fc-phone-input-placeholder);
+.sl-phone-input__field::placeholder {
+  color: var(--sl-phone-input-placeholder);
   opacity: 1;
 }
 
 /*
  * Hover state.
  */
-.fc-phone-input__field:hover:not(:disabled):not([aria-invalid="true"]),
-.fc-phone-input__country-select:hover:not(:disabled):not([aria-invalid="true"]) {
-  border-color: var(--fc-phone-input-border-hover);
+.sl-phone-input__field:hover:not(:disabled):not([aria-invalid="true"]),
+.sl-phone-input__country-select:hover:not(:disabled):not([aria-invalid="true"]) {
+  border-color: var(--sl-phone-input-border-hover);
 }
 
 /*
  * Focus: independent overlay ring. Apply to both country selector and field.
  */
-.fc-phone-input__field:focus-visible,
-.fc-phone-input__country-select:focus-visible {
+.sl-phone-input__field:focus-visible,
+.sl-phone-input__country-select:focus-visible {
   outline: none;
 }
 
-.fc-phone-input__field:focus-visible::before,
-.fc-phone-input__country-select:focus-visible::before {
+.sl-phone-input__field:focus-visible::before,
+.sl-phone-input__country-select:focus-visible::before {
   content: "";
   position: absolute;
-  inset: calc(-1 * var(--fc-phone-input-focus-offset));
-  border-radius: calc(var(--fc-phone-input-radius) + var(--fc-phone-input-focus-offset));
-  box-shadow: 0 0 0 var(--fc-phone-input-focus-width) var(--fc-phone-input-focus-color);
+  inset: calc(-1 * var(--sl-phone-input-focus-offset));
+  border-radius: calc(var(--sl-phone-input-radius) + var(--sl-phone-input-focus-offset));
+  box-shadow: 0 0 0 var(--sl-phone-input-focus-width) var(--sl-phone-input-focus-color);
   pointer-events: none;
 }
 
@@ -173,42 +173,42 @@
  * Error state: keyed to aria-invalid="true" on the input.
  * Country selector may also reflect error styling if needed.
  */
-.fc-phone-input__field[aria-invalid="true"],
-.fc-phone-input__country-select[aria-invalid="true"] {
-  border-color: var(--fc-phone-input-border-error);
+.sl-phone-input__field[aria-invalid="true"],
+.sl-phone-input__country-select[aria-invalid="true"] {
+  border-color: var(--sl-phone-input-border-error);
 }
 
-.fc-phone-input__field[aria-invalid="true"] + .fc-phone-input__message,
-.fc-phone-input .fc-phone-input__field[aria-invalid="true"] ~ .fc-phone-input__message {
-  color: var(--fc-phone-input-text-error);
+.sl-phone-input__field[aria-invalid="true"] + .sl-phone-input__message,
+.sl-phone-input .sl-phone-input__field[aria-invalid="true"] ~ .sl-phone-input__message {
+  color: var(--sl-phone-input-text-error);
 }
 
 /*
  * Disabled state.
  */
-.fc-phone-input__field:disabled,
-.fc-phone-input__country-select:disabled {
-  color: var(--fc-phone-input-text-disabled);
-  background-color: var(--fc-phone-input-background-disabled);
-  border-color: var(--fc-phone-input-border-disabled);
+.sl-phone-input__field:disabled,
+.sl-phone-input__country-select:disabled {
+  color: var(--sl-phone-input-text-disabled);
+  background-color: var(--sl-phone-input-background-disabled);
+  border-color: var(--sl-phone-input-border-disabled);
   cursor: not-allowed;
 }
 
-.fc-phone-input__field:disabled::placeholder {
-  color: var(--fc-phone-input-text-disabled);
+.sl-phone-input__field:disabled::placeholder {
+  color: var(--sl-phone-input-text-disabled);
 }
 
 /*
  * Helper/error message row.
  */
-.fc-phone-input__message {
+.sl-phone-input__message {
   margin: 0;
-  margin-block-start: var(--fc-phone-input-helper-gap);
-  color: var(--fc-phone-input-helper-color);
-  font-size: var(--fc-phone-input-helper-font-size);
-  line-height: var(--fc-phone-input-helper-line-height);
+  margin-block-start: var(--sl-phone-input-helper-gap);
+  color: var(--sl-phone-input-helper-color);
+  font-size: var(--sl-phone-input-helper-font-size);
+  line-height: var(--sl-phone-input-helper-line-height);
 }
 
-.fc-phone-input__message--error {
-  color: var(--fc-phone-input-text-error);
+.sl-phone-input__message--error {
+  color: var(--sl-phone-input-text-error);
 }

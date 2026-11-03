@@ -1,7 +1,7 @@
 {
-  "name": "@weft-ui/react",
+  "name": "@sorleed/react",
   "version": "0.1.0-alpha.1",
-  "description": "Weft React component library",
+  "description": "Sorleed React component library",
   "private": true,
   "type": "module",
   "main": "./dist/index.js",

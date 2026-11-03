@@ -10,15 +10,15 @@ test("Button basic", () => {
   const { getByRole, rerender } = render(React.createElement(Button, null, "Click me"));
   const btn = getByRole("button");
   assert.equal(btn.tagName, "BUTTON");
-  assert.ok(btn.classList.contains("fc-button"));
-  assert.ok(btn.classList.contains("fc-button--primary"));
+  assert.ok(btn.classList.contains("sl-button"));
+  assert.ok(btn.classList.contains("sl-button--primary"));
   assert.equal(btn.getAttribute("type"), "button");
   
   rerender(React.createElement(Button, { variant: "secondary" }, "Secondary"));
-  assert.ok(getByRole("button").classList.contains("fc-button--secondary"));
+  assert.ok(getByRole("button").classList.contains("sl-button--secondary"));
   
   rerender(React.createElement(Button, { variant: "ghost" }, "Ghost"));
-  assert.ok(getByRole("button").classList.contains("fc-button--ghost"));
+  assert.ok(getByRole("button").classList.contains("sl-button--ghost"));
   
   rerender(React.createElement(Button, { type: "submit" }, "Submit"));
   assert.equal(getByRole("button").getAttribute("type"), "submit");
@@ -28,7 +28,7 @@ test("Button basic", () => {
   
   rerender(React.createElement(Button, { className: "custom" }, "Test"));
   const b = getByRole("button");
-  assert.ok(b.classList.contains("fc-button"));
+  assert.ok(b.classList.contains("sl-button"));
   assert.ok(b.classList.contains("custom"));
   
   let clicked = false;

@@ -14,7 +14,7 @@ test("PhoneInput onChange states", () => {
       onChange: (r: any) => results.push(r) 
     })
   );
-  const input = container.querySelector('.fc-phone-input__field') as HTMLInputElement;
+  const input = container.querySelector('.sl-phone-input__field') as HTMLInputElement;
   
   ReactTestUtils.Simulate.change(input, { target: { value: "" } });
   assert.ok(results.length > 0);
@@ -52,7 +52,7 @@ test("PhoneInput country selection", () => {
       defaultCountry: "GB"
     })
   );
-  const select = container.querySelector('.fc-phone-input__country-select') as HTMLSelectElement;
+  const select = container.querySelector('.sl-phone-input__country-select') as HTMLSelectElement;
   assert.equal(select.value, "GB");
   
   const { container: c2 } = render(
@@ -62,25 +62,25 @@ test("PhoneInput country selection", () => {
       defaultCountry: "GB"
     })
   );
-  const select2 = c2.querySelector('.fc-phone-input__country-select') as HTMLSelectElement;
+  const select2 = c2.querySelector('.sl-phone-input__country-select') as HTMLSelectElement;
   assert.equal(select2.value, "US");
   
   const { container: c3 } = render(
     React.createElement(PhoneInput, { label: "Phone3" })
   );
-  const input3 = c3.querySelector('.fc-phone-input__field') as HTMLInputElement;
+  const input3 = c3.querySelector('.sl-phone-input__field') as HTMLInputElement;
   input3.value = "+44";
   const evt = new window.Event('change', { bubbles: true });
   Object.defineProperty(evt, 'target', { value: input3 });
   input3.dispatchEvent(evt);
-  const select3 = c3.querySelector('.fc-phone-input__country-select') as HTMLSelectElement;
+  const select3 = c3.querySelector('.sl-phone-input__country-select') as HTMLSelectElement;
   ReactTestUtils.Simulate.change(select3, { target: { value: "CA" } });
-  assert.equal((c3.querySelector('.fc-phone-input__field') as HTMLInputElement).value, "+44");
+  assert.equal((c3.querySelector('.sl-phone-input__field') as HTMLInputElement).value, "+44");
   
   const { container: c4 } = render(
     React.createElement(PhoneInput, { label: "Phone4", countries: ["US", "CA"] })
   );
-  const select4 = c4.querySelector('.fc-phone-input__country-select') as HTMLSelectElement;
+  const select4 = c4.querySelector('.sl-phone-input__country-select') as HTMLSelectElement;
   const options = Array.from(select4.options).map(o => o.value).filter(v => v);
   assert.deepEqual(new Set(options), new Set(["US", "CA"]));
 });
@@ -89,22 +89,22 @@ test("PhoneInput controlled/uncontrolled", () => {
   const { container } = render(
     React.createElement(PhoneInput, { label: "Phone", defaultValue: "+1" })
   );
-  const input = container.querySelector('.fc-phone-input__field') as HTMLInputElement;
+  const input = container.querySelector('.sl-phone-input__field') as HTMLInputElement;
   assert.equal(input.value, "+1");
   
   const { container: c2 } = render(
     React.createElement(PhoneInput, { label: "Phone2", value: "+44" })
   );
-  const input2 = c2.querySelector('.fc-phone-input__field') as HTMLInputElement;
+  const input2 = c2.querySelector('.sl-phone-input__field') as HTMLInputElement;
   assert.equal(input2.value, "+44");
   
   const { container: c3 } = render(
     React.createElement(PhoneInput, { label: "Phone3" })
   );
-  const input3 = c3.querySelector('.fc-phone-input__field') as HTMLInputElement;
+  const input3 = c3.querySelector('.sl-phone-input__field') as HTMLInputElement;
   input3.value = "+123456";
   const evt = new window.Event('change', { bubbles: true });
   Object.defineProperty(evt, 'target', { value: input3 });
   input3.dispatchEvent(evt);
-  assert.equal((c3.querySelector('.fc-phone-input__field') as HTMLInputElement).value, "+123456");
+  assert.equal((c3.querySelector('.sl-phone-input__field') as HTMLInputElement).value, "+123456");
 });

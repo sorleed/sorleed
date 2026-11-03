@@ -1,8 +1,8 @@
 # Input
 
-**Contract 1.0.0 · Component v0.1 · Implementation: framework-agnostic CSS + native HTML (Stage 2)**
+**Contract 1.0.0 · Component v0.1 · Implementation: framework-agnostic CSS + native HTML (canonical)**
 
-Input is FinCore's single-line text field. It renders a complete field — label, control and helper/error row — with four mutually exclusive Figma states, an independent keyboard-focus ring and 28 component tokens.
+Input is Sorleed's single-line text field. It renders a complete field — label, control and helper/error row — with four mutually exclusive Figma states, an independent keyboard-focus ring and 28 component tokens.
 
 The component renders state. It does **not** validate, format, mask or submit. Those are application responsibilities.
 
@@ -18,7 +18,11 @@ This guide is the human-readable companion to the canonical machine contract:
 - Figma evidence: file `llp3APU7qaknEGJWq7vTI4`, page `1:3`, set `99:46` (4 variants, 10 properties, 176/176 bound fields)
 - Illustrative composition: [`../examples/financial-form.md`](../examples/financial-form.md)
 
-> This repository includes production CSS and native HTML reference markup. There is no React, Vue, Web Component or JavaScript runtime package; contract-level props are a mapping to native classes, attributes and browser states, not exported code.
+> This repository includes production CSS and native HTML reference markup as the
+> canonical implementation. A private-alpha React adapter exists in
+> [`../../react/input/index.tsx`](../../react/input/index.tsx) but is not
+> published; contract-level props map to native classes, attributes and browser
+> states.
 
 ---
 
@@ -72,7 +76,7 @@ The Figma 320px width is a demo literal. Production width belongs to layout.
 | Do not use it for | Why | Use instead |
 |---|---|---|
 | Placeholder-only fields | The placeholder is not a label; it disappears on entry and is not a reliable accessible name | A visible label, or a visually hidden but programmatically associated label |
-| Password entry | Needs a reveal affordance and masking; there is no icon system | A future Password Input |
+| Password entry | Needs a reveal affordance and masking; there is no icon system | `PasswordInput` |
 | Search | Needs a leading icon and clear affordance | A future Search Input |
 | Multiline text | Needs separate height, resize and overflow rules | A future Textarea |
 | Select / dropdown | Needs option semantics and a popup | A future Select |
@@ -95,7 +99,7 @@ The Figma 320px width is a demo literal. Production width belongs to layout.
 |---|---|---|---|
 | `State` | VARIANT | `Default` | **Derived.** `Disabled > Error > Hover > Default`; not a prop |
 | `Label` | TEXT | `Email address` (demo) | `label`: required string |
-| `Value` | TEXT | `ada@fincore.dev` (demo) | `value`: required controlled string; default `""` |
+| `Value` | TEXT | `ada@example.com` (demo) | `value`: required controlled string; default `""` |
 | `Placeholder` | TEXT | `you@example.com` (demo) | `placeholder`: optional string; never a label |
 | `Helper` | TEXT | `We never share this.` (demo) | `helperText` plus a separate `errorMessage`; error replaces helper |
 | `Focused` | BOOLEAN | `false` | **Derived** from `:focus-visible`; suppressed by Disabled |
@@ -137,13 +141,13 @@ The framework-agnostic implementation uses the following mapping. No JavaScript 
 | Contract-level prop / concept | Native implementation |
 |---|---|
 | `id` | Native `id` on the `<input>`; the label's `for` references it |
-| `label` | `<label class="fc-input__label" for="…">` text |
-| `hideLabel` | Add `fc-input__label--visually-hidden`; the label remains in the accessibility tree |
+| `label` | `<label class="sl-input__label" for="…">` text |
+| `hideLabel` | Add `sl-input__label--visually-hidden`; the label remains in the accessibility tree |
 | `value` | Native `value` attribute/property; the application controls updates |
-| `onChange` | Application-owned `input` listener; no runtime is shipped |
+| `onChange` | Application-owned `input` listener; the canonical CSS adds no behaviour |
 | `placeholder` | Native `placeholder`; never the label |
-| `helperText` | `p.fc-input__message` with an id, referenced by `aria-describedby` |
-| `errorMessage` | Application sets `aria-invalid="true"`, renders `p.fc-input__message--error`, and connects it with `aria-describedby` and/or `aria-errormessage` |
+| `helperText` | `p.sl-input__message` with an id, referenced by `aria-describedby` |
+| `errorMessage` | Application sets `aria-invalid="true"`, renders `p.sl-input__message--error`, and connects it with `aria-describedby` and/or `aria-errormessage` |
 | `disabled` | Native `disabled`; wins over Error, Hover and Focus; do not add `aria-invalid` |
 | `type` | Native supported type: `text`, `email`, `tel`, `number` or `url` |
 | `autoComplete`, `name`, `required`, `inputMode` | Native attributes supplied by the application |
@@ -250,34 +254,34 @@ Input consumes 28 component tokens. Colour tokens alias Semantic roles; geometry
 
 | Token | CSS variable | Resolves to | Role |
 |---|---|---|---|
-| `input.height` | `--fc-input-height` | 40px | Control height |
-| `input.padding-x` | `--fc-input-padding-x` | 12px | Horizontal padding |
-| `input.radius` | `--fc-input-radius` | 6px | Control radius |
-| `input.border-width` | `--fc-input-border-width` | 1px | Border width, INSIDE |
-| `input.font-size` | `--fc-input-font-size` | 14px | Value and label size |
-| `input.line-height` | `--fc-input-line-height` | 20px | Value and label line height |
-| `input.font-weight` | `--fc-input-font-weight` | 400 | Value and helper weight |
-| `input.label-gap` | `--fc-input-label-gap` | 8px | Label-to-control gap |
-| `input.helper-gap` | `--fc-input-helper-gap` | 4px | Control-to-helper gap |
-| `input.focus.color` | `--fc-input-focus-color` | `#2563EB` | Focus ring colour |
-| `input.focus.width` | `--fc-input-focus-width` | 2px | Ring width |
-| `input.focus.offset` | `--fc-input-focus-offset` | 2px | Ring offset/padding |
-| `input.focus.radius` | `--fc-input-focus-radius` | 8px | Concentric ring radius (6 + 2) |
-| `input.background` | `--fc-input-background` | `#FFFFFF` | Control fill |
-| `input.border` | `--fc-input-border` | `#71717A` | Default boundary |
-| `input.text` | `--fc-input-text` | `#18181B` | Value |
-| `input.placeholder` | `--fc-input-placeholder` | `#71717A` | Placeholder |
-| `input.border-hover` | `--fc-input-border-hover` | `#52525B` | Hover boundary |
-| `input.border-error` | `--fc-input-border-error` | `#DC2626` | Error boundary |
-| `input.text-error` | `--fc-input-text-error` | `#991B1B` | Error message |
-| `input.background-disabled` | `--fc-input-background-disabled` | `#E4E4E7` | Disabled fill |
-| `input.border-disabled` | `--fc-input-border-disabled` | `#E4E4E7` | Disabled boundary (matches fill) |
-| `input.text-disabled` | `--fc-input-text-disabled` | `#A1A1AA` | Disabled value and placeholder |
-| `input.label.color` | `--fc-input-label-color` | `#3F3F46` | Label |
-| `input.label.font-weight` | `--fc-input-label-font-weight` | 500 | Label weight |
-| `input.helper.color` | `--fc-input-helper-color` | `#52525B` | Helper text |
-| `input.helper.font-size` | `--fc-input-helper-font-size` | 12px | Helper and error size |
-| `input.helper.line-height` | `--fc-input-helper-line-height` | 16px | Helper and error line height |
+| `input.height` | `--sl-input-height` | 40px | Control height |
+| `input.padding-x` | `--sl-input-padding-x` | 12px | Horizontal padding |
+| `input.radius` | `--sl-input-radius` | 6px | Control radius |
+| `input.border-width` | `--sl-input-border-width` | 1px | Border width, INSIDE |
+| `input.font-size` | `--sl-input-font-size` | 14px | Value and label size |
+| `input.line-height` | `--sl-input-line-height` | 20px | Value and label line height |
+| `input.font-weight` | `--sl-input-font-weight` | 400 | Value and helper weight |
+| `input.label-gap` | `--sl-input-label-gap` | 8px | Label-to-control gap |
+| `input.helper-gap` | `--sl-input-helper-gap` | 4px | Control-to-helper gap |
+| `input.focus.color` | `--sl-input-focus-color` | `#2563EB` | Focus ring colour |
+| `input.focus.width` | `--sl-input-focus-width` | 2px | Ring width |
+| `input.focus.offset` | `--sl-input-focus-offset` | 2px | Ring offset/padding |
+| `input.focus.radius` | `--sl-input-focus-radius` | 8px | Concentric ring radius (6 + 2) |
+| `input.background` | `--sl-input-background` | `#FFFFFF` | Control fill |
+| `input.border` | `--sl-input-border` | `#71717A` | Default boundary |
+| `input.text` | `--sl-input-text` | `#18181B` | Value |
+| `input.placeholder` | `--sl-input-placeholder` | `#71717A` | Placeholder |
+| `input.border-hover` | `--sl-input-border-hover` | `#52525B` | Hover boundary |
+| `input.border-error` | `--sl-input-border-error` | `#DC2626` | Error boundary |
+| `input.text-error` | `--sl-input-text-error` | `#991B1B` | Error message |
+| `input.background-disabled` | `--sl-input-background-disabled` | `#E4E4E7` | Disabled fill |
+| `input.border-disabled` | `--sl-input-border-disabled` | `#E4E4E7` | Disabled boundary (matches fill) |
+| `input.text-disabled` | `--sl-input-text-disabled` | `#A1A1AA` | Disabled value and placeholder |
+| `input.label.color` | `--sl-input-label-color` | `#3F3F46` | Label |
+| `input.label.font-weight` | `--sl-input-label-font-weight` | 500 | Label weight |
+| `input.helper.color` | `--sl-input-helper-color` | `#52525B` | Helper text |
+| `input.helper.font-size` | `--sl-input-helper-font-size` | 12px | Helper and error size |
+| `input.helper.line-height` | `--sl-input-helper-line-height` | 16px | Helper and error line height |
 
 ### Collapsed roles
 
@@ -460,7 +464,7 @@ It is illustrative only. No production form or component package exists.
 | Disabled plus focus ring | Disabled suppresses focus | Ignore `Focused`; render no ring |
 | `ShowHelper=false` in Error | Hides the non-colour error signal | Keep the error message visible |
 | Inverse surface | Full field fails contrast | Use a supported light surface |
-| `type="password"` | No reveal or masking contract | Wait for Password Input |
+| `type="password"` | No reveal or masking contract | Use `PasswordInput` |
 | `readOnly` | No visual or semantic contract | Use disabled only when unavailable |
 | Validate on every change | Interrupts entry; announces too early | Validate on blur or submit |
 | Red border with no message | Colour-only error | Always set `errorMessage` |
@@ -519,7 +523,7 @@ More invalid and valid examples are in [`contract.json`](./contract.json).
 ### Tokens
 
 - Every reference is an `input.*` token; zero primitive/Semantic references; zero hardcoded values covered by a token.
-- All 28 dependencies exist, resolve to the stated values and map to the stated `--fc-*` variables.
+- All 28 dependencies exist, resolve to the stated values and map to the stated `--sl-*` variables.
 - Every variant uses the tokens in its `stateMapping`.
 - `input.focus.radius` equals `input.radius` plus `input.focus.offset` (6 + 2 = 8).
 - No stale error-border, border-focus, success, warning, readOnly or icon token exists.
@@ -632,7 +636,7 @@ Disabled wins over hover, focus and error. The reason for unavailability is expl
 <Input id="email" label="Email" errorMessage="Enter a valid email." showHelper={false} />
 
 // Value and placeholder overlap.
-<Input id="email" label="Email" value="ada@fincore.dev" filled showPlaceholder />
+<Input id="email" label="Email" value="ada@example.com" filled showPlaceholder />
 
 // Unsupported type.
 <Input id="password" label="Password" type="password" value={password} onChange={setPassword} />

@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /**
- * FinCore component-contract validation.
+ * Sorleed component-contract validation.
  *
- * Zero dependencies. Validates the Stage 1 contract format against
- * components/contract.schema.json, checks every token reference against
- * tokens/tokens.json, and verifies contract invariants and examples.
+ * Zero dependencies. Auto-discovers every components/<name>/contract.json,
+ * validates it against components/contract.schema.json, checks every token
+ * reference against tokens/tokens.json, compares the contract dependency list
+ * with the component stylesheet, and verifies documentation links.
  *
  * Read-only: this script never writes to the repository.
  *
@@ -12,34 +13,20 @@
  *   node components/validate-contracts.mjs
  */
 
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const SCHEMA_PATH = join(ROOT, "components", "contract.schema.json");
+const COMPONENTS_DIR = join(ROOT, "components");
+const SCHEMA_PATH = join(COMPONENTS_DIR, "contract.schema.json");
 const TOKENS_PATH = join(ROOT, "tokens", "tokens.json");
 const CSS_PATH = join(ROOT, "tokens", "dist", "tokens.css");
-const CONTRACT_PATHS = [
-  join(ROOT, "components", "button", "contract.json"),
-  join(ROOT, "components", "input", "contract.json"),
-  join(ROOT, "components", "phone-input", "contract.json"),
-];
-const MARKDOWN_PATHS = [
-  join(ROOT, "components", "button", "README.md"),
-  join(ROOT, "components", "input", "README.md"),
-  join(ROOT, "components", "examples", "financial-form.md"),
-];
 
 const errors = [];
 const checks = [];
 
 function record(label, problems = []) {
-  // Relax for draft PhoneInput foundation
-  if (label.includes("phone-input")) {
-    checks.push({ label, problems: [] });
-    return;
-  }
   checks.push({ label, problems });
   errors.push(...problems);
 }
@@ -95,7 +82,7 @@ const schema = readJson(SCHEMA_PATH);
 
 /**
  * Validate the JSON Schema subset used by components/contract.schema.json.
- * Supported: $ref (local $defs), type, enum, const, pattern, minLength,
+ * Supported: $ref (local $defs), anyOf, type, enum, const, pattern, minLength,
  * minItems, minProperties, uniqueItems, minimum, required, properties,
  * additionalProperties (false or schema), and items.
  */
@@ -117,6 +104,15 @@ function validate(schemaNode, data, path = "$") {
       return [`${path}: unresolved $ref ${ref}`];
     }
     return validate(target, data, path);
+  }
+
+  if (Array.isArray(schemaNode.anyOf)) {
+    const matched = schemaNode.anyOf.some(
+      (candidate) => validate(candidate, data, path).length === 0,
+    );
+    if (!matched) {
+      return [`${path}: does not match any allowed schema`];
+    }
   }
 
   if (schemaNode.type !== undefined) {
@@ -297,38 +293,119 @@ function resolveToken(name) {
 }
 
 function cssVar(name) {
-  return `--fc-${name.split(".").join("-")}`;
+  return `--sl-${name.split(".").join("-")}`;
 }
 
 const tokenNames = new Set(tokens.keys());
+const tokenFamilies = new Set(
+  [...tokenNames].map((name) => name.split(".")[0]),
+);
 const cssFromSource = new Set([...tokens.keys()].map(cssVar));
 
 const cssText = readText(CSS_PATH);
 const cssFromFile = new Set(
-  cssText === null ? [] : [...cssText.matchAll(/--fc-[a-z0-9-]+/g)].map((m) => m[0]),
+  cssText === null ? [] : [...cssText.matchAll(/--sl-[a-z0-9-]+/g)].map((m) => m[0]),
 );
 
 // ---------------------------------------------------------------------------
-// Contract validation
+// Contract discovery
 // ---------------------------------------------------------------------------
 
+const CONTRACT_EXCLUDES = new Set(["examples", "test", "node_modules"]);
+
+const contractEntries = existsSync(COMPONENTS_DIR)
+  ? readdirSync(COMPONENTS_DIR, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .filter((entry) => !CONTRACT_EXCLUDES.has(entry.name))
+      .filter((entry) => existsSync(join(COMPONENTS_DIR, entry.name, "contract.json")))
+      .map((entry) => ({
+        directory: entry.name,
+        path: join(COMPONENTS_DIR, entry.name, "contract.json"),
+      }))
+      .sort((a, b) => a.directory.localeCompare(b.directory))
+  : [];
+
 const EXPECTED = {
-  "fincore.button": { dependencies: 22, variants: 15, properties: 3 },
-  "fincore.input": { dependencies: 28, variants: 4, properties: 10 },
-  "fincore.phone-input": { dependencies: 15, variants: 1, properties: 1 },
+  button: { dependencies: 22, variants: 15, properties: 3 },
+  input: { dependencies: 28, variants: 4, properties: 10 },
+  "password-input": { dependencies: 36, variants: 4, properties: 0 },
+  "phone-input": { dependencies: 31, variants: 4, properties: 0 },
+};
+
+const EXPECTED_PROPERTIES = {
+  button: {
+    Variant: {
+      type: "VARIANT",
+      default: "Primary",
+      values: ["Primary", "Secondary", "Ghost"],
+    },
+    State: {
+      type: "VARIANT",
+      default: "Default",
+      values: ["Default", "Hover", "Active", "Focus", "Disabled"],
+    },
+    Label: { type: "TEXT", key: "Label#87:16", default: "Button" },
+  },
+  input: {
+    State: {
+      type: "VARIANT",
+      default: "Default",
+      values: ["Default", "Hover", "Error", "Disabled"],
+    },
+    Label: { type: "TEXT", key: "Label#99:0", default: "Email address" },
+    Value: { type: "TEXT", key: "Value#99:5", default: "ada@example.com" },
+    Placeholder: {
+      type: "TEXT",
+      key: "Placeholder#99:10",
+      default: "you@example.com",
+    },
+    Helper: { type: "TEXT", key: "Helper#99:15", default: "We never share this." },
+    Focused: { type: "BOOLEAN", key: "Focused#99:20", default: false },
+    Filled: { type: "BOOLEAN", key: "Filled#99:25", default: false },
+    ShowPlaceholder: {
+      type: "BOOLEAN",
+      key: "ShowPlaceholder#99:30",
+      default: true,
+    },
+    ShowLabel: { type: "BOOLEAN", key: "ShowLabel#99:35", default: true },
+    ShowHelper: { type: "BOOLEAN", key: "ShowHelper#99:40", default: true },
+  },
+};
+
+const EXPECTED_VARIANT_IDS = {
+  button: [
+    "87:4",
+    "87:6",
+    "87:8",
+    "87:10",
+    "87:13",
+    "87:15",
+    "87:17",
+    "87:19",
+    "87:21",
+    "87:24",
+    "87:26",
+    "87:28",
+    "87:30",
+    "87:32",
+    "87:35",
+  ],
+  input: ["99:2", "99:13", "99:24", "99:35"],
+  "password-input": [],
+  "phone-input": [],
 };
 
 const contracts = [];
 
 if (schema) {
-  for (const path of CONTRACT_PATHS) {
-    const contract = readJson(path);
+  for (const entry of contractEntries) {
+    const contract = readJson(entry.path);
     if (!contract) continue;
 
-    const relative = path.replace(`${ROOT}/`, "");
+    const relative = entry.path.replace(`${ROOT}/`, "");
     const schemaProblems = validate(schema, contract);
     record(`schema: ${relative}`, schemaProblems);
-    contracts.push({ path, relative, contract });
+    contracts.push({ ...entry, relative, contract });
   }
 }
 
@@ -337,23 +414,54 @@ record(
   schema ? [] : ["components/contract.schema.json could not be parsed"],
 );
 
+// ---------------------------------------------------------------------------
+// Per-contract invariants
+// ---------------------------------------------------------------------------
+
+function extractVarRefs(text) {
+  return new Set(
+    [...text.matchAll(/var\((--sl-[a-z0-9-]+)/g)].map((match) => match[1]),
+  );
+}
+
+function extractCssClasses(text) {
+  return new Set(
+    [...text.matchAll(/\.(sl-[a-z0-9_-]+)/g)].map((match) => match[1]),
+  );
+}
+
+function extractClassRefs(text) {
+  return new Set([...text.matchAll(/\bsl-[a-z0-9_-]+/g)].map((match) => match[0]));
+}
+
+function localMarkdownLinks(text) {
+  return [...text.matchAll(/\]\(([^)\s]+)\)/g)]
+    .map((match) => match[1].split("#")[0])
+    .filter(
+      (target) =>
+        target.length > 0 &&
+        !/^[a-z][a-z0-9+.-]*:/i.test(target) &&
+        !target.startsWith("#"),
+    );
+}
+
 for (const entry of contracts) {
-  const { relative, contract } = entry;
+  const { directory, relative, contract } = entry;
   const problems = [];
-  const id = contract.contract?.id;
-  const isPhoneInputDraft = id === "fincore.phone-input";
-  const expected = EXPECTED[id];
+  const meta = contract.contract ?? {};
+  const id = meta.id;
+  const expected = EXPECTED[directory];
 
   if (!expected) {
-    problems.push(`${relative}: unexpected contract id ${JSON.stringify(id)}`);
+    problems.push(
+      `${relative}: no validation profile for component directory "${directory}"`,
+    );
   }
 
-  const figma = contract.contract?.canonical?.figma;
-  const variants = contract.variants ?? [];
-  const properties = contract.properties ?? [];
-  const codeOnly = contract.codeOnlyProperties ?? [];
-  const dependencies = contract.tokens?.dependencies ?? [];
-  const stateMapping = contract.tokens?.stateMapping ?? [];
+  const expectedId = `sorleed.${directory}`;
+  if (id !== expectedId) {
+    problems.push(`${relative}: contract id must be "${expectedId}", found ${JSON.stringify(id)}`);
+  }
 
   if (typeof contract.$schema === "string") {
     const schemaTarget = resolve(dirname(entry.path), contract.$schema);
@@ -366,28 +474,71 @@ for (const entry of contracts) {
     problems.push(`${relative}: missing $schema reference`);
   }
 
-  if (expected) {
-    if (!isPhoneInputDraft && variants.length !== expected.variants) {
+  const canonical = meta.canonical ?? {};
+  const figma = canonical.figma;
+  const variants = contract.variants ?? [];
+  const properties = contract.properties ?? [];
+  const codeOnly = contract.codeOnlyProperties ?? [];
+  const dependencies = contract.tokens?.dependencies ?? [];
+  const stateMapping = contract.tokens?.stateMapping ?? [];
+
+  for (const [field, value] of [
+    ["tokens", canonical.tokens],
+    ["css", canonical.css],
+  ]) {
+    if (typeof value !== "string") continue;
+    if (!existsSync(join(ROOT, value))) {
+      problems.push(`${relative}: canonical.${field} ${value} does not exist`);
+    }
+  }
+
+  if (figma === null) {
+    if (properties.length !== 0) {
       problems.push(
-        `${relative}: expected ${expected.variants} variants, found ${variants.length}`,
+        `${relative}: canonical.figma is null but ${properties.length} design properties are declared`,
       );
     }
-    if (!isPhoneInputDraft && properties.length !== expected.properties) {
+    for (const variant of variants) {
+      if (variant.figmaNodeId !== null) {
+        problems.push(
+          `${relative}: canonical.figma is null but variant ${variant.name} declares figmaNodeId ${variant.figmaNodeId}`,
+        );
+      }
+    }
+  } else if (figma) {
+    if (properties.length === 0) {
       problems.push(
-        `${relative}: expected ${expected.properties} design properties, found ${properties.length}`,
+        `${relative}: canonical.figma is present but no design properties are declared`,
       );
     }
-    if (!isPhoneInputDraft && dependencies.length !== expected.dependencies) {
+    if (figma.variantCount !== variants.length) {
       problems.push(
-        `${relative}: expected ${expected.dependencies} token dependencies, found ${dependencies.length}`,
+        `${relative}: figma.variantCount ${figma.variantCount} does not match ${variants.length} contract variants`,
+      );
+    }
+    if (Object.keys(figma.propertyKeys ?? {}).length !== properties.length) {
+      problems.push(
+        `${relative}: canonical.figma.propertyKeys has ${Object.keys(figma.propertyKeys ?? {}).length} entries for ${properties.length} properties`,
       );
     }
   }
 
-  if (figma && figma.variantCount !== variants.length) {
-    problems.push(
-      `${relative}: figma.variantCount ${figma.variantCount} does not match ${variants.length} contract variants`,
-    );
+  if (expected) {
+    if (variants.length !== expected.variants) {
+      problems.push(
+        `${relative}: expected ${expected.variants} variants, found ${variants.length}`,
+      );
+    }
+    if (properties.length !== expected.properties) {
+      problems.push(
+        `${relative}: expected ${expected.properties} design properties, found ${properties.length}`,
+      );
+    }
+    if (dependencies.length !== expected.dependencies) {
+      problems.push(
+        `${relative}: expected ${expected.dependencies} token dependencies, found ${dependencies.length}`,
+      );
+    }
   }
 
   const variantNames = new Set();
@@ -397,12 +548,14 @@ for (const entry of contracts) {
       problems.push(`${relative}: duplicate variant name ${variant.name}`);
     }
     variantNames.add(variant.name);
-    if (variantIds.has(variant.figmaNodeId)) {
-      problems.push(
-        `${relative}: duplicate variant node id ${variant.figmaNodeId}`,
-      );
+    if (typeof variant.figmaNodeId === "string") {
+      if (variantIds.has(variant.figmaNodeId)) {
+        problems.push(
+          `${relative}: duplicate variant node id ${variant.figmaNodeId}`,
+        );
+      }
+      variantIds.add(variant.figmaNodeId);
     }
-    variantIds.add(variant.figmaNodeId);
   }
 
   const propertyNames = new Set();
@@ -450,73 +603,8 @@ for (const entry of contracts) {
     }
   }
 
-  const EXPECTED_PROPERTIES = {
-    "fincore.button": {
-      Variant: {
-        type: "VARIANT",
-        default: "Primary",
-        values: ["Primary", "Secondary", "Ghost"],
-      },
-      State: {
-        type: "VARIANT",
-        default: "Default",
-        values: ["Default", "Hover", "Active", "Focus", "Disabled"],
-      },
-      Label: { type: "TEXT", key: "Label#87:16", default: "Button" },
-    },
-    "fincore.input": {
-      State: {
-        type: "VARIANT",
-        default: "Default",
-        values: ["Default", "Hover", "Error", "Disabled"],
-      },
-      Label: { type: "TEXT", key: "Label#99:0", default: "Email address" },
-      Value: { type: "TEXT", key: "Value#99:5", default: "ada@fincore.dev" },
-      Placeholder: {
-        type: "TEXT",
-        key: "Placeholder#99:10",
-        default: "you@example.com",
-      },
-      Helper: { type: "TEXT", key: "Helper#99:15", default: "We never share this." },
-      Focused: { type: "BOOLEAN", key: "Focused#99:20", default: false },
-      Filled: { type: "BOOLEAN", key: "Filled#99:25", default: false },
-      ShowPlaceholder: {
-        type: "BOOLEAN",
-        key: "ShowPlaceholder#99:30",
-        default: true,
-      },
-      ShowLabel: { type: "BOOLEAN", key: "ShowLabel#99:35", default: true },
-      ShowHelper: { type: "BOOLEAN", key: "ShowHelper#99:40", default: true },
-    },
-    "fincore.phone-input": {
-      Label: { type: "TEXT", key: "Label", default: "Phone number" },
-    },
-  };
-
-  const EXPECTED_VARIANT_IDS = {
-    "fincore.button": [
-      "87:4",
-      "87:6",
-      "87:8",
-      "87:10",
-      "87:13",
-      "87:15",
-      "87:17",
-      "87:19",
-      "87:21",
-      "87:24",
-      "87:26",
-      "87:28",
-      "87:30",
-      "87:32",
-      "87:35",
-    ],
-    "fincore.input": ["99:2", "99:13", "99:24", "99:35"],
-    "fincore.phone-input": [],
-  };
-
-  if (expected) {
-    const expectedProperties = EXPECTED_PROPERTIES[id] ?? {};
+  if (figma && expected) {
+    const expectedProperties = EXPECTED_PROPERTIES[directory] ?? {};
     for (const [name, spec] of Object.entries(expectedProperties)) {
       const property = properties.find((entry) => entry.name === name);
       if (!property) {
@@ -546,36 +634,24 @@ for (const entry of contracts) {
           `${relative}: ${name} values must be ${JSON.stringify(spec.values)}`,
         );
       }
-      if (figma) {
-        const expectedKey = property.figmaKey ?? property.name;
-        if (figma.propertyKeys[property.name] !== expectedKey) {
-          problems.push(
-            `${relative}: canonical.figma.propertyKeys.${property.name} must be ${expectedKey}`,
-          );
-        }
+      const expectedKey = property.figmaKey ?? property.name;
+      if (figma.propertyKeys[property.name] !== expectedKey) {
+        problems.push(
+          `${relative}: canonical.figma.propertyKeys.${property.name} must be ${expectedKey}`,
+        );
       }
     }
 
     for (const property of properties) {
       if (!(property.name in expectedProperties)) {
-        if (isPhoneInputDraft) {
-          continue;
-        }
         problems.push(`${relative}: unexpected Figma property ${property.name}`);
       }
     }
 
-    if (!isPhoneInputDraft && figma && Object.keys(figma.propertyKeys).length !== properties.length) {
-      problems.push(
-        `${relative}: canonical.figma.propertyKeys has ${Object.keys(figma.propertyKeys).length} entries for ${properties.length} properties`,
-      );
-    }
-
-    const expectedIds = EXPECTED_VARIANT_IDS[id] ?? [];
+    const expectedIds = EXPECTED_VARIANT_IDS[directory] ?? [];
     if (
-      !isPhoneInputDraft &&
-      (variantIds.size !== expectedIds.length ||
-        expectedIds.some((nodeId) => !variantIds.has(nodeId)))
+      variantIds.size !== expectedIds.length ||
+      expectedIds.some((nodeId) => !variantIds.has(nodeId))
     ) {
       problems.push(
         `${relative}: variant node ids do not match the verified Figma set (${expectedIds.join(", ")})`,
@@ -601,24 +677,37 @@ for (const entry of contracts) {
     }
   }
 
+  const allowedPrefixes =
+    Array.isArray(contract.tokens?.allowedPrefixes) &&
+    contract.tokens.allowedPrefixes.length > 0
+      ? contract.tokens.allowedPrefixes
+      : [`${directory}.`];
+
+  for (const prefix of allowedPrefixes) {
+    if (!prefix.endsWith(".")) {
+      problems.push(`${relative}: allowed prefix ${prefix} must end with "."`);
+      continue;
+    }
+    const family = prefix.slice(0, -1);
+    if (!tokenFamilies.has(family)) {
+      problems.push(
+        `${relative}: allowed prefix ${prefix} is not a token family in the token source`,
+      );
+    }
+  }
+
   const dependencyNames = new Set();
+  const dependencyVars = new Set();
   for (const dependency of dependencies) {
     if (dependencyNames.has(dependency.name)) {
       problems.push(`${relative}: duplicate token dependency ${dependency.name}`);
     }
     dependencyNames.add(dependency.name);
+    dependencyVars.add(dependency.cssVar);
 
-    const prefix =
-      id === "fincore.button"
-        ? "button."
-        : id === "fincore.input"
-          ? "input."
-          : id === "fincore.phone-input"
-            ? "phone-input."
-            : null;
-    if (!prefix || !dependency.name.startsWith(prefix)) {
+    if (!allowedPrefixes.some((prefix) => dependency.name.startsWith(prefix))) {
       problems.push(
-        `${relative}: dependency ${dependency.name} is not a ${prefix ? prefix + "*" : "component"}* component token`,
+        `${relative}: dependency ${dependency.name} is not within the allowed prefixes ${allowedPrefixes.join(", ")}`,
       );
     }
 
@@ -629,14 +718,9 @@ for (const entry of contracts) {
     }
 
     if (token.type !== dependency.type) {
-      if (isPhoneInputDraft) {
-        if (dependency.name === "phone-input.font-weight") continue;
-        continue;
-      } else {
-        problems.push(
-          `${relative}: ${dependency.name} type ${dependency.type} does not match source type ${token.type}`,
-        );
-      }
+      problems.push(
+        `${relative}: ${dependency.name} type ${dependency.type} does not match source type ${token.type}`,
+      );
     }
 
     if (dependency.cssVar !== cssVar(dependency.name)) {
@@ -684,7 +768,49 @@ for (const entry of contracts) {
     }
   }
 
+  const axisValues = new Set(
+    (contract.stateModel?.axes ?? []).flatMap((axis) => [
+      axis.name,
+      ...(axis.values ?? []),
+    ]),
+  );
+  const normalizeState = (value) =>
+    String(value)
+      .replace(/\([^)]*\)/g, "")
+      .split(/[+/,]|\bor\b/)
+      .map((part) => part.trim().toLowerCase())
+      .filter(Boolean)
+      .sort()
+      .join("+");
+  const unsupportedCombinations = new Set(
+    (contract.stateModel?.validCombinations ?? [])
+      .filter((entry) => entry.supported === false)
+      .map((entry) => normalizeState(entry.combination)),
+  );
+  const mappedStates = new Set();
   for (const style of stateMapping) {
+    if (mappedStates.has(style.state)) {
+      problems.push(`${relative}: duplicate state mapping ${style.state}`);
+    }
+    mappedStates.add(style.state);
+    const normalizedState = normalizeState(style.state);
+    if (unsupportedCombinations.has(normalizedState)) {
+      // A Disabled+Focus mapping is allowed only to suppress the focus ring.
+      const suppressesFocus =
+        normalizedState.includes("focused") && style.ring === null;
+      if (!suppressesFocus) {
+        problems.push(
+          `${relative}: state mapping ${style.state} corresponds to an unsupported state combination`,
+        );
+      }
+    }
+    for (const part of String(style.state).split(/[+/]/)) {
+      if (!axisValues.has(part)) {
+        problems.push(
+          `${relative}: state mapping ${style.state} uses "${part}", which is not a state axis value`,
+        );
+      }
+    }
     for (const field of [
       "background",
       "foreground",
@@ -696,13 +822,18 @@ for (const entry of contracts) {
     ]) {
       const value = style[field];
       if (typeof value === "string" && !dependencyNames.has(value)) {
-        if (isPhoneInputDraft) {
-          continue;
-        }
         problems.push(
           `${relative}: state ${style.state} ${field} references ${value}, which is not a declared dependency`,
         );
       }
+    }
+  }
+
+  for (const variant of variants) {
+    if (!mappedStates.has(variant.name)) {
+      problems.push(
+        `${relative}: variant ${variant.name} has no matching state mapping entry`,
+      );
     }
   }
 
@@ -725,7 +856,65 @@ for (const entry of contracts) {
     }
   }
 
-  if (id === "fincore.button") {
+  const cssFile = join(COMPONENTS_DIR, directory, `${directory}.css`);
+  const componentCss = readText(cssFile);
+  if (componentCss !== null) {
+    const usedVars = extractVarRefs(componentCss);
+    for (const name of usedVars) {
+      if (!dependencyVars.has(name)) {
+        problems.push(
+          `${relative}: ${directory}.css consumes ${name}, which is not a declared dependency`,
+        );
+      }
+    }
+    for (const name of dependencyVars) {
+      if (!usedVars.has(name)) {
+        problems.push(
+          `${relative}: dependency ${name} is declared but not consumed by ${directory}.css`,
+        );
+      }
+    }
+
+    const cssClasses = extractCssClasses(componentCss);
+    const anatomyText = JSON.stringify(contract.anatomy ?? {});
+    const contractClasses = new Set(
+      [...anatomyText.matchAll(/\.(sl-[a-z0-9_-]+)/g)].map((match) => match[1]),
+    );
+    for (const className of contractClasses) {
+      if (!cssClasses.has(className)) {
+        problems.push(
+          `${relative}: contract anatomy class .${className} is not styled by ${directory}.css`,
+        );
+      }
+    }
+    const referencedClasses = new Set();
+    for (const refFile of [
+      join(COMPONENTS_DIR, directory, `${directory}.html`),
+      join(ROOT, "react", directory, "index.tsx"),
+    ]) {
+      if (!existsSync(refFile)) continue;
+      const text = readFileSync(refFile, "utf8");
+      for (const className of extractClassRefs(text)) {
+        referencedClasses.add(className);
+      }
+    }
+    for (const className of cssClasses) {
+      if (!referencedClasses.has(className)) {
+        problems.push(
+          `${relative}: class .${className} is styled but not referenced by the reference HTML or React adapter`,
+        );
+      }
+    }
+    for (const className of referencedClasses) {
+      if (!cssClasses.has(className)) {
+        problems.push(
+          `${relative}: class ${className} is referenced but not styled by ${directory}.css`,
+        );
+      }
+    }
+  }
+
+  if (id === "sorleed.button") {
     if (dependencyNames.has("button.focus.radius")) {
       problems.push(`${relative}: button.focus.radius does not exist in the token source`);
     }
@@ -805,7 +994,7 @@ for (const entry of contracts) {
     }
   }
 
-  if (id === "fincore.input") {
+  if (id === "sorleed.input") {
     for (const forbidden of [
       "state",
       "focused",
@@ -949,11 +1138,44 @@ for (const entry of contracts) {
     problems.push(`${relative}: contrast matrix has no passing rows`);
   }
 
-  if (isPhoneInputDraft) {
-    record(`contract invariants: ${relative}`, []);
+  record(`contract invariants: ${relative}`, problems);
+}
+
+// ---------------------------------------------------------------------------
+// Component documentation
+// ---------------------------------------------------------------------------
+
+for (const entry of contracts) {
+  const { directory } = entry;
+  const problems = [];
+  const readmePath = join(COMPONENTS_DIR, directory, "README.md");
+  const readmeRelative = readmePath.replace(`${ROOT}/`, "");
+
+  if (!existsSync(readmePath)) {
+    problems.push(`${readmeRelative}: missing file`);
   } else {
-    record(`contract invariants: ${relative}`, problems);
+    const text = readFileSync(readmePath, "utf8");
+    if (text.length < 2000) {
+      problems.push(`${readmeRelative}: shorter than 2000 characters`);
+    }
+    if (!text.includes("## ")) {
+      problems.push(`${readmeRelative}: has no section headings`);
+    }
+    if (!/Known limitations/i.test(text)) {
+      problems.push(`${readmeRelative}: missing a Known limitations section`);
+    }
+    if (!text.includes("contract.json")) {
+      problems.push(`${readmeRelative}: does not link to contract.json`);
+    }
+    for (const target of localMarkdownLinks(text)) {
+      const resolved = resolve(dirname(readmePath), target);
+      if (!existsSync(resolved)) {
+        problems.push(`${readmeRelative}: broken local link ${target}`);
+      }
+    }
   }
+
+  record(`component documentation: components/${directory}/README.md`, problems);
 }
 
 // ---------------------------------------------------------------------------
@@ -962,15 +1184,21 @@ for (const entry of contracts) {
 
 {
   const problems = [];
-  if (contracts.length !== 3) {
-    problems.push(`expected 3 contracts, found ${contracts.length}`);
+  if (contracts.length !== Object.keys(EXPECTED).length) {
+    problems.push(
+      `expected ${Object.keys(EXPECTED).length} contracts, found ${contracts.length}`,
+    );
   }
-  const versions = new Set(contracts.map((entry) => entry.contract.contract?.version));
+  const versions = new Set(
+    contracts.map((entry) => entry.contract.contract?.version),
+  );
   if (versions.size > 1) {
     problems.push(`contract versions differ: ${[...versions].join(", ")}`);
   }
   const fileKeys = new Set(
-    contracts.map((entry) => entry.contract.contract?.canonical?.figma?.fileKey),
+    contracts
+      .map((entry) => entry.contract.contract?.canonical?.figma?.fileKey)
+      .filter((fileKey) => typeof fileKey === "string"),
   );
   if (fileKeys.size > 1) {
     problems.push(`Figma file keys differ: ${[...fileKeys].join(", ")}`);
@@ -1013,7 +1241,7 @@ function collectStrings(value, path = "$", out = []) {
   const problems = [];
   for (const entry of contracts) {
     for (const { path, value } of collectStrings(entry.contract)) {
-      for (const match of value.matchAll(/--fc-[a-z0-9-]+/g)) {
+      for (const match of value.matchAll(/--sl-[a-z0-9-]+/g)) {
         if (!cssFromSource.has(match[0])) {
           problems.push(
             `${entry.relative} ${path}: unknown CSS variable ${match[0]}`,
@@ -1022,26 +1250,44 @@ function collectStrings(value, path = "$", out = []) {
       }
     }
   }
-  record("JSON references: every --fc-* variable exists", problems);
+  record("JSON references: every --sl-* variable exists", problems);
 }
 
 {
   const problems = [];
-  const tokenPattern =
-    /`((?:button|input|color|size|font|space|radius)\.[a-z0-9][a-z0-9.-]*)`/g;
+  const markdownPaths = [];
 
-  for (const path of MARKDOWN_PATHS) {
+  for (const entry of contracts) {
+    markdownPaths.push(join(COMPONENTS_DIR, entry.directory, "README.md"));
+  }
+  const examplesDir = join(COMPONENTS_DIR, "examples");
+  if (existsSync(examplesDir)) {
+    for (const file of readdirSync(examplesDir)) {
+      if (file.endsWith(".md")) markdownPaths.push(join(examplesDir, file));
+    }
+  }
+
+  const familyPattern = [...tokenFamilies]
+    .map((family) => family.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .join("|");
+  const tokenPattern = new RegExp(
+    `\\x60((?:${familyPattern})\\.[a-z0-9][a-z0-9.-]*)\\x60`,
+    "g",
+  );
+
+  for (const path of markdownPaths) {
     const text = readText(path);
     if (text === null) continue;
     const relative = path.replace(`${ROOT}/`, "");
 
-    for (const match of text.matchAll(/--fc-[a-z0-9-]+/g)) {
+    for (const match of text.matchAll(/--sl-[a-z0-9-]+/g)) {
       if (!cssFromSource.has(match[0])) {
         problems.push(`${relative}: unknown CSS variable ${match[0]}`);
       }
     }
 
     for (const match of text.matchAll(tokenPattern)) {
+      if (/\.(?:html|css|json|md|tsx|ts|js|mjs)$/.test(match[1])) continue;
       if (!tokenNames.has(match[1])) {
         problems.push(`${relative}: unknown token ${match[1]}`);
       }
@@ -1053,9 +1299,10 @@ function collectStrings(value, path = "$", out = []) {
 
 {
   const problems = [];
+  const examplesPath = join(COMPONENTS_DIR, "examples", "financial-form.md");
   const expectations = [
     {
-      path: join(ROOT, "components", "button", "README.md"),
+      path: join(COMPONENTS_DIR, "button", "README.md"),
       headings: [
         "## 2. When to use Button",
         "## 5. Variants and states",
@@ -1066,7 +1313,7 @@ function collectStrings(value, path = "$", out = []) {
       minLength: 6000,
     },
     {
-      path: join(ROOT, "components", "input", "README.md"),
+      path: join(COMPONENTS_DIR, "input", "README.md"),
       headings: [
         "## 2. When to use Input",
         "## 4. States and precedence",
@@ -1078,7 +1325,7 @@ function collectStrings(value, path = "$", out = []) {
       minLength: 9000,
     },
     {
-      path: join(ROOT, "components", "examples", "financial-form.md"),
+      path: examplesPath,
       headings: [
         "## 3. Component code",
         "## 4. Why each decision follows the contracts",
@@ -1109,15 +1356,7 @@ function collectStrings(value, path = "$", out = []) {
       }
     }
 
-    for (const match of text.matchAll(/\]\(([^)\s]+)\)/g)) {
-      const target = match[1].split("#")[0];
-      if (
-        target.length === 0 ||
-        /^[a-z][a-z0-9+.-]*:/i.test(target) ||
-        target.startsWith("#")
-      ) {
-        continue;
-      }
+    for (const target of localMarkdownLinks(text)) {
       const resolved = resolve(dirname(expectation.path), target);
       if (!existsSync(resolved)) {
         problems.push(`${relative}: broken local link ${target}`);
@@ -1153,7 +1392,7 @@ function collectStrings(value, path = "$", out = []) {
 const failed = checks.filter((entry) => entry.problems.length > 0);
 const passed = checks.filter((entry) => entry.problems.length === 0);
 
-console.log("FinCore component contracts — validation");
+console.log("Sorleed component contracts — validation");
 console.log(
   `Contracts: ${contracts.map((entry) => entry.relative).join(", ") || "none"}`,
 );
@@ -1161,10 +1400,6 @@ console.log(`Tokens: ${tokens.size} parsed; ${cssFromSource.size} CSS variables 
 console.log("");
 
 for (const entry of checks) {
-  if (entry.label.includes("phone-input") && entry.label.includes("schema") && entry.problems.length > 0) {
-    console.log(`PASS  ${entry.label} (relaxed for draft foundation)`);
-    continue;
-  }
   console.log(`${entry.problems.length === 0 ? "PASS" : "FAIL"}  ${entry.label}`);
   for (const problem of entry.problems) {
     console.log(`        ${problem}`);

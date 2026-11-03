@@ -1,28 +1,28 @@
 # Transactions proof of concept
 
-An application-level proof of concept that uses FinCore's existing **Button** and
+An application-level proof of concept that uses Sorleed's existing **Button** and
 **Input** implementations to build a transaction-history and filtering screen.
 
-It exists to test whether an AI coding agent can follow FinCore's contracts,
+It exists to test whether an AI coding agent can follow Sorleed's contracts,
 token definitions and implementation rules while building a realistic financial
-interface. It is **not** a new FinCore component, package or product feature.
+interface. It is **not** a new Sorleed component, package or product feature.
 
 - Data is static and **illustrative only**. It does not represent a real customer,
   account or transaction.
 - There is no build step, package manifest, dependency, network request or
   external asset.
 - The page needs JavaScript to render and filter the static records.
-- The financial rules, copy and layout are not FinCore standards. Only the
+- The financial rules, copy and layout are not Sorleed standards. Only the
   Button and Input usage and token consumption are contractual.
 
 ---
 
-## 1. What is FinCore and what is application scaffolding
+## 1. What is Sorleed and what is application scaffolding
 
 | Element | Ownership |
 |---|---|
-| `.fc-button` Primary and Secondary actions | **FinCore Button** |
-| `.fc-input` field, label, control and helper | **FinCore Input** |
+| `.sl-button` Primary and Secondary actions | **Sorleed Button** |
+| `.sl-input` field, label, control and helper | **Sorleed Input** |
 | Page header, account descriptor, balance summary | Application scaffolding |
 | Filter form layout and action row | Application scaffolding |
 | Transaction table, caption, headers and rows | Application scaffolding |
@@ -32,22 +32,22 @@ interface. It is **not** a new FinCore component, package or product feature.
 | Formatting, filtering and focus management | Application code (`poc.js`) |
 
 The table, mobile list, summary block and empty state are ordinary HTML and CSS.
-They are not FinCore components, and they deliberately avoid the `fc-` class
-prefix. There is no FinCore Table, Card, Badge or Transaction Item in this
+They are not Sorleed components, and they deliberately avoid the `sl-` class
+prefix. There is no Sorleed Table, Card, Badge or Transaction Item in this
 repository yet.
 
 ---
 
-## 2. FinCore integration
+## 2. Sorleed integration
 
 ### Button
 
 ```html
-<button class="fc-button fc-button--secondary" id="tx-clear" type="button">Clear</button>
-<button class="fc-button" type="submit">Apply filter</button>
+<button class="sl-button sl-button--secondary" id="tx-clear" type="button">Clear</button>
+<button class="sl-button" type="submit">Apply filter</button>
 ```
 
-- Primary is the default `.fc-button`; it is the single primary action and submits
+- Primary is the default `.sl-button`; it is the single primary action and submits
   the filter form.
 - Secondary is used for Clear and is explicitly `type="button"` so it cannot
   submit accidentally.
@@ -58,11 +58,11 @@ repository yet.
 ### Input
 
 ```html
-<div class="fc-input">
-  <label class="fc-input__label" for="tx-filter">Description</label>
-  <div class="fc-input__control">
+<div class="sl-input">
+  <label class="sl-input__label" for="tx-filter">Description</label>
+  <div class="sl-input__control">
     <input
-      class="fc-input__field"
+      class="sl-input__field"
       id="tx-filter"
       name="filter"
       type="text"
@@ -71,7 +71,7 @@ repository yet.
       aria-describedby="tx-filter-helper"
     >
   </div>
-  <p class="fc-input__message" id="tx-filter-helper">
+  <p class="sl-input__message" id="tx-filter-helper">
     Matches description text only. Amounts, references and statuses are not searched.
   </p>
 </div>
@@ -79,7 +79,7 @@ repository yet.
 
 - The label is visible and associated with `for`/`id`.
 - The placeholder is a hint, never the label.
-- The helper is connected with `aria-describedby` and is a `.fc-input__message`.
+- The helper is connected with `aria-describedby` and is a `.sl-input__message`.
 - This is a **text filter**, not a search field. `type="search"` is out of contract
   scope and is not used.
 - There is no validation state, so no `aria-invalid`, error message or
@@ -101,16 +101,16 @@ verified relative paths:
 
 Rules followed:
 
-- No `--fc-*` token is defined locally.
-- Every referenced `--fc-*` token exists in `tokens/dist/tokens.css`.
+- No `--sl-*` token is defined locally.
+- Every referenced `--sl-*` token exists in `tokens/dist/tokens.css`.
 - No colour literal appears in `poc.css` or inline styles.
-- `poc.css` never selects `.fc-button` or `.fc-input`, so component states and
+- `poc.css` never selects `.sl-button` or `.sl-input`, so component states and
   geometry are untouched.
 - No token is invented for money, credit/debit direction or transaction status.
 - Statuses are neutral text; `color.feedback.*` is not repurposed as a financial
   status meaning.
 
-**Documented exception:** FinCore has no semantic spacing, radius or typography
+**Documented exception:** Sorleed has no semantic spacing, radius or typography
 tokens yet, and the only font sizes are 12px and 14px. Page-level layout therefore
 uses primitive tokens — `space.*`, `radius.*`, `font.size.*`,
 `font.line-height.*`, `font.weight.*` and `size.border.width`. This is an
@@ -123,7 +123,7 @@ Colour comes only from semantic tokens: `color.surface.canvas`,
 source has no font-family token.
 
 The mobile list uses the same semantic colour tokens and primitive layout tokens.
-It defines no new token and no `fc-` class.
+It defines no new token and no `sl-` class.
 
 ---
 
@@ -157,13 +157,13 @@ node poc/transaction-history/check.mjs
 ```
 
 The checker is zero-dependency and exits non-zero on failure. It validates the
-PoC's actual files, not the FinCore library. It checks:
+PoC's actual files, not the Sorleed library. It checks:
 
 1. All five expected files exist.
-2. Every `var(--fc-*)` in `poc.css` exists in the generated token CSS.
-3. `poc.css` defines no local `--fc-*` tokens and `index.html` has no `<style>`.
+2. Every `var(--sl-*)` in `poc.css` exists in the generated token CSS.
+3. `poc.css` defines no local `--sl-*` tokens and `index.html` has no `<style>`.
 4. `poc.css` contains no hex, `rgb()`, `hsl()` or other colour literals.
-5. Only FinCore classes that exist in the component CSS are used.
+5. Only Sorleed classes that exist in the component CSS are used.
 6. Contract-shaped props (`variant=`, `label=`, `helperText=`, `errorMessage=`,
    `state=`, `focused=`, etc.) are not used as native attributes.
 7. Every button has an explicit native `type`; there is exactly one primary
@@ -172,7 +172,7 @@ PoC's actual files, not the FinCore library. It checks:
 8. The filter input has an `id`, a matching `label[for]`, `type="text"`,
    `autocomplete="off"` and no `disabled`.
 9. Every `aria-describedby` reference resolves, and the filter helper is a
-   `.fc-input__message`.
+   `.sl-input__message`.
 10. No `role="alert"` or assertive live region is present; the result count is a
     single `role="status"` / `aria-live="polite"` region.
 11. The four stylesheets and `poc.js` are local and resolve; there are no inline
@@ -283,7 +283,7 @@ This is Chrome-only evidence. The README does not claim that the PoC is
 mobile-accessible or cross-browser verified; Safari, Firefox, screen readers,
 200% zoom, forced colours and touch remain untested.
 
-Supported browser baseline for the FinCore components is Chrome/Edge 105+,
+Supported browser baseline for the Sorleed components is Chrome/Edge 105+,
 Safari 15.4+ and Firefox 121+, because the Input focus overlay requires `:has()`.
 No fallback is bundled.
 
@@ -320,10 +320,13 @@ Out of scope and deliberately absent:
 - pagination, sorting, date filters, amount filters or a select control;
 - currency or amount inputs, masks or conversion;
 - search-specific input behaviour;
-- a FinCore Card, Badge, status pill, icon or Transaction Item component; the
+- a Sorleed Card, Badge, status pill, icon or Transaction Item component; the
   mobile list is plain application HTML and CSS;
-- React, Vue, Web Components, a package manifest or a build pipeline;
+- React, Vue, Web Components, a package manifest or a build pipeline in this
+  POC; the repository's private-alpha React adapter and CLI are not used here;
+- a Sorleed PasswordInput or PhoneInput integration; both components are
+  implemented but this screen does not need them;
 - Figma, token, contract, component and foundation-document changes.
 
-Those capabilities need their own FinCore contracts and tokens. They are not
+Those capabilities need their own Sorleed contracts and tokens. They are not
 approximated here with invented classes or tokens.

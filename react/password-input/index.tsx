@@ -42,11 +42,11 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
       .filter(Boolean)
       .join(" ");
 
-    const wrapperClasses = ["fc-password-input", className].filter(Boolean).join(" ");
-    const labelClasses = ["fc-password-input__label", hideLabel ? "fc-password-input__label--visually-hidden" : ""]
+    const wrapperClasses = ["sl-password-input", className].filter(Boolean).join(" ");
+    const labelClasses = ["sl-password-input__label", hideLabel ? "sl-password-input__label--visually-hidden" : ""]
       .filter(Boolean)
       .join(" ");
-    const messageClasses = ["fc-password-input__message", hasError ? "fc-password-input__message--error" : ""]
+    const messageClasses = ["sl-password-input__message", hasError ? "sl-password-input__message--error" : ""]
       .filter(Boolean)
       .join(" ");
 
@@ -66,12 +66,12 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
         <label className={labelClasses} htmlFor={id}>
           {label}
         </label>
-        <div className="fc-password-input__control">
+        <div className="sl-password-input__control">
           <input
             ref={ref}
             id={id}
             type={isVisible ? "text" : "password"}
-            className="fc-password-input__field"
+            className="sl-password-input__field"
             required={required}
             disabled={disabled}
             aria-invalid={hasError ? true : undefined}
@@ -81,7 +81,7 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
           />
           <button
             type="button"
-            className="fc-password-input__toggle"
+            className="sl-password-input__toggle"
             onClick={handleToggle}
             disabled={disabled}
             aria-label={toggleLabel}

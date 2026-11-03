@@ -16,13 +16,29 @@ const stripCssComments = (css) => css.replace(/\/\*[\s\S]*?\*\//g, "");
 
 const buttonContract = JSON.parse(read("components/button/contract.json"));
 const inputContract = JSON.parse(read("components/input/contract.json"));
+const passwordInputContract = JSON.parse(
+  read("components/password-input/contract.json"),
+);
+const phoneInputContract = JSON.parse(
+  read("components/phone-input/contract.json"),
+);
 const tokenCss = read("tokens/dist/tokens.css");
 const buttonCss = stripCssComments(read("components/button/button.css"));
 const inputCss = stripCssComments(read("components/input/input.css"));
+const passwordInputCss = stripCssComments(
+  read("components/password-input/password-input.css"),
+);
+const phoneInputCss = stripCssComments(
+  read("components/phone-input/phone-input.css"),
+);
 const buttonHtml = read("components/button/button.html");
 const inputHtml = read("components/input/input.html");
+const passwordInputHtml = read("components/password-input/password-input.html");
+const phoneInputHtml = read("components/phone-input/phone-input.html");
 const buttonReadme = read("components/button/README.md");
 const inputReadme = read("components/input/README.md");
+const passwordInputReadme = read("components/password-input/README.md");
+const phoneInputReadme = read("components/phone-input/README.md");
 const implementationDoc = read("components/IMPLEMENTATION.md");
 
 function parseCssVariables(css) {
@@ -49,7 +65,7 @@ function resolveToken(name, seen = new Set()) {
 
 function usedVariables(css) {
   return new Set(
-    [...css.matchAll(/var\((--[a-z0-9-]+)\)/gi)].map((match) => match[1]),
+    [...css.matchAll(/var\((--[a-z0-9-]+)/gi)].map((match) => match[1]),
   );
 }
 
@@ -94,7 +110,7 @@ function htmlClasses(html) {
 
 function cssClasses(css) {
   return new Set(
-    [...css.matchAll(/\.(fc-[a-z0-9_-]+)/gi)].map((match) => match[1]),
+    [...css.matchAll(/\.(sl-[a-z0-9_-]+)/gi)].map((match) => match[1]),
   );
 }
 
@@ -116,13 +132,14 @@ function assertIdReferences(html, label) {
   }
 }
 
-function assertContractDependencies(contract, css, prefix) {
+function assertContractDependencies(contract, css, prefixes) {
+  const allowed = Array.isArray(prefixes) ? prefixes : [prefixes];
   const variables = usedVariables(css);
 
   for (const dependency of contract.tokens.dependencies) {
     assert.ok(
-      dependency.cssVar.startsWith(prefix),
-      `${dependency.name} uses ${dependency.cssVar}, outside ${prefix}`,
+      allowed.some((prefix) => dependency.cssVar.startsWith(prefix)),
+      `${dependency.name} uses ${dependency.cssVar}, outside ${allowed.join(", ")}`,
     );
     assert.ok(
       tokenVariables.has(dependency.cssVar),
@@ -144,7 +161,7 @@ function assertContractDependencies(contract, css, prefix) {
 
   for (const variable of variables) {
     assert.ok(
-      variable.startsWith(prefix),
+      allowed.some((prefix) => variable.startsWith(prefix)),
       `component CSS consumes non-component token ${variable}`,
     );
     assert.ok(
@@ -157,11 +174,11 @@ function assertContractDependencies(contract, css, prefix) {
 test("protected token source, validator and generated CSS are unchanged", () => {
   const baseline = {
     "tokens/tokens.json":
-      "3c9d1ddebcfbfeba507ff5b1a7a4fe3b19819282895a0c5665c0614adef33337",
+      "10dfd26f3e6167e2a93ab8f0808f5a819f27d447120c2fa632788d812f30b3e0",
     "tokens/check.mjs":
-      "a4909595868af46fac5714121fa8b19f6152027c91a81a37dc52d7fb61bec874",
+      "8315db571bc79b8e4c5a32e0e6fee5ac59b542d22211d9dd522599cf437ed373",
     "tokens/dist/tokens.css":
-      "8b30d6fc6a2723d1deef68fe3018dbab0711a9ff6f3bad909b13c3612e6ad9f2",
+      "001f797c9f31097510539a760f2eb08ebec56884ad55e6dc0e0aace850386c35",
   };
 
   for (const [file, expected] of Object.entries(baseline)) {
@@ -174,6 +191,10 @@ test("contracts keep their approved variant and token counts", () => {
   assert.equal(buttonContract.tokens.dependencies.length, 22);
   assert.equal(inputContract.variants.length, 4);
   assert.equal(inputContract.tokens.dependencies.length, 28);
+  assert.equal(passwordInputContract.variants.length, 4);
+  assert.equal(passwordInputContract.tokens.dependencies.length, 36);
+  assert.equal(phoneInputContract.variants.length, 4);
+  assert.equal(phoneInputContract.tokens.dependencies.length, 31);
 
   assert.equal(
     buttonContract.properties.find((property) => property.name === "State")
@@ -189,20 +210,58 @@ test("contracts keep their approved variant and token counts", () => {
   );
 });
 
+test("contracts without Figma evidence keep null references and no design properties", () => {
+  for (const [label, contract] of [
+    ["PasswordInput", passwordInputContract],
+    ["PhoneInput", phoneInputContract],
+  ]) {
+    assert.equal(
+      contract.contract.canonical.figma,
+      null,
+      `${label} must record an unresolved Figma reference as null`,
+    );
+    assert.equal(
+      contract.properties.length,
+      0,
+      `${label} must not invent design properties without Figma evidence`,
+    );
+    for (const variant of contract.variants) {
+      assert.equal(
+        variant.figmaNodeId,
+        null,
+        `${label} variant ${variant.name} must not invent a Figma node id`,
+      );
+    }
+  }
+});
+
 test("Button consumes all 22 button.* tokens and no other token layer", () => {
-  assertContractDependencies(buttonContract, buttonCss, "--fc-button-");
+  assertContractDependencies(buttonContract, buttonCss, "--sl-button-");
 });
 
 test("Input consumes all 28 input.* tokens and no other token layer", () => {
-  assertContractDependencies(inputContract, inputCss, "--fc-input-");
+  assertContractDependencies(inputContract, inputCss, "--sl-input-");
+});
+
+test("PasswordInput consumes 36 composed input.*, button.* and primitive tokens", () => {
+  assertContractDependencies(passwordInputContract, passwordInputCss, [
+    "--sl-input-",
+    "--sl-button-",
+    "--sl-font-",
+    "--sl-space-",
+  ]);
+});
+
+test("PhoneInput consumes all 31 phone-input.* tokens and no other token layer", () => {
+  assertContractDependencies(phoneInputContract, phoneInputCss, "--sl-phone-input-");
 });
 
 test("Input focus radius still equals radius plus offset", () => {
   const px = (value) => Number.parseFloat(value);
 
-  const radius = px(resolveToken("--fc-input-radius"));
-  const offset = px(resolveToken("--fc-input-focus-offset"));
-  const focusRadius = px(resolveToken("--fc-input-focus-radius"));
+  const radius = px(resolveToken("--sl-input-radius"));
+  const offset = px(resolveToken("--sl-input-focus-offset"));
+  const focusRadius = px(resolveToken("--sl-input-focus-radius"));
 
   assert.equal(focusRadius, radius + offset);
   assert.equal(focusRadius, 8);
@@ -224,7 +283,7 @@ test("component CSS contains no hardcoded colours or token-covered dimensions", 
   assert.doesNotMatch(buttonCss, /\b\d*\.?\d+px\b/i);
 
   const inputWithoutVisuallyHidden = inputCss.replace(
-    /\.fc-input__label--visually-hidden\s*\{[^}]*\}/,
+    /\.sl-input__label--visually-hidden\s*\{[^}]*\}/,
     "",
   );
   assert.doesNotMatch(inputWithoutVisuallyHidden, /\b\d*\.?\d+px\b/i);
@@ -235,121 +294,121 @@ test("component CSS does not define or invent token variables", () => {
     ["button.css", buttonCss],
     ["input.css", inputCss],
   ]) {
-    assert.doesNotMatch(css, /--fc-[a-z0-9-]+\s*:/i, `${label} defines a token`);
+    assert.doesNotMatch(css, /--sl-[a-z0-9-]+\s*:/i, `${label} defines a token`);
     assert.doesNotMatch(css, /@import\b/i, `${label} imports external CSS`);
     assert.doesNotMatch(css, /url\(/i, `${label} references an external asset`);
     assertBalancedBraces(css, label);
   }
 
-  assert.doesNotMatch(buttonCss, /--fc-button-ghost-background(?!-)/i);
-  assert.doesNotMatch(buttonCss, /--fc-button-focus-radius/i);
+  assert.doesNotMatch(buttonCss, /--sl-button-ghost-background(?!-)/i);
+  assert.doesNotMatch(buttonCss, /--sl-button-focus-radius/i);
   assert.doesNotMatch(buttonCss, /danger|success|loading|spinner|icon-only/i);
 
-  assert.doesNotMatch(inputCss, /--fc-input-error-border/i);
-  assert.doesNotMatch(inputCss, /--fc-input-border-focus/i);
-  assert.doesNotMatch(inputCss, /--fc-input-success|--fc-input-warning/i);
-  assert.doesNotMatch(inputCss, /--fc-input-readonly|--fc-input-icon/i);
+  assert.doesNotMatch(inputCss, /--sl-input-error-border/i);
+  assert.doesNotMatch(inputCss, /--sl-input-border-focus/i);
+  assert.doesNotMatch(inputCss, /--sl-input-success|--sl-input-warning/i);
+  assert.doesNotMatch(inputCss, /--sl-input-readonly|--sl-input-icon/i);
   assert.doesNotMatch(inputCss, /success|warning|readonly|read-only/i);
 });
 
 test("Button CSS implements the contract geometry and variants", () => {
-  const base = ruleBody(buttonCss, ".fc-button--primary");
+  const base = ruleBody(buttonCss, ".sl-button--primary");
 
-  assert.match(base, /min-height:\s*var\(--fc-button-height\)/);
+  assert.match(base, /min-height:\s*var\(--sl-button-height\)/);
   assert.match(
     base,
-    /padding-block:\s*calc\(\(var\(--fc-button-height\) - var\(--fc-button-line-height\)\) \/ 2\)/,
+    /padding-block:\s*calc\(\(var\(--sl-button-height\) - var\(--sl-button-line-height\)\) \/ 2\)/,
   );
-  assert.match(base, /padding-inline:\s*var\(--fc-button-padding-x\)/);
+  assert.match(base, /padding-inline:\s*var\(--sl-button-padding-x\)/);
   assert.match(base, /border:\s*0/);
-  assert.match(base, /border-radius:\s*var\(--fc-button-radius\)/);
-  assert.match(base, /background-color:\s*var\(--fc-button-primary-background\)/);
-  assert.match(base, /color:\s*var\(--fc-button-primary-foreground\)/);
-  assert.match(base, /font-size:\s*var\(--fc-button-font-size\)/);
-  assert.match(base, /font-weight:\s*var\(--fc-button-font-weight\)/);
-  assert.match(base, /line-height:\s*var\(--fc-button-line-height\)/);
+  assert.match(base, /border-radius:\s*var\(--sl-button-radius\)/);
+  assert.match(base, /background-color:\s*var\(--sl-button-primary-background\)/);
+  assert.match(base, /color:\s*var\(--sl-button-primary-foreground\)/);
+  assert.match(base, /font-size:\s*var\(--sl-button-font-size\)/);
+  assert.match(base, /font-weight:\s*var\(--sl-button-font-weight\)/);
+  assert.match(base, /line-height:\s*var\(--sl-button-line-height\)/);
   assert.match(base, /font-family:\s*inherit/);
   assert.match(base, /appearance:\s*none/);
 
   assert.match(
-    ruleBody(buttonCss, ".fc-button:not(:disabled):hover"),
-    /background-color:\s*var\(--fc-button-primary-background-hover\)/,
+    ruleBody(buttonCss, ".sl-button:not(:disabled):hover"),
+    /background-color:\s*var\(--sl-button-primary-background-hover\)/,
   );
   assert.match(
-    ruleBody(buttonCss, ".fc-button:not(:disabled):active"),
-    /background-color:\s*var\(--fc-button-primary-background-active\)/,
+    ruleBody(buttonCss, ".sl-button:not(:disabled):active"),
+    /background-color:\s*var\(--sl-button-primary-background-active\)/,
   );
 
-  const secondary = ruleBody(buttonCss, ".fc-button--secondary");
-  assert.match(secondary, /background-color:\s*var\(--fc-button-secondary-background\)/);
-  assert.match(secondary, /color:\s*var\(--fc-button-secondary-foreground\)/);
+  const secondary = ruleBody(buttonCss, ".sl-button--secondary");
+  assert.match(secondary, /background-color:\s*var\(--sl-button-secondary-background\)/);
+  assert.match(secondary, /color:\s*var\(--sl-button-secondary-foreground\)/);
   assert.match(
-    ruleBody(buttonCss, ".fc-button--secondary:not(:disabled):hover"),
-    /background-color:\s*var\(--fc-button-secondary-background-hover\)/,
+    ruleBody(buttonCss, ".sl-button--secondary:not(:disabled):hover"),
+    /background-color:\s*var\(--sl-button-secondary-background-hover\)/,
   );
   assert.match(
-    ruleBody(buttonCss, ".fc-button--secondary:not(:disabled):active"),
-    /background-color:\s*var\(--fc-button-secondary-background-active\)/,
+    ruleBody(buttonCss, ".sl-button--secondary:not(:disabled):active"),
+    /background-color:\s*var\(--sl-button-secondary-background-active\)/,
   );
 
-  const ghost = ruleBody(buttonCss, ".fc-button--ghost");
+  const ghost = ruleBody(buttonCss, ".sl-button--ghost");
   assert.match(ghost, /background-color:\s*transparent/);
-  assert.match(ghost, /color:\s*var\(--fc-button-ghost-foreground\)/);
+  assert.match(ghost, /color:\s*var\(--sl-button-ghost-foreground\)/);
   assert.match(
-    ruleBody(buttonCss, ".fc-button--ghost:not(:disabled):hover"),
-    /background-color:\s*var\(--fc-button-ghost-background-hover\)/,
+    ruleBody(buttonCss, ".sl-button--ghost:not(:disabled):hover"),
+    /background-color:\s*var\(--sl-button-ghost-background-hover\)/,
   );
   assert.match(
-    ruleBody(buttonCss, ".fc-button--ghost:not(:disabled):active"),
-    /background-color:\s*var\(--fc-button-ghost-background-active\)/,
+    ruleBody(buttonCss, ".sl-button--ghost:not(:disabled):active"),
+    /background-color:\s*var\(--sl-button-ghost-background-active\)/,
   );
 
   assert.doesNotMatch(base, /(?:^|\s)height:/);
 });
 
 test("Button CSS keeps focus additive and suppressed when disabled", () => {
-  const ring = ruleBody(buttonCss, ".fc-button::after");
-  assert.match(ring, /inset:\s*calc\(-1 \* var\(--fc-button-focus-offset\)\)/);
+  const ring = ruleBody(buttonCss, ".sl-button::after");
+  assert.match(ring, /inset:\s*calc\(-1 \* var\(--sl-button-focus-offset\)\)/);
   assert.match(
     ring,
-    /border:\s*var\(--fc-button-focus-width\) solid transparent/,
+    /border:\s*var\(--sl-button-focus-width\) solid transparent/,
   );
   assert.match(
     ring,
-    /border-radius:\s*calc\(var\(--fc-button-radius\) \+ var\(--fc-button-focus-offset\)\)/,
+    /border-radius:\s*calc\(var\(--sl-button-radius\) \+ var\(--sl-button-focus-offset\)\)/,
   );
   assert.match(ring, /pointer-events:\s*none/);
 
   assert.match(
-    ruleBody(buttonCss, ".fc-button:focus-visible"),
+    ruleBody(buttonCss, ".sl-button:focus-visible"),
     /outline:\s*none/,
   );
   assert.match(
-    ruleBody(buttonCss, ".fc-button:focus-visible::after"),
-    /border-color:\s*var\(--fc-button-focus-color\)/,
+    ruleBody(buttonCss, ".sl-button:focus-visible::after"),
+    /border-color:\s*var\(--sl-button-focus-color\)/,
   );
 
-  const disabled = ruleBody(buttonCss, ".fc-button:disabled");
-  assert.match(disabled, /background-color:\s*var\(--fc-button-disabled-background\)/);
-  assert.match(disabled, /color:\s*var\(--fc-button-disabled-foreground\)/);
+  const disabled = ruleBody(buttonCss, ".sl-button:disabled");
+  assert.match(disabled, /background-color:\s*var\(--sl-button-disabled-background\)/);
+  assert.match(disabled, /color:\s*var\(--sl-button-disabled-foreground\)/);
   assert.match(disabled, /cursor:\s*not-allowed/);
   assert.match(
-    ruleBody(buttonCss, ".fc-button--ghost:disabled"),
+    ruleBody(buttonCss, ".sl-button--ghost:disabled"),
     /background-color:\s*transparent/,
   );
   assert.match(
-    ruleBody(buttonCss, ".fc-button:disabled::after"),
+    ruleBody(buttonCss, ".sl-button:disabled::after"),
     /display:\s*none/,
   );
 
   assert.ok(
-    buttonCss.indexOf(".fc-button:disabled {") >
-      buttonCss.indexOf(".fc-button:not(:disabled):hover"),
+    buttonCss.indexOf(".sl-button:disabled {") >
+      buttonCss.indexOf(".sl-button:not(:disabled):hover"),
     "disabled rules must come after hover rules",
   );
   assert.ok(
-    buttonCss.indexOf(".fc-button:disabled {") >
-      buttonCss.indexOf(".fc-button:not(:disabled):active"),
+    buttonCss.indexOf(".sl-button:disabled {") >
+      buttonCss.indexOf(".sl-button:not(:disabled):active"),
     "disabled rules must come after active rules",
   );
 
@@ -358,67 +417,67 @@ test("Button CSS keeps focus additive and suppressed when disabled", () => {
 
 test("Button CSS retains a forced-colors boundary and focus indicator", () => {
   const forcedColors = ruleBody(buttonCss, "@media (forced-colors: active)");
-  assert.match(forcedColors, /border:\s*var\(--fc-button-focus-width\) solid ButtonText/);
+  assert.match(forcedColors, /border:\s*var\(--sl-button-focus-width\) solid ButtonText/);
   assert.match(
     forcedColors,
-    /outline:\s*var\(--fc-button-focus-width\) solid Highlight/,
+    /outline:\s*var\(--sl-button-focus-width\) solid Highlight/,
   );
-  assert.match(forcedColors, /outline-offset:\s*var\(--fc-button-focus-offset\)/);
+  assert.match(forcedColors, /outline-offset:\s*var\(--sl-button-focus-offset\)/);
   assert.match(forcedColors, /display:\s*none/);
 });
 
 test("Input CSS implements the full field anatomy and typography", () => {
-  const field = ruleBody(inputCss, ".fc-input__field");
+  const field = ruleBody(inputCss, ".sl-input__field");
 
   assert.match(field, /width:\s*100%/);
-  assert.match(field, /min-height:\s*var\(--fc-input-height\)/);
-  assert.match(field, /padding-inline:\s*var\(--fc-input-padding-x\)/);
+  assert.match(field, /min-height:\s*var\(--sl-input-height\)/);
+  assert.match(field, /padding-inline:\s*var\(--sl-input-padding-x\)/);
   assert.match(
     field,
-    /border:\s*var\(--fc-input-border-width\) solid var\(--fc-input-border\)/,
+    /border:\s*var\(--sl-input-border-width\) solid var\(--sl-input-border\)/,
   );
-  assert.match(field, /border-radius:\s*var\(--fc-input-radius\)/);
-  assert.match(field, /background-color:\s*var\(--fc-input-background\)/);
-  assert.match(field, /color:\s*var\(--fc-input-text\)/);
-  assert.match(field, /font-size:\s*var\(--fc-input-font-size\)/);
-  assert.match(field, /font-weight:\s*var\(--fc-input-font-weight\)/);
-  assert.match(field, /line-height:\s*var\(--fc-input-line-height\)/);
+  assert.match(field, /border-radius:\s*var\(--sl-input-radius\)/);
+  assert.match(field, /background-color:\s*var\(--sl-input-background\)/);
+  assert.match(field, /color:\s*var\(--sl-input-text\)/);
+  assert.match(field, /font-size:\s*var\(--sl-input-font-size\)/);
+  assert.match(field, /font-weight:\s*var\(--sl-input-font-weight\)/);
+  assert.match(field, /line-height:\s*var\(--sl-input-line-height\)/);
   assert.match(field, /font-family:\s*inherit/);
   assert.match(field, /appearance:\s*none/);
-  assert.doesNotMatch(field, /(?:^|\s)height:\s*var\(--fc-input-height\)/);
+  assert.doesNotMatch(field, /(?:^|\s)height:\s*var\(--sl-input-height\)/);
 
-  const label = ruleBody(inputCss, ".fc-input__label");
-  assert.match(label, /margin-block-end:\s*var\(--fc-input-label-gap\)/);
-  assert.match(label, /color:\s*var\(--fc-input-label-color\)/);
-  assert.match(label, /font-size:\s*var\(--fc-input-font-size\)/);
-  assert.match(label, /font-weight:\s*var\(--fc-input-label-font-weight\)/);
-  assert.match(label, /line-height:\s*var\(--fc-input-line-height\)/);
+  const label = ruleBody(inputCss, ".sl-input__label");
+  assert.match(label, /margin-block-end:\s*var\(--sl-input-label-gap\)/);
+  assert.match(label, /color:\s*var\(--sl-input-label-color\)/);
+  assert.match(label, /font-size:\s*var\(--sl-input-font-size\)/);
+  assert.match(label, /font-weight:\s*var\(--sl-input-label-font-weight\)/);
+  assert.match(label, /line-height:\s*var\(--sl-input-line-height\)/);
 
-  const helper = ruleBody(inputCss, ".fc-input__message");
-  assert.match(helper, /margin-block-start:\s*var\(--fc-input-helper-gap\)/);
-  assert.match(helper, /color:\s*var\(--fc-input-helper-color\)/);
-  assert.match(helper, /font-size:\s*var\(--fc-input-helper-font-size\)/);
-  assert.match(helper, /font-weight:\s*var\(--fc-input-font-weight\)/);
-  assert.match(helper, /line-height:\s*var\(--fc-input-helper-line-height\)/);
+  const helper = ruleBody(inputCss, ".sl-input__message");
+  assert.match(helper, /margin-block-start:\s*var\(--sl-input-helper-gap\)/);
+  assert.match(helper, /color:\s*var\(--sl-input-helper-color\)/);
+  assert.match(helper, /font-size:\s*var\(--sl-input-helper-font-size\)/);
+  assert.match(helper, /font-weight:\s*var\(--sl-input-font-weight\)/);
+  assert.match(helper, /line-height:\s*var\(--sl-input-helper-line-height\)/);
 
   assert.match(
-    ruleBody(inputCss, ".fc-input__message--error"),
-    /color:\s*var\(--fc-input-text-error\)/,
+    ruleBody(inputCss, ".sl-input__message--error"),
+    /color:\s*var\(--sl-input-text-error\)/,
   );
 });
 
 test("Input CSS applies Disabled > Error > Hover and derives the ring separately", () => {
-  const hoverSelector = ".fc-input__field:not(:disabled):hover";
-  const errorSelector = '.fc-input__field[aria-invalid="true"]:not(:disabled)';
-  const disabledSelector = ".fc-input__field:disabled {";
+  const hoverSelector = ".sl-input__field:not(:disabled):hover";
+  const errorSelector = '.sl-input__field[aria-invalid="true"]:not(:disabled)';
+  const disabledSelector = ".sl-input__field:disabled {";
 
   assert.match(
     ruleBody(inputCss, hoverSelector),
-    /border-color:\s*var\(--fc-input-border-hover\)/,
+    /border-color:\s*var\(--sl-input-border-hover\)/,
   );
   assert.match(
     ruleBody(inputCss, errorSelector),
-    /border-color:\s*var\(--fc-input-border-error\)/,
+    /border-color:\s*var\(--sl-input-border-error\)/,
   );
 
   assert.ok(
@@ -430,38 +489,38 @@ test("Input CSS applies Disabled > Error > Hover and derives the ring separately
     "Disabled must be declared after Error",
   );
 
-  const disabled = ruleBody(inputCss, ".fc-input__field:disabled");
-  assert.match(disabled, /border-color:\s*var\(--fc-input-border-disabled\)/);
-  assert.match(disabled, /background-color:\s*var\(--fc-input-background-disabled\)/);
-  assert.match(disabled, /color:\s*var\(--fc-input-text-disabled\)/);
+  const disabled = ruleBody(inputCss, ".sl-input__field:disabled");
+  assert.match(disabled, /border-color:\s*var\(--sl-input-border-disabled\)/);
+  assert.match(disabled, /background-color:\s*var\(--sl-input-background-disabled\)/);
+  assert.match(disabled, /color:\s*var\(--sl-input-text-disabled\)/);
   assert.match(disabled, /cursor:\s*not-allowed/);
 
   assert.match(
-    ruleBody(inputCss, ".fc-input__field::placeholder"),
-    /color:\s*var\(--fc-input-placeholder\)[\s\S]*opacity:\s*1/,
+    ruleBody(inputCss, ".sl-input__field::placeholder"),
+    /color:\s*var\(--sl-input-placeholder\)[\s\S]*opacity:\s*1/,
   );
   assert.match(
-    ruleBody(inputCss, ".fc-input__field:disabled::placeholder"),
-    /color:\s*var\(--fc-input-text-disabled\)/,
+    ruleBody(inputCss, ".sl-input__field:disabled::placeholder"),
+    /color:\s*var\(--sl-input-text-disabled\)/,
   );
 
-  const ring = ruleBody(inputCss, ".fc-input__control::after");
-  assert.match(ring, /inset:\s*calc\(-1 \* var\(--fc-input-focus-offset\)\)/);
-  assert.match(ring, /border:\s*var\(--fc-input-focus-width\) solid transparent/);
-  assert.match(ring, /border-radius:\s*var\(--fc-input-focus-radius\)/);
+  const ring = ruleBody(inputCss, ".sl-input__control::after");
+  assert.match(ring, /inset:\s*calc\(-1 \* var\(--sl-input-focus-offset\)\)/);
+  assert.match(ring, /border:\s*var\(--sl-input-focus-width\) solid transparent/);
+  assert.match(ring, /border-radius:\s*var\(--sl-input-focus-radius\)/);
   assert.match(ring, /pointer-events:\s*none/);
 
   assert.match(
-    ruleBody(inputCss, ".fc-input__control:has(.fc-input__field:focus-visible)::after"),
-    /border-color:\s*var\(--fc-input-focus-color\)/,
+    ruleBody(inputCss, ".sl-input__control:has(.sl-input__field:focus-visible)::after"),
+    /border-color:\s*var\(--sl-input-focus-color\)/,
   );
   assert.doesNotMatch(inputCss, /:focus-within/);
   assert.match(
-    ruleBody(inputCss, ".fc-input__field:focus"),
+    ruleBody(inputCss, ".sl-input__field:focus"),
     /outline:\s*none/,
   );
   assert.match(
-    ruleBody(inputCss, ".fc-input__control:has(.fc-input__field:disabled)::after"),
+    ruleBody(inputCss, ".sl-input__control:has(.sl-input__field:disabled)::after"),
     /display:\s*none/,
   );
 
@@ -469,7 +528,7 @@ test("Input CSS applies Disabled > Error > Hover and derives the ring separately
 });
 
 test("Input CSS keeps the label visually hidden instead of removing it", () => {
-  const hidden = ruleBody(inputCss, ".fc-input__label--visually-hidden");
+  const hidden = ruleBody(inputCss, ".sl-input__label--visually-hidden");
 
   assert.match(hidden, /position:\s*absolute/);
   assert.match(hidden, /width:\s*1px/);
@@ -561,7 +620,7 @@ test("Input reference markup keeps labels, errors and disabled semantics accessi
   assert.match(errorInput, /aria-invalid="true"/);
   assert.match(errorInput, /aria-describedby="amount-error"/);
   const errorMessageTag = inputHtml.match(
-    /<p class="fc-input__message fc-input__message--error" id="amount-error"[^>]*>/,
+    /<p class="sl-input__message sl-input__message--error" id="amount-error"[^>]*>/,
   );
   assert.ok(errorMessageTag, "error message example is missing");
   assert.doesNotMatch(
@@ -575,7 +634,7 @@ test("Input reference markup keeps labels, errors and disabled semantics accessi
   );
 
   const hiddenLabel = inputHtml.match(
-    /<label class="fc-input__label fc-input__label--visually-hidden" for="([^"]+)"/,
+    /<label class="sl-input__label sl-input__label--visually-hidden" for="([^"]+)"/,
   );
   assert.ok(hiddenLabel, "hidden-label example must keep a label element");
   assert.match(inputHtml, new RegExp(`<input\\b[^>]*\\bid="${hiddenLabel[1]}"`));
@@ -588,6 +647,83 @@ test("Input reference markup keeps labels, errors and disabled semantics accessi
   for (const className of cssClasses(inputCss)) {
     assert.ok(classes.has(className), `${className} is not shown in the reference markup`);
   }
+});
+
+test("PasswordInput reference markup keeps the toggle a native labelled button", () => {
+  assert.match(passwordInputHtml, /<input\b/);
+  assert.match(passwordInputHtml, /type="password"/);
+  assert.doesNotMatch(passwordInputHtml, /role="button"/i);
+  assert.doesNotMatch(passwordInputHtml, /<div[^>]*onclick=/i);
+  assert.doesNotMatch(passwordInputHtml, /\bstyle=/i);
+
+  assertIdReferences(passwordInputHtml, "password-input.html");
+
+  const toggles = [
+    ...passwordInputHtml.matchAll(/<button\b([^>]*)>([\s\S]*?)<\/button>/g),
+  ];
+  assert.ok(toggles.length >= 3, "password examples must include toggles");
+
+  for (const [, attributes, content] of toggles) {
+    assert.match(attributes, /\btype="button"/, "toggle must be type=button");
+    assert.match(attributes, /\baria-pressed="(?:true|false)"/, "toggle must expose aria-pressed");
+    assert.ok(
+      content.replace(/<[^>]+>/g, "").trim().length > 0,
+      "toggle must have visible text",
+    );
+  }
+
+  const classes = htmlClasses(passwordInputHtml);
+  for (const className of classes) {
+    assert.match(
+      passwordInputCss,
+      new RegExp(`\\.${className}\\b`),
+      `${className} has no CSS rule`,
+    );
+  }
+
+  for (const className of cssClasses(passwordInputCss)) {
+    assert.ok(
+      classes.has(className),
+      `${className} is not shown in the reference markup`,
+    );
+  }
+
+  assert.doesNotMatch(passwordInputHtml, /strength|breach|caps-lock/i);
+});
+
+test("PhoneInput reference markup keeps native country and number controls", () => {
+  assert.match(phoneInputHtml, /<select\b/);
+  assert.match(phoneInputHtml, /<input\b/);
+  assert.match(phoneInputHtml, /type="tel"/);
+  assert.doesNotMatch(phoneInputHtml, /role="combobox"/i);
+  assert.doesNotMatch(phoneInputHtml, /\bstyle=/i);
+
+  assertIdReferences(phoneInputHtml, "phone-input.html");
+
+  const selects = [...phoneInputHtml.matchAll(/<select\b[^>]*>([\s\S]*?)<\/select>/g)];
+  assert.ok(selects.length >= 1, "phone examples must include a country selector");
+  for (const [, options] of selects) {
+    assert.match(options, /<option\b/, "country selector must list options");
+    assert.match(options, /United Kingdom|Nigeria|United States/, "options must use full country names");
+  }
+
+  const classes = htmlClasses(phoneInputHtml);
+  for (const className of classes) {
+    assert.match(
+      phoneInputCss,
+      new RegExp(`\\.${className}\\b`),
+      `${className} has no CSS rule`,
+    );
+  }
+
+  for (const className of cssClasses(phoneInputCss)) {
+    assert.ok(
+      classes.has(className),
+      `${className} is not shown in the reference markup`,
+    );
+  }
+
+  assert.doesNotMatch(phoneInputHtml, /fetch\(|ipapi|geoip-lite/i);
 });
 
 test("repository documentation records the native API, browser baseline and Ghost/Focus correction", () => {
@@ -635,11 +771,29 @@ test("repository documentation records the native API, browser baseline and Ghos
   assert.doesNotMatch(buttonReadme, /No production Button component exists/);
   assert.doesNotMatch(inputReadme, /No production Input component exists/);
   assert.match(implementationDoc, /### Browser baseline/);
-  assert.match(implementationDoc, /no browser was run during Stage 5E/);
+  assert.match(implementationDoc, /No browser was run\s+during the current validation pass/);
+  assert.match(implementationDoc, /Appendix A — Historical stage record/);
   assert.match(implementationDoc, /Stage 5C-1/);
-  assert.match(implementationDoc, /FC-01 is resolved/);
+  assert.match(implementationDoc, /FC-01 is\s+resolved/);
   assert.match(implementationDoc, /VariableID:82:160/);
   assert.doesNotMatch(implementationDoc, /Ghost\/Focus label binding is pending Figma correction/);
+});
+
+test("PasswordInput and PhoneInput documentation state unresolved Figma and token rules", () => {
+  for (const [label, readme] of [
+    ["PasswordInput", passwordInputReadme],
+    ["PhoneInput", phoneInputReadme],
+  ]) {
+    assert.match(readme, /Figma reference unresolved/i, `${label} must state the unresolved Figma reference`);
+    assert.match(readme, /Known limitations/i, `${label} must document limitations`);
+    assert.match(readme, /contract\.json/, `${label} must link to its contract`);
+  }
+
+  assert.match(passwordInputReadme, /36/);
+  assert.match(passwordInputReadme, /input\.\*.*button\.\*/s);
+  assert.match(passwordInputReadme, /primitive/i);
+  assert.match(phoneInputReadme, /31/);
+  assert.match(phoneInputReadme, /phone-input\.\*/);
 });
 
 test("contrast checker uses the Ghost surface and reports unique advisory pairs", () => {
@@ -700,7 +854,7 @@ test("browser smoke fixture covers the required cases and existing assets", () =
   assert.match(fixture, /\.\.\/button\/button\.css/);
   assert.match(fixture, /\.\.\/input\/input\.css/);
   assert.match(fixture, /getComputedStyle/);
-  assert.match(fixture, /window\.__fincoreBrowserSmoke/);
+  assert.match(fixture, /window\.__sorleedBrowserSmoke/);
 
   for (const id of [
     "btn-primary",
@@ -720,7 +874,7 @@ test("browser smoke fixture covers the required cases and existing assets", () =
   assert.match(fixture, /aria-describedby="input-default-helper"/);
   assert.match(fixture, /aria-describedby="input-disabled-helper"/);
   assert.match(fixture, /aria-describedby="input-error-message"/);
-  assert.match(fixture, /fc-input__label--visually-hidden/);
+  assert.match(fixture, /sl-input__label--visually-hidden/);
   assert.match(fixture, /application may add role="alert"/);
 
   assert.match(runbook, /python3 -m http\.server 8765/);
@@ -731,8 +885,12 @@ test("browser smoke fixture covers the required cases and existing assets", () =
   assert.match(runbook, /UNVERIFIED/);
 });
 
-test("existing contract and token validators still pass", () => {
-  for (const script of ["components/validate-contracts.mjs", "tokens/check.mjs"]) {
+test("existing contract, token and template parity validators still pass", () => {
+  for (const script of [
+    "components/validate-contracts.mjs",
+    "components/validate-parity.mjs",
+    "tokens/check.mjs",
+  ]) {
     const result = spawnSync(process.execPath, [script], {
       cwd: root,
       encoding: "utf8",

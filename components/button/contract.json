@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.button",
+    "id": "sorleed.button",
     "name": "Button",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore's action control: one text label, three visual variants and five mutually exclusive Figma states. Authored from the verified Figma Button set and the 195-token foundation. Implemented as framework-agnostic CSS with native HTML reference markup; no runtime package or adapter.",
+    "summary": "Sorleed's action control: one text label, three visual variants and five mutually exclusive Figma states. Authored from the verified Figma Button set and the 195-token foundation. Implemented as framework-agnostic CSS with native HTML reference markup; no runtime package or adapter.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no runtime package",
     "lastUpdated": "2026-10-26",
     "canonical": {
@@ -679,7 +679,7 @@
       {
         "name": "button.height",
         "type": "dimension",
-        "cssVar": "--fc-button-height",
+        "cssVar": "--sl-button-height",
         "alias": "size.control.md",
         "resolved": "40px",
         "role": "Control height",
@@ -688,7 +688,7 @@
       {
         "name": "button.padding-x",
         "type": "dimension",
-        "cssVar": "--fc-button-padding-x",
+        "cssVar": "--sl-button-padding-x",
         "alias": "space.4",
         "resolved": "16px",
         "role": "Horizontal padding",
@@ -697,7 +697,7 @@
       {
         "name": "button.radius",
         "type": "dimension",
-        "cssVar": "--fc-button-radius",
+        "cssVar": "--sl-button-radius",
         "alias": "radius.md",
         "resolved": "6px",
         "role": "Corner radius",
@@ -706,7 +706,7 @@
       {
         "name": "button.font-size",
         "type": "dimension",
-        "cssVar": "--fc-button-font-size",
+        "cssVar": "--sl-button-font-size",
         "alias": "font.size.sm",
         "resolved": "14px",
         "role": "Label font size",
@@ -715,7 +715,7 @@
       {
         "name": "button.font-weight",
         "type": "fontWeight",
-        "cssVar": "--fc-button-font-weight",
+        "cssVar": "--sl-button-font-weight",
         "alias": "font.weight.medium",
         "resolved": 500,
         "role": "Label font weight",
@@ -724,7 +724,7 @@
       {
         "name": "button.line-height",
         "type": "dimension",
-        "cssVar": "--fc-button-line-height",
+        "cssVar": "--sl-button-line-height",
         "alias": "font.line-height.sm",
         "resolved": "20px",
         "role": "Label line height",
@@ -733,7 +733,7 @@
       {
         "name": "button.focus.color",
         "type": "color",
-        "cssVar": "--fc-button-focus-color",
+        "cssVar": "--sl-button-focus-color",
         "alias": "color.border.focus",
         "resolved": "#2563EB",
         "role": "Focus ring colour",
@@ -742,7 +742,7 @@
       {
         "name": "button.focus.width",
         "type": "dimension",
-        "cssVar": "--fc-button-focus-width",
+        "cssVar": "--sl-button-focus-width",
         "alias": "size.focus-ring.width",
         "resolved": "2px",
         "role": "Focus ring stroke width",
@@ -751,7 +751,7 @@
       {
         "name": "button.focus.offset",
         "type": "dimension",
-        "cssVar": "--fc-button-focus-offset",
+        "cssVar": "--sl-button-focus-offset",
         "alias": "size.focus-ring.offset",
         "resolved": "2px",
         "role": "Focus ring offset and padding",
@@ -760,7 +760,7 @@
       {
         "name": "button.primary.background",
         "type": "color",
-        "cssVar": "--fc-button-primary-background",
+        "cssVar": "--sl-button-primary-background",
         "alias": "color.action.primary",
         "resolved": "#2563EB",
         "role": "Primary default and focus surface",
@@ -769,7 +769,7 @@
       {
         "name": "button.primary.background-hover",
         "type": "color",
-        "cssVar": "--fc-button-primary-background-hover",
+        "cssVar": "--sl-button-primary-background-hover",
         "alias": "color.action.primary-hover",
         "resolved": "#1D4ED8",
         "role": "Primary hover surface",
@@ -778,7 +778,7 @@
       {
         "name": "button.primary.background-active",
         "type": "color",
-        "cssVar": "--fc-button-primary-background-active",
+        "cssVar": "--sl-button-primary-background-active",
         "alias": "color.action.primary-active",
         "resolved": "#1E40AF",
         "role": "Primary active surface",
@@ -787,7 +787,7 @@
       {
         "name": "button.primary.foreground",
         "type": "color",
-        "cssVar": "--fc-button-primary-foreground",
+        "cssVar": "--sl-button-primary-foreground",
         "alias": "color.action.primary-foreground",
         "resolved": "#FFFFFF",
         "role": "Primary label",
@@ -796,7 +796,7 @@
       {
         "name": "button.secondary.background",
         "type": "color",
-        "cssVar": "--fc-button-secondary-background",
+        "cssVar": "--sl-button-secondary-background",
         "alias": "color.action.secondary",
         "resolved": "#F4F4F5",
         "role": "Secondary default and focus surface",
@@ -805,7 +805,7 @@
       {
         "name": "button.secondary.background-hover",
         "type": "color",
-        "cssVar": "--fc-button-secondary-background-hover",
+        "cssVar": "--sl-button-secondary-background-hover",
         "alias": "color.action.secondary-hover",
         "resolved": "#E4E4E7",
         "role": "Secondary hover surface",
@@ -814,7 +814,7 @@
       {
         "name": "button.secondary.background-active",
         "type": "color",
-        "cssVar": "--fc-button-secondary-background-active",
+        "cssVar": "--sl-button-secondary-background-active",
         "alias": "color.action.secondary-active",
         "resolved": "#D4D4D8",
         "role": "Secondary active surface",
@@ -823,7 +823,7 @@
       {
         "name": "button.secondary.foreground",
         "type": "color",
-        "cssVar": "--fc-button-secondary-foreground",
+        "cssVar": "--sl-button-secondary-foreground",
         "alias": "color.action.secondary-foreground",
         "resolved": "#18181B",
         "role": "Secondary label",
@@ -832,7 +832,7 @@
       {
         "name": "button.ghost.foreground",
         "type": "color",
-        "cssVar": "--fc-button-ghost-foreground",
+        "cssVar": "--sl-button-ghost-foreground",
         "alias": "color.content.primary",
         "resolved": "#18181B",
         "role": "Ghost label",
@@ -841,7 +841,7 @@
       {
         "name": "button.ghost.background-hover",
         "type": "color",
-        "cssVar": "--fc-button-ghost-background-hover",
+        "cssVar": "--sl-button-ghost-background-hover",
         "alias": "color.action.ghost-hover",
         "resolved": "#F4F4F5",
         "role": "Ghost hover surface",
@@ -850,7 +850,7 @@
       {
         "name": "button.ghost.background-active",
         "type": "color",
-        "cssVar": "--fc-button-ghost-background-active",
+        "cssVar": "--sl-button-ghost-background-active",
         "alias": "color.action.ghost-active",
         "resolved": "#E4E4E7",
         "role": "Ghost active surface",
@@ -859,7 +859,7 @@
       {
         "name": "button.disabled.background",
         "type": "color",
-        "cssVar": "--fc-button-disabled-background",
+        "cssVar": "--sl-button-disabled-background",
         "alias": "color.action.disabled",
         "resolved": "#E4E4E7",
         "role": "Disabled surface for Primary and Secondary",
@@ -868,7 +868,7 @@
       {
         "name": "button.disabled.foreground",
         "type": "color",
-        "cssVar": "--fc-button-disabled-foreground",
+        "cssVar": "--sl-button-disabled-foreground",
         "alias": "color.action.disabled-foreground",
         "resolved": "#A1A1AA",
         "role": "Disabled label for all variants",
@@ -1469,7 +1469,7 @@
         "id": "tokens-count",
         "given": "This contract.",
         "when": "The dependency list is compared with tokens/tokens.json.",
-        "then": "All 22 button.* dependencies exist, resolve to the stated values, and map to the stated --fc-* CSS variables."
+        "then": "All 22 button.* dependencies exist, resolve to the stated values, and map to the stated --sl-* CSS variables."
       },
       {
         "id": "tokens-state-binding",
@@ -1622,7 +1622,7 @@
       "Do not use a button for navigation. Use a link.",
       "Do not implement loading, progress or async feedback inside the button.",
       "Do not place Ghost on inverse or dark surfaces.",
-      "Treat the native class/attribute API as canonical: .fc-button plus the variant class, text content as the label, native disabled, explicit type, and browser pseudo-classes for interaction states. Do not require a JavaScript runtime or React adapter.",
+      "Treat the native class/attribute API as canonical: .sl-button plus the variant class, text content as the label, native disabled, explicit type, and browser pseudo-classes for interaction states. Do not require a JavaScript runtime or React adapter.",
       "Use button.ghost.foreground for every Ghost label, including Ghost/Focus. The previous color/content/link binding was corrected in Stage 5C-1 and verified.",
       "Do not modify tokens/tokens.json, tokens/check.mjs or tokens/dist/tokens.css to make an implementation easier. If a role is missing, stop and report it."
     ],
@@ -1699,7 +1699,7 @@
       {
         "title": "Ghost on inverse",
         "language": "tsx",
-        "code": "<div style={{ background: \"var(--fc-color-surface-inverse)\" }}><Button variant=\"ghost\" label=\"Close\" /></div>",
+        "code": "<div style={{ background: \"var(--sl-color-surface-inverse)\" }}><Button variant=\"ghost\" label=\"Close\" /></div>",
         "explanation": "Ghost text is neutral.900 on a neutral.900 surface in the default theme: 1.00:1. Inverse is unsupported."
       },
       {

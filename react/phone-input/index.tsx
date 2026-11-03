@@ -191,8 +191,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       .filter(Boolean)
       .join(" ");
 
-    const wrapperClasses = ["fc-phone-input", className].filter(Boolean).join(" ");
-    const labelClasses = ["fc-phone-input__label", hideLabel ? "fc-phone-input__label--visually-hidden" : ""]
+    const wrapperClasses = ["sl-phone-input", className].filter(Boolean).join(" ");
+    const labelClasses = ["sl-phone-input__label", hideLabel ? "sl-phone-input__label--visually-hidden" : ""]
       .filter(Boolean)
       .join(" ");
 
@@ -234,13 +234,13 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         <label className={labelClasses} htmlFor={id}>
           {label}
         </label>
-        <div className="fc-phone-input__row">
-          <div className="fc-phone-input__country">
-            <label className="fc-phone-input__country-label" htmlFor={countrySelectId}>
+        <div className="sl-phone-input__row">
+          <div className="sl-phone-input__country">
+            <label className="sl-phone-input__country-label" htmlFor={countrySelectId}>
               Country
             </label>
             <select
-              className="fc-phone-input__country-select"
+              className="sl-phone-input__country-select"
               id={countrySelectId}
               value={currentCountry || ""}
               onChange={handleCountryChange}
@@ -255,10 +255,10 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
               ))}
             </select>
           </div>
-          <div className="fc-phone-input__control">
+          <div className="sl-phone-input__control">
             <input
               ref={ref}
-              className="fc-phone-input__field"
+              className="sl-phone-input__field"
               id={id}
               name={name}
               type="tel"
@@ -277,7 +277,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         </div>
         {showMessage && (
           <p
-            className={hasError ? "fc-phone-input__message fc-phone-input__message--error" : "fc-phone-input__message"}
+            className={hasError ? "sl-phone-input__message sl-phone-input__message--error" : "sl-phone-input__message"}
             id={hasError ? errorId : helperId}
           >
             {messageText}

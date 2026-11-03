@@ -1,9 +1,11 @@
-# Weft CLI — Alpha Tester Guide
+# Sorleed CLI — Alpha Tester Guide
+
+**Status: private alpha. `@sorleed/cli` 0.1.0-alpha.0 is not published.**
 
 This guide is based on the current implementation and documentation.
 
 ## What this is
-Weft CLI is a source-distribution tool. It copies canonical component files into your consumer project. 
+Sorleed CLI is a source-distribution tool. It copies canonical component files into your consumer project.
 
 ## Prerequisites
 - Node.js with ESM support
@@ -11,15 +13,16 @@ Weft CLI is a source-distribution tool. It copies canonical component files into
 - For TypeScript CSS side-effect imports, you may need `declare module "*.css"` in a `.d.ts` file
 
 ## Supported components
-- `button` - Weft Button (React + TypeScript)
-- `input` - Weft Input (React + TypeScript)  
-- `phone-input` - Weft PhoneInput (React + TypeScript)
+- `button` - Sorleed Button (React + TypeScript)
+- `input` - Sorleed Input (React + TypeScript)
+- `password-input` - Sorleed PasswordInput (React + TypeScript)
+- `phone-input` - Sorleed PhoneInput (React + TypeScript)
 
 ## Getting started
 
 Using `npx` (from installed package):
 ```bash
-npx weft add button --dir /path/to/your-app
+npx sorleed add button --dir /path/to/your-app
 ```
 
 Or from the repository:
@@ -28,51 +31,53 @@ Or from the repository:
 Add `--dry-run` to see what would be copied without writing anything:
 
 ```bash
-node cli/bin/weft.mjs add button --dir /path/to/your-app --dry-run
+node cli/bin/sorleed.mjs add button --dir /path/to/your-app --dry-run
 ```
 
 ### Install — copies files
 Omit `--dry-run` to perform the actual file copy:
 
 ```bash
-node cli/bin/weft.mjs add button --dir /path/to/your-app
-node cli/bin/weft.mjs add input --dir /path/to/your-app
-node cli/bin/weft.mjs add phone-input --dir /path/to/your-app
+node cli/bin/sorleed.mjs add button --dir /path/to/your-app
+node cli/bin/sorleed.mjs add input --dir /path/to/your-app
+node cli/bin/sorleed.mjs add password-input --dir /path/to/your-app
+node cli/bin/sorleed.mjs add phone-input --dir /path/to/your-app
 ```
 
 Use `--dir` to target your consumer project root. Paths are resolved and must stay within the consumer directory.
 
 ## What gets copied
 Each component copies:
-- `components/fincore/<component>/index.tsx` (button/input/phone-input)
-- `components/fincore/types/index.ts` (shared across Button, Input, and PhoneInput; contains types for all supported components)
-- `styles/fincore/<component>.css` (button/input/phone-input)
-- `styles/fincore/tokens.css` (shared)
+- `components/sorleed/<component>/index.tsx` (button/input/password-input/phone-input)
+- `components/sorleed/types/index.ts` (shared across all four components; contains types for all supported components)
+- `styles/sorleed/<component>.css` (button/input/password-input/phone-input)
+- `styles/sorleed/tokens.css` (shared)
 
 ## Dependencies
-- **Button and Input**: No extra runtime dependencies (peer deps: `react >=18.0.0`, `react-dom >=18.0.0`)
+- **Button, Input and PasswordInput**: No extra runtime dependencies (peer deps: `react >=18.0.0`, `react-dom >=18.0.0`)
 - **PhoneInput**: Requires `libphonenumber-js` at runtime for phone-number parsing and validation. Install it in your consumer project:
   ```bash
   npm install libphonenumber-js
   ```
-  Button and Input do not require this dependency.
-  - Note: `@types/node` is **not** a requirement of PhoneInput or Weft. If a consumer project encounters TypeScript errors for `node:*` imports (such as `node:path`), this typically originates from the consumer's own build tooling or Node-based configuration (e.g. `vite.config.ts`); diagnose the consumer's configuration rather than treating it as a PhoneInput requirement.
+  Button, Input and PasswordInput do not require this dependency.
+  - Note: `@types/node` is **not** a requirement of PhoneInput or Sorleed. If a consumer project encounters TypeScript errors for `node:*` imports (such as `node:path`), this typically originates from the consumer's own build tooling or Node-based configuration (e.g. `vite.config.ts`); diagnose the consumer's configuration rather than treating it as a PhoneInput requirement.
 
 ## CSS imports (order matters)
 Import tokens first, then component styles:
 
 ```tsx
-import "./styles/fincore/tokens.css";
-import "./styles/fincore/button.css";
-import "./styles/fincore/input.css";
-import "./styles/fincore/phone-input.css";
+import "./styles/sorleed/tokens.css";
+import "./styles/sorleed/button.css";
+import "./styles/sorleed/input.css";
+import "./styles/sorleed/password-input.css";
+import "./styles/sorleed/phone-input.css";
 ```
 
 ## Usage examples
 
 ### Button
 ```tsx
-import { Button } from "./components/fincore/button";
+import { Button } from "./components/sorleed/button";
 
 <Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
@@ -83,18 +88,30 @@ import { Button } from "./components/fincore/button";
 
 ### Input
 ```tsx
-import { Input } from "./components/fincore/input";
+import { Input } from "./components/sorleed/input";
 
 <Input label="Email" type="email" placeholder="you@example.com" />
 <Input label="Name" helperText="Enter your full name" />
 <Input label="Account Number" errorMessage="This field is required" />
 ```
 
-> **Note on Input types:** Weft `Input` strictly supports the following `type` attributes per its component contract: `"text"`, `"email"`, `"tel"`, `"number"`, and `"url"`. Other input types (such as `password`, `search`, `textarea`, `select`, `checkbox`, `otp`, `currency`, or `pin`) are outside the current Input contract. A future Password Input would be a separate component proposal.
+> **Note on Input types:** Sorleed `Input` strictly supports the following `type` attributes per its component contract: `"text"`, `"email"`, `"tel"`, `"number"`, and `"url"`. Other input types (such as `password`, `search`, `textarea`, `select`, `checkbox`, `otp`, `currency`, or `pin`) are outside the current Input contract. Use the separate `PasswordInput` component for passwords.
+
+### PasswordInput
+```tsx
+import { PasswordInput } from "./components/sorleed/password-input";
+
+<PasswordInput
+  label="Password"
+  autoComplete="current-password"
+  helperText="Use at least 12 characters."
+/>
+<PasswordInput label="New password" autoComplete="new-password" />
+```
 
 ### PhoneInput
 ```tsx
-import { PhoneInput } from "./components/fincore/phone-input";
+import { PhoneInput } from "./components/sorleed/phone-input";
 
 <PhoneInput label="Phone" defaultCountry="US" onChange={(result) => {
   console.log(result.inputValue, result.e164, result.isValid);
@@ -126,8 +143,9 @@ There is currently **no `--force` or `--skip`** option. To resolve:
 3. Or ensure shared files match canonical sources byte-for-byte
 
 ## Alpha limitations
+- Not published; private alpha only
 - No `--force` or `--skip` flags
-- Only Button, Input, PhoneInput supported
+- Supports Button, Input, PasswordInput and PhoneInput
 - CLI does not verify browser rendering
 - Path traversal is rejected; some edge cases may be reported
 - Tool copies from repository files - it does **not** publish components or overwrite existing files
@@ -138,10 +156,11 @@ There is currently **no `--force` or `--skip`** option. To resolve:
 3. [ ] Install in different orders to verify shared file reuse
 4. [ ] Test repeated install (should report conflicts, no changes)
 5. [ ] Install PhoneInput and add `libphonenumber-js` dependency
-6. [ ] Import tokens first, then component CSS
-7. [ ] Use components in React + TypeScript app, run `tsc --noEmit`
-8. [ ] Build with your bundler (e.g., Vite) to verify CSS/tokens load
-9. [ ] Report any conflicts, errors, or unexpected behavior
+6. [ ] Install PasswordInput and verify the toggle is a native button and preserves the value
+7. [ ] Import tokens first, then component CSS
+8. [ ] Use components in React + TypeScript app, run `tsc --noEmit`
+9. [ ] Build with your bundler (e.g., Vite) to verify CSS/tokens load
+10. [ ] Report any conflicts, errors, or unexpected behavior
 
 ## Reporting issues
 Please report: CLI command used, consumer project structure, error messages, Node/npm versions, and whether files were modified/overwritten.
