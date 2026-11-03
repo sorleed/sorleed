@@ -2,7 +2,10 @@
 
 Thank you for your interest in contributing to Sorleed.
 
-Sorleed is an open-source project built to improve how financial products are designed, developed, and implemented with AI.
+Sorleed is a source-first UI toolkit for designers and developers building
+financial products. The project is currently in **private alpha**. The canonical
+component layer is framework-agnostic CSS plus native HTML; the React adapter
+and CLI are private alpha and unpublished.
 
 We welcome contributions from:
 
@@ -11,6 +14,9 @@ We welcome contributions from:
 * Product Thinkers
 * Technical Writers
 * Accessibility Advocates
+
+By participating, you agree to follow the
+[`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
 
 ---
 
@@ -35,7 +41,9 @@ We welcome contributions from:
 * Guides
 * Examples
 * Tutorials
-* AI Context Files
+
+AI context work is **deferred**; do not add AI context files without an approved
+scope and contract.
 
 ---
 
@@ -47,6 +55,21 @@ Please:
 2. Discuss major changes before implementation.
 3. Follow the [Sorleed principles](docs/foundation/principles.md).
 4. Prioritize accessibility.
+5. Follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+6. Report security issues according to [`SECURITY.md`](SECURITY.md), not in a
+   public issue.
+
+---
+
+## Repository Workflow
+
+- Sorleed is developed at `sorleed/sorleed` and is currently private.
+- The historical FinCoreUI repository remains available as a separate remote.
+- The current integration branch is `docs/foundation-baseline`.
+- Do not merge the unrelated `main` history, change the default branch, rewrite
+  history or replace either LICENSE file without explicit approval.
+- See [`docs/repository.md`](docs/repository.md) for the remote model and the
+  deferred `main` reconciliation procedure.
 
 ---
 
@@ -90,9 +113,12 @@ node --test components/test/*.test.mjs
 For React or CLI changes, also run the package suites:
 
 ```sh
-cd react && npm test && npm run typecheck
+cd react && npm test && npm run typecheck && npm run build
 cd cli && npm test
 ```
+
+The CI workflow runs these same checks on pushes to `main` and
+`docs/foundation-baseline`, and on pull requests.
 
 ### Component changes
 
@@ -103,6 +129,21 @@ cd cli && npm test
 - Regenerate CLI templates from canonical sources; parity is enforced.
 - Do not claim browser rendering, screen-reader, cross-browser or Figma-node
   verification that was not actually performed.
+
+### Pull requests
+
+- Keep changes focused and explain the user-facing or contract impact.
+- Include tests and documentation for changed behaviour.
+- Do not change `LICENSE` without explicit approval.
+- Do not include secrets, machine-specific paths or unrelated cleanup.
+- Report any validation command that could not be run.
+
+---
+
+## Security
+
+Do not report security vulnerabilities in public issues. Follow
+[`SECURITY.md`](SECURITY.md).
 
 ---
 

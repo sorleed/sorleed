@@ -1,10 +1,20 @@
 # Sorleed
 
-An open-source AI-native design infrastructure for financial products.
+**UI Infrastructure.** A source-first UI toolkit for designers and developers.
 
-Sorleed provides designers, developers, and AI agents with a shared language for building modern financial experiences.
+Sorleed is currently in **private alpha**. The canonical component layer is
+framework-agnostic CSS plus native HTML. React and CLI are private-alpha
+adapters and are not published. The AI Context Layer, Figma Community Library
+and documentation website are deferred.
 
-By combining design systems, code, documentation, and AI context files, Sorleed helps teams build consistent, accessible, and scalable fintech products faster.
+Sorleed is being prepared for open-source release under the MIT License. The
+repository remains private during alpha, and the final copyright-holder
+statement is pending confirmation.
+
+Sorleed provides designers and developers with a shared language for building
+modern financial experiences. By combining design systems, code, contracts and
+documentation, Sorleed helps teams build consistent, accessible and scalable
+fintech products faster.
 
 ---
 
@@ -60,6 +70,17 @@ states so nothing is presented as more mature than it is:
 | **Private alpha** | A working adapter or tool exists in this repository but is not published and may change without notice. |
 | **Planned** | Recorded in the roadmap; no implementation or contract exists. |
 | **Deferred** | Explicitly out of the current release; no date or implementation commitment. |
+
+### Product areas
+
+| Area | Status |
+|---|---|
+| **Sorleed UI** | Private-alpha React adapter; canonical CSS and native HTML are implemented for four components. |
+| **Sorleed Tokens** | Implemented: 229 `--sl-*` tokens, contracts and validation. |
+| **Sorleed Figma** | Deferred. Button and Input have recorded evidence; PasswordInput and PhoneInput references remain unresolved. |
+| **Sorleed CLI** | Private alpha and unpublished. |
+| **Sorleed AI** | Deferred. No AI context files are implemented. |
+| **Sorleed Website** | Deferred. Not built. |
 
 ### Implemented
 
@@ -133,7 +154,8 @@ source-distribution or React authoring workflow.
 ```text
 sorleed/
 
-├── docs/
+├── .github/        # CI, issue and pull-request templates
+├── docs/           # foundation, repository transition and release readiness
 ├── figma/
 ├── ai/
 ├── tokens/
@@ -149,6 +171,7 @@ sorleed/
 ├── CONTRIBUTING.md
 ├── MIGRATION.md
 ├── CODE_OF_CONDUCT.md
+├── SECURITY.md
 └── LICENSE
 ```
 
@@ -180,6 +203,8 @@ See [`ROADMAP.md`](ROADMAP.md) for details.
 We welcome designers, developers, technical writers, and product thinkers.
 
 Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before submitting contributions.
+By participating, you agree to the [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+Report security issues according to [`SECURITY.md`](SECURITY.md).
 
 ---
 
@@ -189,9 +214,18 @@ The alpha rename to Sorleed is a clean break: `--fc-*` variables, `.fc-*`
 classes, old package names and the `weft`/`fincore` executables are not kept as
 compatibility aliases. See [`MIGRATION.md`](MIGRATION.md).
 
+## Repository Transition
+
+The FinCoreUI repository is preserved while Sorleed becomes the primary
+development home. See [`docs/repository.md`](docs/repository.md) for the current
+remotes, branch model and the deferred `main` reconciliation procedure. See
+[`docs/release-readiness.md`](docs/release-readiness.md) for remaining release
+blockers.
+
 ---
 
 ## License
 
 MIT License. The copyright holder line in [`LICENSE`](LICENSE) is unchanged
-pending confirmation.
+pending confirmation. Public release and package publication remain blocked
+until that decision is complete.

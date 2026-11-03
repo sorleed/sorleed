@@ -2,6 +2,15 @@
   "name": "@sorleed/cli",
   "version": "0.1.0-alpha.0",
   "description": "Source-distribution CLI for Sorleed components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorleed/sorleed.git",
+    "directory": "cli"
+  },
+  "homepage": "https://github.com/sorleed/sorleed#readme",
+  "bugs": {
+    "url": "https://github.com/sorleed/sorleed/issues"
+  },
   "private": true,
   "type": "module",
   "bin": {

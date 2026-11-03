@@ -133,7 +133,8 @@ The CLI supports all four components: `button`, `input`, `password-input` and
 
 - The MIT licence text and the existing copyright-holder line in `LICENSE`.
 - The existing package versions and contract versions.
-- The GitHub remote and repository name.
+- The original FinCoreUI repository and its history. The Sorleed repository is a
+  separate addition; see [`docs/repository.md`](docs/repository.md).
 - Component behaviour and visual design, except for the rename and the
   documentation/contract corrections recorded in this phase.
 - The framework-agnostic canonical CSS plus native HTML architecture.
@@ -161,3 +162,13 @@ The CLI supports all four components: `button`, `input`, `password-input` and
 There are **no compatibility aliases**. A consumer that keeps an old
 `--fc-*` reference, `.fc-*` class, package name or executable will not receive
 the renamed values or commands. This is intentional for the alpha clean break.
+
+---
+
+## 9. Repository transition
+
+The original FinCoreUI repository is preserved. The Sorleed repository is the
+new primary development home, currently private. Remote configuration, branch
+roles and the deferred `main` reconciliation procedure are documented in
+[`docs/repository.md`](docs/repository.md). Do not merge the unrelated `main`
+history or change either LICENSE until legal ownership is confirmed.

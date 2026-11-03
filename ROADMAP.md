@@ -2,7 +2,11 @@
 
 ## Vision
 
-Build the open-source AI-native design infrastructure for financial products.
+Build Sorleed as **UI Infrastructure**: a source-first UI toolkit for designers
+and developers building financial products.
+
+Public release, the final copyright-holder statement and package publication
+remain pending. See [`docs/release-readiness.md`](docs/release-readiness.md).
 
 Status vocabulary used in this roadmap:
 
