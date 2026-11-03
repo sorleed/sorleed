@@ -9,11 +9,12 @@ Start with:
 - [Contract-first usage guide](../components/USAGE-GUIDE.md)
 - [Implementation guide](../components/IMPLEMENTATION.md)
 - [Token guide](../tokens/README.md)
-- [Migration from FinCore/Weft](../MIGRATION.md)
+- [Historical migration from FinCore/Weft](../MIGRATION.md)
 - [Repository transition](./repository.md)
 - [Release readiness](./release-readiness.md)
 - [Code of Conduct](../CODE_OF_CONDUCT.md)
 - [Security policy](../SECURITY.md)
+- [Third-party notices](../THIRD_PARTY_NOTICES.md)
 
 Foundation documentation:
 

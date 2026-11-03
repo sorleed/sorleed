@@ -64,12 +64,13 @@ Please:
 ## Repository Workflow
 
 - Sorleed is developed at `sorleed/sorleed` and is currently private.
-- The historical FinCoreUI repository remains available as a separate remote.
+- The historical FinCoreUI repository is archive-only. It is not configured as
+  a remote or upstream and must not be modified.
 - The current integration branch is `docs/foundation-baseline`.
 - Do not merge the unrelated `main` history, change the default branch, rewrite
   history or replace either LICENSE file without explicit approval.
-- See [`docs/repository.md`](docs/repository.md) for the remote model and the
-  deferred `main` reconciliation procedure.
+- See [`docs/repository.md`](docs/repository.md) for the branch model and the
+  reviewed `main` reconciliation procedure.
 
 ---
 

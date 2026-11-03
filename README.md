@@ -172,6 +172,7 @@ sorleed/
 ├── MIGRATION.md
 ├── CODE_OF_CONDUCT.md
 ├── SECURITY.md
+├── THIRD_PARTY_NOTICES.md
 └── LICENSE
 ```
 
@@ -208,17 +209,18 @@ Report security issues according to [`SECURITY.md`](SECURITY.md).
 
 ---
 
-## Migration from FinCore/Weft
+## Historical Migration from FinCore/Weft
 
 The alpha rename to Sorleed is a clean break: `--fc-*` variables, `.fc-*`
 classes, old package names and the `weft`/`fincore` executables are not kept as
-compatibility aliases. See [`MIGRATION.md`](MIGRATION.md).
+compatibility aliases. This section is historical. See [`MIGRATION.md`](MIGRATION.md).
 
 ## Repository Transition
 
-The FinCoreUI repository is preserved while Sorleed becomes the primary
-development home. See [`docs/repository.md`](docs/repository.md) for the current
-remotes, branch model and the deferred `main` reconciliation procedure. See
+Sorleed is the sole active brand and development source. The historical
+FinCoreUI repository is archive-only: it is not configured as a remote or
+upstream and must not be modified. See [`docs/repository.md`](docs/repository.md)
+for the branch model and the reviewed `main` reconciliation procedure. See
 [`docs/release-readiness.md`](docs/release-readiness.md) for remaining release
 blockers.
 
@@ -226,6 +228,8 @@ blockers.
 
 ## License
 
-MIT License. The copyright holder line in [`LICENSE`](LICENSE) is unchanged
-pending confirmation. Public release and package publication remain blocked
-until that decision is complete.
+MIT License. Copyright (c) 2026 Sorleed.
+
+The MIT license covers the project software and documentation. It does not grant
+rights to the Sorleed name or logo. Third-party materials retain their own
+licenses and attribution; see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).

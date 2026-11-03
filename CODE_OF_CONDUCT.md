@@ -132,3 +132,9 @@ For answers to common questions about this code of conduct, see the FAQ at
 [Mozilla CoC]: https://github.com/mozilla/diversity
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
+
+## Licensing note
+
+This document is adapted from Contributor Covenant 2.1 and retains its upstream
+attribution and licensing terms. It is not relicensed under the project's MIT
+license. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).

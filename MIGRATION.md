@@ -131,10 +131,11 @@ The CLI supports all four components: `button`, `input`, `password-input` and
 
 ## 6. What did not change
 
-- The MIT licence text and the existing copyright-holder line in `LICENSE`.
+- The MIT licence text. The copyright-holder line was later updated to
+  `Copyright (c) 2026 Sorleed` during licensing consolidation; see `LICENSE`.
 - The existing package versions and contract versions.
-- The original FinCoreUI repository and its history. The Sorleed repository is a
-  separate addition; see [`docs/repository.md`](docs/repository.md).
+- The original FinCoreUI repository and its history. It is now archive-only and
+  is not configured as an active remote; see [`docs/repository.md`](docs/repository.md).
 - Component behaviour and visual design, except for the rename and the
   documentation/contract corrections recorded in this phase.
 - The framework-agnostic canonical CSS plus native HTML architecture.
@@ -152,8 +153,8 @@ The CLI supports all four components: `button`, `input`, `password-input` and
    to `components/sorleed/*` and `styles/sorleed/*`.
 7. Update contract references from the old IDs to `sorleed.*`.
 8. Re-run the token, contract, parity and package checks.
-9. Search for any remaining old-brand strings and remove them, except the
-   unchanged `LICENSE` line.
+9. Search for any remaining old-brand strings and remove them, except
+   historical provenance references.
 
 ---
 
@@ -167,8 +168,10 @@ the renamed values or commands. This is intentional for the alpha clean break.
 
 ## 9. Repository transition
 
-The original FinCoreUI repository is preserved. The Sorleed repository is the
-new primary development home, currently private. Remote configuration, branch
-roles and the deferred `main` reconciliation procedure are documented in
+The original FinCoreUI repository is preserved as an archive only and is not an
+active remote or source of truth. The Sorleed repository is the sole active
+development home, currently private. Legal ownership has been confirmed by the
+project owner; the remaining `main` reconciliation requires a reviewed,
+non-destructive transition. Branch roles and the procedure are documented in
 [`docs/repository.md`](docs/repository.md). Do not merge the unrelated `main`
-history or change either LICENSE until legal ownership is confirmed.
+history or change either LICENSE without an approved reconciliation.
