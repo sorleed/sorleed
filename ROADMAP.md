@@ -17,7 +17,8 @@ developers can consume today without a framework, package manager or build step.
 * Generated design-token CSS and machine-readable component contracts.
 * Existing token, contract and implementation checks.
 * Component catalogue, contract-first usage guide and native reference pages.
-* Color System, Design Principles and Token Architecture documentation.
+* Color System, [Design Principles](docs/foundation/principles.md) and Token
+  Architecture documentation.
 * Runnable transaction-history and payment-form examples.
 
 ### Not part of v0.1
