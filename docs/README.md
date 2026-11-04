@@ -12,8 +12,10 @@ Start with:
 - [Sorleed product areas](../PRODUCT.md)
 - [Repository history](./repository.md)
 - [Release readiness](./release-readiness.md)
+- [Contributing](../CONTRIBUTING.md)
 - [Code of Conduct](../CODE_OF_CONDUCT.md)
 - [Security policy](../SECURITY.md)
+- [CODEOWNERS](../CODEOWNERS)
 - [Third-party notices](../THIRD_PARTY_NOTICES.md)
 
 Foundation documentation:

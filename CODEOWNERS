@@ -1,0 +1,6 @@
+# Sorleed CODEOWNERS
+#
+# The sole maintainer owns all paths. This file is advisory until branch
+# protection or rulesets are available on the repository plan.
+
+* @cephasosayi

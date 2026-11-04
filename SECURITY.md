@@ -10,13 +10,19 @@ production-ready, and security fixes target the current alpha line only.
 **Do not report security vulnerabilities in public issues, discussions or pull
 requests.**
 
-Report vulnerabilities privately using:
+GitHub private vulnerability reporting is **not available** on this private
+repository under the current GitHub plan. Do not send vulnerability details
+through a public channel.
 
-`[INSERT SECURITY CONTACT OR ENABLE GITHUB PRIVATE VULNERABILITY REPORTING]`
+To request a private reporting route, contact the maintainer `@cephasosayi`
+through GitHub. If you cannot establish a private channel, open a public issue
+that states only that you need a private security contact, with no vulnerability
+details, affected versions or reproduction steps. The maintainer will arrange a
+private route. While the repository is private, this route is limited to invited
+collaborators.
 
-If GitHub private vulnerability reporting is enabled for this repository, use
-the **Security** tab and choose **Report a vulnerability**. Otherwise, use the
-private contact method above once it is confirmed.
+Before the repository becomes public, GitHub private vulnerability reporting
+should be enabled and listed here as the preferred channel.
 
 Please include:
 
@@ -35,11 +41,13 @@ contracts, React package, CLI package and documentation.
 
 ## Disclosure process
 
-Maintainers will review the report, investigate, and coordinate a fix and
-disclosure timeline with the reporter. No response-time or remediation-time
-guarantee is currently published.
+The maintainer will review the report, investigate, and coordinate a fix and
+disclosure timeline with the reporter. The target is coordinated disclosure
+within 90 days, subject to severity and reasonable coordination. No
+response-time or remediation-time guarantee is currently published.
 
 ## Status
 
-The security contact and private-reporting mechanism are placeholders pending a
-maintainer decision. This file must be updated before any public release.
+This policy applies to the private alpha. The reporting route above is a
+documented interim limitation, not a dedicated security mailbox. No security
+email address is published.

@@ -6,3 +6,6 @@ contact_links:
   - name: Security policy
     url: https://github.com/sorleed/sorleed/blob/main/SECURITY.md
     about: Do not open a public issue for a security vulnerability. Follow the security policy.
+  - name: Code of Conduct
+    url: https://github.com/sorleed/sorleed/blob/main/CODE_OF_CONDUCT.md
+    about: Read the reporting route and single-maintainer limitation before raising a conduct concern.
