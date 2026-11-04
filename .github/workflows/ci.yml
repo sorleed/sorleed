@@ -84,3 +84,64 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: react
+
+  docs:
+    name: Documentation and configuration
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install tooling
+        run: npm ci
+
+      - name: Validate Markdown, HTML, JSON, YAML and CODEOWNERS
+        run: node scripts/validate-docs.mjs
+
+  consumer:
+    name: Packed package consumer test
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install tooling
+        run: npm ci
+
+      - name: Pack, install and exercise the packages
+        run: node scripts/consumer-test.mjs
+
+  browser:
+    name: Browser and accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install tooling
+        run: npm ci
+
+      - name: Run Chromium and axe checks
+        run: node scripts/browser-check.mjs
