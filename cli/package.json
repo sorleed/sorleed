@@ -12,7 +12,6 @@
     "url": "https://github.com/sorleed/sorleed/issues"
   },
   "license": "MIT",
-  "private": true,
   "type": "module",
   "bin": {
     "sorleed": "./bin/sorleed.mjs"
