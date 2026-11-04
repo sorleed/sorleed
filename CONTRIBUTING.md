@@ -64,13 +64,18 @@ Please:
 ## Repository Workflow
 
 - Sorleed is developed at `sorleed/sorleed` and is currently private.
+- While the repository is private, external contributions are limited to
+  invited collaborators.
+- The default and integration branch is `main`. The full project and the
+  approved LICENSE are on `main`.
+- `docs/foundation-baseline` is retained as historical context; it is not the
+  integration branch.
 - The historical FinCoreUI repository is archive-only. It is not configured as
   a remote or upstream and must not be modified.
-- The current integration branch is `docs/foundation-baseline`.
-- Do not merge the unrelated `main` history, change the default branch, rewrite
-  history or replace either LICENSE file without explicit approval.
-- See [`docs/repository.md`](docs/repository.md) for the branch model and the
-  reviewed `main` reconciliation procedure.
+- Do not change the default branch, rewrite history, force-push, or replace the
+  root `LICENSE` without explicit approval.
+- See [`docs/repository.md`](docs/repository.md) for the branch model and
+  repository history.
 
 ---
 
@@ -118,8 +123,8 @@ cd react && npm test && npm run typecheck && npm run build
 cd cli && npm test
 ```
 
-The CI workflow runs these same checks on pushes to `main` and
-`docs/foundation-baseline`, and on pull requests.
+The CI workflow runs these same checks on pushes to `main` and on pull requests.
+It also still runs on the retained historical `docs/foundation-baseline` branch.
 
 ### Component changes
 

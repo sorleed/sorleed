@@ -5,8 +5,9 @@
 Build Sorleed as **UI Infrastructure**: a source-first UI toolkit for designers
 and developers building financial products.
 
-Public release, the final copyright-holder statement and package publication
-remain pending. See [`docs/release-readiness.md`](docs/release-readiness.md).
+Public release and package publication remain pending. The root licence records
+`Copyright (c) 2026 Sorleed`. See
+[`docs/release-readiness.md`](docs/release-readiness.md).
 
 Status vocabulary used in this roadmap:
 

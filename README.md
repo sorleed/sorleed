@@ -8,8 +8,8 @@ adapters and are not published. The AI Context Layer, Figma Community Library
 and documentation website are deferred.
 
 Sorleed is being prepared for open-source release under the MIT License. The
-repository remains private during alpha, and the final copyright-holder
-statement is pending confirmation.
+repository remains private during alpha. The root licence records
+`Copyright (c) 2026 Sorleed`.
 
 Sorleed provides designers and developers with a shared language for building
 modern financial experiences. By combining design systems, code, contracts and
@@ -61,7 +61,7 @@ additional principles.
 
 ## Current Status
 
-The repository is a **v0.1 component-system release**. It distinguishes four
+The repository is a **v0.1 component-system milestone**. It distinguishes four
 states so nothing is presented as more mature than it is:
 
 | State | Meaning |
@@ -155,7 +155,7 @@ source-distribution or React authoring workflow.
 sorleed/
 
 ├── .github/        # CI, issue and pull-request templates
-├── docs/           # foundation, repository transition and release readiness
+├── docs/           # foundation, repository history and release readiness
 ├── figma/
 ├── ai/
 ├── tokens/
@@ -169,7 +169,7 @@ sorleed/
 ├── README.md
 ├── ROADMAP.md
 ├── CONTRIBUTING.md
-├── MIGRATION.md
+├── PRODUCT.md
 ├── CODE_OF_CONDUCT.md
 ├── SECURITY.md
 ├── THIRD_PARTY_NOTICES.md
@@ -209,20 +209,22 @@ Report security issues according to [`SECURITY.md`](SECURITY.md).
 
 ---
 
-## Historical Migration from FinCore/Weft
+## Product Areas
 
-The alpha rename to Sorleed is a clean break: `--fc-*` variables, `.fc-*`
-classes, old package names and the `weft`/`fincore` executables are not kept as
-compatibility aliases. This section is historical. See [`MIGRATION.md`](MIGRATION.md).
+Sorleed is organised into six product areas: UI, Tokens, Figma, CLI, AI and
+Website. See [`PRODUCT.md`](PRODUCT.md) for what each area covers, how they
+relate and their current status.
 
-## Repository Transition
+## Repository
 
-Sorleed is the sole active brand and development source. The historical
-FinCoreUI repository is archive-only: it is not configured as a remote or
-upstream and must not be modified. See [`docs/repository.md`](docs/repository.md)
-for the branch model and the reviewed `main` reconciliation procedure. See
-[`docs/release-readiness.md`](docs/release-readiness.md) for remaining release
-blockers.
+Sorleed is the sole active brand and development source. `main` is the default
+and integration branch and contains the full project. The reconciliation merge
+commit is `9f5d254`, with CI passing on it. `docs/foundation-baseline` is
+retained as historical context only.
+
+See [`docs/repository.md`](docs/repository.md) for the completed reconciliation
+record and [`docs/release-readiness.md`](docs/release-readiness.md) for remaining
+release blockers.
 
 ---
 

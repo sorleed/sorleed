@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Sorleed documentation
-    url: https://github.com/sorleed/sorleed/blob/docs/foundation-baseline/README.md
+    url: https://github.com/sorleed/sorleed/blob/main/README.md
     about: Read the current project status, component catalogue and usage guidance before opening an issue.
   - name: Security policy
-    url: https://github.com/sorleed/sorleed/blob/docs/foundation-baseline/SECURITY.md
+    url: https://github.com/sorleed/sorleed/blob/main/SECURITY.md
     about: Do not open a public issue for a security vulnerability. Follow the security policy.
