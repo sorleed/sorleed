@@ -27,5 +27,11 @@
     "src",
     "templates",
     "README.md"
-  ]
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

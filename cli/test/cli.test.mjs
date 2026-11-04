@@ -370,3 +370,37 @@ test('packed CLI tarball works in isolated consumer without repository access', 
   }
 });
 
+
+test('list command shows all supported components', () => {
+  const res = runCli(['list']);
+  assert.strictEqual(res.code, 0);
+  assert.match(res.stdout, /button/);
+  assert.match(res.stdout, /input/);
+  assert.match(res.stdout, /password-input/);
+  assert.match(res.stdout, /phone-input/);
+  assert.match(res.stdout, /libphonenumber-js/);
+});
+
+test('list --json emits machine-readable component metadata', () => {
+  const res = runCli(['list', '--json']);
+  assert.strictEqual(res.code, 0);
+  const rows = JSON.parse(res.stdout);
+  assert.strictEqual(rows.length, 4);
+  assert.deepStrictEqual(rows.map((r) => r.name).sort(), ['button', 'input', 'password-input', 'phone-input']);
+  const phone = rows.find((r) => r.name === 'phone-input');
+  assert.ok(phone.runtimeDependencies.some((d) => d.includes('libphonenumber-js')));
+});
+
+test('version command prints the package version', () => {
+  const res = runCli(['--version']);
+  assert.strictEqual(res.code, 0);
+  assert.match(res.stdout.trim(), /^\d+\.\d+\.\d+/);
+});
+
+test('flags may precede the component name', () => {
+  const dir = mkTmp();
+  const res = runCli(['add', '--dir', dir, 'button']);
+  assert.strictEqual(res.code, 0);
+  assert.ok(fs.existsSync(path.join(dir, 'components/sorleed/button/index.tsx')));
+  fs.rmSync(dir, { recursive: true, force: true });
+});

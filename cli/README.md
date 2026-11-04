@@ -19,6 +19,19 @@ Source-distribution CLI for Sorleed components. Instead of installing compiled p
 
 ## Usage
 
+List the available components and their dependencies:
+
+```bash
+npx sorleed list
+npx sorleed list --json
+```
+
+Print the installed CLI version:
+
+```bash
+npx sorleed --version
+```
+
 Using `npx` when the private package is available in your environment:
 
 ```bash
