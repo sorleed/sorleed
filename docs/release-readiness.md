@@ -10,7 +10,7 @@ release announcement or a promise of availability.
 | Documentation | **Ready for private alpha** | `main` contains the full project, README and documentation. The documentation website remains deferred. |
 | Governance | **Private-alpha ready; public gaps** | Single maintainer `@cephasosayi` and root `CODEOWNERS` are documented. Code of Conduct and Security use documented GitHub routes with explicit single-maintainer limitations. No independent Code of Conduct handler exists. |
 | Security reporting | **Interim** | GitHub private vulnerability reporting is unavailable on the current private plan. The documented route is a GitHub contact request with no vulnerability details. Coordinated disclosure target is 90 days. |
-| Dependabot | **Alerts enabled; config added** | Dependabot alerts are enabled. Weekly configuration covers `/react`, `/cli` and GitHub Actions; npm major updates are ignored pending review. |
+| Dependabot | **Alerts enabled; config added** | Dependabot alerts are enabled. Weekly configuration covers `/react`, `/cli` and GitHub Actions; npm and GitHub Actions major updates are ignored pending deliberate review. |
 | Organisation 2FA | **Not enabled** | The administrator account's 2FA status could not be verified through the available API. The requirement was left unchanged to avoid locking out the organisation. |
 | CI | **Passing** | GitHub Actions passes on `main` at merge commit `1f42b4c` (run `41812629136`) for tokens, contracts, components, CLI, React tests, typecheck and build. |
 | Branch protection | **Blocked** | GitHub branch protection/rulesets are unavailable on the current private-repository plan. The interim review policy is documented in `CONTRIBUTING.md`; it is not technically enforced. |
