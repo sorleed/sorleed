@@ -49,6 +49,19 @@ retained as historical context only.
 - Treat third-party material, including the Contributor Covenant text, under its
   own licence and attribution; do not relicense it as Sorleed-owned.
 
+## Governance and review
+
+- The sole maintainer is `@cephasosayi`, who is also the root `CODEOWNERS` owner.
+- Changes should go through pull requests with passing CI.
+- Review from another qualified person is preferred when available. When no
+  second reviewer is available, the sole maintainer inspects and approves the
+  change.
+- Branch protection and rulesets are unavailable on the current private
+  repository plan. The review policy is documented, not technically enforced.
+- `CODEOWNERS` is advisory until branch protection or rulesets are available.
+- There is no independent Code of Conduct handler while Sorleed has one
+  maintainer.
+
 ## Completed `main` reconciliation record
 
 This reviewed, non-destructive transition was completed on 2026-11-04 through
@@ -127,5 +140,8 @@ codebase. Do not archive, modify or delete it in this phase.
 ## Related documents
 
 - [`PRODUCT.md`](../PRODUCT.md) — Sorleed product areas and status.
-- [`../CONTRIBUTING.md`](../CONTRIBUTING.md) — contribution workflow.
+- [`../CONTRIBUTING.md`](../CONTRIBUTING.md) — contribution and review policy.
+- [`../CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md) — community standards.
+- [`../SECURITY.md`](../SECURITY.md) — security reporting.
+- [`../CODEOWNERS`](../CODEOWNERS) — repository ownership.
 - [`release-readiness.md`](release-readiness.md) — remaining release blockers.

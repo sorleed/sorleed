@@ -209,6 +209,14 @@ Sorleed keeps the source visible and owned by the consuming team:
 This is why Sorleed can be consumed without a package manager or build step, and
 why the React adapter and CLI are optional rather than required.
 
+## Project maintenance
+
+Sorleed currently has a single maintainer, `@cephasosayi`, who is also the
+repository [`CODEOWNERS`](CODEOWNERS) owner. See
+[`CONTRIBUTING.md`](CONTRIBUTING.md) for the interim review policy and
+[`SECURITY.md`](SECURITY.md) for private reporting. There is no independent
+Code of Conduct handler while Sorleed has one maintainer.
+
 ## Related documents
 
 - [`README.md`](README.md) — project overview and status.
@@ -217,4 +225,7 @@ why the React adapter and CLI are optional rather than required.
 - [`components/IMPLEMENTATION.md`](components/IMPLEMENTATION.md) — architecture.
 - [`tokens/README.md`](tokens/README.md) — token consumption.
 - [`docs/foundation/principles.md`](docs/foundation/principles.md) — principles.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — contribution and review policy.
+- [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) — community standards.
+- [`SECURITY.md`](SECURITY.md) — security reporting.
 - [`docs/release-readiness.md`](docs/release-readiness.md) — release status.

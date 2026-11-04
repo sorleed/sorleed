@@ -154,8 +154,8 @@ source-distribution or React authoring workflow.
 ```text
 sorleed/
 
-├── .github/        # CI, issue and pull-request templates
-├── docs/           # foundation, repository history and release readiness
+├── .github/        # CI, templates and Dependabot
+├── docs/           # foundation, governance, repository history and readiness
 ├── figma/
 ├── ai/
 ├── tokens/
@@ -172,6 +172,7 @@ sorleed/
 ├── PRODUCT.md
 ├── CODE_OF_CONDUCT.md
 ├── SECURITY.md
+├── CODEOWNERS
 ├── THIRD_PARTY_NOTICES.md
 └── LICENSE
 ```
@@ -206,6 +207,21 @@ We welcome designers, developers, technical writers, and product thinkers.
 Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before submitting contributions.
 By participating, you agree to the [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
 Report security issues according to [`SECURITY.md`](SECURITY.md).
+
+---
+
+## Governance
+
+Sorleed currently has a single maintainer, `@cephasosayi`, who is also the
+repository [`CODEOWNERS`](CODEOWNERS) owner. Branch protection and rulesets are
+unavailable on the current private repository plan, so the interim review policy
+is documented in [`CONTRIBUTING.md`](CONTRIBUTING.md) rather than technically
+enforced.
+
+Code of Conduct and security reports follow the documented routes in
+[`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) and [`SECURITY.md`](SECURITY.md).
+There is no independent Code of Conduct handler while Sorleed has one
+maintainer.
 
 ---
 

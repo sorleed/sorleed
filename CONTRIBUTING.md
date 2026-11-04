@@ -140,6 +140,9 @@ It also still runs on the retained historical `docs/foundation-baseline` branch.
 
 - Keep changes focused and explain the user-facing or contract impact.
 - Include tests and documentation for changed behaviour.
+- Wait for CI to pass before merging.
+- Request review from the CODEOWNER. When no second reviewer is available, the
+  sole maintainer records their own review.
 - Do not change `LICENSE` without explicit approval.
 - Do not include secrets, machine-specific paths or unrelated cleanup.
 - Report any validation command that could not be run.
@@ -150,6 +153,32 @@ It also still runs on the retained historical `docs/foundation-baseline` branch.
 
 Do not report security vulnerabilities in public issues. Follow
 [`SECURITY.md`](SECURITY.md).
+
+---
+
+## Maintainer and review
+
+Sorleed currently has a single maintainer, `@cephasosayi`, who is also the
+root [`CODEOWNERS`](CODEOWNERS) owner.
+
+Interim review policy:
+
+- Changes should go through a pull request.
+- CI must pass before merging.
+- Review should be obtained from another qualified person when one is available.
+- When no second reviewer is available, the sole maintainer must inspect and
+  approve the change.
+- Avoid direct commits to `main` as normal practice.
+- Do not force-push or rewrite history on shared branches.
+
+This is a documented policy, not technically enforced branch protection. GitHub
+branch protection and rulesets are unavailable on the current private repository
+plan, so the policy relies on maintainer discipline and review. `CODEOWNERS` is
+advisory until protection is available.
+
+There is no independent Code of Conduct handler while Sorleed has one
+maintainer. See [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) for the limitation and
+the available escalation route.
 
 ---
 
