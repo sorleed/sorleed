@@ -63,14 +63,15 @@ generated CSS.
 The intended design-library experience and the relationship between Figma
 assets and implementation.
 
-- **Status:** Deferred. There is no Figma library, export or working
-  design-to-code pipeline in this release.
-- **Recorded evidence only:** Button and Input contracts contain verified Figma
-  file, page, node and variant evidence from earlier design work. That evidence
-  documents past verification; it does not make a Figma library available.
-- **Not included:** No Figma Community Library, published Figma file or export
-  is included. PasswordInput and PhoneInput have no verified Figma reference;
-  their contracts record `canonical.figma: null` and do not invent a node ID.
+- **Status:** Local preparation complete; no published library.
+- **Available today:** `figma/tokens/sorleed.tokens.json` (DTCG import),
+  `figma/component-specs.json` (variants, states, anatomy and token bindings),
+  and original SVG evidence under `figma/assets/`.
+- **Not included:** No Figma Community Library, published Figma file, `.fig`
+  export or working design-to-code pipeline. Creating the library requires a
+  Figma account with library permission. Button and Input retain recorded
+  historical evidence; PasswordInput and PhoneInput keep `canonical.figma: null`
+  and no node ID is invented.
 
 ### Sorleed CLI
 
@@ -87,27 +88,31 @@ Command-line tooling for discovering and distributing component source code.
 AI context, instructions and supporting resources for AI-assisted
 implementation.
 
-- **Status:** Deferred.
-- **Available today:** Nothing is implemented as an AI capability. The `ai/`
-  directory contains only a README stating that the AI Context Layer is
-  deferred.
-- **Not included:** No `agent.md`, design-principles context, coding guidelines
-  or prompt set exists. Do not describe an AI Context Layer as available.
+- **Status:** Implemented as a context layer.
+- **Available today:** Product overview, installation, component API, token
+  conventions, accessibility rules, customisation guidance, AI tool
+  instructions, reusable prompts and an agent briefing under `ai/`.
+- **Not included:** No hosted AI service, retrieval index, chatbot, telemetry or
+  external API. The context files are versioned Markdown derived from the
+  contracts and implementation.
 
 ### Sorleed Website
 
 The documentation and onboarding experience for learning and using Sorleed.
 
-- **Status:** Deferred.
-- **Available today:** Documentation lives in the repository as Markdown:
-  component catalogue, contract-first usage guide, implementation guide, token
-  guide, foundation documents and examples.
-- **Not included:** No documentation website is built or deployed.
+- **Status:** Implemented as a static site; not deployed by this work.
+- **Available today:** `website/` contains overview, getting started, component,
+  token, CLI, customisation, accessibility, AI and limitations pages. It uses the
+  real token and component stylesheets and has no build step or tracking.
+- **Not included:** No production URL is claimed. Deployment instructions are in
+  `website/README.md` and `docs/release/website-deployment.md`.
 
 ## How the areas relate
 
-Only the token and component layers are currently connected. Figma, AI and the
-website are intended future surfaces and are not part of the working pipeline.
+Tokens, components, contracts, source distribution and documentation are
+connected. Figma preparation consumes the same tokens and contract values but is
+not a live design-to-code pipeline. The AI layer and website consume the
+contracts and documentation; neither is a hosted service.
 
 ```text
 CURRENT — PRIVATE ALPHA
@@ -118,19 +123,14 @@ CURRENT — PRIVATE ALPHA
         │                ├──► React adapter (private alpha)
         │                └──► Sorleed CLI (private alpha)
         │
-        └──► component contracts (implemented)
+        ├──► component contracts (implemented)
+        ├──► Sorleed AI context files (implemented)
+        └──► Sorleed Website static site (implemented)
 
+FIGMA — PREPARED, NOT PUBLISHED
 
-INTENDED — NOT IMPLEMENTED
-
-  Sorleed Figma  ─ ─ ─ ─► design evidence ─ ─ ─ ─► contracts and tokens
-   (deferred)             (historical only)
-
-  Sorleed AI     ─ ─ ─ ─► consumes contracts and documentation
-   (deferred)
-
-  Sorleed Website ─ ─ ─ ─► publishes documentation and onboarding
-   (deferred)
+  Figma token import + component specs + SVG evidence
+   (local)  ─ ─ ─ ─►  published library requires a Figma account
 ```
 
 - **Tokens are the foundation.** Component CSS consumes `--sl-*` tokens rather
@@ -140,13 +140,14 @@ INTENDED — NOT IMPLEMENTED
   expectations, invalid configurations and tests.
 - **Sorleed UI is the canonical implementation.** It is the source that adapters
   and tooling follow.
-- **Figma is an intended design source, not a current distribution format.**
+- **Figma remains a design source, not a distribution format.** Local token and
+  component preparation exists, but no published library or pipeline is claimed.
   Where historical evidence exists, it informs the contract; where it does not,
-  the contract records the gap. No Figma library is currently available.
+  the contract records the gap.
 - **CLI distributes source.** It copies the canonical files; it does not create a
   separate implementation.
-- **AI and Website are future surfaces.** They would consume the same contracts
-  and documentation; neither is implemented.
+- **AI and Website consume the same contracts and documentation.** The AI layer
+  is versioned Markdown; the website is static HTML, CSS and JavaScript.
 
 ## Workflows
 
@@ -157,11 +158,11 @@ INTENDED — NOT IMPLEMENTED
    roles.
 3. Review the component contract for anatomy, variants, states and
    accessibility expectations.
-4. Treat Figma as an intended design source. Do not invent a Figma node or
-   variant reference, and do not assume a Figma library exists.
+4. Use the local Figma preparation in `figma/` as a starting point. Do not
+   invent a Figma node or variant reference, and do not assume a published
+   library exists.
 
-Today, Figma is deferred, so tokens, contracts and canonical CSS are the
-authoritative references.
+Tokens, contracts and canonical CSS remain the authoritative references.
 
 ### Developer workflow
 
@@ -177,10 +178,9 @@ directly.
 
 ### AI-assisted workflow
 
-This workflow is **deferred**. When an AI context layer exists, it should derive
-from the same contracts and documentation rather than inventing component APIs.
-Until then, AI-assisted work should use the component catalogue, usage guide,
-implementation guide and contracts directly.
+Start with `ai/agent.md`, then read the component and token context files. The
+AI layer derives from the same contracts and documentation rather than inventing
+component APIs. It is versioned Markdown, not a hosted service.
 
 ## Current status summary
 
@@ -188,10 +188,10 @@ implementation guide and contracts directly.
 |---|---|---|
 | Sorleed UI | Implemented canonical layer; React private alpha | Four components as CSS + native HTML + contracts |
 | Sorleed Tokens | Implemented | 229 `--sl-*` tokens, generated CSS, validation |
-| Sorleed Figma | Deferred | Historical Button/Input evidence only; no library or export |
-| Sorleed CLI | Private alpha | Source-distribution CLI, unpublished |
-| Sorleed AI | Deferred | No AI context files |
-| Sorleed Website | Deferred | Repository Markdown only |
+| Sorleed Figma | Preparation complete | Token import, specs and SVG evidence; no published library |
+| Sorleed CLI | Private alpha | Source-distribution CLI with `list` and `add`, unpublished |
+| Sorleed AI | Implemented | Versioned context files for AI coding tools |
+| Sorleed Website | Implemented | Static documentation site, not deployed by this work |
 
 ## Source-first model
 

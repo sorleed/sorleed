@@ -25,8 +25,8 @@ function filesEqual(a, b) {
 }
 
 export async function addCommand(args) {
-  const flags = parseFlags(args);
-  const component = args[0];
+  const { flags, positionals } = parseArgs(args);
+  const component = positionals[0];
   
   if (!component) {
     console.error('Error: Component name required');
@@ -214,8 +214,9 @@ export async function addCommand(args) {
   }
 }
 
-function parseFlags(args) {
+function parseArgs(args) {
   const flags = {};
+  const positionals = [];
   for (let i = 0; i < args.length; i++) {
     if (args[i].startsWith('--')) {
       const key = args[i];
@@ -228,7 +229,9 @@ function parseFlags(args) {
         flags[key] = true;
         flags[key.replace('--', '')] = true;
       }
+    } else {
+      positionals.push(args[i]);
     }
   }
-  return flags;
+  return { flags, positionals };
 }

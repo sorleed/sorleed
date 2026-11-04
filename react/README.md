@@ -89,7 +89,7 @@ Notes on PhoneInput semantics:
 - `e164` is only present when the number is valid/parseable according to the implementation; validity does not imply the number is active, reachable, or owned.
 - `status` distinguishes `empty`, `incomplete`, `invalid`, and `valid`.
 - No country is hard-coded as default. Country can be set via `country` (controlled) or `defaultCountry`; inference from international numbers follows library behavior. Shared calling codes (e.g., +1) may be ambiguous.
-- `libphonenumber-js` is optional. If unavailable, PhoneInput degrades gracefully (no validity claims) and the country list may be limited/empty.
+- `libphonenumber-js` is an optional peer for the package as a whole, but it is **required to import `@sorleed/react/phone-input`**, which imports it directly. The package root does not import PhoneInput, so Button, Input and PasswordInput work without it.
 
 ## CSS
 
@@ -125,8 +125,8 @@ CSS imports require a bundler or environment that supports CSS imports (e.g., Vi
 
 ## Alpha limitations
 - Package is private (not published to npm).
-- PhoneInput depends on `libphonenumber-js` for full validation/inference; fallback behavior is limited.
-- No browser verification has been performed in this environment.
+- PhoneInput requires `libphonenumber-js`; import it from the `@sorleed/react/phone-input` subpath.
+- The repository includes automated browser and accessibility checks; they are evidence, not certification.
 - API is alpha and may change.
 - No automatic CSS injection.
 - PasswordInput and PhoneInput have no verified Figma reference; their contracts record `canonical.figma: null`.

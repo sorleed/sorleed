@@ -260,8 +260,8 @@ production-ready.
 Known adapter limitations:
 
 - `international` is accepted but does not change behaviour.
-- Country option text uses two-letter codes and dial codes rather than full
-  localised country names.
+- Country option text uses English region names from `Intl.DisplayNames` with a
+  two-letter code fallback, plus dial codes. Other locales are not yet exposed.
 - `readOnly` has no dedicated visual treatment.
 - No searchable country picker.
 

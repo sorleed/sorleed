@@ -38,6 +38,12 @@ with an optional private-alpha React adapter and source-distribution CLI.
   Architecture documentation.
 * Runnable transaction-history and payment-form examples.
 * Transaction-history proof of concept.
+* Static documentation website with component, token, CLI, AI, customisation and
+  accessibility guidance.
+* AI context layer under `ai/`.
+* Figma delivery preparation: DTCG token import, component specifications and
+  SVG evidence.
+* Packed-package consumer tests and Chromium/axe accessibility checks.
 
 ### Private alpha
 
@@ -52,13 +58,11 @@ with an optional private-alpha React adapter and source-distribution CLI.
 * Remaining foundation guides: Typography, Spacing, Radius, Sizing, Border,
   Elevation and Motion. Color System, Design Principles and Token Architecture
   are available.
-* AI Context Layer.
-* Figma Community Library. The PasswordInput and PhoneInput Figma references are
-  unresolved and recorded as `null`; no node ID is invented.
-* Documentation website.
+* Published Figma Community Library. Local preparation is complete, but a Figma
+  account with library permission is required. No node ID is invented.
 * Tailwind package and other framework adapters.
-* Verified cross-browser and assistive-technology support. Unrun environments
-  are not claimed as passing.
+* Firefox, WebKit and screen-reader certification. Automated Chromium checks
+  exist; unrun environments are not claimed as passing.
 
 ---
 

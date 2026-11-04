@@ -62,6 +62,13 @@
   "scripts": {
     "build": "tsup && node scripts/copy-assets.mjs",
     "test": "node --import tsx --test test/*.test.tsx",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepack": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

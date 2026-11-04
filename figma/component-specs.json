@@ -1,0 +1,192 @@
+{
+  "$description": "Sorleed Figma component specifications. Values mirror the implemented contracts and tokens. This file is preparation for a Figma library; it is not a Figma file export.",
+  "version": "0.1.0-alpha.1",
+  "theme": "Light only",
+  "principles": [
+    "Use the same variant, state and token names as the code contracts.",
+    "Do not add states the contracts do not define.",
+    "Use auto layout where the code uses flex or grid.",
+    "Keep focus as an additive ring, not a separate state axis."
+  ],
+  "components": [
+    {
+      "name": "Button",
+      "code": "components/button/button.css",
+      "react": "react/button/index.tsx",
+      "contract": "components/button/contract.json",
+      "variants": {
+        "Variant": ["Primary", "Secondary", "Ghost"]
+      },
+      "states": ["Default", "Hover", "Active", "Focus", "Disabled"],
+      "precedence": "Disabled > Active > Hover > Default. Focus is additive and suppressed when disabled.",
+      "anatomy": ["Container", "Label"],
+      "geometry": {
+        "height": "button.height",
+        "radius": "button.radius",
+        "padding-x": "button.padding-x",
+        "font-size": "button.font-size",
+        "font-weight": "button.font-weight",
+        "focus-width": "button.focus-width",
+        "focus-offset": "button.focus-offset"
+      },
+      "tokens": {
+        "primary": {
+          "background": "button.primary.background",
+          "background-hover": "button.primary.background-hover",
+          "background-active": "button.primary.background-active",
+          "foreground": "button.primary.foreground"
+        },
+        "secondary": {
+          "background": "button.secondary.background",
+          "background-hover": "button.secondary.background-hover",
+          "background-active": "button.secondary.background-active",
+          "foreground": "button.secondary.foreground"
+        },
+        "ghost": {
+          "background": "transparent",
+          "background-hover": "button.ghost.background-hover",
+          "background-active": "button.ghost.background-active",
+          "foreground": "button.ghost.foreground"
+        },
+        "disabled": {
+          "background": "button.disabled.background",
+          "foreground": "button.disabled.foreground"
+        },
+        "focus": "button.focus.color"
+      },
+      "notes": [
+        "Ghost has no default background token; the page surface shows through.",
+        "No loading or icon-only variant exists."
+      ]
+    },
+    {
+      "name": "Input",
+      "code": "components/input/input.css",
+      "react": "react/input/index.tsx",
+      "contract": "components/input/contract.json",
+      "variants": {
+        "State": ["Default", "Error", "Disabled"]
+      },
+      "states": ["Default", "Hover", "Focus", "Error", "Disabled"],
+      "precedence": "Disabled > Error > Hover > Default. Focus is additive and suppressed when disabled.",
+      "anatomy": ["Label", "Control", "Field", "Message"],
+      "geometry": {
+        "height": "input.height",
+        "radius": "input.radius",
+        "padding-x": "input.padding-x",
+        "border-width": "input.border-width",
+        "label-gap": "input.label-gap",
+        "helper-gap": "input.helper-gap",
+        "focus-width": "input.focus-width",
+        "focus-offset": "input.focus-offset"
+      },
+      "tokens": {
+        "default": {
+          "background": "input.background",
+          "border": "input.border",
+          "text": "input.text",
+          "placeholder": "input.placeholder",
+          "label": "input.label.color",
+          "helper": "input.helper.color"
+        },
+        "hover": {
+          "border": "input.border-hover"
+        },
+        "error": {
+          "border": "input.border-error",
+          "message": "input.text-error"
+        },
+        "disabled": {
+          "background": "input.background-disabled",
+          "border": "input.border-disabled",
+          "text": "input.text-disabled"
+        },
+        "focus": "input.focus.color"
+      },
+      "notes": [
+        "Types supported by the React adapter: text, email, tel, number, url.",
+        "The application owns validation timing and error copy."
+      ]
+    },
+    {
+      "name": "PasswordInput",
+      "code": "components/password-input/password-input.css",
+      "react": "react/password-input/index.tsx",
+      "contract": "components/password-input/contract.json",
+      "variants": {
+        "State": ["Default", "Error", "Disabled"],
+        "Visible": ["false", "true"]
+      },
+      "states": ["Default", "Hover", "Focus", "Error", "Disabled", "Visible"],
+      "anatomy": ["Label", "Control", "Field", "Toggle", "Message"],
+      "geometry": {
+        "height": "input.height",
+        "radius": "input.radius",
+        "padding-x": "input.padding-x",
+        "toggle-inset": "input.border-width"
+      },
+      "tokens": {
+        "inherits": ["input.*", "button.ghost.*", "button.focus.*"],
+        "focus": "input.focus.color",
+        "error": "input.border-error"
+      },
+      "notes": [
+        "There is no password-input.* token family.",
+        "The toggle is a real button with aria-pressed.",
+        "The visible state changes the input type from password to text."
+      ]
+    },
+    {
+      "name": "PhoneInput",
+      "code": "components/phone-input/phone-input.css",
+      "react": "react/phone-input/index.tsx",
+      "contract": "components/phone-input/contract.json",
+      "variants": {
+        "State": ["Default", "Error", "Disabled"]
+      },
+      "states": ["Default", "Hover", "Focus", "Error", "Disabled"],
+      "anatomy": ["Label", "Row", "Country selector", "Number field", "Message"],
+      "geometry": {
+        "height": "phone-input.height",
+        "radius": "phone-input.radius",
+        "gap": "phone-input.gap",
+        "country-width": "phone-input.country-width",
+        "label-gap": "phone-input.label-gap",
+        "helper-gap": "phone-input.helper-gap"
+      },
+      "tokens": {
+        "default": {
+          "background": "phone-input.background",
+          "border": "phone-input.border",
+          "text": "phone-input.text",
+          "placeholder": "phone-input.placeholder"
+        },
+        "hover": {
+          "border": "phone-input.border-hover"
+        },
+        "error": {
+          "border": "phone-input.border-error",
+          "message": "phone-input.text-error"
+        },
+        "disabled": {
+          "background": "phone-input.background-disabled",
+          "border": "phone-input.border-disabled",
+          "text": "phone-input.text-disabled"
+        },
+        "focus": "phone-input.focus.color"
+      },
+      "notes": [
+        "Native select only; no searchable country picker.",
+        "No IP geolocation and no forced default country.",
+        "Country names are English; dial codes are shown.",
+        "Format validity does not prove deliverability."
+      ]
+    }
+  ],
+  "externalActionRequired": [
+    "Open Figma with an account that can create a library.",
+    "Import figma/tokens/sorleed.tokens.json with a DTCG-compatible token plugin (for example Tokens Studio).",
+    "Create the component sets from figma/component-specs.json and the SVG references in figma/assets/.",
+    "Publish the library or export the .fig file, then record the verified file or node references."
+  ]
+}

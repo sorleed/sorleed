@@ -4,8 +4,9 @@
 
 Sorleed is currently in **private alpha**. The canonical component layer is
 framework-agnostic CSS plus native HTML. React and CLI are private-alpha
-adapters and are not published. The AI Context Layer, Figma Community Library
-and documentation website are deferred.
+adapters and are not published. The AI context layer and documentation website
+are implemented in this repository. Figma delivery preparation is complete; a
+published Figma Community Library is not.
 
 Sorleed is being prepared for open-source release under the MIT License. The
 repository remains private during alpha. The root licence records
@@ -77,10 +78,10 @@ states so nothing is presented as more mature than it is:
 |---|---|
 | **Sorleed UI** | Private-alpha React adapter; canonical CSS and native HTML are implemented for four components. |
 | **Sorleed Tokens** | Implemented: 229 `--sl-*` tokens, contracts and validation. |
-| **Sorleed Figma** | Deferred. Button and Input have recorded evidence; PasswordInput and PhoneInput references remain unresolved. |
-| **Sorleed CLI** | Private alpha and unpublished. |
-| **Sorleed AI** | Deferred. No AI context files are implemented. |
-| **Sorleed Website** | Deferred. Not built. |
+| **Sorleed Figma** | Preparation complete: token import, component specifications and SVG evidence. No published Figma Community Library. |
+| **Sorleed CLI** | Private alpha and unpublished. `list`, `--version` and `add` are implemented. |
+| **Sorleed AI** | Implemented: context files for AI coding tools under `ai/`. |
+| **Sorleed Website** | Implemented: static documentation site under `website/`. |
 
 ### Implemented
 
@@ -94,6 +95,13 @@ states so nothing is presented as more mature than it is:
 - Color System, Design Principles and Token Architecture documentation.
 - Runnable transaction-history and payment-form examples.
 - A transaction-history proof of concept.
+- Static documentation website with component, token, CLI, AI, customisation
+  and accessibility guidance.
+- AI context files for designers, developers and AI coding tools.
+- Figma delivery preparation: DTCG token import, component specifications and
+  original SVG evidence.
+- Consumer installation tests for the packed React and CLI packages.
+- Node-based browser and accessibility checks with axe-core.
 
 ### Private alpha
 
@@ -116,18 +124,15 @@ surface.
 
 ### Deferred
 
-- The AI Context Layer.
-- The Figma Community Library.
-- The documentation website.
+- The published Figma Community Library. Local preparation is complete.
 - Tailwind and other framework packages.
 - Remaining foundation guides: Typography, Spacing, Radius, Sizing, Border,
   Elevation and Motion. Color System, Design Principles and Token Architecture
   are available.
-- Verified cross-browser and assistive-technology support. Only the checks
-  recorded in the repository are claimed; unrun environments are not marked as
-  passing.
-- The Figma reference for PasswordInput and PhoneInput. Both contracts record
-  `canonical.figma: null` and do not invent a node ID.
+- Verified cross-browser and assistive-technology certification. Automated
+  Chromium checks exist; Firefox, WebKit and screen-reader certification do not.
+- Verified Figma node references for Button, Input, PasswordInput and
+  PhoneInput. The contracts do not invent a node ID.
 
 ---
 
@@ -147,6 +152,24 @@ No package manager or build step is required to use the CSS directly. The React
 adapter and CLI are optional private-alpha capabilities for teams that want a
 source-distribution or React authoring workflow.
 
+### Documentation website
+
+The static site is in [`website/`](website/index.html). Preview it from the
+repository root:
+
+```sh
+python3 -m http.server 8765
+```
+
+Open `http://127.0.0.1:8765/website/`. Deployment options are in
+[`website/README.md`](website/README.md) and
+[`docs/release/website-deployment.md`](docs/release/website-deployment.md).
+
+### AI context
+
+AI coding tools should start with [`ai/agent.md`](ai/agent.md), then read the
+specific component and token files. See [`ai/README.md`](ai/README.md).
+
 ---
 
 ## Repository Structure
@@ -155,24 +178,27 @@ source-distribution or React authoring workflow.
 sorleed/
 
 ├── .github/        # CI, templates and Dependabot
-├── docs/           # foundation, governance, repository history and readiness
-├── figma/
-├── ai/
+├── docs/           # foundation, components, release, governance and history
+├── figma/          # token import, specs and SVG evidence
+├── ai/             # AI context layer
 ├── tokens/
 ├── components/
 ├── react/          # private alpha
 ├── cli/            # private alpha
 ├── examples/
 ├── poc/
-├── website/
+├── website/        # static documentation site
+├── scripts/        # validation and consumer tests
 
 ├── README.md
+├── CHANGELOG.md
 ├── ROADMAP.md
 ├── CONTRIBUTING.md
 ├── PRODUCT.md
 ├── CODE_OF_CONDUCT.md
 ├── SECURITY.md
 ├── CODEOWNERS
+├── package.json    # development tooling only
 ├── THIRD_PARTY_NOTICES.md
 └── LICENSE
 ```
@@ -183,10 +209,10 @@ sorleed/
 
 ### Version 0.1
 
-Delivered as the four-component system release described above. Card, the
-remaining foundation guides, the AI Context Layer, the Figma Community Library,
-the website, Tailwind and verified cross-browser/assistive-technology support are
-deferred.
+Delivered as the four-component system release described above, plus the
+documentation website, AI context layer, Figma preparation and packed-consumer
+validation. The published Figma Community Library, Tailwind and
+assistive-technology certification remain deferred.
 
 ### Version 0.2
 

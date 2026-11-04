@@ -144,4 +144,9 @@ codebase. Do not archive, modify or delete it in this phase.
 - [`../CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md) — community standards.
 - [`../SECURITY.md`](../SECURITY.md) — security reporting.
 - [`../CODEOWNERS`](../CODEOWNERS) — repository ownership.
+- [`components/button.md`](components/button.md) — component references.
+- [`release/README.md`](release/README.md) — release preparation.
+- [`../website/index.html`](../website/index.html) — documentation site.
+- [`../ai/README.md`](../ai/README.md) — AI context layer.
+- [`../figma/README.md`](../figma/README.md) — Figma delivery.
 - [`release-readiness.md`](release-readiness.md) — remaining release blockers.

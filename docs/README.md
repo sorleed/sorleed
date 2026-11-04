@@ -1,7 +1,8 @@
 # Documentation
 
 Sorleed v0.1 documents the four-component system (Button, Input, PasswordInput
-and PhoneInput), tokens, contracts, and the private-alpha React/CLI capabilities.
+and PhoneInput), tokens, contracts, the private-alpha React/CLI capabilities, the
+AI context layer, the Figma preparation and the static documentation website.
 
 Start with:
 
@@ -10,6 +11,8 @@ Start with:
 - [Implementation guide](../components/IMPLEMENTATION.md)
 - [Token guide](../tokens/README.md)
 - [Sorleed product areas](../PRODUCT.md)
+- [Component references](./components/button.md)
+- [Release preparation](./release/README.md)
 - [Repository history](./repository.md)
 - [Release readiness](./release-readiness.md)
 - [Contributing](../CONTRIBUTING.md)
@@ -17,6 +20,12 @@ Start with:
 - [Security policy](../SECURITY.md)
 - [CODEOWNERS](../CODEOWNERS)
 - [Third-party notices](../THIRD_PARTY_NOTICES.md)
+
+Product surfaces:
+
+- [Documentation website](../website/index.html) — static site source.
+- [AI context layer](../ai/README.md) — context files for AI coding tools.
+- [Figma delivery](../figma/README.md) — token import, specs and SVG evidence.
 
 Foundation documentation:
 

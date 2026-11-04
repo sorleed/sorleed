@@ -1,0 +1,18 @@
+{
+  "name": "sorleed-repository",
+  "version": "0.1.0-alpha.1",
+  "private": true,
+  "type": "module",
+  "description": "Development tooling for the Sorleed repository. The published packages live in react/ and cli/.",
+  "scripts": {
+    "test:consumer": "node scripts/consumer-test.mjs",
+    "test:browser": "node scripts/browser-check.mjs",
+    "validate:docs": "node scripts/validate-docs.mjs",
+    "validate": "node tokens/check.mjs && node components/validate-contracts.mjs && node components/validate-parity.mjs && node --test components/test/*.test.mjs && node scripts/validate-docs.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.2",
+    "playwright-core": "^1.49.1",
+    "yaml": "^2.9.1"
+  }
+}
