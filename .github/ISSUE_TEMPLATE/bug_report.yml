@@ -1,0 +1,90 @@
+name: Bug report
+description: Report a reproducible problem with Sorleed.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Do not include secrets, credentials or
+        personal data. For security vulnerabilities, follow SECURITY.md instead
+        of opening a public issue.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: A short description of the problem.
+      placeholder: "Example: PasswordInput toggle loses its accessible label"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Components
+        - Tokens
+        - React package
+        - CLI
+        - Documentation
+        - Examples or POC
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: The smallest sequence that reproduces the problem.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node version, package version and browser if relevant.
+      placeholder: "macOS 15, Node 22, @sorleed/react 0.1.0-alpha.1, Chrome 130"
+    validations:
+      required: false
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation commands run
+      description: Which repository checks did you run, and what was the result?
+      placeholder: |
+        node tokens/check.mjs
+        node components/validate-contracts.mjs
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, logs or related issues. Remove secrets first.
+    validations:
+      required: false

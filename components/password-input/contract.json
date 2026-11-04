@@ -1,0 +1,1688 @@
+{
+  "$schema": "../contract.schema.json",
+  "contract": {
+    "id": "sorleed.password-input",
+    "name": "PasswordInput",
+    "version": "1.0.0",
+    "status": "draft",
+    "componentVersion": "0.1.0",
+    "summary": "Sorleed's password field: label, masked text control, show/hide toggle, helper or error and an independent focus ring. It composes the existing input.* and button.* component tokens plus four documented primitive tokens. The Figma reference is unresolved and is not asserted.",
+    "maturity": "contract; framework-agnostic CSS + native HTML; React private-alpha adapter",
+    "lastUpdated": "2026-11-03",
+    "canonical": {
+      "figma": null,
+      "tokens": "tokens/tokens.json",
+      "css": "tokens/dist/tokens.css",
+      "evidence": [
+        "The Figma reference is unresolved. No node ID, variant ID or property key is asserted by this contract.",
+        "components/password-input/password-input.css and password-input.html are the canonical framework-agnostic implementation.",
+        "react/password-input/index.tsx is a private-alpha adapter and is not represented as production-ready.",
+        "The stylesheet composes input.* and button.* component tokens and four primitive tokens; the primitive use is a recorded draft limitation.",
+        "No password-strength, breach-check, caps-lock or confirmation behaviour is implemented."
+      ]
+    }
+  },
+  "responsibilities": {
+    "component": [
+      "Render the full field anatomy: label, control with password input and toggle button, and a helper or error row.",
+      "Switch the native input type between password and text without changing the entered value.",
+      "Expose the toggle as a native button with an accessible name and aria-pressed state.",
+      "Apply input.* and button.* component tokens for the documented surfaces and states.",
+      "Expose native disabled, required and readOnly attributes passed by the application.",
+      "Suppress the focus ring when the field is disabled."
+    ],
+    "application": [
+      "Own password policy, validation timing, error copy and announcements.",
+      "Choose the appropriate autoComplete token for the password's purpose.",
+      "Provide a visible required indication when required is set.",
+      "Decide whether visibility starts shown or hidden when using controlled visibility.",
+      "Handle form submission and move focus to the first invalid field.",
+      "Never log, persist or expose the entered password outside the form flow."
+    ],
+    "figmaOnly": [
+      "No Figma evidence is recorded for this component. Design-time property mapping is not asserted."
+    ]
+  },
+  "use": {
+    "intended": [
+      "Collecting a password or passphrase in sign-in, registration and account-security forms.",
+      "Allowing the user to reveal the entered value to reduce typing errors on shared or small keyboards."
+    ],
+    "inappropriate": [
+      {
+        "use": "Using PasswordInput as a general text field.",
+        "reason": "The masking and reveal affordance are specific to secrets and the component composes password-specific behaviour.",
+        "alternative": "Use Input for non-secret single-line text."
+      },
+      {
+        "use": "Using PasswordInput as a search, OTP, PIN or currency field.",
+        "reason": "Those controls need different masking, grouping, input modes and validation.",
+        "alternative": "Use a dedicated component when its contract exists; do not fake it with type or CSS overrides."
+      },
+      {
+        "use": "Adding a strength meter, breach check or caps-lock warning through this component.",
+        "reason": "No such behaviour, tokens or accessible announcement pattern exists in this contract.",
+        "alternative": "Request a new contract and token roles before implementing those capabilities."
+      }
+    ]
+  },
+  "anatomy": {
+    "structure": [
+      "Wrapper with class .sl-password-input",
+      "Label with class .sl-password-input__label",
+      "Control wrapper with class .sl-password-input__control",
+      "Password input with class .sl-password-input__field and type=password or type=text",
+      "Toggle button with class .sl-password-input__toggle, aria-pressed and an accessible label",
+      "Message row with class .sl-password-input__message; error adds .sl-password-input__message--error"
+    ],
+    "geometry": [
+      {
+        "property": "control height",
+        "value": "40px",
+        "token": "input.height"
+      },
+      {
+        "property": "horizontal padding",
+        "value": "12px",
+        "token": "input.padding-x"
+      },
+      {
+        "property": "corner radius",
+        "value": "6px",
+        "token": "input.radius"
+      },
+      {
+        "property": "border width",
+        "value": "1px",
+        "token": "input.border-width"
+      },
+      {
+        "property": "label gap",
+        "value": "8px",
+        "token": "input.label-gap"
+      },
+      {
+        "property": "helper gap",
+        "value": "4px",
+        "token": "input.helper-gap"
+      },
+      {
+        "property": "focus ring width",
+        "value": "2px",
+        "token": "input.focus.width"
+      },
+      {
+        "property": "focus ring offset",
+        "value": "2px",
+        "token": "input.focus.offset"
+      },
+      {
+        "property": "toggle reserved width",
+        "value": "48px",
+        "token": "space.12"
+      },
+      {
+        "property": "toggle reserved gap",
+        "value": "16px",
+        "token": "space.4"
+      },
+      {
+        "property": "toggle font size",
+        "value": "12px",
+        "token": "font.size.xs"
+      },
+      {
+        "property": "toggle line height",
+        "value": "16px",
+        "token": "font.line-height.xs"
+      }
+    ],
+    "literals": [
+      {
+        "property": "toggle inset",
+        "value": "1px + 2px from the inline end",
+        "reason": "Derived from input.border-width plus a 2px visual inset; no inset token exists."
+      },
+      {
+        "property": "toggle height adjustment",
+        "value": "4px",
+        "reason": "A visual inset inside the control; no token exists for this local adjustment."
+      },
+      {
+        "property": "toggle padding",
+        "value": "input.padding-x / 1.5",
+        "reason": "A local optical adjustment to fit the toggle text inside the reserved area."
+      },
+      {
+        "property": "disabled toggle opacity",
+        "value": "0.5",
+        "reason": "No opacity token exists. The native disabled attribute remains the semantic signal."
+      }
+    ]
+  },
+  "properties": [],
+  "codeOnlyProperties": [
+    {
+      "prop": "label",
+      "type": "string",
+      "default": null,
+      "required": true,
+      "description": "Visible label text and accessible name for the password input.",
+      "notes": "Must be non-empty. When hideLabel is true the label is visually hidden, not removed."
+    },
+    {
+      "prop": "hideLabel",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Visually hides the label while keeping it programmatically associated.",
+      "notes": "Do not use display:none or aria-hidden on the only label."
+    },
+    {
+      "prop": "helperText",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Supporting copy shown when there is no error.",
+      "notes": "Replaced by errorMessage when an error is present."
+    },
+    {
+      "prop": "errorMessage",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Error copy shown in the message row and connected through aria-describedby.",
+      "notes": "Sets aria-invalid=true. The application owns when validation runs."
+    },
+    {
+      "prop": "showPasswordLabel",
+      "type": "string",
+      "default": "\"Show password\"",
+      "required": false,
+      "description": "Accessible label and visible text for the toggle while the password is hidden.",
+      "notes": "Localise this copy in the application; do not rely on an icon alone."
+    },
+    {
+      "prop": "hidePasswordLabel",
+      "type": "string",
+      "default": "\"Hide password\"",
+      "required": false,
+      "description": "Accessible label and visible text for the toggle while the password is visible.",
+      "notes": "Localise this copy in the application; do not rely on an icon alone."
+    },
+    {
+      "prop": "visible",
+      "type": "boolean | undefined",
+      "default": null,
+      "required": false,
+      "description": "Controlled visibility state.",
+      "notes": "When provided, the component does not update visibility internally; onVisibleChange reports the requested next state."
+    },
+    {
+      "prop": "defaultVisible",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Initial visibility for the uncontrolled adapter.",
+      "notes": "Defaults to masked. Not applied while visible is controlled."
+    },
+    {
+      "prop": "onVisibleChange",
+      "type": "(visible: boolean) => void",
+      "default": null,
+      "required": false,
+      "description": "Called with the requested next visibility when the toggle is activated.",
+      "notes": "The adapter does not change the value of the password field."
+    },
+    {
+      "prop": "id",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Identifier for the password input and its label association.",
+      "notes": "Generated with useId when omitted."
+    },
+    {
+      "prop": "className",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Layout-only escape hatch for the wrapper.",
+      "notes": "Must not change colour, typography, radius, height, border, gaps or focus treatment."
+    },
+    {
+      "prop": "disabled",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Disables both the password input and the toggle.",
+      "notes": "Native disabled attribute; suppresses the focus ring and removes both controls from interaction."
+    },
+    {
+      "prop": "required",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Sets the native required attribute on the password input.",
+      "notes": "The application owns required validation and a visible required indication."
+    },
+    {
+      "prop": "autoComplete",
+      "type": "string",
+      "default": "\"current-password\"",
+      "required": false,
+      "description": "Native autocomplete token for the password's purpose.",
+      "notes": "The adapter defaults to current-password. Pass new-password for registration or other appropriate tokens for the context."
+    },
+    {
+      "prop": "readOnly",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Passes the native readOnly attribute to the password input.",
+      "notes": "ReadOnly has no dedicated visual treatment in the stylesheet. Do not present it as a distinct state."
+    },
+    {
+      "prop": "native input attributes",
+      "type": "InputHTMLAttributes<HTMLInputElement> excluding type",
+      "default": null,
+      "required": false,
+      "description": "Standard attributes such as placeholder, maxLength, pattern, name, aria-* and data-* pass through.",
+      "notes": "The adapter owns type and must not receive type from the caller."
+    }
+  ],
+  "variants": [
+    {
+      "name": "Default",
+      "figmaNodeId": null,
+      "tokens": [
+        "input.height",
+        "input.padding-x",
+        "input.radius",
+        "input.border-width",
+        "input.font-size",
+        "input.line-height",
+        "input.font-weight",
+        "input.label-gap",
+        "input.helper-gap",
+        "input.focus.color",
+        "input.focus.width",
+        "input.focus.offset",
+        "input.background",
+        "input.border",
+        "input.text",
+        "input.placeholder",
+        "input.label.color",
+        "input.label.font-weight",
+        "input.helper.color",
+        "input.helper.font-size",
+        "input.helper.line-height",
+        "button.ghost.foreground",
+        "button.ghost.background-hover",
+        "button.ghost.background-active",
+        "button.focus.color",
+        "button.focus.width",
+        "font.size.xs",
+        "font.line-height.xs",
+        "space.12",
+        "space.4"
+      ],
+      "notes": "White fill, input.border boundary, primary text and tertiary placeholder; the toggle uses Ghost button tokens."
+    },
+    {
+      "name": "Hover",
+      "figmaNodeId": null,
+      "tokens": [
+        "input.border-hover",
+        "input.background",
+        "input.text",
+        "input.placeholder",
+        "button.ghost.background-hover"
+      ],
+      "notes": "The field border changes to input.border-hover; the toggle shows its hover background."
+    },
+    {
+      "name": "Error",
+      "figmaNodeId": null,
+      "tokens": [
+        "input.border-error",
+        "input.text-error",
+        "input.background",
+        "input.text"
+      ],
+      "notes": "The error border is keyed to aria-invalid=true and the message carries input.text-error."
+    },
+    {
+      "name": "Disabled",
+      "figmaNodeId": null,
+      "tokens": [
+        "input.background-disabled",
+        "input.border-disabled",
+        "input.text-disabled"
+      ],
+      "notes": "Muted fill, matching border and muted text. The toggle is disabled, reduced in opacity and cannot be activated."
+    }
+  ],
+  "stateModel": {
+    "axes": [
+      {
+        "name": "State",
+        "kind": "variant",
+        "values": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "Visible",
+        "kind": "boolean",
+        "values": [
+          "false",
+          "true"
+        ]
+      },
+      {
+        "name": "Focused",
+        "kind": "boolean",
+        "values": [
+          "false",
+          "true"
+        ]
+      }
+    ],
+    "validCombinations": [
+      {
+        "combination": "Default",
+        "supported": true,
+        "result": "Masked or revealed value, input.border boundary and the toggle at rest."
+      },
+      {
+        "combination": "Hover",
+        "supported": true,
+        "result": "input.border-hover boundary and the toggle hover background."
+      },
+      {
+        "combination": "Error",
+        "supported": true,
+        "result": "input.border-error boundary and input.text-error message."
+      },
+      {
+        "combination": "Disabled",
+        "supported": true,
+        "result": "Muted fill, matching border, muted text and a disabled toggle."
+      },
+      {
+        "combination": "Visible=false",
+        "supported": true,
+        "result": "The input type is password; the toggle label is showPasswordLabel and aria-pressed is false."
+      },
+      {
+        "combination": "Visible=true",
+        "supported": true,
+        "result": "The input type is text; the toggle label is hidePasswordLabel and aria-pressed is true."
+      },
+      {
+        "combination": "Default + Focused",
+        "supported": true,
+        "result": "Default boundary plus the input focus ring."
+      },
+      {
+        "combination": "Error + Focused",
+        "supported": true,
+        "result": "Error boundary and message plus the input focus ring."
+      },
+      {
+        "combination": "Disabled + Focused",
+        "supported": false,
+        "result": "Disabled wins; the focus ring is suppressed and the toggle is not focusable."
+      },
+      {
+        "combination": "Error + Hover",
+        "supported": false,
+        "result": "The error border persists; the hover border is not applied."
+      },
+      {
+        "combination": "Disabled + Error",
+        "supported": false,
+        "result": "Disabled wins; no error border or error-coloured message."
+      },
+      {
+        "combination": "Disabled + Hover",
+        "supported": false,
+        "result": "Disabled wins; no hover border."
+      }
+    ],
+    "precedence": [
+      "State precedence: Disabled > Error > Hover > Default.",
+      "Focus is an orthogonal overlay in Default, Hover and Error; Disabled suppresses it.",
+      "Error suppresses the hover border.",
+      "Disabled suppresses error and hover treatment and disables the toggle.",
+      "Visibility is independent of State: the entered value is preserved when the type changes."
+    ],
+    "conflicts": [
+      "Error + Hover is not modelled. Do not add a hover border on top of the error border.",
+      "Disabled + Error is not modelled. Do not show an error border or error message on a disabled field.",
+      "Disabled + Focused is not a visible combination. The focus ring must be suppressed.",
+      "Focus is not a State value. Do not create State=Focus.",
+      "Visible is not a State value. Do not create State=Visible or a separate masked/revealed variant.",
+      "The toggle must not be a div or span; it is a native button with an accessible name."
+    ],
+    "notes": [
+      "The input type changes between password and text; the value is not transformed.",
+      "The toggle uses button.* Ghost tokens because no password-input.* token family exists.",
+      "The React adapter defaults autoComplete to current-password; the application should override it for new passwords.",
+      "No Figma evidence is recorded; state names are production descriptions only."
+    ]
+  },
+  "tokens": {
+    "rule": "PasswordInput composes the existing input.* and button.* component tokens and four documented primitive tokens (font.size.xs, font.line-height.xs, space.12, space.4). It introduces no password-input.* token family. Primitive use is a draft limitation, not a precedent for new components.",
+    "allowedPrefixes": [
+      "input.",
+      "button.",
+      "font.",
+      "space."
+    ],
+    "dependencies": [
+      {
+        "name": "button.focus.color",
+        "type": "color",
+        "cssVar": "--sl-button-focus-color",
+        "alias": "color.border.focus",
+        "resolved": "#2563EB",
+        "role": "Toggle focus outline colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "button.focus.width",
+        "type": "dimension",
+        "cssVar": "--sl-button-focus-width",
+        "alias": "size.focus-ring.width",
+        "resolved": "2px",
+        "role": "Toggle focus outline width",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "button.ghost.background-active",
+        "type": "color",
+        "cssVar": "--sl-button-ghost-background-active",
+        "alias": "color.action.ghost-active",
+        "resolved": "#E4E4E7",
+        "role": "Toggle active background",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "button.ghost.background-hover",
+        "type": "color",
+        "cssVar": "--sl-button-ghost-background-hover",
+        "alias": "color.action.ghost-hover",
+        "resolved": "#F4F4F5",
+        "role": "Toggle hover background",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "button.ghost.foreground",
+        "type": "color",
+        "cssVar": "--sl-button-ghost-foreground",
+        "alias": "color.content.primary",
+        "resolved": "#18181B",
+        "role": "Toggle text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "font.line-height.xs",
+        "type": "dimension",
+        "cssVar": "--sl-font-line-height-xs",
+        "alias": null,
+        "resolved": "16px",
+        "role": "Toggle line height (primitive)",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "font.size.xs",
+        "type": "dimension",
+        "cssVar": "--sl-font-size-xs",
+        "alias": null,
+        "resolved": "12px",
+        "role": "Toggle font size (primitive)",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.background",
+        "type": "color",
+        "cssVar": "--sl-input-background",
+        "alias": "color.surface.default",
+        "resolved": "#FFFFFF",
+        "role": "Field fill",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.background-disabled",
+        "type": "color",
+        "cssVar": "--sl-input-background-disabled",
+        "alias": "color.surface.muted",
+        "resolved": "#E4E4E7",
+        "role": "Disabled field fill",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.border",
+        "type": "color",
+        "cssVar": "--sl-input-border",
+        "alias": "color.border.control",
+        "resolved": "#71717A",
+        "role": "Field boundary",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.border-disabled",
+        "type": "color",
+        "cssVar": "--sl-input-border-disabled",
+        "alias": "color.border.disabled",
+        "resolved": "#E4E4E7",
+        "role": "Disabled field boundary",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.border-error",
+        "type": "color",
+        "cssVar": "--sl-input-border-error",
+        "alias": "color.border.error",
+        "resolved": "#DC2626",
+        "role": "Error field boundary",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.border-hover",
+        "type": "color",
+        "cssVar": "--sl-input-border-hover",
+        "alias": "color.border.control-hover",
+        "resolved": "#52525B",
+        "role": "Hover field boundary",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.border-width",
+        "type": "dimension",
+        "cssVar": "--sl-input-border-width",
+        "alias": "size.border.width",
+        "resolved": "1px",
+        "role": "Field border width",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.focus.color",
+        "type": "color",
+        "cssVar": "--sl-input-focus-color",
+        "alias": "color.border.focus",
+        "resolved": "#2563EB",
+        "role": "Field focus ring colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.focus.offset",
+        "type": "dimension",
+        "cssVar": "--sl-input-focus-offset",
+        "alias": "size.focus-ring.offset",
+        "resolved": "2px",
+        "role": "Field focus ring offset",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.focus.width",
+        "type": "dimension",
+        "cssVar": "--sl-input-focus-width",
+        "alias": "size.focus-ring.width",
+        "resolved": "2px",
+        "role": "Field focus ring width",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.font-size",
+        "type": "dimension",
+        "cssVar": "--sl-input-font-size",
+        "alias": "font.size.sm",
+        "resolved": "14px",
+        "role": "Field font size",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.font-weight",
+        "type": "fontWeight",
+        "cssVar": "--sl-input-font-weight",
+        "alias": "font.weight.regular",
+        "resolved": 400,
+        "role": "Field font weight",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.height",
+        "type": "dimension",
+        "cssVar": "--sl-input-height",
+        "alias": "size.control.md",
+        "resolved": "40px",
+        "role": "Field height",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.helper.color",
+        "type": "color",
+        "cssVar": "--sl-input-helper-color",
+        "alias": "color.content.helper",
+        "resolved": "#52525B",
+        "role": "Message text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.helper.font-size",
+        "type": "dimension",
+        "cssVar": "--sl-input-helper-font-size",
+        "alias": "font.size.xs",
+        "resolved": "12px",
+        "role": "Message font size",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.helper-gap",
+        "type": "dimension",
+        "cssVar": "--sl-input-helper-gap",
+        "alias": "space.1",
+        "resolved": "4px",
+        "role": "Field-to-message gap",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.helper.line-height",
+        "type": "dimension",
+        "cssVar": "--sl-input-helper-line-height",
+        "alias": "font.line-height.xs",
+        "resolved": "16px",
+        "role": "Message line height",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.label.color",
+        "type": "color",
+        "cssVar": "--sl-input-label-color",
+        "alias": "color.content.secondary",
+        "resolved": "#3F3F46",
+        "role": "Label text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.label.font-weight",
+        "type": "fontWeight",
+        "cssVar": "--sl-input-label-font-weight",
+        "alias": "font.weight.medium",
+        "resolved": 500,
+        "role": "Label and toggle font weight",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.label-gap",
+        "type": "dimension",
+        "cssVar": "--sl-input-label-gap",
+        "alias": "space.2",
+        "resolved": "8px",
+        "role": "Label-to-control gap",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.line-height",
+        "type": "dimension",
+        "cssVar": "--sl-input-line-height",
+        "alias": "font.line-height.sm",
+        "resolved": "20px",
+        "role": "Field line height",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.padding-x",
+        "type": "dimension",
+        "cssVar": "--sl-input-padding-x",
+        "alias": "space.3",
+        "resolved": "12px",
+        "role": "Field horizontal padding and toggle inset",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.placeholder",
+        "type": "color",
+        "cssVar": "--sl-input-placeholder",
+        "alias": "color.content.tertiary",
+        "resolved": "#71717A",
+        "role": "Placeholder text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.radius",
+        "type": "dimension",
+        "cssVar": "--sl-input-radius",
+        "alias": "radius.md",
+        "resolved": "6px",
+        "role": "Field and toggle corner radius",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.text",
+        "type": "color",
+        "cssVar": "--sl-input-text",
+        "alias": "color.content.primary",
+        "resolved": "#18181B",
+        "role": "Field text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.text-disabled",
+        "type": "color",
+        "cssVar": "--sl-input-text-disabled",
+        "alias": "color.content.disabled",
+        "resolved": "#A1A1AA",
+        "role": "Disabled field text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "input.text-error",
+        "type": "color",
+        "cssVar": "--sl-input-text-error",
+        "alias": "color.feedback.error-foreground",
+        "resolved": "#991B1B",
+        "role": "Error text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "space.12",
+        "type": "dimension",
+        "cssVar": "--sl-space-12",
+        "alias": null,
+        "resolved": "48px",
+        "role": "Toggle reserved width (primitive)",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "space.4",
+        "type": "dimension",
+        "cssVar": "--sl-space-4",
+        "alias": null,
+        "resolved": "16px",
+        "role": "Toggle reserved gap (primitive)",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      }
+    ],
+    "stateMapping": [
+      {
+        "state": "Default",
+        "background": "input.background",
+        "foreground": "input.text",
+        "border": "input.border",
+        "placeholder": "input.placeholder",
+        "label": "input.label.color",
+        "helper": "input.helper.color",
+        "ring": null
+      },
+      {
+        "state": "Hover",
+        "background": "input.background",
+        "foreground": "input.text",
+        "border": "input.border-hover",
+        "placeholder": "input.placeholder",
+        "label": "input.label.color",
+        "helper": "input.helper.color",
+        "ring": null
+      },
+      {
+        "state": "Error",
+        "background": "input.background",
+        "foreground": "input.text",
+        "border": "input.border-error",
+        "placeholder": "input.placeholder",
+        "label": "input.label.color",
+        "helper": "input.text-error",
+        "ring": null
+      },
+      {
+        "state": "Disabled",
+        "background": "input.background-disabled",
+        "foreground": "input.text-disabled",
+        "border": "input.border-disabled",
+        "placeholder": "input.text-disabled",
+        "label": "input.label.color",
+        "helper": "input.helper.color",
+        "ring": null
+      },
+      {
+        "state": "Default+Focused",
+        "background": "input.background",
+        "foreground": "input.text",
+        "border": "input.border",
+        "placeholder": "input.placeholder",
+        "label": "input.label.color",
+        "helper": "input.helper.color",
+        "ring": "input.focus.color"
+      },
+      {
+        "state": "Error+Focused",
+        "background": "input.background",
+        "foreground": "input.text",
+        "border": "input.border-error",
+        "placeholder": "input.placeholder",
+        "label": "input.label.color",
+        "helper": "input.text-error",
+        "ring": "input.focus.color"
+      },
+      {
+        "state": "Disabled+Focused",
+        "background": "input.background-disabled",
+        "foreground": "input.text-disabled",
+        "border": "input.border-disabled",
+        "placeholder": "input.text-disabled",
+        "label": "input.label.color",
+        "helper": "input.helper.color",
+        "ring": null
+      }
+    ],
+    "forbidden": [
+      "Do not introduce password-input.* tokens without a token-source change and a new contract version.",
+      "Do not consume additional primitive or semantic tokens beyond the four documented primitives.",
+      "Do not hardcode values when a token exists.",
+      "Do not use button.* tokens for the password field surface; they are limited to the toggle.",
+      "Do not add a success, warning, info or strength token."
+    ]
+  },
+  "accessibility": {
+    "design": [
+      {
+        "id": "label-association",
+        "requirement": "The label must be programmatically associated with the password input.",
+        "verification": "Inspect the for/id association and the computed accessible name."
+      },
+      {
+        "id": "toggle-name",
+        "requirement": "The toggle must have a visible text label and an accessible name that describes the next action.",
+        "verification": "Inspect the computed accessible name and visible text in both visibility states."
+      },
+      {
+        "id": "toggle-state",
+        "requirement": "The toggle must expose aria-pressed matching the visibility state.",
+        "verification": "Inspect aria-pressed before and after activation."
+      },
+      {
+        "id": "error-association",
+        "requirement": "Error messages must be associated with the password input.",
+        "verification": "Check aria-describedby and aria-invalid."
+      },
+      {
+        "id": "focus-indicator",
+        "requirement": "The input and toggle must show a visible focus indicator.",
+        "verification": "Tab to each control and inspect the rendered focus treatment."
+      }
+    ],
+    "production": [
+      {
+        "id": "keyboard",
+        "requirement": "The input and toggle must be keyboard reachable and operable with native controls.",
+        "verification": "Keyboard-only test; confirm Tab order, Enter/Space activation and no keyboard trap."
+      },
+      {
+        "id": "value-preserved",
+        "requirement": "Toggling visibility must not change, trim or re-enter the value.",
+        "verification": "Toggle with short and long values and compare the DOM value before and after."
+      },
+      {
+        "id": "disabled-semantics",
+        "requirement": "Use the native disabled attribute on both controls and do not present an error while disabled.",
+        "verification": "Assert disabled, absence from interaction and no aria-invalid presentation."
+      },
+      {
+        "id": "error-not-colour-only",
+        "requirement": "Error is communicated by a border and a text message, not colour alone.",
+        "verification": "Render an error and inspect the message text and grayscale rendering."
+      },
+      {
+        "id": "autocomplete",
+        "requirement": "Supply the correct autocomplete token for the password's purpose.",
+        "verification": "Inspect the attribute for sign-in and registration contexts."
+      },
+      {
+        "id": "no-value-logging",
+        "requirement": "The component must not log, persist or transmit the entered value.",
+        "verification": "Code review of the adapter and the example implementation."
+      },
+      {
+        "id": "readonly-not-disabled",
+        "requirement": "ReadOnly must not be described or styled as a distinct state.",
+        "verification": "Inspect the DOM and stylesheet for readOnly-specific treatment."
+      }
+    ],
+    "contrast": [
+      {
+        "role": "Value on control",
+        "foreground": "input.text",
+        "background": "input.background",
+        "minimum": 4.5,
+        "ratios": {
+          "control": 17.72
+        },
+        "status": "pass",
+        "notes": "Aliases color.content.primary on color.surface.default."
+      },
+      {
+        "role": "Placeholder on control",
+        "foreground": "input.placeholder",
+        "background": "input.background",
+        "minimum": 4.5,
+        "ratios": {
+          "control": 4.83
+        },
+        "status": "pass",
+        "notes": "Aliases color.content.tertiary on color.surface.default."
+      },
+      {
+        "role": "Label on page surface",
+        "foreground": "input.label.color",
+        "background": "color.surface.default",
+        "minimum": 4.5,
+        "ratios": {
+          "default": 10.44
+        },
+        "status": "pass",
+        "notes": "Aliases color.content.secondary on color.surface.default."
+      },
+      {
+        "role": "Error text on page surface",
+        "foreground": "input.text-error",
+        "background": "color.surface.default",
+        "minimum": 4.5,
+        "ratios": {
+          "default": 8.31
+        },
+        "status": "pass",
+        "notes": "Aliases color.feedback.error-foreground on color.surface.default."
+      },
+      {
+        "role": "Control border on page surface",
+        "foreground": "input.border",
+        "background": "color.surface.default",
+        "minimum": 3,
+        "ratios": {
+          "default": 4.83
+        },
+        "status": "pass",
+        "notes": "Aliases color.border.control on color.surface.default."
+      },
+      {
+        "role": "Focus ring on page surface",
+        "foreground": "input.focus.color",
+        "background": "color.surface.default",
+        "minimum": 3,
+        "ratios": {
+          "default": 5.17
+        },
+        "status": "pass",
+        "notes": "Aliases color.border.focus on color.surface.default."
+      },
+      {
+        "role": "Toggle label on page surface",
+        "foreground": "button.ghost.foreground",
+        "background": "color.surface.default",
+        "minimum": 4.5,
+        "ratios": {
+          "surface": 17.72
+        },
+        "status": "pass",
+        "notes": "The Ghost toggle is transparent, so its text sits on the page surface."
+      },
+      {
+        "role": "Toggle label on hover background",
+        "foreground": "button.ghost.foreground",
+        "background": "button.ghost.background-hover",
+        "minimum": 4.5,
+        "ratios": {
+          "surface": 16.12
+        },
+        "status": "pass",
+        "notes": "Aliases the Ghost/Hover label pair from Button."
+      },
+      {
+        "role": "Disabled text on disabled fill",
+        "foreground": "input.text-disabled",
+        "background": "input.background-disabled",
+        "minimum": 4.5,
+        "ratios": {
+          "control": 2.02
+        },
+        "status": "exempt",
+        "notes": "Inactive control; WCAG 1.4.3 and 1.4.11 exclude disabled controls."
+      }
+    ]
+  },
+  "customisation": {
+    "allowed": [
+      "Change label, helper, error, placeholder and toggle copy; all are application-owned.",
+      "Control the field width and responsive behaviour through the surrounding layout.",
+      "Use controlled or uncontrolled visibility as appropriate.",
+      "Set the correct autoComplete token for sign-in or registration.",
+      "Supply errorMessage and the matching aria-invalid presentation from the application.",
+      "Override input.* and button.* token values at the theme layer while preserving the alias chain and revalidating contrast.",
+      "Use className for layout only."
+    ],
+    "forbidden": [
+      "Hardcoding colours, radii, heights, padding, gaps, font sizes or weights.",
+      "Replacing the native button with a non-focusable element.",
+      "Using an icon without a visible or programmatic text label.",
+      "Adding a strength meter, breach check, caps-lock warning or confirmation field to this component.",
+      "Adding success, warning, info or loading states.",
+      "Presenting an error on a disabled field.",
+      "Logging, persisting or transmitting the entered password.",
+      "Introducing password-input.* tokens without a token-source change and a new contract version."
+    ],
+    "themeOverrides": [
+      "Consumers may remap semantic roles so input.* and button.* colours resolve to a brand palette.",
+      "Every override must preserve the component-token alias chain and be revalidated for text, boundary, focus, error and toggle contrast.",
+      "Do not add new password-input.* names in a theme; a missing role requires a token-source change and a new contract version.",
+      "Light theme is the only implemented theme. Dark mode is not available and must not be simulated by inverting values."
+    ]
+  },
+  "composition": {
+    "canonical": [
+      "Render the full field: label above the control, password input and toggle in the control, helper or error below.",
+      "Use one label per field and keep it associated with the password input.",
+      "Keep the toggle visible and labelled; do not hide the reveal affordance behind hover only.",
+      "Let the application validate on blur or submit and supply errorMessage.",
+      "Pair the field with Button for form submission and a secondary cancel action.",
+      "Use helper text for password policy before an error occurs.",
+      "For registration, pass autoComplete=new-password; for sign-in, keep current-password.",
+      "Keep a stable id for each field so label, helper and error references remain valid."
+    ],
+    "forbidden": [
+      "A toggle that cannot be reached or activated by keyboard.",
+      "An icon-only toggle with no accessible name.",
+      "Helper and error messages shown at the same time.",
+      "A red border without an error message.",
+      "An error presented on a disabled field.",
+      "A strength meter, breach check, caps-lock warning or confirmation field inside this component.",
+      "Revealing the password automatically without a user action or explicit controlled default.",
+      "Logging, persisting or transmitting the entered password."
+    ],
+    "example": "components/password-input/password-input.html"
+  },
+  "invalidConfigurations": [
+    {
+      "id": "non-button-toggle",
+      "configuration": "A span or div with an onClick handler used as the show/hide toggle",
+      "why": "It is not keyboard focusable or operable and has no native button semantics.",
+      "correct": "Use a native button with type=button, an accessible name and aria-pressed."
+    },
+    {
+      "id": "icon-only-toggle",
+      "configuration": "A toggle whose only content is an eye icon with no accessible name",
+      "why": "The action is not announced and may be ambiguous.",
+      "correct": "Provide visible or programmatic text such as Show password / Hide password."
+    },
+    {
+      "id": "error-without-text",
+      "configuration": "A red border with no errorMessage",
+      "why": "Colour alone is not an accessible error signal.",
+      "correct": "Always supply errorMessage together with the error state."
+    },
+    {
+      "id": "disabled-error",
+      "configuration": "A disabled password field with aria-invalid=true and an error message",
+      "why": "Disabled wins over Error; a disabled field must not present validation state.",
+      "correct": "Withhold the error presentation while disabled and explain the unavailability separately."
+    },
+    {
+      "id": "value-mutation-on-toggle",
+      "configuration": "Toggling visibility trims or reformats the entered value",
+      "why": "The toggle must only change the input type; mutating the value can break the password.",
+      "correct": "Preserve the exact value across visibility changes."
+    },
+    {
+      "id": "password-strength-inside",
+      "configuration": "A strength meter or breach check embedded in PasswordInput",
+      "why": "No tokens, states or accessible announcement pattern exist for those capabilities.",
+      "correct": "Request a new contract before adding them; keep PasswordInput focused on entry and reveal."
+    },
+    {
+      "id": "wrong-autocomplete",
+      "configuration": "autoComplete=current-password on a registration form",
+      "why": "Password managers may offer an existing credential instead of generating a new one.",
+      "correct": "Use new-password for registration and current-password for sign-in."
+    }
+  ],
+  "tests": {
+    "visual": [
+      {
+        "id": "visual-four-states",
+        "given": "The PasswordInput is rendered on a supported light surface.",
+        "when": "Default, Hover, Error and Disabled are captured.",
+        "then": "Field fill, border, text, placeholder, label and message resolve to the stateMapping tokens; no hex or px literal covered by a token appears."
+      },
+      {
+        "id": "visual-visibility",
+        "given": "Visible=false and Visible=true.",
+        "when": "The field is captured.",
+        "then": "The masked and revealed states share the same geometry and tokens; only the input type and toggle copy/state change."
+      },
+      {
+        "id": "visual-focus",
+        "given": "Default and Error with keyboard focus.",
+        "when": "The password input is inspected.",
+        "then": "The input focus ring appears; the field border and message remain unchanged."
+      },
+      {
+        "id": "visual-toggle",
+        "given": "The toggle at rest, hover, active, focus and disabled.",
+        "when": "Each state is inspected.",
+        "then": "Ghost button tokens drive foreground, hover background, active background, focus outline and disabled opacity."
+      },
+      {
+        "id": "visual-label-hidden",
+        "given": "hideLabel=true.",
+        "when": "The field is rendered.",
+        "then": "The label is visually hidden but still occupies the accessibility tree; the layout gap collapses."
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "behaviour-toggle",
+        "given": "A masked PasswordInput.",
+        "when": "The toggle is activated.",
+        "then": "The input type becomes text, aria-pressed becomes true and the toggle text becomes Hide password; activating again restores password."
+      },
+      {
+        "id": "behaviour-value-preserved",
+        "given": "A short or long entered value.",
+        "when": "Visibility is toggled in either direction.",
+        "then": "The DOM value is unchanged and the field remains usable."
+      },
+      {
+        "id": "behaviour-controlled-visible",
+        "given": "A controlled visible prop and onVisibleChange.",
+        "when": "The toggle is activated.",
+        "then": "onVisibleChange receives the requested next state; the component does not change visibility until the parent updates the prop."
+      },
+      {
+        "id": "behaviour-default-visible",
+        "given": "defaultVisible=true with no visible prop.",
+        "when": "The field renders.",
+        "then": "The input starts as type=text and the toggle reports aria-pressed=true."
+      },
+      {
+        "id": "behaviour-disabled",
+        "given": "disabled=true.",
+        "when": "The toggle is activated.",
+        "then": "Both controls are disabled, the toggle has tabIndex=-1 and the input type does not change."
+      },
+      {
+        "id": "behaviour-error",
+        "given": "errorMessage is supplied.",
+        "when": "The field renders.",
+        "then": "aria-invalid=true, the error text is connected through aria-describedby and the message uses the error class."
+      },
+      {
+        "id": "behaviour-helper",
+        "given": "helperText with no error.",
+        "when": "The field renders.",
+        "then": "The helper text is connected through aria-describedby."
+      },
+      {
+        "id": "behaviour-ref",
+        "given": "A forwarded ref.",
+        "when": "The component mounts.",
+        "then": "The ref points at the native password input."
+      }
+    ],
+    "accessibility": [
+      {
+        "id": "a11y-label",
+        "given": "Any PasswordInput.",
+        "when": "The accessibility tree is inspected.",
+        "then": "The password input has a programmatic label whose text matches the visible label, including when hideLabel is true."
+      },
+      {
+        "id": "a11y-toggle-name",
+        "given": "A PasswordInput in either visibility state.",
+        "when": "The toggle is inspected.",
+        "then": "It has a native button role, an accessible name and aria-pressed matching the state."
+      },
+      {
+        "id": "a11y-helper-error",
+        "given": "A PasswordInput with helperText or errorMessage.",
+        "when": "The accessibility tree is inspected.",
+        "then": "The message is connected through aria-describedby and aria-invalid is true only when an error is present."
+      },
+      {
+        "id": "a11y-disabled",
+        "given": "A disabled PasswordInput.",
+        "when": "The accessibility tree and tab order are inspected.",
+        "then": "Both controls expose the native disabled state; the toggle is removed from the tab order."
+      },
+      {
+        "id": "a11y-required",
+        "given": "A required PasswordInput.",
+        "when": "The accessibility tree is inspected.",
+        "then": "The password input exposes the native required state; the application provides a visible required indication."
+      },
+      {
+        "id": "a11y-focus",
+        "given": "Keyboard focus on the input and toggle.",
+        "when": "Each control is tabbed to.",
+        "then": "A visible focus indicator is present and not clipped."
+      }
+    ],
+    "tokens": [
+      {
+        "id": "tokens-composition",
+        "given": "The PasswordInput stylesheet.",
+        "when": "Every colour, dimension and font-weight reference is audited.",
+        "then": "References are limited to input.*, button.*, font.size.xs, font.line-height.xs, space.12 and space.4."
+      },
+      {
+        "id": "tokens-count",
+        "given": "This contract.",
+        "when": "The dependency list is compared with tokens/tokens.json.",
+        "then": "All 36 dependencies exist, resolve to the stated values and map to the stated --sl-* CSS variables."
+      },
+      {
+        "id": "tokens-css-parity",
+        "given": "components/password-input/password-input.css.",
+        "when": "The consumed CSS variables are compared with the dependency list.",
+        "then": "The two sets are equal; no used token is undeclared and no declared token is unused."
+      },
+      {
+        "id": "tokens-primitives-documented",
+        "given": "The four primitive dependencies.",
+        "when": "The contract is reviewed.",
+        "then": "They are documented as a draft limitation and no additional primitive token is consumed."
+      },
+      {
+        "id": "tokens-state-binding",
+        "given": "All four states and the focus overlay.",
+        "when": "Each fill, border, text, placeholder, label, message and ring is checked against stateMapping.",
+        "then": "Every visual property resolves to the mapped token; no state uses a token from the wrong state."
+      }
+    ],
+    "regression": [
+      {
+        "id": "regression-native-markup",
+        "given": "components/password-input/password-input.html.",
+        "when": "The reference markup is validated.",
+        "then": "It uses a native label, password input and button toggle with the documented classes and no invented state props."
+      },
+      {
+        "id": "regression-react-adapter",
+        "given": "The private-alpha React adapter.",
+        "when": "The React test suite runs.",
+        "then": "Toggle behaviour, value preservation, controlled visibility, error, helper, disabled and ref behaviour remain covered."
+      },
+      {
+        "id": "regression-no-value-mutation",
+        "given": "The adapter.",
+        "when": "Searching for value formatting, trimming or logging.",
+        "then": "None exists; the value is passed through unchanged."
+      },
+      {
+        "id": "regression-figma-unresolved",
+        "given": "The canonical Figma reference.",
+        "when": "The contract is reviewed.",
+        "then": "It remains null and no node ID or variant ID is invented."
+      },
+      {
+        "id": "regression-token-hashes",
+        "given": "The protected token source, validator and generated CSS.",
+        "when": "The contract stage is validated.",
+        "then": "tokens/tokens.json, tokens/check.mjs and tokens/dist/tokens.css match the recorded baseline hashes."
+      }
+    ]
+  },
+  "limitations": [
+    {
+      "id": "figma-unresolved",
+      "limitation": "The Figma reference for PasswordInput is unresolved and is recorded as null.",
+      "impact": "There is no design-source evidence for variant or property mapping.",
+      "mitigation": "Use the CSS and native HTML reference as canonical; add a verified Figma reference in a later change."
+    },
+    {
+      "id": "primitive-tokens",
+      "limitation": "The component consumes four primitive tokens because no password-input.* token family exists.",
+      "impact": "A theme that remaps component tokens does not fully control the toggle's font size, line height or reserved width.",
+      "mitigation": "Keep the use limited to the four documented primitives; introduce a dedicated token family in a future token-source change."
+    },
+    {
+      "id": "no-strength-meter",
+      "limitation": "There is no strength meter, breach check, caps-lock warning or confirmation field.",
+      "impact": "Those capabilities cannot be expressed inside PasswordInput.",
+      "mitigation": "Keep them at application level or request a new contract with tokens and accessible announcement rules."
+    },
+    {
+      "id": "no-validation-in-component",
+      "limitation": "The adapter does not own password policy, validation timing, error copy or announcements.",
+      "impact": "Consumers must supply errorMessage, aria-invalid and focus management.",
+      "mitigation": "Follow the accessibility requirements and the native reference markup."
+    },
+    {
+      "id": "readonly-visual",
+      "limitation": "readOnly is passed to the native input but has no dedicated visual treatment.",
+      "impact": "A read-only password field is visually indistinguishable from an editable field.",
+      "mitigation": "Do not present readOnly as a supported visual state."
+    },
+    {
+      "id": "autocomplete-default",
+      "limitation": "The React adapter defaults autoComplete to current-password.",
+      "impact": "Registration forms may receive the wrong password-manager behaviour unless the application overrides it.",
+      "mitigation": "Pass new-password for registration and choose the token that matches the context."
+    },
+    {
+      "id": "toggle-copy",
+      "limitation": "The toggle uses text rather than an icon and exposes no icon slot.",
+      "impact": "The control may take more inline space than an icon-only design.",
+      "mitigation": "Use the provided labels and localise them; request an icon contract before changing the anatomy."
+    },
+    {
+      "id": "dark-mode",
+      "limitation": "Dark mode is not implemented.",
+      "impact": "No dark values exist for the composed input.* or button.* tokens.",
+      "mitigation": "Ship light theme only. Do not invert values to simulate dark mode."
+    },
+    {
+      "id": "browser-baseline",
+      "limitation": "The focus overlay and disabled suppression use CSS :has(). The approved baseline is Chrome/Edge 105+, Safari 15.4+ and Firefox 121+; no fallback is bundled.",
+      "impact": "In older browsers the focus ring and disabled overlay suppression may not render.",
+      "mitigation": "Test the named baseline before release and record unrun browsers as UNVERIFIED."
+    }
+  ],
+  "aiGuidance": {
+    "readOrder": [
+      "Read this contract first.",
+      "Read components/password-input/README.md for the human explanation and native API.",
+      "Read components/password-input/password-input.css and password-input.html for the canonical implementation.",
+      "Read react/password-input/index.tsx and react/types/index.ts for the private-alpha adapter API.",
+      "Read components/input/contract.json and components/button/contract.json for the composed token contracts.",
+      "Read tokens/tokens.json or tokens/dist/tokens.css for canonical token names and resolved values."
+    ],
+    "rules": [
+      "Render the full field anatomy: label, password input, native button toggle and helper/error row.",
+      "Use only input.* and button.* component tokens plus the four documented primitives.",
+      "Preserve the entered value exactly when visibility changes.",
+      "Use a native button with an accessible name and aria-pressed for the toggle.",
+      "Derive State from disabled and errorMessage. Precedence: Disabled > Error > Hover > Default.",
+      "Always provide a programmatic label association. hideLabel must render the label visually hidden, never absent.",
+      "Let the application own password policy, validation, error copy and announcements.",
+      "Set the correct autoComplete token for sign-in or registration.",
+      "Do not add strength, breach, caps-lock, confirmation, success or loading behaviour.",
+      "Do not invent a Figma node ID; the reference is unresolved.",
+      "Do not log, persist or transmit the entered password."
+    ],
+    "uncertaintyPolicy": [
+      "If a Figma reference is required, stop and report that it is unresolved; do not invent a node ID.",
+      "If a strength meter, breach check or caps-lock warning is requested, report that the capability is not in the contract.",
+      "If an icon-only toggle is requested, require an accessible name and a new anatomy decision first.",
+      "If the requested surface is inverse or dark, stop and report that it is unsupported.",
+      "If the requested treatment is success, warning, info or loading, stop and report that the state does not exist.",
+      "If the password policy or validation timing is unclear, ask rather than inventing rules."
+    ],
+    "definitionOfDone": [
+      "The full field renders with label, password input, native button toggle and helper/error row.",
+      "Default, Hover, Error, Disabled, Default+Focused and Error+Focused render correctly; Disabled suppresses the ring and disables the toggle.",
+      "The toggle changes type only and preserves the exact value in both directions.",
+      "Label association, toggle name, aria-pressed, helper/error description, aria-invalid and disabled semantics are present.",
+      "The 36 dependencies resolve and match the generated CSS variables; primitive use remains limited to the four documented tokens.",
+      "The native reference markup and the private-alpha React adapter remain consistent with this contract.",
+      "The Figma reference remains null until a verified reference is available."
+    ]
+  },
+  "examples": {
+    "valid": [
+      {
+        "title": "Sign-in password with helper",
+        "language": "tsx",
+        "code": "<PasswordInput\n  id=\"sign-in-password\"\n  label=\"Password\"\n  autoComplete=\"current-password\"\n  helperText=\"Use the password for this account.\"\n/>",
+        "explanation": "Visible label, current-password autocomplete, helper guidance and the default masked state."
+      },
+      {
+        "title": "Registration password",
+        "language": "tsx",
+        "code": "<PasswordInput\n  id=\"new-password\"\n  label=\"Create a password\"\n  autoComplete=\"new-password\"\n  helperText=\"Use at least 12 characters.\"\n  errorMessage={passwordError}\n/>",
+        "explanation": "Registration uses new-password. errorMessage is application-owned and sets aria-invalid."
+      },
+      {
+        "title": "Controlled visibility",
+        "language": "tsx",
+        "code": "<PasswordInput\n  id=\"password\"\n  label=\"Password\"\n  visible={showPassword}\n  onVisibleChange={setShowPassword}\n/>",
+        "explanation": "The parent owns visibility; the toggle reports the requested next state."
+      },
+      {
+        "title": "Disabled field with an explanation",
+        "language": "tsx",
+        "code": "<PasswordInput\n  id=\"account-password\"\n  label=\"Account password\"\n  helperText=\"Managed by your account administrator.\"\n  disabled\n/>",
+        "explanation": "Disabled wins over hover, focus and error. The reason is explained in helper copy."
+      },
+      {
+        "title": "Visually hidden but accessible label",
+        "language": "tsx",
+        "code": "<PasswordInput\n  id=\"pin-password\"\n  label=\"Account password\"\n  hideLabel\n  placeholder=\"Enter your password\"\n/>",
+        "explanation": "hideLabel hides the visual row but keeps the label programmatically associated."
+      }
+    ],
+    "invalid": [
+      {
+        "title": "Non-button toggle",
+        "language": "html",
+        "code": "<span class=\"sl-password-input__toggle\" onclick=\"toggle()\">Show</span>",
+        "explanation": "A span is not keyboard focusable or operable and has no native button semantics."
+      },
+      {
+        "title": "Icon-only toggle",
+        "language": "tsx",
+        "code": "<button type=\"button\" aria-label=\"\"><EyeIcon /></button>",
+        "explanation": "The toggle needs an accessible name and visible or programmatic text that describes the action."
+      },
+      {
+        "title": "Error without text",
+        "language": "tsx",
+        "code": "<PasswordInput id=\"password\" label=\"Password\" className=\"is-invalid\" />",
+        "explanation": "A red border alone is not an accessible error signal; supply errorMessage."
+      },
+      {
+        "title": "Error on a disabled field",
+        "language": "tsx",
+        "code": "<PasswordInput id=\"password\" label=\"Password\" errorMessage=\"Required\" disabled />",
+        "explanation": "Disabled wins over Error. A disabled field must not present validation state."
+      },
+      {
+        "title": "Value mutation on toggle",
+        "language": "tsx",
+        "code": "onVisibleChange={(next) => { setVisible(next); setValue(value.trim()); }}",
+        "explanation": "Toggling visibility must not change the entered password."
+      },
+      {
+        "title": "Invented Figma node",
+        "language": "json",
+        "code": "\"figma\": { \"nodeId\": \"00:00\" }",
+        "explanation": "The Figma reference is unresolved. Never invent a node ID or retain a placeholder."
+      }
+    ]
+  }
+}

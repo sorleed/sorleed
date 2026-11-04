@@ -1,0 +1,31 @@
+{
+  "name": "@sorleed/cli",
+  "version": "0.1.0-alpha.0",
+  "description": "Source-distribution CLI for Sorleed components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorleed/sorleed.git",
+    "directory": "cli"
+  },
+  "homepage": "https://github.com/sorleed/sorleed#readme",
+  "bugs": {
+    "url": "https://github.com/sorleed/sorleed/issues"
+  },
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "sorleed": "./bin/sorleed.mjs"
+  },
+  "scripts": {
+    "prepare": "node scripts/copy-templates.mjs",
+    "prepack": "node scripts/copy-templates.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "README.md"
+  ]
+}

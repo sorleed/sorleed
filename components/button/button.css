@@ -1,0 +1,123 @@
+/*
+ * Sorleed Button — production styles for a native <button>.
+ * Contract: components/button/contract.json (1.0.0)
+ *
+ * Consumes only --sl-button-* component tokens from tokens/dist/tokens.css.
+ * State is derived from native interaction:
+ *   surface: disabled > active > hover > default
+ *   focus:   additive keyboard-focus ring (:focus-visible), suppressed when disabled
+ *
+ * There is no state prop, no combined Hover+Focus variant and no non-button element.
+ */
+
+.sl-button,
+.sl-button--primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: var(--sl-button-height);
+  margin: 0;
+  padding-block: calc((var(--sl-button-height) - var(--sl-button-line-height)) / 2);
+  padding-inline: var(--sl-button-padding-x);
+  border: 0;
+  border-radius: var(--sl-button-radius);
+  background-color: var(--sl-button-primary-background);
+  color: var(--sl-button-primary-foreground);
+  font-family: inherit;
+  font-size: var(--sl-button-font-size);
+  font-weight: var(--sl-button-font-weight);
+  line-height: var(--sl-button-line-height);
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Primary is the default variant. The explicit modifier is optional. */
+.sl-button:not(:disabled):hover {
+  background-color: var(--sl-button-primary-background-hover);
+}
+
+.sl-button:not(:disabled):active {
+  background-color: var(--sl-button-primary-background-active);
+}
+
+.sl-button--secondary {
+  background-color: var(--sl-button-secondary-background);
+  color: var(--sl-button-secondary-foreground);
+}
+
+.sl-button--secondary:not(:disabled):hover {
+  background-color: var(--sl-button-secondary-background-hover);
+}
+
+.sl-button--secondary:not(:disabled):active {
+  background-color: var(--sl-button-secondary-background-active);
+}
+
+.sl-button--ghost {
+  /* No Ghost default-background token exists; the page surface shows through. */
+  background-color: transparent;
+  color: var(--sl-button-ghost-foreground);
+}
+
+.sl-button--ghost:not(:disabled):hover {
+  background-color: var(--sl-button-ghost-background-hover);
+}
+
+.sl-button--ghost:not(:disabled):active {
+  background-color: var(--sl-button-ghost-background-active);
+}
+
+/*
+ * The ring is an additive keyboard-focus overlay, not a second state axis.
+ * Inset by the offset token, then draw the ring width outside the surface.
+ */
+.sl-button::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--sl-button-focus-offset));
+  border: var(--sl-button-focus-width) solid transparent;
+  border-radius: calc(var(--sl-button-radius) + var(--sl-button-focus-offset));
+  pointer-events: none;
+}
+
+.sl-button:focus-visible {
+  outline: none;
+}
+
+.sl-button:focus-visible::after {
+  border-color: var(--sl-button-focus-color);
+}
+
+/* Disabled is the final state: it suppresses hover, active and focus treatment. */
+.sl-button:disabled {
+  background-color: var(--sl-button-disabled-background);
+  color: var(--sl-button-disabled-foreground);
+  cursor: not-allowed;
+}
+
+.sl-button--ghost:disabled {
+  background-color: transparent;
+}
+
+.sl-button:disabled::after {
+  display: none;
+}
+
+/* Preserve a visible boundary and focus indicator with system colours. */
+@media (forced-colors: active) {
+  .sl-button {
+    border: var(--sl-button-focus-width) solid ButtonText;
+  }
+
+  .sl-button::after {
+    display: none;
+  }
+
+  .sl-button:focus-visible {
+    outline: var(--sl-button-focus-width) solid Highlight;
+    outline-offset: var(--sl-button-focus-offset);
+  }
+}

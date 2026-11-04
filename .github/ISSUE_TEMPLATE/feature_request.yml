@@ -1,0 +1,73 @@
+name: Feature request
+description: Propose a new capability or a change to an existing contract.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Sorleed is contract-first. Describe the problem and the affected contract
+        or token area rather than only a visual outcome.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: A short description of the proposed capability.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What problem does this solve, and for whom?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Components
+        - Tokens
+        - React package
+        - CLI
+        - Documentation
+        - Examples or POC
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior, API or documentation change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: contract
+    attributes:
+      label: Contract and token implications
+      description: Does this require a new variant, state, token, dependency or schema change?
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links, examples or related decisions.
+    validations:
+      required: false

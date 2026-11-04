@@ -1,0 +1,153 @@
+/*
+ * Sorleed Input — production styles for a native <input>.
+ * Contract: components/input/contract.json (1.0.0)
+ *
+ * Consumes only --sl-input-* component tokens from tokens/dist/tokens.css.
+ * State precedence: Disabled > Error > Hover > Default.
+ * Focus is an independent overlay, shown for keyboard/pointer focus and
+ * suppressed by the native disabled attribute.
+ *
+ * The application owns validation, error copy, aria-invalid, the error
+ * association and announcement. The visible error border is keyed to
+ * aria-invalid="true" so the visual and semantic error states cannot drift.
+ */
+
+.sl-input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+}
+
+.sl-input__label {
+  margin: 0;
+  margin-block-end: var(--sl-input-label-gap);
+  color: var(--sl-input-label-color);
+  font-size: var(--sl-input-font-size);
+  font-weight: var(--sl-input-label-font-weight);
+  line-height: var(--sl-input-line-height);
+}
+
+/*
+ * Visually hidden, never removed. The label remains the accessible name and
+ * keeps its for/id association when hideLabel is requested.
+ */
+.sl-input__label--visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sl-input__control {
+  position: relative;
+  min-width: 0;
+}
+
+.sl-input__field {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--sl-input-height);
+  margin: 0;
+  padding-block: calc(
+    (var(--sl-input-height) - var(--sl-input-line-height) - (2 * var(--sl-input-border-width))) / 2
+  );
+  padding-inline: var(--sl-input-padding-x);
+  border: var(--sl-input-border-width) solid var(--sl-input-border);
+  border-radius: var(--sl-input-radius);
+  background-color: var(--sl-input-background);
+  color: var(--sl-input-text);
+  font-family: inherit;
+  font-size: var(--sl-input-font-size);
+  font-weight: var(--sl-input-font-weight);
+  line-height: var(--sl-input-line-height);
+  appearance: none;
+}
+
+.sl-input__field::placeholder {
+  color: var(--sl-input-placeholder);
+  opacity: 1;
+}
+
+/* Hover is below Error and Disabled in the precedence chain. */
+.sl-input__field:not(:disabled):hover {
+  border-color: var(--sl-input-border-hover);
+}
+
+/*
+ * Error is rendered only with the application-owned aria-invalid state.
+ * The application must also render the error message; never a red border alone.
+ */
+.sl-input__field[aria-invalid="true"]:not(:disabled) {
+  border-color: var(--sl-input-border-error);
+}
+
+/* Disabled wins over Hover, Error and Focus. */
+.sl-input__field:disabled {
+  border-color: var(--sl-input-border-disabled);
+  background-color: var(--sl-input-background-disabled);
+  color: var(--sl-input-text-disabled);
+  cursor: not-allowed;
+}
+
+.sl-input__field:disabled::placeholder {
+  color: var(--sl-input-text-disabled);
+}
+
+.sl-input__message {
+  margin: 0;
+  margin-block-start: var(--sl-input-helper-gap);
+  color: var(--sl-input-helper-color);
+  font-size: var(--sl-input-helper-font-size);
+  font-weight: var(--sl-input-font-weight);
+  line-height: var(--sl-input-helper-line-height);
+}
+
+.sl-input__message--error {
+  color: var(--sl-input-text-error);
+}
+
+/* The ring is a sibling overlay around the control, not a fifth state. */
+.sl-input__control::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--sl-input-focus-offset));
+  border: var(--sl-input-focus-width) solid transparent;
+  border-radius: var(--sl-input-focus-radius);
+  pointer-events: none;
+}
+
+.sl-input__field:focus {
+  outline: none;
+}
+
+.sl-input__control:has(.sl-input__field:focus-visible)::after {
+  border-color: var(--sl-input-focus-color);
+}
+
+.sl-input__control:has(.sl-input__field:disabled)::after {
+  display: none;
+}
+
+/* Preserve a visible boundary and focus indicator with system colours. */
+@media (forced-colors: active) {
+  .sl-input__field {
+    border-color: ButtonText;
+  }
+
+  .sl-input__control::after {
+    display: none;
+  }
+
+  .sl-input__control:has(.sl-input__field:focus-visible)::after {
+    display: block;
+    border-color: Highlight;
+  }
+}

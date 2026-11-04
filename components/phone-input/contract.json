@@ -1,0 +1,1554 @@
+{
+  "$schema": "../contract.schema.json",
+  "contract": {
+    "id": "sorleed.phone-input",
+    "name": "PhoneInput",
+    "version": "1.0.0",
+    "status": "draft",
+    "componentVersion": "0.1.0",
+    "summary": "Sorleed's international phone-number field with label, country selector, number input and helper or error. The contract records the CSS and native HTML reference implementation plus the private-alpha React adapter; the Figma reference is unresolved and is not asserted.",
+    "maturity": "contract; framework-agnostic CSS + native HTML; React private-alpha adapter",
+    "lastUpdated": "2026-11-03",
+    "canonical": {
+      "figma": null,
+      "tokens": "tokens/tokens.json",
+      "css": "tokens/dist/tokens.css",
+      "evidence": [
+        "The Figma reference is unresolved. No node ID, variant ID or property key is asserted by this contract.",
+        "components/phone-input/phone-input.css and phone-input.html are the canonical framework-agnostic implementation.",
+        "react/phone-input/index.tsx is a private-alpha adapter and is not represented as production-ready.",
+        "The adapter uses libphonenumber-js when available; numbering-plan validation cannot prove a number is active, reachable or owned.",
+        "No IP geolocation and no forced default country are implemented or permitted."
+      ]
+    }
+  },
+  "responsibilities": {
+    "component": [
+      "Render the full field anatomy with label, country selector, number input and helper or error row.",
+      "Apply only phone-input component tokens for colour, geometry and typography.",
+      "Expose accessible labeling and association between label, country selector, input and messages.",
+      "Expose native disabled state and suppress focus treatments when disabled.",
+      "Expose the native input value and change events without owning validation."
+    ],
+    "application": [
+      "Choose or infer the appropriate default country without relying on IP geolocation.",
+      "Supply required-field validation, user-facing error copy and the aria-invalid presentation.",
+      "Decide when to require a complete international number and when to validate.",
+      "Handle form submission, focus management and announcements.",
+      "Explain why a field is disabled rather than relying on the muted fill alone."
+    ],
+    "figmaOnly": [
+      "No Figma evidence is recorded for this component. Design-time property mapping is not asserted."
+    ]
+  },
+  "use": {
+    "intended": [
+      "Collecting international phone numbers in global forms where users may travel.",
+      "Forms requiring E.164 normalisation when a valid international number is provided."
+    ],
+    "inappropriate": [
+      {
+        "use": "Assuming a single country for all users without explicit configuration.",
+        "reason": "Sorleed is international and hardcoding a country is not allowed.",
+        "alternative": "Infer from an existing international number or require explicit selection with no forced default."
+      },
+      {
+        "use": "Treating a calling code alone as a unique country identifier.",
+        "reason": "Multiple countries share calling codes.",
+        "alternative": "Present full country names in the selector and allow disambiguation."
+      },
+      {
+        "use": "Using IP geolocation to auto-select a country.",
+        "reason": "Not permitted due to privacy and accuracy concerns.",
+        "alternative": "Use explicit defaultCountry, infer from an E.164 value or no default."
+      }
+    ]
+  },
+  "anatomy": {
+    "structure": [
+      "Wrapper with class .sl-phone-input",
+      "Label with class .sl-phone-input__label",
+      "Row containing the country selector and number input",
+      "Country container with class .sl-phone-input__country and a visually hidden label",
+      "Country selector with class .sl-phone-input__country-select and an accessible name",
+      "Control wrapper with class .sl-phone-input__control",
+      "Number input with class .sl-phone-input__field and type=tel",
+      "Message row with class .sl-phone-input__message; error adds .sl-phone-input__message--error"
+    ],
+    "geometry": [
+      {
+        "property": "control height",
+        "value": "40px",
+        "token": "phone-input.height"
+      },
+      {
+        "property": "horizontal padding",
+        "value": "12px",
+        "token": "phone-input.padding-x"
+      },
+      {
+        "property": "corner radius",
+        "value": "6px",
+        "token": "phone-input.radius"
+      },
+      {
+        "property": "border width",
+        "value": "1px",
+        "token": "phone-input.border-width"
+      },
+      {
+        "property": "label gap",
+        "value": "8px",
+        "token": "phone-input.label-gap"
+      },
+      {
+        "property": "helper gap",
+        "value": "4px",
+        "token": "phone-input.helper-gap"
+      },
+      {
+        "property": "row gap",
+        "value": "8px",
+        "token": "phone-input.gap"
+      },
+      {
+        "property": "country selector minimum width",
+        "value": "48px",
+        "token": "phone-input.country-width"
+      },
+      {
+        "property": "focus ring width",
+        "value": "2px",
+        "token": "phone-input.focus.width"
+      },
+      {
+        "property": "focus ring offset",
+        "value": "2px",
+        "token": "phone-input.focus.offset"
+      }
+    ],
+    "literals": [
+      {
+        "property": "country container maximum width",
+        "value": "40%",
+        "reason": "No max-width token exists. The country selector stays proportional to the row without a fixed pixel width."
+      },
+      {
+        "property": "border transition",
+        "value": "120ms ease-in-out",
+        "reason": "No motion token exists in the 229-token source. The transition is cosmetic and does not change state semantics."
+      }
+    ]
+  },
+  "properties": [],
+  "codeOnlyProperties": [
+    {
+      "prop": "label",
+      "type": "string",
+      "default": null,
+      "required": true,
+      "description": "Visible label text and accessible name for the number input.",
+      "notes": "Must be non-empty. When hideLabel is true the label is visually hidden, not removed."
+    },
+    {
+      "prop": "hideLabel",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Visually hides the label while keeping it programmatically associated.",
+      "notes": "Do not use display:none or aria-hidden on the only label."
+    },
+    {
+      "prop": "helperText",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Supporting copy shown when there is no error.",
+      "notes": "Replaced by errorMessage when an error is present."
+    },
+    {
+      "prop": "errorMessage",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Error copy shown in the message row and connected through aria-describedby.",
+      "notes": "Sets aria-invalid=true. The application owns when validation runs."
+    },
+    {
+      "prop": "value",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Controlled editing value, preserved exactly as typed.",
+      "notes": "The adapter does not reformat or reject intermediate input."
+    },
+    {
+      "prop": "defaultValue",
+      "type": "string",
+      "default": "\"\"",
+      "required": false,
+      "description": "Initial value for the uncontrolled adapter.",
+      "notes": "Not applied while value is controlled."
+    },
+    {
+      "prop": "country",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Controlled ISO 3166-1 alpha-2 country code.",
+      "notes": "No IP geolocation. The country code is not inferred from the calling code alone."
+    },
+    {
+      "prop": "defaultCountry",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Uncontrolled initial country code.",
+      "notes": "The application provides this explicitly or leaves it undefined."
+    },
+    {
+      "prop": "onCountryChange",
+      "type": "(country: string | undefined) => void",
+      "default": null,
+      "required": false,
+      "description": "Called when the country selector changes.",
+      "notes": "The adapter does not rewrite the current number when the country changes."
+    },
+    {
+      "prop": "countries",
+      "type": "string[] | undefined",
+      "default": null,
+      "required": false,
+      "description": "Optional allow-list of ISO country codes.",
+      "notes": "When omitted, the adapter lists every country reported by libphonenumber-js."
+    },
+    {
+      "prop": "international",
+      "type": "boolean",
+      "default": true,
+      "required": false,
+      "description": "Accepted for API compatibility with an international-number intent.",
+      "notes": "The current private-alpha adapter accepts this prop but does not change behaviour from it. Do not rely on it."
+    },
+    {
+      "prop": "onChange",
+      "type": "(result: PhoneInputChangeResult) => void",
+      "default": null,
+      "required": false,
+      "description": "Called on every input change with inputValue, optional e164, country, status and isValid.",
+      "notes": "The adapter reports status but does not display an error by itself; the application supplies errorMessage."
+    },
+    {
+      "prop": "disabled",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Disables both the country selector and the number input.",
+      "notes": "Native disabled attribute; suppresses hover and focus presentation."
+    },
+    {
+      "prop": "required",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Sets the native required attribute on the number input.",
+      "notes": "The application owns required validation and visible required indication."
+    },
+    {
+      "prop": "readOnly",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Passes the native readOnly attribute to the number input.",
+      "notes": "ReadOnly has no dedicated visual treatment in the stylesheet. Do not present it as a distinct state."
+    },
+    {
+      "prop": "name",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Native form field name for the number input.",
+      "notes": "The country selector has its own generated id and is not submitted under this name."
+    },
+    {
+      "prop": "id",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Identifier for the number input; the country selector uses the same id plus -country.",
+      "notes": "Generated with useId when omitted."
+    },
+    {
+      "prop": "className",
+      "type": "string | undefined",
+      "default": null,
+      "required": false,
+      "description": "Layout-only escape hatch for the wrapper.",
+      "notes": "Must not change colour, typography, radius, height, border, gaps or focus treatment."
+    },
+    {
+      "prop": "native input attributes",
+      "type": "InputHTMLAttributes<HTMLInputElement> excluding type, value, onChange and aria-describedby",
+      "default": null,
+      "required": false,
+      "description": "Standard attributes such as placeholder, maxLength, pattern, aria-* and data-* pass through to the number input.",
+      "notes": "The adapter sets type=tel, inputMode=tel and autoComplete=tel."
+    }
+  ],
+  "variants": [
+    {
+      "name": "Default",
+      "figmaNodeId": null,
+      "tokens": [
+        "phone-input.height",
+        "phone-input.padding-x",
+        "phone-input.padding-y",
+        "phone-input.radius",
+        "phone-input.border-width",
+        "phone-input.font-size",
+        "phone-input.line-height",
+        "phone-input.font-weight",
+        "phone-input.label-gap",
+        "phone-input.helper-gap",
+        "phone-input.gap",
+        "phone-input.country-width",
+        "phone-input.country-select-padding-x",
+        "phone-input.background",
+        "phone-input.border",
+        "phone-input.text",
+        "phone-input.placeholder",
+        "phone-input.label.color",
+        "phone-input.label.font-weight",
+        "phone-input.helper.color",
+        "phone-input.helper.font-size",
+        "phone-input.helper.line-height"
+      ],
+      "notes": "White fill, control boundary, primary text and tertiary placeholder. Focus ring is bound but hidden."
+    },
+    {
+      "name": "Hover",
+      "figmaNodeId": null,
+      "tokens": [
+        "phone-input.border-hover",
+        "phone-input.background",
+        "phone-input.text",
+        "phone-input.placeholder"
+      ],
+      "notes": "Only the border changes to phone-input.border-hover; the error state suppresses this treatment."
+    },
+    {
+      "name": "Error",
+      "figmaNodeId": null,
+      "tokens": [
+        "phone-input.border-error",
+        "phone-input.text-error",
+        "phone-input.background",
+        "phone-input.text"
+      ],
+      "notes": "The error border is keyed to aria-invalid=true and the message carries phone-input.text-error."
+    },
+    {
+      "name": "Disabled",
+      "figmaNodeId": null,
+      "tokens": [
+        "phone-input.background-disabled",
+        "phone-input.border-disabled",
+        "phone-input.text-disabled"
+      ],
+      "notes": "Muted fill, matching border and muted text. Disabled wins over Error, Hover and Focused."
+    }
+  ],
+  "stateModel": {
+    "axes": [
+      {
+        "name": "State",
+        "kind": "variant",
+        "values": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "Focused",
+        "kind": "boolean",
+        "values": [
+          "false",
+          "true"
+        ]
+      }
+    ],
+    "validCombinations": [
+      {
+        "combination": "Default",
+        "supported": true,
+        "result": "White fill, phone-input.border boundary, primary text and tertiary placeholder."
+      },
+      {
+        "combination": "Hover",
+        "supported": true,
+        "result": "phone-input.border-hover boundary while the pointer is over an enabled, non-invalid control."
+      },
+      {
+        "combination": "Error",
+        "supported": true,
+        "result": "phone-input.border-error boundary and phone-input.text-error message."
+      },
+      {
+        "combination": "Disabled",
+        "supported": true,
+        "result": "Muted fill, matching disabled border and muted text; no interaction."
+      },
+      {
+        "combination": "Default + Focused",
+        "supported": true,
+        "result": "Default boundary plus the focus overlay."
+      },
+      {
+        "combination": "Hover + Focused",
+        "supported": true,
+        "result": "Hover boundary plus the focus overlay."
+      },
+      {
+        "combination": "Error + Focused",
+        "supported": true,
+        "result": "Error boundary and message plus the focus overlay."
+      },
+      {
+        "combination": "Disabled + Focused",
+        "supported": false,
+        "result": "Disabled wins; no focus overlay is rendered."
+      },
+      {
+        "combination": "Error + Hover",
+        "supported": false,
+        "result": "The error border persists; the hover border is not applied."
+      },
+      {
+        "combination": "Disabled + Error",
+        "supported": false,
+        "result": "Disabled wins; no error border or error-coloured message."
+      },
+      {
+        "combination": "Disabled + Hover",
+        "supported": false,
+        "result": "Disabled wins; no hover border."
+      }
+    ],
+    "precedence": [
+      "State precedence: Disabled > Error > Hover > Default.",
+      "Focus is an orthogonal overlay in Default, Hover and Error; Disabled suppresses it.",
+      "Error suppresses the hover border.",
+      "Disabled suppresses error and hover treatment."
+    ],
+    "conflicts": [
+      "Error + Hover is not modelled. Do not add a hover border on top of the error border.",
+      "Disabled + Error is not modelled. Do not show an error border or error message on a disabled field.",
+      "Disabled + Focused is not a visible combination. The focus overlay must be suppressed.",
+      "Focus is not a fifth State. Do not create State=Focus.",
+      "Calling codes are not unique country identifiers; do not model a calling code as a country."
+    ],
+    "notes": [
+      "The focus overlay is an independent pseudo-element, not a State variant.",
+      "The React adapter reports validation status through onChange; it does not render an error unless the application supplies errorMessage.",
+      "Figma state names and booleans are not DOM attributes, props or ARIA values. No Figma evidence is currently recorded."
+    ]
+  },
+  "tokens": {
+    "rule": "Component code consumes only phone-input.* component tokens. Colour tokens alias semantic roles; geometry and typography alias primitives where applicable.",
+    "dependencies": [
+      {
+        "name": "phone-input.background",
+        "type": "color",
+        "cssVar": "--sl-phone-input-background",
+        "alias": "color.surface.default",
+        "resolved": "#FFFFFF",
+        "role": "Control fill",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.background-disabled",
+        "type": "color",
+        "cssVar": "--sl-phone-input-background-disabled",
+        "alias": "color.surface.muted",
+        "resolved": "#E4E4E7",
+        "role": "Disabled control fill",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.border",
+        "type": "color",
+        "cssVar": "--sl-phone-input-border",
+        "alias": "color.border.control",
+        "resolved": "#71717A",
+        "role": "Control boundary",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.border-disabled",
+        "type": "color",
+        "cssVar": "--sl-phone-input-border-disabled",
+        "alias": "color.border.disabled",
+        "resolved": "#E4E4E7",
+        "role": "Disabled control boundary",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.border-error",
+        "type": "color",
+        "cssVar": "--sl-phone-input-border-error",
+        "alias": "color.border.error",
+        "resolved": "#DC2626",
+        "role": "Error control boundary",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.border-hover",
+        "type": "color",
+        "cssVar": "--sl-phone-input-border-hover",
+        "alias": "color.border.control-hover",
+        "resolved": "#52525B",
+        "role": "Hover control boundary",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.border-width",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-border-width",
+        "alias": "size.border.width",
+        "resolved": "1px",
+        "role": "Control border width",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.country-select-padding-x",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-country-select-padding-x",
+        "alias": "space.2",
+        "resolved": "8px",
+        "role": "Country selector horizontal padding",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.country-width",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-country-width",
+        "alias": "space.12",
+        "resolved": "48px",
+        "role": "Country selector minimum width",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.focus.color",
+        "type": "color",
+        "cssVar": "--sl-phone-input-focus-color",
+        "alias": "color.border.focus",
+        "resolved": "#2563EB",
+        "role": "Focus ring colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.focus.offset",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-focus-offset",
+        "alias": "size.focus-ring.offset",
+        "resolved": "2px",
+        "role": "Focus ring offset",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.focus.width",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-focus-width",
+        "alias": "size.focus-ring.width",
+        "resolved": "2px",
+        "role": "Focus ring width",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.font-size",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-font-size",
+        "alias": "font.size.sm",
+        "resolved": "14px",
+        "role": "Control font size",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.font-weight",
+        "type": "fontWeight",
+        "cssVar": "--sl-phone-input-font-weight",
+        "alias": "font.weight.regular",
+        "resolved": 400,
+        "role": "Control font weight",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.gap",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-gap",
+        "alias": "space.2",
+        "resolved": "8px",
+        "role": "Country-to-number gap",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.height",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-height",
+        "alias": "size.control.md",
+        "resolved": "40px",
+        "role": "Control height",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.helper.color",
+        "type": "color",
+        "cssVar": "--sl-phone-input-helper-color",
+        "alias": "color.content.helper",
+        "resolved": "#52525B",
+        "role": "Helper and message text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.helper.font-size",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-helper-font-size",
+        "alias": "font.size.xs",
+        "resolved": "12px",
+        "role": "Helper font size",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.helper-gap",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-helper-gap",
+        "alias": "space.1",
+        "resolved": "4px",
+        "role": "Control-to-message gap",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.helper.line-height",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-helper-line-height",
+        "alias": "font.line-height.xs",
+        "resolved": "16px",
+        "role": "Helper line height",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.label.color",
+        "type": "color",
+        "cssVar": "--sl-phone-input-label-color",
+        "alias": "color.content.secondary",
+        "resolved": "#3F3F46",
+        "role": "Label text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.label.font-weight",
+        "type": "fontWeight",
+        "cssVar": "--sl-phone-input-label-font-weight",
+        "alias": "font.weight.medium",
+        "resolved": 500,
+        "role": "Label font weight",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.label-gap",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-label-gap",
+        "alias": "space.2",
+        "resolved": "8px",
+        "role": "Label-to-row gap",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.line-height",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-line-height",
+        "alias": "font.line-height.sm",
+        "resolved": "20px",
+        "role": "Control line height",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.padding-x",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-padding-x",
+        "alias": "space.3",
+        "resolved": "12px",
+        "role": "Number input horizontal padding",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.padding-y",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-padding-y",
+        "alias": "space.2",
+        "resolved": "8px",
+        "role": "Control vertical padding",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.placeholder",
+        "type": "color",
+        "cssVar": "--sl-phone-input-placeholder",
+        "alias": "color.content.tertiary",
+        "resolved": "#71717A",
+        "role": "Placeholder text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.radius",
+        "type": "dimension",
+        "cssVar": "--sl-phone-input-radius",
+        "alias": "radius.md",
+        "resolved": "6px",
+        "role": "Control corner radius",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.text",
+        "type": "color",
+        "cssVar": "--sl-phone-input-text",
+        "alias": "color.content.primary",
+        "resolved": "#18181B",
+        "role": "Control text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.text-disabled",
+        "type": "color",
+        "cssVar": "--sl-phone-input-text-disabled",
+        "alias": "color.content.disabled",
+        "resolved": "#A1A1AA",
+        "role": "Disabled text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      },
+      {
+        "name": "phone-input.text-error",
+        "type": "color",
+        "cssVar": "--sl-phone-input-text-error",
+        "alias": "color.feedback.error-foreground",
+        "resolved": "#991B1B",
+        "role": "Error message text colour",
+        "usedBy": [
+          "Default",
+          "Hover",
+          "Error",
+          "Disabled"
+        ]
+      }
+    ],
+    "stateMapping": [
+      {
+        "state": "Default",
+        "background": "phone-input.background",
+        "foreground": "phone-input.text",
+        "border": "phone-input.border",
+        "placeholder": "phone-input.placeholder",
+        "label": "phone-input.label.color",
+        "helper": "phone-input.helper.color",
+        "ring": null
+      },
+      {
+        "state": "Hover",
+        "background": "phone-input.background",
+        "foreground": "phone-input.text",
+        "border": "phone-input.border-hover",
+        "placeholder": "phone-input.placeholder",
+        "label": "phone-input.label.color",
+        "helper": "phone-input.helper.color",
+        "ring": null
+      },
+      {
+        "state": "Error",
+        "background": "phone-input.background",
+        "foreground": "phone-input.text",
+        "border": "phone-input.border-error",
+        "placeholder": "phone-input.placeholder",
+        "label": "phone-input.label.color",
+        "helper": "phone-input.text-error",
+        "ring": null
+      },
+      {
+        "state": "Disabled",
+        "background": "phone-input.background-disabled",
+        "foreground": "phone-input.text-disabled",
+        "border": "phone-input.border-disabled",
+        "placeholder": "phone-input.text-disabled",
+        "label": "phone-input.label.color",
+        "helper": "phone-input.helper.color",
+        "ring": null
+      },
+      {
+        "state": "Default+Focused",
+        "background": "phone-input.background",
+        "foreground": "phone-input.text",
+        "border": "phone-input.border",
+        "placeholder": "phone-input.placeholder",
+        "label": "phone-input.label.color",
+        "helper": "phone-input.helper.color",
+        "ring": "phone-input.focus.color"
+      },
+      {
+        "state": "Hover+Focused",
+        "background": "phone-input.background",
+        "foreground": "phone-input.text",
+        "border": "phone-input.border-hover",
+        "placeholder": "phone-input.placeholder",
+        "label": "phone-input.label.color",
+        "helper": "phone-input.helper.color",
+        "ring": "phone-input.focus.color"
+      },
+      {
+        "state": "Error+Focused",
+        "background": "phone-input.background",
+        "foreground": "phone-input.text",
+        "border": "phone-input.border-error",
+        "placeholder": "phone-input.placeholder",
+        "label": "phone-input.label.color",
+        "helper": "phone-input.text-error",
+        "ring": "phone-input.focus.color"
+      },
+      {
+        "state": "Disabled+Focused",
+        "background": "phone-input.background-disabled",
+        "foreground": "phone-input.text-disabled",
+        "border": "phone-input.border-disabled",
+        "placeholder": "phone-input.text-disabled",
+        "label": "phone-input.label.color",
+        "helper": "phone-input.helper.color",
+        "ring": null
+      }
+    ],
+    "forbidden": [
+      "Do not consume primitive or semantic tokens directly.",
+      "Do not hardcode values when a token exists.",
+      "Do not use IP geolocation.",
+      "Do not introduce phone-input.success.*, phone-input.warning.* or phone-input.loading.* tokens."
+    ]
+  },
+  "accessibility": {
+    "design": [
+      {
+        "id": "label-association",
+        "requirement": "The label must be programmatically associated with the number input.",
+        "verification": "Inspect the for/id association and the computed accessible name."
+      },
+      {
+        "id": "country-accessible-name",
+        "requirement": "The country selector must have an accessible name.",
+        "verification": "Inspect the computed accessible name; do not rely on the flag or dial code alone."
+      },
+      {
+        "id": "error-association",
+        "requirement": "Error messages must be associated with the number input.",
+        "verification": "Check aria-describedby or aria-errormessage and aria-invalid."
+      },
+      {
+        "id": "focus-indicator",
+        "requirement": "Keyboard focus must show the focus overlay at 2px width and 2px offset.",
+        "verification": "Tab to each control and inspect the rendered overlay geometry."
+      }
+    ],
+    "production": [
+      {
+        "id": "keyboard",
+        "requirement": "The country selector and number input must be keyboard navigable using native controls.",
+        "verification": "Keyboard-only test; confirm native select and input behaviour and no keyboard trap."
+      },
+      {
+        "id": "flags-not-alone",
+        "requirement": "Do not rely on flags alone to identify countries.",
+        "verification": "Check that each option exposes a full country name and dial code."
+      },
+      {
+        "id": "focus-visible",
+        "requirement": "Focus must be visible; disabled removes the controls from interaction.",
+        "verification": "Tab test and disabled-state inspection."
+      },
+      {
+        "id": "error-not-colour-only",
+        "requirement": "Error is communicated by a border and a text message, not colour alone.",
+        "verification": "Render an error and inspect the message text and grayscale rendering."
+      },
+      {
+        "id": "disabled-semantics",
+        "requirement": "Use the native disabled attribute on both controls and do not present an error while disabled.",
+        "verification": "Assert disabled, absence from interaction and no aria-invalid presentation."
+      },
+      {
+        "id": "readonly-not-disabled",
+        "requirement": "ReadOnly must not be described or styled as a distinct state.",
+        "verification": "Inspect the DOM and stylesheet for readOnly-specific treatment."
+      }
+    ],
+    "contrast": [
+      {
+        "role": "Placeholder on control",
+        "foreground": "phone-input.placeholder",
+        "background": "phone-input.background",
+        "minimum": 4.5,
+        "ratios": {
+          "control": 4.83
+        },
+        "status": "pass",
+        "notes": "Aliases the same semantic roles as Input placeholder; measured from resolved token values."
+      },
+      {
+        "role": "Error text on page surface",
+        "foreground": "phone-input.text-error",
+        "background": "color.surface.default",
+        "minimum": 4.5,
+        "ratios": {
+          "default": 8.31
+        },
+        "status": "pass",
+        "notes": "Aliases the same semantic roles as Input error text; measured from resolved token values."
+      },
+      {
+        "role": "Control text on control fill",
+        "foreground": "phone-input.text",
+        "background": "phone-input.background",
+        "minimum": 4.5,
+        "ratios": {
+          "control": 17.72
+        },
+        "status": "pass",
+        "notes": "Aliases color.content.primary on color.surface.default."
+      },
+      {
+        "role": "Control border on page surface",
+        "foreground": "phone-input.border",
+        "background": "color.surface.default",
+        "minimum": 3,
+        "ratios": {
+          "default": 4.83
+        },
+        "status": "pass",
+        "notes": "Aliases color.border.control on color.surface.default."
+      },
+      {
+        "role": "Focus ring on page surface",
+        "foreground": "phone-input.focus.color",
+        "background": "color.surface.default",
+        "minimum": 3,
+        "ratios": {
+          "default": 5.17
+        },
+        "status": "pass",
+        "notes": "Aliases color.border.focus on color.surface.default."
+      },
+      {
+        "role": "Disabled text on disabled fill",
+        "foreground": "phone-input.text-disabled",
+        "background": "phone-input.background-disabled",
+        "minimum": 4.5,
+        "ratios": {
+          "control": 2.02
+        },
+        "status": "exempt",
+        "notes": "Inactive control; WCAG 1.4.3 and 1.4.11 exclude disabled controls."
+      }
+    ]
+  },
+  "customisation": {
+    "allowed": [
+      "Change label, helper, error and placeholder copy; all are application-owned.",
+      "Control the field width and responsive behaviour through the surrounding layout.",
+      "Provide an explicit defaultCountry or a controlled country value.",
+      "Restrict the country list with countries.",
+      "Supply errorMessage and the matching aria-invalid presentation from the application.",
+      "Override phone-input.* token values at the theme layer while preserving the alias chain and revalidating contrast.",
+      "Use className for layout only."
+    ],
+    "forbidden": [
+      "Hardcoding colours, radii, heights, padding, gaps, font sizes or weights.",
+      "Using IP geolocation to choose a country.",
+      "Forcing a default country without explicit application configuration.",
+      "Identifying a country by calling code alone or relying on flags alone.",
+      "Adding success, warning, info, loading or clearable states.",
+      "Presenting an error on a disabled field.",
+      "Claiming that a valid number is active, reachable or owned.",
+      "Replacing the native select with a non-keyboard-accessible custom listbox without a new contract."
+    ],
+    "themeOverrides": [
+      "Consumers may remap semantic roles so phone-input.* colours resolve to a brand palette.",
+      "Every override must preserve the component-token alias chain and be revalidated for text, boundary, focus and error contrast.",
+      "Do not add new phone-input.* names in a theme; a missing role requires a token-source change and a new contract version.",
+      "Light theme is the only implemented theme. Dark mode is not available and must not be simulated by inverting values."
+    ]
+  },
+  "composition": {
+    "canonical": [
+      "Render the full field: label above the row, country selector and number input in the row, helper or error below.",
+      "Use one label per field and keep it associated with the number input.",
+      "Show full country names and dial codes; allow disambiguation where calling codes are shared.",
+      "Let the application validate on blur or submit and supply errorMessage.",
+      "Pair the field with Button for form submission and a secondary cancel action.",
+      "Use helper text for format guidance before an error occurs.",
+      "Keep a stable id for each field so label, helper and error references remain valid."
+    ],
+    "forbidden": [
+      "IP geolocation or an unconfigured forced default country.",
+      "A calling code used as the only country identifier.",
+      "Flags as the only country label.",
+      "Helper and error messages shown at the same time.",
+      "A red border without an error message.",
+      "An error presented on a disabled field.",
+      "Validation that claims a number is active, reachable or owned.",
+      "A fixed pixel width that cannot respond to its container."
+    ],
+    "example": "components/phone-input/phone-input.html"
+  },
+  "invalidConfigurations": [
+    {
+      "id": "ip-geolocation",
+      "configuration": "Auto-detecting country from the IP address",
+      "why": "Not permitted by design; it is private, unreliable and not explicit.",
+      "correct": "Use explicit defaultCountry, infer from an E.164 value or leave the country unset."
+    },
+    {
+      "id": "calling-code-only",
+      "configuration": "Identifying a country solely by its calling code",
+      "why": "Multiple countries share calling codes, so the selection would be ambiguous.",
+      "correct": "Present full country names and allow disambiguation."
+    },
+    {
+      "id": "validity-claims",
+      "configuration": "Claiming active, reachable or owned status from format validation",
+      "why": "Numbering-plan validation cannot prove deliverability or ownership.",
+      "correct": "Describe the result as format validity only."
+    },
+    {
+      "id": "forced-default",
+      "configuration": "Defaulting every user to one country without configuration",
+      "why": "Sorleed is international and a hardcoded country is misleading.",
+      "correct": "Require explicit configuration, infer from an international value or start unselected."
+    },
+    {
+      "id": "disabled-error",
+      "configuration": "A disabled phone field with aria-invalid=true and an error message",
+      "why": "Disabled wins over Error; a disabled field must not present validation state.",
+      "correct": "Withhold the error presentation while disabled and explain the unavailability separately."
+    }
+  ],
+  "tests": {
+    "visual": [
+      {
+        "id": "visual-four-states",
+        "given": "The PhoneInput is rendered on a supported light surface.",
+        "when": "Default, Hover, Error and Disabled are captured.",
+        "then": "Fill, border, text, placeholder, label and message resolve to the stateMapping tokens; no hex or px literal covered by a token appears."
+      },
+      {
+        "id": "visual-focus",
+        "given": "Default, Hover and Error with keyboard focus.",
+        "when": "The number input and country selector are inspected.",
+        "then": "The 2px focus overlay at 2px offset appears; the base border, text and message remain unchanged."
+      },
+      {
+        "id": "visual-disabled-focus",
+        "given": "A disabled PhoneInput.",
+        "when": "The controls are focused programmatically or inspected.",
+        "then": "No focus overlay appears and both controls use disabled tokens."
+      },
+      {
+        "id": "visual-geometry",
+        "given": "A PhoneInput at a responsive width.",
+        "when": "The anatomy is measured.",
+        "then": "Controls are 40px high with a 6px radius, 1px border, 12px horizontal padding, 8px label gap, 4px helper gap and 8px row gap."
+      },
+      {
+        "id": "visual-label-hidden",
+        "given": "hideLabel=true.",
+        "when": "The field is rendered.",
+        "then": "The label is visually hidden but still occupies the accessibility tree; the layout gap collapses."
+      }
+    ],
+    "behaviour": [
+      {
+        "id": "behaviour-empty",
+        "given": "An empty PhoneInput.",
+        "when": "onChange fires.",
+        "then": "The result reports status=empty, isValid=false and no e164 value."
+      },
+      {
+        "id": "behaviour-partial",
+        "given": "A partial international value such as +123.",
+        "when": "onChange fires.",
+        "then": "The editing value is preserved, isValid=false and e164 is undefined."
+      },
+      {
+        "id": "behaviour-valid",
+        "given": "A valid international number such as +12125551234.",
+        "when": "onChange fires.",
+        "then": "The result reports status=valid, isValid=true and the normalised e164 value."
+      },
+      {
+        "id": "behaviour-invalid",
+        "given": "A non-numeric or impossible value.",
+        "when": "onChange fires.",
+        "then": "The editing value is preserved, isValid=false and e164 is undefined."
+      },
+      {
+        "id": "behaviour-country-controlled",
+        "given": "A controlled country prop and a defaultCountry prop.",
+        "when": "The field renders.",
+        "then": "The controlled country wins over the default."
+      },
+      {
+        "id": "behaviour-country-list",
+        "given": "A countries allow-list.",
+        "when": "The selector renders.",
+        "then": "Only the allowed ISO country codes appear."
+      },
+      {
+        "id": "behaviour-number-preserved",
+        "given": "An entered number.",
+        "when": "The country selection changes.",
+        "then": "The adapter does not rewrite or discard the current editing value."
+      },
+      {
+        "id": "behaviour-controlled-value",
+        "given": "A controlled value.",
+        "when": "The parent updates the value.",
+        "then": "The rendered value follows the parent."
+      },
+      {
+        "id": "behaviour-no-auto-error",
+        "given": "An invalid value without errorMessage.",
+        "when": "The user types.",
+        "then": "The adapter reports status through onChange but does not render an error or set aria-invalid by itself."
+      },
+      {
+        "id": "behaviour-international-prop",
+        "given": "international=true or international=false.",
+        "when": "The adapter renders.",
+        "then": "The current private-alpha adapter produces the same behaviour; the prop is accepted but unused."
+      }
+    ],
+    "accessibility": [
+      {
+        "id": "a11y-label",
+        "given": "Any PhoneInput.",
+        "when": "The accessibility tree is inspected.",
+        "then": "The number input has a programmatic label whose text matches the visible label, including when hideLabel is true."
+      },
+      {
+        "id": "a11y-country-name",
+        "given": "Any PhoneInput.",
+        "when": "The country selector is inspected.",
+        "then": "It has an accessible name and each option exposes a country name and dial code."
+      },
+      {
+        "id": "a11y-helper",
+        "given": "A PhoneInput with helperText and no error.",
+        "when": "The accessibility tree is inspected.",
+        "then": "The helper text is connected through aria-describedby."
+      },
+      {
+        "id": "a11y-error",
+        "given": "A PhoneInput with errorMessage.",
+        "when": "The accessibility tree is inspected.",
+        "then": "aria-invalid is true and the error text is connected through aria-describedby."
+      },
+      {
+        "id": "a11y-disabled",
+        "given": "A disabled PhoneInput.",
+        "when": "The accessibility tree is inspected.",
+        "then": "Both controls expose the native disabled state and are not interactive."
+      },
+      {
+        "id": "a11y-required",
+        "given": "A required PhoneInput.",
+        "when": "The accessibility tree is inspected.",
+        "then": "The number input exposes the native required state; the application provides a visible required indication."
+      },
+      {
+        "id": "a11y-focus",
+        "given": "Keyboard focus on the number input and country selector.",
+        "when": "Each control is tabbed to.",
+        "then": "A visible focus overlay is present and not clipped."
+      }
+    ],
+    "tokens": [
+      {
+        "id": "tokens-only-phone-prefix",
+        "given": "The PhoneInput stylesheet.",
+        "when": "Every colour, dimension and font-weight reference is audited.",
+        "then": "Every reference is a phone-input.* component token; there are zero primitive or semantic references and zero hardcoded values covered by a token."
+      },
+      {
+        "id": "tokens-count",
+        "given": "This contract.",
+        "when": "The dependency list is compared with tokens/tokens.json.",
+        "then": "All 31 phone-input.* dependencies exist, resolve to the stated values and map to the stated --sl-* CSS variables."
+      },
+      {
+        "id": "tokens-css-parity",
+        "given": "components/phone-input/phone-input.css.",
+        "when": "The consumed CSS variables are compared with the dependency list.",
+        "then": "The two sets are equal; no used token is undeclared and no declared token is unused."
+      },
+      {
+        "id": "tokens-state-binding",
+        "given": "All four states.",
+        "when": "Each fill, border, text, placeholder, label, message and ring is checked against stateMapping.",
+        "then": "Every visual property resolves to the mapped token; no state uses a token from the wrong state."
+      }
+    ],
+    "regression": [
+      {
+        "id": "regression-native-markup",
+        "given": "components/phone-input/phone-input.html.",
+        "when": "The reference markup is validated.",
+        "then": "It uses native label, select and input elements with the documented classes and no invented state props."
+      },
+      {
+        "id": "regression-react-adapter",
+        "given": "The private-alpha React adapter.",
+        "when": "The React test suite runs.",
+        "then": "Rendering, onChange statuses, country selection, controlled/uncontrolled values, disabled, required and ref behaviour remain covered."
+      },
+      {
+        "id": "regression-no-geolocation",
+        "given": "The contract and implementation.",
+        "when": "Searching for IP geolocation or a hardcoded default country.",
+        "then": "Neither exists."
+      },
+      {
+        "id": "regression-figma-unresolved",
+        "given": "The canonical Figma reference.",
+        "when": "The contract is reviewed.",
+        "then": "It remains null and no node ID or variant ID is invented."
+      },
+      {
+        "id": "regression-token-hashes",
+        "given": "The protected token source, validator and generated CSS.",
+        "when": "The contract stage is validated.",
+        "then": "tokens/tokens.json, tokens/check.mjs and tokens/dist/tokens.css match the recorded baseline hashes."
+      }
+    ]
+  },
+  "limitations": [
+    {
+      "id": "figma-unresolved",
+      "limitation": "The Figma reference for PhoneInput is unresolved and is recorded as null.",
+      "impact": "There is no design-source evidence for variant or property mapping.",
+      "mitigation": "Use the CSS and native HTML reference as canonical; add a verified Figma reference in a later change."
+    },
+    {
+      "id": "parsing",
+      "limitation": "The framework-agnostic contract does not include parsing logic.",
+      "impact": "Full formatting and validation require an adapter.",
+      "mitigation": "The private-alpha React adapter uses libphonenumber-js when available."
+    },
+    {
+      "id": "deliverability",
+      "limitation": "Numbering-plan validation cannot prove the number is active, reachable or owned.",
+      "impact": "The component cannot guarantee delivery.",
+      "mitigation": "Describe results as format validity only and do not make delivery claims."
+    },
+    {
+      "id": "international-prop-unused",
+      "limitation": "The React adapter accepts an international prop but does not currently change behaviour from it.",
+      "impact": "Consumers may assume the prop toggles formatting or validation.",
+      "mitigation": "Do not rely on it; treat the current behaviour as the documented baseline."
+    },
+    {
+      "id": "country-names",
+      "limitation": "The React adapter uses libphonenumber-js country codes as option names rather than full localised country names.",
+      "impact": "The selector shows two-letter codes and dial codes, not full country names.",
+      "mitigation": "The application may provide its own country label data; the native HTML reference demonstrates full names."
+    },
+    {
+      "id": "native-select-only",
+      "limitation": "The canonical implementation uses a native select; there is no searchable country picker.",
+      "impact": "Very long country lists require scrolling and type-ahead from the native control.",
+      "mitigation": "Use the native select until a searchable picker has its own contract and accessibility evidence."
+    },
+    {
+      "id": "readonly-visual",
+      "limitation": "readOnly is passed to the native input but has no dedicated visual treatment.",
+      "impact": "A read-only field is visually indistinguishable from an editable field.",
+      "mitigation": "Do not present readOnly as a supported visual state; use disabled only when the field is genuinely unavailable."
+    },
+    {
+      "id": "no-validation-in-component",
+      "limitation": "The adapter reports status but does not own validation timing, error copy or announcements.",
+      "impact": "Consumers must supply errorMessage, aria-invalid and focus management.",
+      "mitigation": "Follow the accessibility requirements and the native reference markup."
+    },
+    {
+      "id": "dark-mode",
+      "limitation": "Dark mode is not implemented.",
+      "impact": "No dark values exist for any phone-input token.",
+      "mitigation": "Ship light theme only. Do not invert values to simulate dark mode."
+    }
+  ],
+  "aiGuidance": {
+    "readOrder": [
+      "Read this contract first.",
+      "Read components/phone-input/README.md for the human explanation and native API.",
+      "Read components/phone-input/phone-input.css and phone-input.html for the canonical implementation.",
+      "Read react/phone-input/index.tsx and react/types/index.ts for the private-alpha adapter API.",
+      "Read tokens/tokens.json or tokens/dist/tokens.css for canonical token names and resolved values."
+    ],
+    "rules": [
+      "Never hardcode a country or use IP geolocation.",
+      "Treat calling codes as non-unique and show country names.",
+      "Distinguish editing text, normalised E.164 values and validation status.",
+      "Do not claim validity means active, reachable or owned.",
+      "Use only phone-input.* tokens; never consume primitives or semantic tokens directly.",
+      "Keep the full field anatomy: label, country selector, number input and helper/error row.",
+      "Let the application own validation, error copy and announcements.",
+      "Do not present readOnly or international as fully implemented behaviours.",
+      "Do not invent a Figma node ID; the reference is unresolved."
+    ],
+    "uncertaintyPolicy": [
+      "If a Figma reference is required, stop and report that it is unresolved; do not invent a node ID.",
+      "If the requested surface is inverse or dark, stop and report that it is unsupported.",
+      "If the requested treatment is success, warning, info or loading, stop and report that the state does not exist.",
+      "If a country is requested as a silent default, ask for explicit configuration.",
+      "If a searchable country picker is requested, report that only the native select is implemented.",
+      "If deliverability or ownership is requested, report that format validation cannot prove it."
+    ],
+    "definitionOfDone": [
+      "The full field renders with label, country selector, number input and helper/error row from phone-input.* tokens.",
+      "Default, Hover, Error, Disabled and their focus overlays render correctly; Disabled suppresses the overlay.",
+      "The country selector exposes full names and dial codes and allows disambiguation.",
+      "Label association, country accessible name, helper/error description, aria-invalid and disabled semantics are present.",
+      "No IP geolocation, forced default country or deliverability claim exists.",
+      "All 31 token dependencies resolve and match the generated CSS variables.",
+      "The native reference markup and the private-alpha React adapter remain consistent with this contract.",
+      "The Figma reference remains null until a verified reference is available."
+    ]
+  },
+  "examples": {
+    "valid": [
+      {
+        "title": "International field with explicit helper",
+        "language": "tsx",
+        "code": "<PhoneInput\n  id=\"recipient-phone\"\n  label=\"Phone number\"\n  helperText=\"Include your country code.\"\n  onChange={({ e164, isValid }) => setPhone({ e164, isValid })}\n/>",
+        "explanation": "No forced country. The application receives editing text, optional E.164 and validity status and decides what to display."
+      },
+      {
+        "title": "Explicit default country",
+        "language": "tsx",
+        "code": "<PhoneInput\n  id=\"billing-phone\"\n  label=\"Billing phone\"\n  defaultCountry=\"GB\"\n  errorMessage={phoneError}\n/>",
+        "explanation": "The default is explicit application configuration, not IP geolocation. errorMessage is application-owned and sets aria-invalid."
+      },
+      {
+        "title": "Restricted country list",
+        "language": "tsx",
+        "code": "<PhoneInput\n  id=\"support-phone\"\n  label=\"Support phone\"\n  countries={[\"US\", \"CA\"]}\n/>",
+        "explanation": "The allow-list limits options; the shared +1 calling code remains visible so the user can disambiguate."
+      },
+      {
+        "title": "Disabled field with an explanation",
+        "language": "tsx",
+        "code": "<PhoneInput\n  id=\"account-phone\"\n  label=\"Account phone\"\n  value={accountPhone}\n  helperText=\"Managed by your account administrator.\"\n  disabled\n/>",
+        "explanation": "Disabled wins over hover, focus and error. The reason is explained in helper copy."
+      },
+      {
+        "title": "Visually hidden but accessible label",
+        "language": "tsx",
+        "code": "<PhoneInput\n  id=\"contact-phone\"\n  label=\"Contact phone\"\n  hideLabel\n  placeholder=\"+1 555 000 0000\"\n/>",
+        "explanation": "hideLabel hides the visual row but keeps the label programmatically associated."
+      }
+    ],
+    "invalid": [
+      {
+        "title": "IP geolocation",
+        "language": "tsx",
+        "code": "<PhoneInput id=\"phone\" label=\"Phone\" defaultCountry={detectCountryFromIp()} />",
+        "explanation": "Country selection must be explicit or inferred from the number, never from the IP address."
+      },
+      {
+        "title": "Hardcoded default country",
+        "language": "tsx",
+        "code": "<PhoneInput id=\"phone\" label=\"Phone\" defaultCountry=\"NG\" />",
+        "explanation": "Hardcoding one country for every user is not international and is forbidden."
+      },
+      {
+        "title": "Calling code as country identity",
+        "language": "tsx",
+        "code": "<PhoneInput id=\"phone\" label=\"Phone\" countries={[\"+1\"]} />",
+        "explanation": "countries takes ISO country codes, not calling codes; +1 is shared by several countries."
+      },
+      {
+        "title": "Error on a disabled field",
+        "language": "tsx",
+        "code": "<PhoneInput id=\"phone\" label=\"Phone\" errorMessage=\"Required\" disabled />",
+        "explanation": "Disabled wins over Error. A disabled field must not present validation state."
+      },
+      {
+        "title": "Deliverability claim",
+        "language": "tsx",
+        "code": "if (result.isValid) markPhoneAsReachable(result.e164);",
+        "explanation": "Format validity does not prove the number is active, reachable or owned."
+      },
+      {
+        "title": "Invented Figma node",
+        "language": "json",
+        "code": "\"figma\": { \"nodeId\": \"00:00\" }",
+        "explanation": "The Figma reference is unresolved. Never invent a node ID or retain a placeholder."
+      }
+    ]
+  }
+}
