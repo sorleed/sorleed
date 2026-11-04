@@ -5,11 +5,11 @@ release announcement or a promise of availability.
 
 | Area | Status | Blocker / next action |
 |---|---|---|
-| Legal ownership and licensing | **Resolved for project code** | The owner confirmed that FinCore and `fincore-ui` were their own original project and contributor identity. The root LICENSE is MIT with `Copyright (c) 2026 Sorleed`. Third-party material retains its own terms and attribution. |
+| Legal ownership and licensing | **Resolved for project code** | The owner confirmed that FinCore and Weft were internal development identities and that `fincore-ui` was their own contributor identity. Neither was a launched product. The root LICENSE is MIT with `Copyright (c) 2026 Sorleed`. Third-party material retains its own terms and attribution. |
 | Repository visibility | **Private** | Keep private until the default-branch, governance and validation readiness items are resolved. |
-| Documentation | **Partly ready** | Default `main` still has no README. The project README, description and topics are aligned; the reconciled `main` still needs the full project content. |
+| Documentation | **Ready for private alpha** | `main` contains the full project, README and documentation. The documentation website remains deferred. |
 | Governance | **Partly ready** | Issue and pull-request templates are present. Code of Conduct and Security policy still contain required contact placeholders. CODEOWNERS requires confirmed maintainer handles. |
-| CI | **Passing** | The GitHub Actions workflow passes on `docs/foundation-baseline` for tokens, contracts, components, CLI, React tests, typecheck and build. |
+| CI | **Passing** | GitHub Actions passes on `main` at merge commit `9f5d254` (run `41802434935`) for tokens, contracts, components, CLI, React tests, typecheck and build. |
 | Branch protection | **Blocked** | GitHub branch protection/rulesets are unavailable on the current private-repository plan. Revisit after a plan or visibility decision. |
 | React package | **Private alpha** | `@sorleed/react` 0.1.0-alpha.1 is private and unpublished. Package metadata declares MIT. |
 | CLI package | **Private alpha** | `@sorleed/cli` 0.1.0-alpha.0 is private and unpublished. Package metadata declares MIT. |
@@ -21,7 +21,8 @@ release announcement or a promise of availability.
 
 ## Minimum public-release gates
 
-1. Reconciled `main` with the full project, README and approved LICENSE.
+1. **Completed:** reconciled `main` with the full project, README and approved
+   LICENSE at `9f5d254`.
 2. Verified default branch and branch-protection equivalent.
 3. Real Code of Conduct and Security contacts.
 4. CI passing on the default branch.

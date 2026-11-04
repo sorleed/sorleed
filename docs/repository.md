@@ -1,13 +1,15 @@
-# Repository transition
+# Repository model
 
-This document records the repository model for Sorleed and the controlled
-procedure for reconciling `main`.
+This document records the repository model for Sorleed and the completed
+reconciliation of `main`.
 
 ## Legal status
 
-The project owner has confirmed that FinCore was their original project and that
-`fincore-ui` was their own contributor identity. Sorleed is the renamed and
-continuing project. The intended source licence is MIT with the notice
+The project owner has confirmed that FinCore and Weft were internal development
+identities for the same project, and that `fincore-ui` was their own contributor
+identity. Neither was launched as a product with users, customers or an existing
+user base. Sorleed is the current product identity. There is no customer or user
+migration. The source licence is MIT with the notice
 `Copyright (c) 2026 Sorleed`.
 
 The historical FinCoreUI repository remains archive-only. It must not be
@@ -20,32 +22,39 @@ modified, pushed to, or used as an upstream.
 | `origin` | `https://github.com/sorleed/sorleed.git` | Sole active Sorleed repository; currently private. |
 | Archive only | `https://github.com/FinCoreUI/fincore.git` | Historical FinCoreUI repository. Not configured as a remote or upstream. |
 
-The local branch `docs/foundation-baseline` tracks
-`origin/docs/foundation-baseline`.
+`docs/foundation-baseline` tracks `origin/docs/foundation-baseline` and is
+retained as historical context only.
 
 ## Current branch state
 
-- `origin/main` is a separate root commit containing only a `LICENSE`.
-- `origin/docs/foundation-baseline` contains the complete Sorleed project and
-  its existing commit history.
-- The two histories are **unrelated**.
-- The default branch remains `main` until the reviewed transition is complete.
-- The local root `LICENSE` is MIT with `Copyright (c) 2026 Sorleed`. The remote
-  `main` LICENSE must be reconciled to the same approved text.
+- `origin/main` is the default and integration branch and contains the complete
+  Sorleed project.
+- The reconciliation merge commit is
+  `9f5d254cf3fdb44b01231497e6422f46553864e5` (PR #1).
+- Both original histories remain reachable from `main`:
+  `6667712a94c3bd58af0a8a2c6c5fa0b07141fab3` and
+  `96391d2b9fbe9346ad539ff3c7b2891bf547a694`.
+- `docs/foundation-baseline` (`f5c4419`) is historical and is not the
+  integration branch.
+- The root `LICENSE` on `main` is MIT with `Copyright (c) 2026 Sorleed`.
+- CI passes on `main` at the merge commit; see
+  [`release-readiness.md`](release-readiness.md).
 
 ## Rules
 
 - Do not force-push, rewrite history or delete either branch.
 - Do not replace the approved root `LICENSE` with a different holder or licence.
-- Do not change the default branch until `main` has been reconciled and verified.
+- Keep `main` as the default and integration branch.
 - Keep the FinCoreUI repository untouched.
 - Treat third-party material, including the Contributor Covenant text, under its
   own licence and attribution; do not relicense it as Sorleed-owned.
 
-## Safest `main` reconciliation procedure
+## Completed `main` reconciliation record
 
-This is a reviewed, non-destructive transition. Do not bypass branch protection
-or force-push.
+This reviewed, non-destructive transition was completed on 2026-11-04 through
+PR #1. The resulting merge commit is
+`9f5d254cf3fdb44b01231497e6422f46553864e5`. The steps below are retained as a
+historical record; they are not pending work.
 
 1. Create a fresh backup bundle and verify it includes the current branch HEAD.
 2. Confirm the working tree is clean and the local branch is up to date.
@@ -105,18 +114,18 @@ or force-push.
      --body "Reconciles the unrelated main root with the full Sorleed project and the approved MIT LICENSE."
    ```
 
-10. After the PR is merged, verify `origin/main` contains the full project,
-    README and approved LICENSE.
-11. Confirm `main` is the default branch. No force-push or history rewrite is
-    required.
+10. Verified: `origin/main` contains the full project, README and approved
+    LICENSE.
+11. Verified: `main` is the default branch. No force-push or history rewrite was
+    used.
 
-## FinCoreUI transition
+## FinCoreUI archive
 
 The old FinCoreUI repository is archive-only and is not connected to the local
 codebase. Do not archive, modify or delete it in this phase.
 
 ## Related documents
 
-- [`MIGRATION.md`](../MIGRATION.md) — historical FinCore/Weft rename.
+- [`PRODUCT.md`](../PRODUCT.md) — Sorleed product areas and status.
 - [`../CONTRIBUTING.md`](../CONTRIBUTING.md) — contribution workflow.
 - [`release-readiness.md`](release-readiness.md) — remaining release blockers.
