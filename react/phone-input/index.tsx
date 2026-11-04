@@ -27,6 +27,23 @@ const getLib = (): any => {
   return null;
 };
 
+const countryNameFormatter: { of: (code: string) => string | undefined } | null = (() => {
+  try {
+    const DisplayNames = (Intl as unknown as { DisplayNames?: new (locales: string[], options: { type: string }) => { of: (code: string) => string | undefined } }).DisplayNames;
+    return DisplayNames ? new DisplayNames(["en"], { type: "region" }) : null;
+  } catch {
+    return null;
+  }
+})();
+
+function getCountryName(code: string): string {
+  try {
+    return countryNameFormatter?.of(code) || code;
+  } catch {
+    return code;
+  }
+}
+
 function getCountriesList(): Array<{ code: string; name: string; dialCode: string }> {
   const lib = getLib();
   if (!lib) return [];
@@ -35,9 +52,9 @@ function getCountriesList(): Array<{ code: string; name: string; dialCode: strin
     return codes.map((code: string) => {
       try {
         const dialCode = lib.getCountryCallingCode ? lib.getCountryCallingCode(code) : "";
-        return { code, name: code, dialCode };
+        return { code, name: getCountryName(code), dialCode };
       } catch {
-        return { code, name: code, dialCode: "" };
+        return { code, name: getCountryName(code), dialCode: "" };
       }
     });
   } catch {

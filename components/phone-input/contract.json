@@ -1412,9 +1412,9 @@
     },
     {
       "id": "country-names",
-      "limitation": "The React adapter uses libphonenumber-js country codes as option names rather than full localised country names.",
-      "impact": "The selector shows two-letter codes and dial codes, not full country names.",
-      "mitigation": "The application may provide its own country label data; the native HTML reference demonstrates full names."
+      "limitation": "The React adapter shows English region names from Intl.DisplayNames with a two-letter code fallback; other locales are not exposed.",
+      "impact": "The selector shows English country names and dial codes. Applications requiring another locale must supply their own labels.",
+      "mitigation": "Add a locale prop and label data in a later contract revision; the native HTML reference demonstrates full names."
     },
     {
       "id": "native-select-only",
