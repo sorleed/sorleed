@@ -55,7 +55,12 @@ function main() {
   mkdirSync(packDir, { recursive: true });
 
   console.log("\n[1/6] Building and packing @sorleed/react");
-  run("npm", ["run", "build"], path.join(root, "react"));
+  const reactDir = path.join(root, "react");
+  if (!existsSync(path.join(reactDir, "node_modules", ".bin", "tsup"))) {
+    console.log("Installing React build dependencies");
+    run("npm", ["ci", "--no-audit", "--no-fund"], reactDir);
+  }
+  run("npm", ["run", "build"], reactDir);
   const reactTarball = pack(path.join(root, "react"), packDir);
   console.log(`Packed: ${path.basename(reactTarball)}`);
 
