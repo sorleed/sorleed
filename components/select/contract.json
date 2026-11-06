@@ -1,0 +1,164 @@
+{
+  "$schema": "../contract.schema.json",
+  "contract": {
+    "id": "sorleed.select",
+    "name": "Select",
+    "version": "1.0.0",
+    "status": "draft",
+    "componentVersion": "0.1.0",
+    "summary": "Native select control for single-value choice. Framework-agnostic CSS with native HTML reference markup.",
+    "maturity": "implemented; framework-agnostic CSS + native HTML; thin React adapter",
+    "lastUpdated": "2026-11-06",
+    "canonical": {
+      "figma": null,
+      "tokens": "tokens/tokens.json",
+      "css": "tokens/dist/tokens.css",
+      "evidence": []
+    }
+  },
+  "responsibilities": {
+    "component": [
+      "Render a native <select> with the supplied options.",
+      "Apply only select.* component tokens for colour, geometry and typography.",
+      "Expose a native disabled state that removes the control from interaction and tab order.",
+      "Render a visible focus indicator for keyboard focus.",
+      "Remain presentational: it does not decide business rules or validate forms."
+    ],
+    "application": [
+      "Choose the options and write the label.",
+      "Handle change events and form submission.",
+      "Use the native disabled attribute only when the control is genuinely unavailable.",
+      "Validate forms and move focus to the first invalid field.",
+      "Ensure a surrounding container does not clip the focus ring."
+    ],
+    "figmaOnly": []
+  },
+  "use": {
+    "intended": [
+      "Choosing one value from a known set of options (account type, currency, country).",
+      "Form fields where a native select is appropriate."
+    ],
+    "inappropriate": [
+      {
+        "use": "Multi-select or free-text entry.",
+        "reason": "This contract is single-value native <select> only.",
+        "alternative": "Use a future multi-select or combobox component."
+      },
+      {
+        "use": "Searchable or virtualised long lists.",
+        "reason": "Native <select> does not support search.",
+        "alternative": "Use a future combobox component."
+      }
+    ]
+  },
+  "anatomy": {
+    "structure": [
+      "Label associated with the select via for/id.",
+      "Control wrapper containing the native <select>.",
+      "Optional helper or error message referenced by aria-describedby."
+    ],
+    "geometry": [
+      {
+        "property": "control height",
+        "value": "40px",
+        "token": "select.height"
+      },
+      {
+        "property": "horizontal padding",
+        "value": "16px",
+        "token": "select.padding-x"
+      },
+      {
+        "property": "corner radius",
+        "value": "6px",
+        "token": "select.radius"
+      }
+    ],
+    "literals": []
+  },
+  "properties": [
+    {
+      "name": "Label",
+      "figmaType": "TEXT",
+      "figmaDefault": "Select",
+      "required": true,
+      "description": "Visible label for the control.",
+      "translation": "direct",
+      "production": {
+        "prop": "label",
+        "type": "string",
+        "default": null,
+        "required": true,
+        "derived": false,
+        "notes": "Must be non-empty. The label is the accessible name."
+      }
+    }
+  ],
+  "codeOnlyProperties": [
+    {
+      "prop": "disabled",
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "description": "Maps to the native disabled attribute.",
+      "notes": "Do not use disabled as a validation strategy."
+    },
+    {
+      "prop": "errorMessage",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "description": "When provided, sets aria-invalid and shows the error message.",
+      "notes": "The application owns the error copy."
+    },
+    {
+      "prop": "helperText",
+      "type": "string",
+      "default": null,
+      "required": false,
+      "description": "Helper text shown when there is no error.",
+      "notes": ""
+    }
+  ],
+  "tokens": {
+    "dependencies": [
+      "select.height",
+      "select.padding-x",
+      "select.radius",
+      "select.border-width",
+      "select.border",
+      "select.border-hover",
+      "select.border-error",
+      "select.border-disabled",
+      "select.background",
+      "select.background-disabled",
+      "select.text",
+      "select.text-disabled",
+      "select.text-error",
+      "select.label-color",
+      "select.label-gap",
+      "select.font-size",
+      "select.font-weight",
+      "select.label-font-weight",
+      "select.line-height",
+      "select.helper-color",
+      "select.helper-gap",
+      "select.helper-font-size",
+      "select.helper-line-height",
+      "select.focus-offset",
+      "select.focus-width",
+      "select.focus-radius",
+      "select.focus-color"
+    ]
+  },
+  "accessibility": {
+    "notes": [
+      "Native <select> semantics.",
+      "Label is programmatically associated.",
+      "Error state combines visible border with aria-invalid and text.",
+      "Helper and error text are referenced with aria-describedby.",
+      "Native disabled removes the control from interaction and tab order.",
+      ":focus-visible keyboard focus is never removed without a visible indicator."
+    ]
+  }
+}
