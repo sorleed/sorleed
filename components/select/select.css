@@ -1,0 +1,145 @@
+/*
+ * Sorleed Select — production styles for a native <select>.
+ * Contract: components/select/contract.json (1.0.0)
+ *
+ * Consumes only --sl-select-* component tokens from tokens/dist/tokens.css.
+ * State precedence: Disabled > Error > Hover > Default.
+ * Focus is an independent overlay, shown for keyboard/pointer focus and
+ * suppressed by the native disabled attribute.
+ *
+ * The application owns validation, error copy, aria-invalid, the error
+ * association and announcement. The visible error border is keyed to
+ * aria-invalid="true" so the visual and semantic error states cannot drift.
+ */
+
+.sl-select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+}
+
+.sl-select__label {
+  margin: 0;
+  margin-block-end: var(--sl-select-label-gap);
+  color: var(--sl-select-label-color);
+  font-size: var(--sl-select-font-size);
+  font-weight: var(--sl-select-label-font-weight);
+  line-height: var(--sl-select-line-height);
+}
+
+/*
+ * Visually hidden, never removed. The label remains the accessible name and
+ * keeps its for/id association when hideLabel is requested.
+ */
+.sl-select__label--visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sl-select__control {
+  position: relative;
+  min-width: 0;
+}
+
+.sl-select__field {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--sl-select-height);
+  margin: 0;
+  padding-block: calc(
+    (var(--sl-select-height) - var(--sl-select-line-height) - (2 * var(--sl-select-border-width))) / 2
+  );
+  padding-inline: var(--sl-select-padding-x);
+  border: var(--sl-select-border-width) solid var(--sl-select-border);
+  border-radius: var(--sl-select-radius);
+  background-color: var(--sl-select-background);
+  color: var(--sl-select-text);
+  font-family: inherit;
+  font-size: var(--sl-select-font-size);
+  font-weight: var(--sl-select-font-weight);
+  line-height: var(--sl-select-line-height);
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Hover is below Error and Disabled in the precedence chain. */
+.sl-select__field:not(:disabled):hover {
+  border-color: var(--sl-select-border-hover);
+}
+
+/*
+ * Error is rendered only with the application-owned aria-invalid state.
+ * The application must also render the error message; never a red border alone.
+ */
+.sl-select__field[aria-invalid="true"]:not(:disabled) {
+  border-color: var(--sl-select-border-error);
+}
+
+/* Disabled wins over Hover, Error and Focus. */
+.sl-select__field:disabled {
+  border-color: var(--sl-select-border-disabled);
+  background-color: var(--sl-select-background-disabled);
+  color: var(--sl-select-text-disabled);
+  cursor: not-allowed;
+}
+
+.sl-select__message {
+  margin: 0;
+  margin-block-start: var(--sl-select-helper-gap);
+  color: var(--sl-select-helper-color);
+  font-size: var(--sl-select-helper-font-size);
+  font-weight: var(--sl-select-font-weight);
+  line-height: var(--sl-select-helper-line-height);
+}
+
+.sl-select__message--error {
+  color: var(--sl-select-text-error);
+}
+
+/* The ring is a sibling overlay around the control, not a fifth state. */
+.sl-select__control::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--sl-select-focus-offset));
+  border: var(--sl-select-focus-width) solid transparent;
+  border-radius: var(--sl-select-focus-radius);
+  pointer-events: none;
+}
+
+.sl-select__field:focus {
+  outline: none;
+}
+
+.sl-select__control:has(.sl-select__field:focus-visible)::after {
+  border-color: var(--sl-select-focus-color);
+}
+
+.sl-select__control:has(.sl-select__field:disabled)::after {
+  display: none;
+}
+
+/* Preserve a visible boundary and focus indicator with system colours. */
+@media (forced-colors: active) {
+  .sl-select__field {
+    border-color: ButtonText;
+  }
+
+  .sl-select__control::after {
+    display: none;
+  }
+
+  .sl-select__control:has(.sl-select__field:focus-visible)::after {
+    display: block;
+    border-color: Highlight;
+  }
+}
