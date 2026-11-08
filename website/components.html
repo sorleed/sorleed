@@ -286,6 +286,17 @@
         <h2 id="date-picker">DatePicker</h2>
         <p>Native date field with accessible label associations, min/max range limits, and validation states.</p>
 
+        <h2 id="amount-display">AmountDisplay</h2>
+        <p>Production fintech monetary display formatted according to ISO 4217. Automatically coordinates signs (<code>+</code>/<code>-</code>) and currency symbols using <code>formatMoney</code>.</p>
+        <pre><code>import { AmountDisplay } from "@sorleed/react";
+
+&lt;AmountDisplay
+  value={1450.25}
+  currency="USD"
+  variant="positive"
+  size="lg"
+/&gt;</code></pre>
+
         <h2 id="shared">Shared rules</h2>
         <ul>
           <li>Native elements only for forms and actions. No custom listbox or hidden input tricks.</li>
