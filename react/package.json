@@ -1,7 +1,30 @@
 {
   "name": "@sorleed/react",
-  "version": "0.1.0-alpha.8",
-  "description": "Weft React component library",
+  "version": "0.1.0-alpha.9",
+  "description": "Production React component library for precision fintech, banking, wealth, and accounting interfaces",
+  "license": "MIT",
+  "homepage": "https://sorleed.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorleed/sorleed.git",
+    "directory": "react"
+  },
+  "bugs": {
+    "url": "https://github.com/sorleed/sorleed/issues"
+  },
+  "keywords": [
+    "react",
+    "fintech",
+    "banking",
+    "accounting",
+    "design-system",
+    "financial-ui",
+    "wallet",
+    "invoice",
+    "accessibility",
+    "tokens"
+  ],
+  "author": "Sorleed",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,7 +45,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "peerDependencies": {
     "libphonenumber-js": ">=1.10.0",
