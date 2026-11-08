@@ -3,7 +3,7 @@
 Sorleed React Component Library — production UI components engineered for precision, accessible financial interfaces, and design token fidelity.
 
 - **Package:** `@sorleed/react`
-- **Release:** `0.1.0-alpha.5`
+- **Release:** `0.1.0-alpha.8`
 - **Peer Dependencies:** `react >=18.0.0`, `react-dom >=18.0.0`
 - **Optional Dependencies:** `libphonenumber-js` (for PhoneInput validation)
 - **Radix UI Peer Dependencies:** `@radix-ui/react-tabs`, `@radix-ui/react-tooltip`, `@radix-ui/react-popover`, `@radix-ui/react-dialog` (for overlay/tabbed components)
