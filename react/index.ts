@@ -48,6 +48,11 @@ export { RepaymentSchedule, default as RepaymentScheduleDefault } from "./repaym
 export { AssetAllocation, default as AssetAllocationDefault } from "./asset-allocation";
 export { Pagination, default as PaginationDefault } from "./pagination";
 export { Accordion, default as AccordionDefault } from "./accordion";
+export { BiometricAuthPrompt, default as BiometricAuthPromptDefault } from "./biometric-auth-prompt";
+export { VirtualCardGenerator, default as VirtualCardGeneratorDefault } from "./virtual-card-generator";
+export { SplitBillCalculator, default as SplitBillCalculatorDefault } from "./split-bill-calculator";
+export { YieldCurveTable, default as YieldCurveTableDefault } from "./yield-curve-table";
+export { DirectDebitMandate, default as DirectDebitMandateDefault } from "./direct-debit-mandate";
 export { formatMoney, type FormatMoneyOptions } from "./utils/format";
 export type {
   AlertProps,
@@ -137,4 +142,15 @@ export type {
   PaginationProps,
   AccordionProps,
   AccordionItem,
+  BiometricAuthPromptProps,
+  BiometricAuthType,
+  BiometricStatus,
+  VirtualCardGeneratorProps,
+  VirtualCardCreationData,
+  SplitBillCalculatorProps,
+  BillParticipant,
+  SplitBillPaymentRequest,
+  YieldCurveTableProps,
+  TreasuryRateItem,
+  DirectDebitMandateProps,
 } from "./types";

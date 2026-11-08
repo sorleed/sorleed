@@ -468,6 +468,51 @@ const templateManifest = [
     source: path.resolve(repoRoot, "components/accordion/accordion.css"),
     dest: path.resolve(templatesDir, "styles/accordion.css")
   },
+  // biometric-auth-prompt
+  {
+    source: path.resolve(repoRoot, "react/biometric-auth-prompt/index.tsx"),
+    dest: path.resolve(templatesDir, "components/biometric-auth-prompt/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/biometric-auth-prompt/biometric-auth-prompt.css"),
+    dest: path.resolve(templatesDir, "styles/biometric-auth-prompt.css")
+  },
+  // virtual-card-generator
+  {
+    source: path.resolve(repoRoot, "react/virtual-card-generator/index.tsx"),
+    dest: path.resolve(templatesDir, "components/virtual-card-generator/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/virtual-card-generator/virtual-card-generator.css"),
+    dest: path.resolve(templatesDir, "styles/virtual-card-generator.css")
+  },
+  // split-bill-calculator
+  {
+    source: path.resolve(repoRoot, "react/split-bill-calculator/index.tsx"),
+    dest: path.resolve(templatesDir, "components/split-bill-calculator/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/split-bill-calculator/split-bill-calculator.css"),
+    dest: path.resolve(templatesDir, "styles/split-bill-calculator.css")
+  },
+  // yield-curve-table
+  {
+    source: path.resolve(repoRoot, "react/yield-curve-table/index.tsx"),
+    dest: path.resolve(templatesDir, "components/yield-curve-table/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/yield-curve-table/yield-curve-table.css"),
+    dest: path.resolve(templatesDir, "styles/yield-curve-table.css")
+  },
+  // direct-debit-mandate
+  {
+    source: path.resolve(repoRoot, "react/direct-debit-mandate/index.tsx"),
+    dest: path.resolve(templatesDir, "components/direct-debit-mandate/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/direct-debit-mandate/direct-debit-mandate.css"),
+    dest: path.resolve(templatesDir, "styles/direct-debit-mandate.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

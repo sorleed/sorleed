@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Sorleed — Split Bill Calculator
+   Multi-payer bill splitting with tip controls, custom shares, and payment links
+   ========================================================================== */
+
+.fc-split-bill {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-5);
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  padding: var(--fc-space-6);
+  font-family: var(--fc-font-family);
+  box-shadow: var(--fc-shadow-sm);
+  color: var(--fc-color-text);
+  box-sizing: border-box;
+}
+
+.fc-split-bill__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.fc-split-bill__title {
+  margin: 0;
+  font-size: var(--fc-font-size-lg);
+  font-weight: 600;
+  color: var(--fc-color-text);
+}
+
+.fc-split-bill__hero-total {
+  text-align: center;
+  padding: var(--fc-space-4);
+  background-color: var(--fc-color-surface-hover);
+  border-radius: var(--fc-radius-lg);
+}
+
+.fc-split-bill__hero-label {
+  font-size: var(--fc-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fc-color-text-secondary);
+}
+
+.fc-split-bill__hero-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--fc-color-primary);
+  font-family: var(--fc-font-mono, monospace);
+  margin-top: var(--fc-space-1);
+}
+
+.fc-split-bill__tips {
+  display: flex;
+  gap: var(--fc-space-2);
+}
+
+.fc-split-bill__tip-btn {
+  flex: 1;
+  padding: var(--fc-space-2) 0;
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface);
+  color: var(--fc-color-text);
+  font-size: var(--fc-font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.fc-split-bill__tip-btn:hover {
+  background-color: var(--fc-color-surface-hover);
+}
+
+.fc-split-bill__tip-btn--selected {
+  background-color: var(--fc-color-primary);
+  color: var(--fc-color-primary-contrast, #ffffff);
+  border-color: var(--fc-color-primary);
+}
+
+.fc-split-bill__tip-btn:focus-visible {
+  outline: 2px solid var(--fc-color-primary);
+  outline-offset: 2px;
+}
+
+.fc-split-bill__participants {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+}
+
+.fc-split-bill__participant-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--fc-space-3);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-md);
+}
+
+.fc-split-bill__participant-info {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-split-bill__participant-name {
+  font-size: var(--fc-font-size-sm);
+  font-weight: 500;
+  color: var(--fc-color-text);
+}
+
+.fc-split-bill__participant-share {
+  font-family: var(--fc-font-mono, monospace);
+  font-weight: 700;
+  font-size: var(--fc-font-size-sm);
+  color: var(--fc-color-text);
+}
+
+@media (forced-colors: active) {
+  .fc-split-bill {
+    border: 2px solid CanvasText;
+  }
+}
+
