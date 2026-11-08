@@ -1,0 +1,108 @@
+/*
+ * Sorleed RepaymentSchedule — upcoming and historical loan installment ledger.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-repayment-schedule {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-5);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.fc-repayment-schedule__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.fc-repayment-schedule__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-repayment-schedule__subtitle {
+  margin: 0;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+.fc-repayment-schedule__table-wrap {
+  overflow-x: auto;
+}
+
+.fc-repayment-schedule__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fc-font-size-sm);
+  text-align: left;
+}
+
+.fc-repayment-schedule__th {
+  padding: var(--fc-space-2) var(--fc-space-3);
+  font-size: var(--fc-font-size-xs);
+  text-transform: uppercase;
+  color: var(--fc-color-content-muted);
+  border-bottom: 1px solid var(--fc-color-border-subtle);
+  font-weight: var(--fc-font-weight-medium);
+}
+
+.fc-repayment-schedule__td {
+  padding: var(--fc-space-3);
+  border-bottom: 1px solid var(--fc-color-border-subtle);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-repayment-schedule__status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--fc-space-2);
+  border-radius: var(--fc-radius-full);
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+}
+
+.fc-repayment-schedule__status-pill--paid {
+  background-color: var(--fc-green-100);
+  color: var(--fc-color-status-success);
+}
+
+.fc-repayment-schedule__status-pill--due {
+  background-color: var(--fc-blue-100);
+  color: var(--fc-blue-700);
+}
+
+.fc-repayment-schedule__status-pill--upcoming {
+  background-color: var(--fc-color-surface-muted);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-repayment-schedule__pay-btn {
+  background-color: var(--fc-blue-600);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 4px var(--fc-space-3);
+  border-radius: var(--fc-radius-sm);
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+}
+
+.fc-repayment-schedule__pay-btn:hover {
+  background-color: var(--fc-blue-700);
+}
+
+@media (forced-colors: active) {
+  .fc-repayment-schedule {
+    border: 2px solid CanvasText;
+  }
+}
+

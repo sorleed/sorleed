@@ -46,6 +46,11 @@ import { creditScoreGaugeRegistry } from '../registry/credit-score-gauge.js';
 import { portfolioSummaryRegistry } from '../registry/portfolio-summary.js';
 import { spendingMeterRegistry } from '../registry/spending-meter.js';
 import { kycDocUploaderRegistry } from '../registry/kyc-doc-uploader.js';
+import cardControlsRegistry from '../registry/card-controls.js';
+import repaymentScheduleRegistry from '../registry/repayment-schedule.js';
+import assetAllocationRegistry from '../registry/asset-allocation.js';
+import paginationRegistry from '../registry/pagination.js';
+import accordionRegistry from '../registry/accordion.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -95,6 +100,11 @@ function getRegistry(component) {
   if (component === 'portfolio-summary' || component === 'portfoliosummary') return portfolioSummaryRegistry;
   if (component === 'spending-meter' || component === 'spendingmeter') return spendingMeterRegistry;
   if (component === 'kyc-doc-uploader' || component === 'kycdocuploader') return kycDocUploaderRegistry;
+  if (component === 'card-controls' || component === 'cardcontrols') return cardControlsRegistry;
+  if (component === 'repayment-schedule' || component === 'repaymentschedule') return repaymentScheduleRegistry;
+  if (component === 'asset-allocation' || component === 'assetallocation') return assetAllocationRegistry;
+  if (component === 'pagination') return paginationRegistry;
+  if (component === 'accordion') return accordionRegistry;
   return null;
 }
 

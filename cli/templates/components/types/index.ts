@@ -1027,4 +1027,73 @@ export interface KycDocUploaderProps extends Omit<React.HTMLAttributes<HTMLDivEl
   onFileRemove?: () => void;
 }
 
+export interface CardControlItem {
+  id: string;
+  label: string;
+  description?: string;
+  enabled: boolean;
+  disabled?: boolean;
+}
+
+export interface CardControlsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  controls?: CardControlItem[];
+  onToggleControl?: (id: string, enabled: boolean) => void;
+}
+
+export interface RepaymentInstallment {
+  installmentNumber: number;
+  dueDate: string;
+  amount: number | string;
+  principal?: number | string;
+  interest?: number | string;
+  status: "paid" | "due" | "overdue" | "upcoming";
+}
+
+export interface RepaymentScheduleProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  currency?: string;
+  installments?: RepaymentInstallment[];
+  onPayInstallment?: (installmentNumber: number) => void;
+}
+
+export interface AssetItem {
+  id?: string;
+  name: string;
+  percentage: number;
+  amount?: number | string;
+  color?: string;
+}
+
+export interface AssetAllocationProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  assets?: AssetItem[];
+  totalValue?: number | string;
+  currency?: string;
+}
+
+export interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  siblingCount?: number;
+  showPrevNext?: boolean;
+}
+
+export interface AccordionItem {
+  id?: string;
+  title: React.ReactNode;
+  content: React.ReactNode;
+  disabled?: boolean;
+}
+
+export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
+  items?: AccordionItem[];
+  allowMultiple?: boolean;
+  defaultExpanded?: string[];
+}
+
+
 

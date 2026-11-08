@@ -43,6 +43,11 @@ export { CreditScoreGauge, default as CreditScoreGaugeDefault } from "./credit-s
 export { PortfolioSummary, default as PortfolioSummaryDefault } from "./portfolio-summary";
 export { SpendingMeter, default as SpendingMeterDefault } from "./spending-meter";
 export { KycDocUploader, default as KycDocUploaderDefault } from "./kyc-doc-uploader";
+export { CardControls, default as CardControlsDefault } from "./card-controls";
+export { RepaymentSchedule, default as RepaymentScheduleDefault } from "./repayment-schedule";
+export { AssetAllocation, default as AssetAllocationDefault } from "./asset-allocation";
+export { Pagination, default as PaginationDefault } from "./pagination";
+export { Accordion, default as AccordionDefault } from "./accordion";
 export { formatMoney, type FormatMoneyOptions } from "./utils/format";
 export type {
   AlertProps,
@@ -123,4 +128,13 @@ export type {
   PortfolioSummaryProps,
   SpendingMeterProps,
   KycDocUploaderProps,
+  CardControlsProps,
+  CardControlItem,
+  RepaymentScheduleProps,
+  RepaymentInstallment,
+  AssetAllocationProps,
+  AssetItem,
+  PaginationProps,
+  AccordionProps,
+  AccordionItem,
 } from "./types";

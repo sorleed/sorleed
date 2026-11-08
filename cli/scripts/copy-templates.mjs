@@ -423,6 +423,51 @@ const templateManifest = [
     source: path.resolve(repoRoot, "components/kyc-doc-uploader/kyc-doc-uploader.css"),
     dest: path.resolve(templatesDir, "styles/kyc-doc-uploader.css")
   },
+  // card-controls
+  {
+    source: path.resolve(repoRoot, "react/card-controls/index.tsx"),
+    dest: path.resolve(templatesDir, "components/card-controls/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/card-controls/card-controls.css"),
+    dest: path.resolve(templatesDir, "styles/card-controls.css")
+  },
+  // repayment-schedule
+  {
+    source: path.resolve(repoRoot, "react/repayment-schedule/index.tsx"),
+    dest: path.resolve(templatesDir, "components/repayment-schedule/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/repayment-schedule/repayment-schedule.css"),
+    dest: path.resolve(templatesDir, "styles/repayment-schedule.css")
+  },
+  // asset-allocation
+  {
+    source: path.resolve(repoRoot, "react/asset-allocation/index.tsx"),
+    dest: path.resolve(templatesDir, "components/asset-allocation/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/asset-allocation/asset-allocation.css"),
+    dest: path.resolve(templatesDir, "styles/asset-allocation.css")
+  },
+  // pagination
+  {
+    source: path.resolve(repoRoot, "react/pagination/index.tsx"),
+    dest: path.resolve(templatesDir, "components/pagination/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/pagination/pagination.css"),
+    dest: path.resolve(templatesDir, "styles/pagination.css")
+  },
+  // accordion
+  {
+    source: path.resolve(repoRoot, "react/accordion/index.tsx"),
+    dest: path.resolve(templatesDir, "components/accordion/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/accordion/accordion.css"),
+    dest: path.resolve(templatesDir, "styles/accordion.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),
