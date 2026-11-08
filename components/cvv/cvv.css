@@ -154,3 +154,21 @@
   opacity: 0.6;
   pointer-events: none;
 }
+
+/* Preserve a visible boundary and focus indicator with system colours. */
+@media (forced-colors: active) {
+  .fc-cvv__field {
+    border-color: ButtonText;
+  }
+
+  .fc-cvv__field:focus-visible,
+  .fc-cvv__toggle:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-cvv__field {
+    transition: none;
+  }
+}

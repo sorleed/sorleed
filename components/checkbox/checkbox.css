@@ -179,3 +179,9 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .fc-checkbox__box {
+    transition: none;
+  }
+}
+
