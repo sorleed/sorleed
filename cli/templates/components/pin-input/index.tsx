@@ -34,11 +34,16 @@ export const PinInput = React.forwardRef<HTMLDivElement, PinInputProps>(
       }
     };
 
-    const handleChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
-      const char = e.target.value.slice(-1);
-      if (char && !/^\d$/.test(char)) return;
+    const handleChange = (index: number, e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLInputElement>) => {
+      const target = e.target as HTMLInputElement;
+      const raw = target.value;
+      const char = raw.slice(-1);
+      if (char && !/^\d$/.test(char)) {
+        target.value = value[index] || "";
+        return;
+      }
 
-      const chars = value.split("");
+      const chars = Array.from({ length }, (_, i) => value[i] || "");
       chars[index] = char || "";
       const nextVal = chars.join("").trim();
       updateValue(nextVal);
@@ -98,6 +103,7 @@ export const PinInput = React.forwardRef<HTMLDivElement, PinInputProps>(
               aria-label={`Digit ${index + 1} of ${length}`}
               className="fc-pin-input__cell"
               onChange={(e) => handleChange(index, e)}
+              onInput={(e) => handleChange(index, e)}
               onKeyDown={(e) => handleKeyDown(index, e)}
               onPaste={handlePaste}
             />
@@ -111,3 +117,4 @@ export const PinInput = React.forwardRef<HTMLDivElement, PinInputProps>(
 
 PinInput.displayName = "PinInput";
 export default PinInput;
+

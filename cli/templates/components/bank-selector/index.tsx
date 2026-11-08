@@ -35,6 +35,7 @@ export const BankSelector = React.forwardRef<HTMLDivElement, BankSelectorProps>(
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onInput={(e) => setQuery((e.target as HTMLInputElement).value)}
             placeholder={placeholder}
             aria-label={placeholder}
             className="fc-bank-selector__search-input"
@@ -86,3 +87,4 @@ export const BankSelector = React.forwardRef<HTMLDivElement, BankSelectorProps>(
 
 BankSelector.displayName = "BankSelector";
 export default BankSelector;
+

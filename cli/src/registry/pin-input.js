@@ -51,3 +51,4 @@ export const pinInputRegistry = {
     runtime: []
   }
 };
+

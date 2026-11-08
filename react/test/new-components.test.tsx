@@ -96,3 +96,4 @@ test("AccountSummary renders bank details and copy triggers", () => {
   assert.ok(html.includes("GB33BUKB20201555555555"));
   assert.ok(html.includes("Copy"));
 });
+
