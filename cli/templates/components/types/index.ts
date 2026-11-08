@@ -755,10 +755,12 @@ export type AmountDisplayVariant = "positive" | "negative" | "default";
  * Props for AmountDisplay component.
  */
 export interface AmountDisplayProps extends React.HTMLAttributes<HTMLSpanElement> {
-  value: React.ReactNode;
+  value: React.ReactNode | number;
   currency?: React.ReactNode;
   size?: AmountDisplaySize;
   variant?: AmountDisplayVariant;
+  locale?: string;
+  signDisplay?: "auto" | "always" | "never" | "exceptZero";
   className?: string;
 }
 
