@@ -51,3 +51,4 @@ export const transferReceiptRegistry = {
     runtime: []
   }
 };
+

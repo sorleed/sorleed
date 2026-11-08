@@ -38,6 +38,11 @@ export { CurrencyExchange, default as CurrencyExchangeDefault } from "./currency
 export { FeeBreakdown, default as FeeBreakdownDefault } from "./fee-breakdown";
 export { Skeleton, default as SkeletonDefault } from "./skeleton";
 export { EmptyState, default as EmptyStateDefault } from "./empty-state";
+export { LoanCalculator, default as LoanCalculatorDefault } from "./loan-calculator";
+export { CreditScoreGauge, default as CreditScoreGaugeDefault } from "./credit-score-gauge";
+export { PortfolioSummary, default as PortfolioSummaryDefault } from "./portfolio-summary";
+export { SpendingMeter, default as SpendingMeterDefault } from "./spending-meter";
+export { KycDocUploader, default as KycDocUploaderDefault } from "./kyc-doc-uploader";
 export { formatMoney, type FormatMoneyOptions } from "./utils/format";
 export type {
   AlertProps,
@@ -111,4 +116,11 @@ export type {
   SkeletonProps,
   SkeletonVariant,
   EmptyStateProps,
+  LoanCalculatorProps,
+  LoanCalculationResult,
+  CreditScoreGaugeProps,
+  CreditScoreBand,
+  PortfolioSummaryProps,
+  SpendingMeterProps,
+  KycDocUploaderProps,
 } from "./types";

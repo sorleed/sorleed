@@ -167,3 +167,4 @@ export const TransferReceipt = React.forwardRef<HTMLDivElement, TransferReceiptP
 
 TransferReceipt.displayName = "TransferReceipt";
 export default TransferReceipt;
+

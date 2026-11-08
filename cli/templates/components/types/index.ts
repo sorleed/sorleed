@@ -963,3 +963,68 @@ export interface EmptyStateProps extends Omit<React.HTMLAttributes<HTMLDivElemen
   action?: React.ReactNode;
 }
 
+/* ==========================================================================
+   Tier 2 Components (Lending, Credit, Wealth & Compliance)
+   ========================================================================== */
+
+export interface LoanCalculationResult {
+  principal: number;
+  tenureMonths: number;
+  monthlyPayment: number;
+  totalRepayment: number;
+  totalInterest: number;
+}
+
+export interface LoanCalculatorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onCalculate"> {
+  minAmount?: number;
+  maxAmount?: number;
+  stepAmount?: number;
+  defaultAmount?: number;
+  minTenure?: number;
+  maxTenure?: number;
+  defaultTenure?: number;
+  interestRate?: number;
+  currency?: string;
+  onCalculate?: (result: LoanCalculationResult) => void;
+}
+
+export type CreditScoreBand = "excellent" | "good" | "fair" | "poor";
+
+export interface CreditScoreGaugeProps extends React.HTMLAttributes<HTMLDivElement> {
+  score: number;
+  minScore?: number;
+  maxScore?: number;
+  lastUpdated?: string;
+}
+
+export interface PortfolioSummaryProps extends React.HTMLAttributes<HTMLDivElement> {
+  totalValue: number;
+  currency?: string;
+  returnsValue?: number;
+  returnsPercentage: number;
+  investedAmount?: number;
+  cashBalance?: number;
+  apy?: number;
+  allowToggleVisibility?: boolean;
+  defaultHidden?: boolean;
+}
+
+export interface SpendingMeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  currentSpent: number;
+  limit: number;
+  currency?: string;
+  warningThreshold?: number;
+  dangerThreshold?: number;
+}
+
+export interface KycDocUploaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  acceptedFormats?: string;
+  maxSizeMb?: number;
+  onFileSelect?: (file: File) => void;
+  onFileRemove?: () => void;
+}
+
+

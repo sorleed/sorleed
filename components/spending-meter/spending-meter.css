@@ -1,0 +1,77 @@
+/*
+ * Sorleed SpendingMeter — visual daily/monthly budget tracking and limit threshold meter.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-spending-meter {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-md);
+  padding: var(--fc-space-5);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.fc-spending-meter__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.fc-spending-meter__title {
+  margin: 0;
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-spending-meter__fraction {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+  font-family: monospace;
+}
+
+.fc-spending-meter__track {
+  width: 100%;
+  height: var(--fc-space-3);
+  background-color: var(--fc-color-surface-muted);
+  border-radius: var(--fc-radius-full);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.fc-spending-meter__fill {
+  height: 100%;
+  border-radius: var(--fc-radius-full);
+  transition: width 0.4s ease, background-color 0.3s ease;
+}
+
+.fc-spending-meter__fill--normal {
+  background-color: var(--fc-blue-600);
+}
+
+.fc-spending-meter__fill--warning {
+  background-color: var(--fc-color-status-warning);
+}
+
+.fc-spending-meter__fill--danger {
+  background-color: var(--fc-color-status-error);
+}
+
+.fc-spending-meter__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+@media (forced-colors: active) {
+  .fc-spending-meter {
+    border: 2px solid CanvasText;
+  }
+}

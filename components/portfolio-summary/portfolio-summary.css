@@ -1,0 +1,111 @@
+/*
+ * Sorleed PortfolioSummary — wealth & investment overview card with privacy toggle.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-portfolio-summary {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-6);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.fc-portfolio-summary__top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fc-portfolio-summary__label {
+  font-size: var(--fc-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-portfolio-summary__privacy-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--fc-space-1);
+  color: var(--fc-color-content-muted);
+  display: inline-flex;
+  align-items: center;
+}
+
+.fc-portfolio-summary__privacy-toggle:focus-visible {
+  outline: 2px solid var(--fc-color-border-focus);
+}
+
+.fc-portfolio-summary__main-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-portfolio-summary__total {
+  font-size: var(--fc-font-size-3xl);
+  font-weight: var(--fc-font-weight-bold);
+  color: var(--fc-color-content-primary);
+  line-height: 1;
+}
+
+.fc-portfolio-summary__returns-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-1);
+  padding: var(--fc-space-1) var(--fc-space-2);
+  border-radius: var(--fc-radius-full);
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-bold);
+}
+
+.fc-portfolio-summary__returns-pill--positive {
+  background-color: var(--fc-green-100);
+  color: var(--fc-color-status-success);
+}
+
+.fc-portfolio-summary__returns-pill--negative {
+  background-color: var(--fc-red-100);
+  color: var(--fc-color-status-error);
+}
+
+.fc-portfolio-summary__breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-3);
+  background-color: var(--fc-color-surface-subtle);
+  border-radius: var(--fc-radius-md);
+}
+
+.fc-portfolio-summary__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-portfolio-summary__stat-label {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+.fc-portfolio-summary__stat-value {
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+  font-family: monospace;
+}
+
+@media (forced-colors: active) {
+  .fc-portfolio-summary {
+    border: 2px solid CanvasText;
+  }
+}

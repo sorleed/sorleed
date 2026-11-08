@@ -45,3 +45,4 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
 
 Skeleton.displayName = "Skeleton";
 export default Skeleton;
+

@@ -378,6 +378,51 @@ const templateManifest = [
     source: path.resolve(repoRoot, "components/empty-state/empty-state.css"),
     dest: path.resolve(templatesDir, "styles/empty-state.css")
   },
+  // loan-calculator
+  {
+    source: path.resolve(repoRoot, "react/loan-calculator/index.tsx"),
+    dest: path.resolve(templatesDir, "components/loan-calculator/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/loan-calculator/loan-calculator.css"),
+    dest: path.resolve(templatesDir, "styles/loan-calculator.css")
+  },
+  // credit-score-gauge
+  {
+    source: path.resolve(repoRoot, "react/credit-score-gauge/index.tsx"),
+    dest: path.resolve(templatesDir, "components/credit-score-gauge/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/credit-score-gauge/credit-score-gauge.css"),
+    dest: path.resolve(templatesDir, "styles/credit-score-gauge.css")
+  },
+  // portfolio-summary
+  {
+    source: path.resolve(repoRoot, "react/portfolio-summary/index.tsx"),
+    dest: path.resolve(templatesDir, "components/portfolio-summary/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/portfolio-summary/portfolio-summary.css"),
+    dest: path.resolve(templatesDir, "styles/portfolio-summary.css")
+  },
+  // spending-meter
+  {
+    source: path.resolve(repoRoot, "react/spending-meter/index.tsx"),
+    dest: path.resolve(templatesDir, "components/spending-meter/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/spending-meter/spending-meter.css"),
+    dest: path.resolve(templatesDir, "styles/spending-meter.css")
+  },
+  // kyc-doc-uploader
+  {
+    source: path.resolve(repoRoot, "react/kyc-doc-uploader/index.tsx"),
+    dest: path.resolve(templatesDir, "components/kyc-doc-uploader/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/kyc-doc-uploader/kyc-doc-uploader.css"),
+    dest: path.resolve(templatesDir, "styles/kyc-doc-uploader.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

@@ -1,0 +1,118 @@
+/*
+ * Sorleed CreditScoreGauge — radial dial meter (300–850) with risk rating bands.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-credit-score-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-6);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 380px;
+  gap: var(--fc-space-4);
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.fc-credit-score-gauge__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-credit-score-gauge__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-credit-score-gauge__subtitle {
+  margin: 0;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+.fc-credit-score-gauge__dial {
+  position: relative;
+  width: 220px;
+  height: 125px;
+  overflow: hidden;
+}
+
+.fc-credit-score-gauge__meter-svg {
+  width: 220px;
+  height: 220px;
+  transform: rotate(-90deg);
+}
+
+.fc-credit-score-gauge__value-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fc-credit-score-gauge__score {
+  font-size: var(--fc-font-size-3xl);
+  font-weight: var(--fc-font-weight-bold);
+  line-height: 1;
+  color: var(--fc-color-content-primary);
+}
+
+.fc-credit-score-gauge__range {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+  margin-top: var(--fc-space-1);
+}
+
+.fc-credit-score-gauge__rating-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--fc-space-1) var(--fc-space-3);
+  border-radius: var(--fc-radius-full);
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fc-credit-score-gauge__rating-pill--excellent {
+  background-color: var(--fc-green-100);
+  color: var(--fc-color-status-success);
+}
+
+.fc-credit-score-gauge__rating-pill--good {
+  background-color: var(--fc-blue-100);
+  color: var(--fc-blue-700);
+}
+
+.fc-credit-score-gauge__rating-pill--fair {
+  background-color: var(--fc-amber-100);
+  color: var(--fc-color-status-warning);
+}
+
+.fc-credit-score-gauge__rating-pill--poor {
+  background-color: var(--fc-red-100);
+  color: var(--fc-color-status-error);
+}
+
+.fc-credit-score-gauge__updated {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+  margin: 0;
+}
+
+@media (forced-colors: active) {
+  .fc-credit-score-gauge {
+    border: 2px solid CanvasText;
+  }
+}

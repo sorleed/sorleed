@@ -41,6 +41,11 @@ import { currencyExchangeRegistry } from '../registry/currency-exchange.js';
 import { feeBreakdownRegistry } from '../registry/fee-breakdown.js';
 import { skeletonRegistry } from '../registry/skeleton.js';
 import { emptyStateRegistry } from '../registry/empty-state.js';
+import { loanCalculatorRegistry } from '../registry/loan-calculator.js';
+import { creditScoreGaugeRegistry } from '../registry/credit-score-gauge.js';
+import { portfolioSummaryRegistry } from '../registry/portfolio-summary.js';
+import { spendingMeterRegistry } from '../registry/spending-meter.js';
+import { kycDocUploaderRegistry } from '../registry/kyc-doc-uploader.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -85,6 +90,11 @@ function getRegistry(component) {
   if (component === 'fee-breakdown' || component === 'feebreakdown') return feeBreakdownRegistry;
   if (component === 'skeleton') return skeletonRegistry;
   if (component === 'empty-state' || component === 'emptystate') return emptyStateRegistry;
+  if (component === 'loan-calculator' || component === 'loancalculator') return loanCalculatorRegistry;
+  if (component === 'credit-score-gauge' || component === 'creditscoregauge') return creditScoreGaugeRegistry;
+  if (component === 'portfolio-summary' || component === 'portfoliosummary') return portfolioSummaryRegistry;
+  if (component === 'spending-meter' || component === 'spendingmeter') return spendingMeterRegistry;
+  if (component === 'kyc-doc-uploader' || component === 'kycdocuploader') return kycDocUploaderRegistry;
   return null;
 }
 
