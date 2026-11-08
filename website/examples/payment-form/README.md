@@ -1,6 +1,6 @@
 # Payment form example
 
-A small, runnable demo payment form built with FinCore's existing **Button** and
+A small, runnable demo payment form built with Sorleed's existing **Button** and
 **Input** components. It is illustrative only: no payment is sent, no money
 moves, no backend is called, and no real credentials are requested.
 
@@ -32,9 +32,9 @@ The page loads these existing files from its own directory:
 
 Token CSS must load first. The component stylesheets do not import it. The
 page also sets a body font because the components use `font-family: inherit`;
-FinCore ships no font file or font-family token.
+Sorleed ships no font file or font-family token.
 
-## FinCore components reused
+## Sorleed components reused
 
 - **Button:** the native `.fc-button` primary action (`Review payment` and
   `Edit details`) and `.fc-button--secondary` actions (`Clear` and
@@ -48,11 +48,11 @@ FinCore ships no font file or font-family token.
   field is genuinely unavailable, so the Input disabled state is not used.
 
 The example does not copy component CSS, add `fc-` selectors or tokens, or add
-a framework, package manager, bundler or JavaScript runtime from FinCore.
+a framework, package manager, bundler or JavaScript runtime from Sorleed.
 
 ## What belongs to the example
 
-FinCore supplies the Button and Input CSS and their documented native APIs. The
+Sorleed supplies the Button and Input CSS and their documented native APIs. The
 example owns:
 
 - the demo source-account summary and demo bank list;
@@ -62,11 +62,11 @@ example owns:
 - the review summary, edit/reset transitions and focus management;
 - the live status messages and the explicit “no payment sent” wording.
 
-The amount is a native text input with `inputmode="decimal"` because FinCore has
+The amount is a native text input with `inputmode="decimal"` because Sorleed has
 no currency-input component. The bank field is a native Input with a
 `<datalist>` of demo banks; there is no Select component in v0.1.
 
-The example needs JavaScript for validation, review and reset. FinCore supplies
+The example needs JavaScript for validation, review and reset. Sorleed supplies
 no JavaScript runtime; all interaction code is page-owned.
 
 ## Try it with demo data

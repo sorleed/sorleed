@@ -1,6 +1,6 @@
 # Contract-first component usage
 
-Use this workflow whenever a developer or AI agent adds FinCore components to an
+Use this workflow whenever a developer or AI agent adds Sorleed components to an
 interface. The goal is to consume the existing classes and tokens, not to
 recreate or extend the components.
 
@@ -36,7 +36,7 @@ Load the generated token CSS before the component CSS:
 
 Adjust the paths for the page's depth. The component CSS does not import token
 CSS. Set a page font because both components use `font-family: inherit`.
-FinCore ships no font file or font-family token.
+Sorleed ships no font file or font-family token.
 
 The component stylesheets consume only their own component tokens
 (`--fc-button-*` or `--fc-input-*`). Do not create or redefine `--fc-*` tokens in
@@ -113,7 +113,7 @@ For an application-owned error, keep the same field anatomy, set
 
 ## 5. Keep application behaviour outside the component
 
-FinCore provides CSS and native markup. It does **not** provide JavaScript
+Sorleed provides CSS and native markup. It does **not** provide JavaScript
 runtime, event handlers, filtering, validation, formatting, masking, focus
 management, review state, loading state, errors or submission.
 
@@ -179,7 +179,7 @@ component CSS or introduce a framework.
   framework wrappers.
 - Do not copy component CSS into an application or override component state
   rules.
-- Do not claim FinCore supplies JavaScript behaviour. The application owns it.
+- Do not claim Sorleed supplies JavaScript behaviour. The application owns it.
 - Do not use unsupported input types, inverse/dark Input surfaces, or an error
   border without explanatory text.
 - Do not introduce a package manager, bundler or runtime unless a separate

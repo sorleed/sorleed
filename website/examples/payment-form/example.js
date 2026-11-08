@@ -1,9 +1,9 @@
 "use strict";
 
 /*
- * Application code for the FinCore payment-form example.
+ * Application code for the Sorleed payment-form example.
  *
- * FinCore supplies the Button and Input CSS only. This file owns validation,
+ * Sorleed supplies the Button and Input CSS only. This file owns validation,
  * review state, reset behaviour and focus management. No network request is
  * made and no payment is submitted.
  */

@@ -1,6 +1,6 @@
-# FinCore components
+# Sorleed components
 
-FinCore provides a comprehensive suite of 28 production CSS plus native HTML components. They ship no
+Sorleed provides a comprehensive suite of 28 production CSS plus native HTML components. They ship no
 JavaScript runtime, package, bundler or build step. The application owns
 filtering, validation, error presentation, submission and focus management.
 
@@ -47,7 +47,7 @@ undefined. See [tokens/README.md](../tokens/README.md).
 
 ### 3. Use the documented native APIs
 
-FinCore does not export React, Vue or Web Component wrappers. Use native HTML.
+Sorleed does not export React, Vue or Web Component wrappers. Use native HTML.
 
 ```html
 <div class="fc-input">

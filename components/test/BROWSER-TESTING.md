@@ -1,4 +1,4 @@
-# FinCore browser smoke testing
+# Sorleed browser smoke testing
 
 This runbook covers the dependency-free browser fixture at
 [`browser-smoke.html`](./browser-smoke.html). It uses the existing generated

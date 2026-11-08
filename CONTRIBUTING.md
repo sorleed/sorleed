@@ -1,8 +1,8 @@
-# Contributing to FinCore
+# Contributing to Sorleed
 
-Thank you for your interest in contributing to FinCore.
+Thank you for your interest in contributing to Sorleed.
 
-FinCore is an open-source project built to improve how financial products are designed, developed, and implemented with AI.
+Sorleed is an open-source project built to improve how financial products are designed, developed, and implemented with AI.
 
 We welcome contributions from:
 
@@ -45,12 +45,12 @@ Please:
 
 1. Check existing issues.
 2. Discuss major changes before implementation.
-3. Follow the [FinCore principles](docs/foundation/principles.md).
+3. Follow the [Sorleed principles](docs/foundation/principles.md).
 4. Prioritize accessibility.
 
 ---
 
-## FinCore Principles
+## Sorleed Principles
 
 All contributions follow the eight principles defined in
 [`docs/foundation/principles.md`](docs/foundation/principles.md).
@@ -74,10 +74,10 @@ Details will be added as the project evolves.
 
 ## Community
 
-FinCore is built on **Open Collaboration**.
+Sorleed is built on **Open Collaboration**.
 
 * Be respectful.
 * Be constructive.
 * Be collaborative.
 
-We are building FinCore together.
+We are building Sorleed together.

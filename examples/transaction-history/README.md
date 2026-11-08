@@ -1,6 +1,6 @@
 # Transaction history example
 
-A small, runnable financial interface built with FinCore's existing **Button** and
+A small, runnable financial interface built with Sorleed's existing **Button** and
 **Input** components. The page layout, table/list, filtering and formatting are
 application code; the component styles are not copied or recreated.
 
@@ -49,14 +49,14 @@ Serving the root keeps the token and component stylesheet paths valid.
 
 1. Keep `tokens/dist/tokens.css` loaded before `button.css` and `input.css`.
    The component stylesheets do not import tokens.
-2. Set a page font. The components use `font-family: inherit` and FinCore ships
+2. Set a page font. The components use `font-family: inherit` and Sorleed ships
    no font file or font-family token.
 3. Use the native `.fc-button` and `.fc-input` markup. The application owns
    filtering, validation, error copy, submission and focus.
 4. Replace the demo dataset and page-specific `.example-*` CSS with your own
    application code. Do not copy the component CSS into this file.
 
-There is no package manager, build step or FinCore JavaScript runtime.
+There is no package manager, build step or Sorleed JavaScript runtime.
 
 ## Verify the setup
 

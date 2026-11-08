@@ -1,4 +1,4 @@
-# FinCore Color System
+# Sorleed Color System
 
 ## Status
 
@@ -11,9 +11,9 @@
 
 ## 1. Purpose
 
-The FinCore color system separates raw color values from the meaning those colors represent.
+The Sorleed color system separates raw color values from the meaning those colors represent.
 
-FinCore uses three layers:
+Sorleed uses three layers:
 
 Primitive Color
 ↓
@@ -35,7 +35,7 @@ Consumers may replace primitive values without changing component architecture.
 
 ## 2. Core Principles
 
-See [FinCore Principles](principles.md); the constitution is authoritative.
+See [Sorleed Principles](principles.md); the constitution is authoritative.
 
 ### 2.1 Semantic over visual
 
@@ -57,9 +57,9 @@ color.content.primary
 
 ---
 
-### 2.2 FinCore has no mandatory brand color
+### 2.2 Sorleed has no mandatory brand color
 
-FinCore does not define a permanent primary brand color.
+Sorleed does not define a permanent primary brand color.
 
 The default palette exists as a reference implementation.
 

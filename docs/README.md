@@ -1,6 +1,6 @@
 # Documentation
 
-FinCore v0.1 documents the Button/Input component system, tokens and contracts.
+Sorleed v0.1 documents the Button/Input component system, tokens and contracts.
 
 Start with:
 
