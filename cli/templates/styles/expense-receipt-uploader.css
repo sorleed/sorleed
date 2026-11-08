@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Sorleed — Expense Receipt Uploader
+   Receipt scan dropzone with OCR extracted fields and reimbursement flag
+   ========================================================================== */
+
+.fc-receipt-uploader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  padding: var(--fc-space-5);
+  font-family: var(--fc-font-family);
+  box-shadow: var(--fc-shadow-sm);
+  color: var(--fc-color-text);
+  box-sizing: border-box;
+}
+
+.fc-receipt-uploader__dropzone {
+  border: 2px dashed var(--fc-color-border);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-6);
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--fc-color-surface-hover);
+  transition: border-color 0.15s ease;
+}
+
+.fc-receipt-uploader__dropzone:hover {
+  border-color: var(--fc-color-primary);
+}
+
+.fc-receipt-uploader__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  margin-top: var(--fc-space-2);
+}
+
+.fc-receipt-uploader__reimbursable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--fc-space-3) 0;
+  border-top: 1px solid var(--fc-color-border);
+}
+
+@media (forced-colors: active) {
+  .fc-receipt-uploader {
+    border: 2px solid CanvasText;
+  }
+}

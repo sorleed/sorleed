@@ -513,6 +513,51 @@ const templateManifest = [
     source: path.resolve(repoRoot, "components/direct-debit-mandate/direct-debit-mandate.css"),
     dest: path.resolve(templatesDir, "styles/direct-debit-mandate.css")
   },
+  // invoice-viewer
+  {
+    source: path.resolve(repoRoot, "react/invoice-viewer/index.tsx"),
+    dest: path.resolve(templatesDir, "components/invoice-viewer/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/invoice-viewer/invoice-viewer.css"),
+    dest: path.resolve(templatesDir, "styles/invoice-viewer.css")
+  },
+  // expense-receipt-uploader
+  {
+    source: path.resolve(repoRoot, "react/expense-receipt-uploader/index.tsx"),
+    dest: path.resolve(templatesDir, "components/expense-receipt-uploader/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/expense-receipt-uploader/expense-receipt-uploader.css"),
+    dest: path.resolve(templatesDir, "styles/expense-receipt-uploader.css")
+  },
+  // journal-entry-ledger
+  {
+    source: path.resolve(repoRoot, "react/journal-entry-ledger/index.tsx"),
+    dest: path.resolve(templatesDir, "components/journal-entry-ledger/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/journal-entry-ledger/journal-entry-ledger.css"),
+    dest: path.resolve(templatesDir, "styles/journal-entry-ledger.css")
+  },
+  // tax-summary-card
+  {
+    source: path.resolve(repoRoot, "react/tax-summary-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/tax-summary-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/tax-summary-card/tax-summary-card.css"),
+    dest: path.resolve(templatesDir, "styles/tax-summary-card.css")
+  },
+  // chart-of-accounts-tree
+  {
+    source: path.resolve(repoRoot, "react/chart-of-accounts-tree/index.tsx"),
+    dest: path.resolve(templatesDir, "components/chart-of-accounts-tree/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/chart-of-accounts-tree/chart-of-accounts-tree.css"),
+    dest: path.resolve(templatesDir, "styles/chart-of-accounts-tree.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

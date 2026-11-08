@@ -1179,6 +1179,91 @@ export interface DirectDebitMandateProps {
   className?: string;
 }
 
+export interface InvoiceParty {
+  name: string;
+  address?: string;
+  email?: string;
+  taxId?: string;
+}
+
+export interface InvoiceItem {
+  description: string;
+  quantity: number;
+  unitPrice: number;
+}
+
+export interface InvoiceViewerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  invoiceNumber: string;
+  issueDate: string;
+  dueDate: string;
+  status?: "paid" | "due" | "overdue";
+  issuer: InvoiceParty;
+  client: InvoiceParty;
+  items: InvoiceItem[];
+  currency?: string;
+  taxRate?: number;
+  discount?: number;
+  notes?: string;
+}
+
+export interface ExpenseReceiptData {
+  fileName: string;
+  merchant: string;
+  amount: number;
+  category: string;
+  reimbursable: boolean;
+}
+
+export interface ExpenseReceiptUploaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  currency?: string;
+  onSubmitExpense?: (data: ExpenseReceiptData) => void;
+}
+
+export interface JournalEntryRow {
+  accountCode?: string;
+  accountName: string;
+  description?: string;
+  debit?: number | string;
+  credit?: number | string;
+}
+
+export interface JournalEntryLedgerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  entryNumber?: string;
+  date?: string;
+  entries?: JournalEntryRow[];
+  currency?: string;
+  onPostEntry?: () => void;
+}
+
+export interface TaxSummaryCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  jurisdiction?: string;
+  currency?: string;
+  grossRevenue?: number;
+  deductions?: number;
+  taxableIncome?: number;
+  estimatedTaxLiability?: number;
+  dueDate?: string;
+  taxRatePercent?: number;
+}
+
+export interface ChartAccountNode {
+  code: string;
+  name: string;
+  balance: number | string;
+  children?: ChartAccountNode[];
+}
+
+export interface ChartOfAccountsTreeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  currency?: string;
+  accounts?: ChartAccountNode[];
+  onSelectAccount?: (account: ChartAccountNode) => void;
+}
+
+
 
 
 

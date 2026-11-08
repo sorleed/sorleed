@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Sorleed — Chart of Accounts Tree
+   Hierarchical accounting general ledger structure (Assets, Liabilities, Equity)
+   ========================================================================== */
+
+.fc-chart-accounts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  padding: var(--fc-space-5);
+  font-family: var(--fc-font-family);
+  box-shadow: var(--fc-shadow-sm);
+  color: var(--fc-color-text);
+  box-sizing: border-box;
+}
+
+.fc-chart-accounts__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+}
+
+.fc-chart-accounts__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--fc-space-2) var(--fc-space-3);
+  border-radius: var(--fc-radius-md);
+  font-size: var(--fc-font-size-sm);
+  transition: background-color 0.15s ease;
+}
+
+.fc-chart-accounts__item:hover {
+  background-color: var(--fc-color-surface-hover);
+}
+
+.fc-chart-accounts__code {
+  font-family: var(--fc-font-mono, monospace);
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-text-secondary);
+  margin-right: var(--fc-space-2);
+}
+
+.fc-chart-accounts__balance {
+  font-family: var(--fc-font-mono, monospace);
+  font-weight: 600;
+}
+
+@media (forced-colors: active) {
+  .fc-chart-accounts {
+    border: 2px solid CanvasText;
+  }
+}
