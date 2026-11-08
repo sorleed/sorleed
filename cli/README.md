@@ -5,7 +5,7 @@ Source-distribution CLI for Sorleed components.
 Instead of installing heavy bundled dependencies, the Sorleed CLI copies canonical, contract-tested component source files directly into your consumer project.
 
 - **Package:** `@sorleed/cli`
-- **Release:** `0.1.0-alpha.5`
+- **Release:** `0.1.0-alpha.8`
 - **Commands:** `sorleed`, `weft`, `fincore`
 
 ---
