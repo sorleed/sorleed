@@ -36,6 +36,11 @@ import { pinInputRegistry } from '../registry/pin-input.js';
 import { bankSelectorRegistry } from '../registry/bank-selector.js';
 import { walletCardRegistry } from '../registry/wallet-card.js';
 import { accountSummaryRegistry } from '../registry/account-summary.js';
+import { transferReceiptRegistry } from '../registry/transfer-receipt.js';
+import { currencyExchangeRegistry } from '../registry/currency-exchange.js';
+import { feeBreakdownRegistry } from '../registry/fee-breakdown.js';
+import { skeletonRegistry } from '../registry/skeleton.js';
+import { emptyStateRegistry } from '../registry/empty-state.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -75,6 +80,11 @@ function getRegistry(component) {
   if (component === 'bank-selector' || component === 'bankselector') return bankSelectorRegistry;
   if (component === 'wallet-card' || component === 'walletcard') return walletCardRegistry;
   if (component === 'account-summary' || component === 'accountsummary') return accountSummaryRegistry;
+  if (component === 'transfer-receipt' || component === 'transferreceipt') return transferReceiptRegistry;
+  if (component === 'currency-exchange' || component === 'currencyexchange') return currencyExchangeRegistry;
+  if (component === 'fee-breakdown' || component === 'feebreakdown') return feeBreakdownRegistry;
+  if (component === 'skeleton') return skeletonRegistry;
+  if (component === 'empty-state' || component === 'emptystate') return emptyStateRegistry;
   return null;
 }
 

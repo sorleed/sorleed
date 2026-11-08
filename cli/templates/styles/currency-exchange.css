@@ -1,0 +1,111 @@
+/*
+ * Sorleed CurrencyExchange — cross-border two-way currency conversion widget.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-currency-exchange {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-5);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-4);
+  position: relative;
+}
+
+.fc-currency-exchange__box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-4);
+  background-color: var(--fc-color-surface-subtle);
+  border-radius: var(--fc-radius-md);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-control);
+}
+
+.fc-currency-exchange__box-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+.fc-currency-exchange__box-input-row {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-3);
+}
+
+.fc-currency-exchange__input {
+  flex: 1 1 auto;
+  border: none;
+  background: transparent;
+  font-size: var(--fc-font-size-xl);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+  outline: none;
+  width: 100%;
+}
+
+.fc-currency-exchange__currency-select {
+  height: 36px;
+  padding: 0 var(--fc-space-3);
+  border-radius: var(--fc-radius-sm);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-control);
+  background-color: var(--fc-color-surface-default);
+  font-weight: var(--fc-font-weight-bold);
+  font-size: var(--fc-font-size-sm);
+  cursor: pointer;
+  color: var(--fc-color-content-primary);
+}
+
+.fc-currency-exchange__swap-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-block: calc(-1 * var(--fc-space-2));
+  z-index: 2;
+}
+
+.fc-currency-exchange__swap-button {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--fc-radius-full);
+  background-color: var(--fc-blue-600);
+  color: #fff;
+  border: 2px solid var(--fc-color-surface-default);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.fc-currency-exchange__swap-button:hover {
+  transform: rotate(180deg);
+  background-color: var(--fc-blue-700);
+}
+
+.fc-currency-exchange__swap-button:focus-visible {
+  outline: 2px solid var(--fc-color-border-focus);
+}
+
+.fc-currency-exchange__rate-ticker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+  padding-inline: var(--fc-space-1);
+}
+
+@media (forced-colors: active) {
+  .fc-currency-exchange {
+    border: 2px solid CanvasText;
+  }
+}

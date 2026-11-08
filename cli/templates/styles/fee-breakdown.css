@@ -1,0 +1,63 @@
+/*
+ * Sorleed FeeBreakdown — transparent deduction & fee disclosure sheet.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-fee-breakdown {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-md);
+  padding: var(--fc-space-4);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-3);
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-fee-breakdown__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+}
+
+.fc-fee-breakdown__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-fee-breakdown__item--discount {
+  color: var(--fc-color-status-success);
+}
+
+.fc-fee-breakdown__divider {
+  height: 1px;
+  background-color: var(--fc-color-border-subtle);
+  margin-block: var(--fc-space-1);
+}
+
+.fc-fee-breakdown__total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-fee-breakdown__recipient-gets {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--fc-space-2);
+  font-weight: var(--fc-font-weight-bold);
+  font-size: var(--fc-font-size-md);
+  color: var(--fc-blue-700);
+}
+
+.fc-fee-breakdown__notice {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}

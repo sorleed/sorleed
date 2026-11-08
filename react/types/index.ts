@@ -745,6 +745,10 @@ export interface BalanceCardProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   account?: React.ReactNode;
   amount: React.ReactNode;
   footer?: React.ReactNode;
+  allowToggleVisibility?: boolean;
+  defaultHidden?: boolean;
+  isHidden?: boolean;
+  onToggleVisibility?: (hidden: boolean) => void;
   className?: string;
 }
 
@@ -890,6 +894,72 @@ export interface AccountSummaryProps extends Omit<React.HTMLAttributes<HTMLDivEl
   accountType?: string;
   routingOrSortCode?: string;
   iban?: string;
+  balance?: string | number;
+  allowToggleVisibility?: boolean;
+  defaultHidden?: boolean;
   onCopy?: (field: string, value: string) => void;
+}
+
+export type TransferReceiptStatus = "success" | "pending" | "failed";
+
+export interface TransferReceiptProps extends React.HTMLAttributes<HTMLDivElement> {
+  reference: string;
+  amount: number | string;
+  currency?: string;
+  status?: TransferReceiptStatus;
+  timestamp?: string;
+  recipientName: string;
+  recipientBank: string;
+  recipientAccount: string;
+  senderName?: string;
+  senderAccount?: string;
+  fee?: number | string;
+  allowRedaction?: boolean;
+  onDownload?: () => void;
+  onShare?: () => void;
+}
+
+export interface CurrencyExchangeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  baseCurrency: string;
+  targetCurrency: string;
+  baseAmount?: number | string;
+  targetAmount?: number | string;
+  exchangeRate: number;
+  availableCurrencies?: string[];
+  onBaseAmountChange?: (val: string) => void;
+  onTargetAmountChange?: (val: string) => void;
+  onSwapCurrencies?: () => void;
+  onBaseCurrencyChange?: (curr: string) => void;
+  onTargetCurrencyChange?: (curr: string) => void;
+}
+
+export interface FeeItem {
+  label: string;
+  amount: number | string;
+  isDiscount?: boolean;
+}
+
+export interface FeeBreakdownProps extends React.HTMLAttributes<HTMLDivElement> {
+  fees: FeeItem[];
+  currency?: string;
+  totalFee: number | string;
+  recipientGets?: number | string;
+  exchangeRateNotice?: string;
+}
+
+export type SkeletonVariant = "text" | "circular" | "rectangular";
+
+export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: SkeletonVariant;
+  width?: string | number;
+  height?: string | number;
+  animate?: boolean;
+}
+
+export interface EmptyStateProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  icon?: React.ReactNode;
+  action?: React.ReactNode;
 }
 

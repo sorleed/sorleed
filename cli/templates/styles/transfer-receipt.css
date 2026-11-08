@@ -1,0 +1,103 @@
+/*
+ * Sorleed TransferReceipt — official digital proof of payment.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-transfer-receipt {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-6);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  gap: var(--fc-space-5);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.fc-transfer-receipt__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-transfer-receipt__status-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--fc-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.fc-transfer-receipt__status-icon--success {
+  background-color: var(--fc-green-100);
+  color: var(--fc-color-status-success);
+}
+
+.fc-transfer-receipt__status-icon--pending {
+  background-color: var(--fc-amber-100);
+  color: var(--fc-color-status-warning);
+}
+
+.fc-transfer-receipt__status-icon--failed {
+  background-color: var(--fc-red-100);
+  color: var(--fc-color-status-error);
+}
+
+.fc-transfer-receipt__amount {
+  font-size: var(--fc-font-size-2xl);
+  font-weight: var(--fc-font-weight-bold);
+  color: var(--fc-color-content-primary);
+  margin: var(--fc-space-1) 0;
+}
+
+.fc-transfer-receipt__subtitle {
+  font-size: var(--fc-font-size-sm);
+  color: var(--fc-color-content-secondary);
+  margin: 0;
+}
+
+.fc-transfer-receipt__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-4);
+  background-color: var(--fc-color-surface-subtle);
+  border-radius: var(--fc-radius-md);
+  box-sizing: border-box;
+}
+
+.fc-transfer-receipt__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-transfer-receipt__row-label {
+  color: var(--fc-color-content-muted);
+}
+
+.fc-transfer-receipt__row-value {
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+  font-family: monospace;
+}
+
+.fc-transfer-receipt__actions {
+  display: flex;
+  gap: var(--fc-space-3);
+  margin-top: var(--fc-space-2);
+}
+
+@media (forced-colors: active) {
+  .fc-transfer-receipt {
+    border: 2px solid CanvasText;
+  }
+}

@@ -333,6 +333,51 @@ const templateManifest = [
     source: path.resolve(repoRoot, "components/account-summary/account-summary.css"),
     dest: path.resolve(templatesDir, "styles/account-summary.css")
   },
+  // transfer-receipt
+  {
+    source: path.resolve(repoRoot, "react/transfer-receipt/index.tsx"),
+    dest: path.resolve(templatesDir, "components/transfer-receipt/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/transfer-receipt/transfer-receipt.css"),
+    dest: path.resolve(templatesDir, "styles/transfer-receipt.css")
+  },
+  // currency-exchange
+  {
+    source: path.resolve(repoRoot, "react/currency-exchange/index.tsx"),
+    dest: path.resolve(templatesDir, "components/currency-exchange/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/currency-exchange/currency-exchange.css"),
+    dest: path.resolve(templatesDir, "styles/currency-exchange.css")
+  },
+  // fee-breakdown
+  {
+    source: path.resolve(repoRoot, "react/fee-breakdown/index.tsx"),
+    dest: path.resolve(templatesDir, "components/fee-breakdown/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/fee-breakdown/fee-breakdown.css"),
+    dest: path.resolve(templatesDir, "styles/fee-breakdown.css")
+  },
+  // skeleton
+  {
+    source: path.resolve(repoRoot, "react/skeleton/index.tsx"),
+    dest: path.resolve(templatesDir, "components/skeleton/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/skeleton/skeleton.css"),
+    dest: path.resolve(templatesDir, "styles/skeleton.css")
+  },
+  // empty-state
+  {
+    source: path.resolve(repoRoot, "react/empty-state/index.tsx"),
+    dest: path.resolve(templatesDir, "components/empty-state/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/empty-state/empty-state.css"),
+    dest: path.resolve(templatesDir, "styles/empty-state.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),
