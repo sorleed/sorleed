@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - docs/foundation-baseline
+  pull_request:
+    branches:
+      - main
+      - docs/foundation-baseline
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Token, Contract & Parity Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: |
+            cli/package-lock.json
+            react/package-lock.json
+
+      - name: Validate Tokens
+        run: node tokens/check.mjs
+
+      - name: Validate Contracts Schema & Rules
+        run: node components/validate-contracts.mjs
+
+      - name: Validate React/CLI Parity
+        run: node components/validate-parity.mjs
+
+      - name: Run Component Contract Tests
+        run: node --test components/test/*.test.mjs
+
+  test-cli:
+    name: CLI Package Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: cli/package-lock.json
+
+      - name: Install CLI Dependencies
+        run: cd cli && npm ci
+
+      - name: Run CLI Tests
+        run: cd cli && npm test
+
+  test-react:
+    name: React Package Tests & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: react/package-lock.json
+
+      - name: Install React Dependencies
+        run: cd react && npm ci
+
+      - name: Run React Unit & Formatting Tests
+        run: cd react && npm test
+
+      - name: Typecheck React Package
+        run: cd react && npm run typecheck
+
+      - name: Build React Package
+        run: cd react && npm run build

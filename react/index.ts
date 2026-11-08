@@ -26,6 +26,7 @@ export { Tabs, TabsList, TabsTrigger, TabsContent, default as TabsDefault } from
 export { Textarea, default as TextareaDefault } from "./textarea";
 export { Tooltip, default as TooltipDefault } from "./tooltip";
 export { TransactionItem, default as TransactionItemDefault } from "./transaction-item";
+export { formatMoney, type FormatMoneyOptions } from "./utils/format";
 export type {
   AlertProps,
   AlertVariant,

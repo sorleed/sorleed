@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type MouseEvent } from "react";
 import type { ButtonProps } from "../types";
 
 const variantClassMap = {
@@ -8,7 +8,9 @@ const variantClassMap = {
 } as const;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", size = "md", loading = false, className, type = "button", children, disabled, ...props }, ref) => {
+  ({ variant = "primary", size = "md", loading = false, className, type = "button", children, disabled, onClick, ...props }, ref) => {
+    const isInteractiveDisabled = disabled || loading;
+
     const classes = [
       "fc-button",
       variantClassMap[variant],
@@ -19,8 +21,26 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       .filter(Boolean)
       .join(" ");
 
+    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+      if (isInteractiveDisabled) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      onClick?.(e);
+    };
+
     return (
-      <button ref={ref} type={type} className={classes} disabled={disabled || loading} aria-busy={loading ? "true" : undefined} {...props}>
+      <button
+        ref={ref}
+        type={type}
+        className={classes}
+        disabled={isInteractiveDisabled}
+        aria-busy={loading ? "true" : undefined}
+        aria-disabled={isInteractiveDisabled ? "true" : undefined}
+        onClick={handleClick}
+        {...props}
+      >
         {children}
       </button>
     );
