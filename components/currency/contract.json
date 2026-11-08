@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.currency",
+    "id": "sorleed.currency",
     "name": "Currency",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore's native currency input: label + control with currency prefix/suffix + decimal formatting + helper/error message, four states, independent focus ring and only currency.* component tokens.",
+    "summary": "Sorleed's native currency input: label + control with currency prefix/suffix + decimal formatting + helper/error message, four states, independent focus ring and only currency.* component tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-06",
     "canonical": {

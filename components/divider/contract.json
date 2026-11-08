@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.divider",
+    "id": "sorleed.divider",
     "name": "Divider",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore native Divider: separation rule using only divider.* tokens.",
+    "summary": "Sorleed native Divider: separation rule using only divider.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-06",
     "canonical": {

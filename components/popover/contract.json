@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.popover",
+    "id": "sorleed.popover",
     "name": "Popover",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore native/Radix Popover: floating card overlay using only popover.* tokens.",
+    "summary": "Sorleed native/Radix Popover: floating card overlay using only popover.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-06",
     "canonical": {

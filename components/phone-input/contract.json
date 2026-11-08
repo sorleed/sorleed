@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.phone-input",
+    "id": "sorleed.phone-input",
     "name": "PhoneInput",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore's international phone-number field with label, country selector, number input and helper or error. Supports global numbers without hardcoding a default country or using IP geolocation and distinguishes editing text, normalised international values and validation status.",
+    "summary": "Sorleed's international phone-number field with label, country selector, number input and helper or error. Supports global numbers without hardcoding a default country or using IP geolocation and distinguishes editing text, normalised international values and validation status.",
     "maturity": "contract; framework-agnostic CSS + native HTML reference",
     "lastUpdated": "2026-10-28",
     "canonical": {
@@ -28,7 +28,7 @@
       "tokens": "tokens/tokens.json",
       "css": "tokens/dist/tokens.css",
       "evidence": [
-        "Follows FinCore contract schema and Input anatomy patterns.",
+        "Follows Sorleed contract schema and Input anatomy patterns.",
         "Designed for international use with no forced country default and no IP geolocation.",
         "Distinguishes editing text, normalised international values and validation status.",
         "Numbering-plan validation cannot prove a number is active, reachable or owned."
@@ -62,7 +62,7 @@
     "inappropriate": [
       {
         "use": "Assuming a single country for all users without explicit configuration.",
-        "reason": "FinCore is international and hardcoding a country is not allowed.",
+        "reason": "Sorleed is international and hardcoding a country is not allowed.",
         "alternative": "Infer from an existing international number or require explicit selection with no forced default."
       },
       {

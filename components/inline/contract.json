@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.inline",
+    "id": "sorleed.inline",
     "name": "Inline",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore Inline: layout primitive using only inline.* tokens.",
+    "summary": "Sorleed Inline: layout primitive using only inline.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-07",
     "canonical": {

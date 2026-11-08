@@ -44,7 +44,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       .filter(Boolean)
       .join(" ");
 
-    // Ensure required FinCore classes are always present
+    // Ensure required Sorleed classes are always present
     if (!wrapperClasses.includes("fc-input")) {
       // defensive - className should not remove required classes
     }

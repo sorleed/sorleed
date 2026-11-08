@@ -10,7 +10,7 @@ export const phoneInputRegistry = {
     {
       id: 'phone-input-wrapper',
       source: resolveTemplatePath('components/phone-input/index.tsx'),
-      dest: ['components', 'fincore', 'phone-input', 'index.tsx'],
+      dest: ['components', 'sorleed', 'phone-input', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const phoneInputRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'phone-input-css',
       source: resolveTemplatePath('styles/phone-input.css'),
-      dest: ['styles', 'fincore', 'phone-input.css'],
+      dest: ['styles', 'sorleed', 'phone-input.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const phoneInputRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

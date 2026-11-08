@@ -10,7 +10,7 @@ export const tableRegistry = {
     {
       id: 'table-wrapper',
       source: resolveTemplatePath('components/table/index.tsx'),
-      dest: ['components', 'fincore', 'table', 'index.tsx'],
+      dest: ['components', 'sorleed', 'table', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const tableRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'table-css',
       source: resolveTemplatePath('styles/table.css'),
-      dest: ['styles', 'fincore', 'table.css'],
+      dest: ['styles', 'sorleed', 'table.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const tableRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

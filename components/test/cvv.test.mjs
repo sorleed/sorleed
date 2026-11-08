@@ -14,7 +14,7 @@ test("CVV contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/cvv/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/cvv/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.cvv");
+  assert.equal(contract.contract.id, "sorleed.cvv");
   assert.equal(contract.contract.name, "CVV");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 29, "CVV contract specifies 29 tokens");

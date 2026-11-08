@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.input",
+    "id": "sorleed.input",
     "name": "Input",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore's single-line text field: label + control + helper, four mutually exclusive Figma states, an independent keyboard-focus ring and 38 component tokens. Validation is owned by the consuming application, not the component. Implemented as framework-agnostic CSS with native HTML reference markup; no runtime package or adapter.",
+    "summary": "Sorleed's single-line text field: label + control + helper, four mutually exclusive Figma states, an independent keyboard-focus ring and 38 component tokens. Validation is owned by the consuming application, not the component. Implemented as framework-agnostic CSS with native HTML reference markup; no runtime package or adapter.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no runtime package",
     "lastUpdated": "2026-10-26",
     "canonical": {

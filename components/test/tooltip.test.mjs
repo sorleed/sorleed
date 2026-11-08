@@ -14,7 +14,7 @@ test("Tooltip contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/tooltip/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/tooltip/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.tooltip");
+  assert.equal(contract.contract.id, "sorleed.tooltip");
   assert.equal(contract.contract.name, "Tooltip");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 8, "Tooltip contract specifies 8 tokens");

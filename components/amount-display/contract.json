@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.amount-display",
+    "id": "sorleed.amount-display",
     "name": "AmountDisplay",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore AmountDisplay: component using only amount-display.* tokens.",
+    "summary": "Sorleed AmountDisplay: component using only amount-display.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-07",
     "canonical": {

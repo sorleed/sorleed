@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.card",
+    "id": "sorleed.card",
     "name": "Card",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore native Card: container surface with header, body and footer regions, using only card.* tokens.",
+    "summary": "Sorleed native Card: container surface with header, body and footer regions, using only card.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-06",
     "canonical": {

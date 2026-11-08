@@ -10,7 +10,7 @@ export const balanceCardRegistry = {
     {
       id: 'balance-card-wrapper',
       source: resolveTemplatePath('components/balance-card/index.tsx'),
-      dest: ['components', 'fincore', 'balance-card', 'index.tsx'],
+      dest: ['components', 'sorleed', 'balance-card', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const balanceCardRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'balance-card-css',
       source: resolveTemplatePath('styles/balance-card.css'),
-      dest: ['styles', 'fincore', 'balance-card.css'],
+      dest: ['styles', 'sorleed', 'balance-card.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const balanceCardRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

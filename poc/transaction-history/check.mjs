@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /*
- * Zero-dependency compliance checker for the FinCore transaction-history PoC.
+ * Zero-dependency compliance checker for the Sorleed transaction-history PoC.
  *
  * It reads the five PoC files plus the generated token/component CSS and fails
- * with a non-zero exit code when the PoC breaks a documented FinCore usage rule.
+ * with a non-zero exit code when the PoC breaks a documented Sorleed usage rule.
  * It never writes or regenerates anything.
  */
 
@@ -176,7 +176,7 @@ check("css: no component selectors or state overrides", () => {
   ].map((match) => match[0]);
   assert(
     componentSelectors.length === 0,
-    `poc.css selects FinCore classes: ${componentSelectors.join(", ")}`,
+    `poc.css selects Sorleed classes: ${componentSelectors.join(", ")}`,
   );
   assert(
     !/@import\b/i.test(cssNoComments),
@@ -190,15 +190,15 @@ check("css: no component selectors or state overrides", () => {
 // 6-17. Markup rules
 // ---------------------------------------------------------------------------
 
-check("html: documented FinCore classes only", () => {
+check("html: documented Sorleed classes only", () => {
   const used = [...new Set(tags.flatMap(classList))].filter((name) =>
     name.startsWith("fc-"),
   );
-  assert(used.length > 0, "no FinCore component classes are used");
+  assert(used.length > 0, "no Sorleed component classes are used");
   const unknown = used.filter((name) => !definedComponentClasses.has(name));
   assert(
     unknown.length === 0,
-    `undocumented FinCore classes: ${unknown.join(", ")}`,
+    `undocumented Sorleed classes: ${unknown.join(", ")}`,
   );
   return used.join(", ");
 });
@@ -652,7 +652,7 @@ check("readme: documents scope, serving, checker and limits", () => {
     [/python3 -m http\.server/i, "local server command"],
     [/illustrative/i, "illustrative-data note"],
     [/primitive/i, "primitive-token exception"],
-    [/not\s+(?:a\s+)?FinCore\s+component/i, "application-scaffolding note"],
+    [/not\s+(?:a\s+)?Sorleed\s+component/i, "application-scaffolding note"],
     [/screen reader/i, "manual accessibility note"],
     [/static/i, "static-check note"],
     [/browser/i, "browser-check note"],
@@ -670,7 +670,7 @@ check("readme: documents scope, serving, checker and limits", () => {
 
 const failures = results.filter((result) => !result.pass);
 
-console.log("FinCore PoC — transaction-history compliance");
+console.log("Sorleed PoC — transaction-history compliance");
 console.log(`Source: ${POC_DIR}`);
 console.log("");
 
@@ -686,8 +686,8 @@ console.log(`  Checks: ${results.length - failures.length} passed, ${failures.le
 console.log("");
 
 if (failures.length > 0) {
-  console.log("FAILED — the proof of concept breaks a documented FinCore usage rule.");
+  console.log("FAILED — the proof of concept breaks a documented Sorleed usage rule.");
   process.exitCode = 1;
 } else {
-  console.log("PASSED — the proof of concept follows the FinCore usage rules.");
+  console.log("PASSED — the proof of concept follows the Sorleed usage rules.");
 }

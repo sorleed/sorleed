@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.checkbox",
+    "id": "sorleed.checkbox",
     "name": "Checkbox",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore's native single-option checkbox: control + label + helper/error, four mutually exclusive states, an independent focus ring and only checkbox.* component tokens. Implemented as framework-agnostic CSS with native HTML semantics.",
+    "summary": "Sorleed's native single-option checkbox: control + label + helper/error, four mutually exclusive states, an independent focus ring and only checkbox.* component tokens. Implemented as framework-agnostic CSS with native HTML semantics.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-06",
     "canonical": {

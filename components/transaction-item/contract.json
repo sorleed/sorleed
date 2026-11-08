@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.transaction-item",
+    "id": "sorleed.transaction-item",
     "name": "TransactionItem",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore TransactionItem: component using only transaction-item.* tokens.",
+    "summary": "Sorleed TransactionItem: component using only transaction-item.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-07",
     "canonical": {

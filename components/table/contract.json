@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.table",
+    "id": "sorleed.table",
     "name": "Table",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore native Table: tabular financial data presentation using only table.* tokens.",
+    "summary": "Sorleed native Table: tabular financial data presentation using only table.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-06",
     "canonical": {

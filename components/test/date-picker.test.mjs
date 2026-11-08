@@ -14,7 +14,7 @@ test("DatePicker contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/date-picker/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/date-picker/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.date-picker");
+  assert.equal(contract.contract.id, "sorleed.date-picker");
   assert.equal(contract.contract.name, "DatePicker");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 30, "DatePicker contract specifies 30 tokens");

@@ -14,7 +14,7 @@ test("BalanceCard contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/balance-card/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/balance-card/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.balance-card");
+  assert.equal(contract.contract.id, "sorleed.balance-card");
   assert.equal(contract.contract.name, "BalanceCard");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 12, "BalanceCard contract specifies 12 tokens");

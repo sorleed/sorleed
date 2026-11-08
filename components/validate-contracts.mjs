@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * FinCore component-contract validation.
+ * Sorleed component-contract validation.
  *
  * Zero dependencies. Validates the Stage 1 contract format against
  * components/contract.schema.json, checks every token reference against
@@ -349,34 +349,34 @@ const cssFromFile = new Set(
 // ---------------------------------------------------------------------------
 
 const EXPECTED = {
-  "fincore.button": { dependencies: 32, variants: 15, properties: 3 },
-  "fincore.input": { dependencies: 38, variants: 4, properties: 10 },
-  "fincore.phone-input": { dependencies: 15, variants: 1, properties: 1 },
-  "fincore.select": { dependencies: 27, variants: 1, properties: 1 },
-  "fincore.checkbox": { dependencies: 27, variants: 1, properties: 1 },
-  "fincore.radio-group": { dependencies: 31, variants: 1, properties: 1 },
-  "fincore.textarea": { dependencies: 29, variants: 1, properties: 1 },
-  "fincore.otp": { dependencies: 27, variants: 1, properties: 1 },
-  "fincore.currency": { dependencies: 40, variants: 1, properties: 1 },
-  "fincore.cvv": { dependencies: 29, variants: 1, properties: 1 },
-  "fincore.date-picker": { dependencies: 30, variants: 1, properties: 1 },
-  "fincore.card": { dependencies: 15, variants: 1, properties: 1 },
-  "fincore.alert": { dependencies: 19, variants: 1, properties: 1 },
-  "fincore.tabs": { dependencies: 14, variants: 1, properties: 1 },
-  "fincore.table": { dependencies: 15, variants: 1, properties: 1 },
-  "fincore.badge": { dependencies: 16, variants: 1, properties: 1 },
-  "fincore.switch": { dependencies: 18, variants: 1, properties: 1 },
-  "fincore.tooltip": { dependencies: 8, variants: 1, properties: 1 },
-  "fincore.popover": { dependencies: 8, variants: 1, properties: 1 },
-  "fincore.drawer": { dependencies: 11, variants: 1, properties: 1 },
-  "fincore.divider": { dependencies: 4, variants: 1, properties: 1 },
-  "fincore.transaction-item": { dependencies: 15, variants: 1, properties: 1 },
-  "fincore.balance-card": { dependencies: 12, variants: 1, properties: 1 },
-  "fincore.amount-display": { dependencies: 12, variants: 1, properties: 1 },
-  "fincore.status-indicator": { dependencies: 12, variants: 1, properties: 1 },
-  "fincore.stack": { dependencies: 5, variants: 1, properties: 1 },
-  "fincore.inline": { dependencies: 5, variants: 1, properties: 1 },
-  "fincore.container": { dependencies: 3, variants: 1, properties: 1 },
+  "sorleed.button": { dependencies: 32, variants: 15, properties: 3 },
+  "sorleed.input": { dependencies: 38, variants: 4, properties: 10 },
+  "sorleed.phone-input": { dependencies: 15, variants: 1, properties: 1 },
+  "sorleed.select": { dependencies: 27, variants: 1, properties: 1 },
+  "sorleed.checkbox": { dependencies: 27, variants: 1, properties: 1 },
+  "sorleed.radio-group": { dependencies: 31, variants: 1, properties: 1 },
+  "sorleed.textarea": { dependencies: 29, variants: 1, properties: 1 },
+  "sorleed.otp": { dependencies: 27, variants: 1, properties: 1 },
+  "sorleed.currency": { dependencies: 40, variants: 1, properties: 1 },
+  "sorleed.cvv": { dependencies: 29, variants: 1, properties: 1 },
+  "sorleed.date-picker": { dependencies: 30, variants: 1, properties: 1 },
+  "sorleed.card": { dependencies: 15, variants: 1, properties: 1 },
+  "sorleed.alert": { dependencies: 19, variants: 1, properties: 1 },
+  "sorleed.tabs": { dependencies: 14, variants: 1, properties: 1 },
+  "sorleed.table": { dependencies: 15, variants: 1, properties: 1 },
+  "sorleed.badge": { dependencies: 16, variants: 1, properties: 1 },
+  "sorleed.switch": { dependencies: 18, variants: 1, properties: 1 },
+  "sorleed.tooltip": { dependencies: 8, variants: 1, properties: 1 },
+  "sorleed.popover": { dependencies: 8, variants: 1, properties: 1 },
+  "sorleed.drawer": { dependencies: 11, variants: 1, properties: 1 },
+  "sorleed.divider": { dependencies: 4, variants: 1, properties: 1 },
+  "sorleed.transaction-item": { dependencies: 15, variants: 1, properties: 1 },
+  "sorleed.balance-card": { dependencies: 12, variants: 1, properties: 1 },
+  "sorleed.amount-display": { dependencies: 12, variants: 1, properties: 1 },
+  "sorleed.status-indicator": { dependencies: 12, variants: 1, properties: 1 },
+  "sorleed.stack": { dependencies: 5, variants: 1, properties: 1 },
+  "sorleed.inline": { dependencies: 5, variants: 1, properties: 1 },
+  "sorleed.container": { dependencies: 3, variants: 1, properties: 1 },
 };
 
 const contracts = [];
@@ -402,7 +402,7 @@ for (const entry of contracts) {
   const { relative, contract } = entry;
   const problems = [];
   const id = contract.contract?.id;
-  const isPhoneInputDraft = id === "fincore.phone-input";
+  const isPhoneInputDraft = id === "sorleed.phone-input";
   const expected = EXPECTED[id];
 
   if (!expected) {
@@ -512,7 +512,7 @@ for (const entry of contracts) {
   }
 
   const EXPECTED_PROPERTIES = {
-    "fincore.button": {
+    "sorleed.button": {
       Variant: {
         type: "VARIANT",
         default: "Primary",
@@ -525,7 +525,7 @@ for (const entry of contracts) {
       },
       Label: { type: "TEXT", key: "Label#87:16", default: "Button" },
     },
-    "fincore.input": {
+    "sorleed.input": {
       State: {
         type: "VARIANT",
         default: "Default",
@@ -549,88 +549,88 @@ for (const entry of contracts) {
       ShowLabel: { type: "BOOLEAN", key: "ShowLabel#99:35", default: true },
       ShowHelper: { type: "BOOLEAN", key: "ShowHelper#99:40", default: true },
     },
-    "fincore.phone-input": {
+    "sorleed.phone-input": {
       Label: { type: "TEXT", key: "Label", default: "Phone number" },
     },
-    "fincore.select": {
+    "sorleed.select": {
       Label: { type: "TEXT", default: "Select" },
     },
-    "fincore.checkbox": {
+    "sorleed.checkbox": {
       Label: { type: "TEXT", default: "Checkbox" },
     },
-    "fincore.radio-group": {
+    "sorleed.radio-group": {
       Label: { type: "TEXT", default: "Radio Group" },
     },
-    "fincore.textarea": {
+    "sorleed.textarea": {
       Label: { type: "TEXT", default: "Textarea" },
     },
-    "fincore.otp": {
+    "sorleed.otp": {
       Label: { type: "TEXT", default: "OTP" },
     },
-    "fincore.currency": {
+    "sorleed.currency": {
       Label: { type: "TEXT", default: "Amount" },
     },
-    "fincore.cvv": {
+    "sorleed.cvv": {
       Label: { type: "TEXT", default: "Security code" },
     },
-    "fincore.date-picker": {
+    "sorleed.date-picker": {
       Label: { type: "TEXT", default: "Date" },
     },
-    "fincore.card": {
+    "sorleed.card": {
       Content: { type: "TEXT", default: "Card content" },
     },
-    "fincore.alert": {
+    "sorleed.alert": {
       Message: { type: "TEXT", default: "Alert message" },
     },
-    "fincore.tabs": {
+    "sorleed.tabs": {
       Value: { type: "TEXT", default: "tab-1" },
     },
-    "fincore.table": {
+    "sorleed.table": {
       Data: { type: "TEXT", default: "Table data" },
     },
-    "fincore.badge": {
+    "sorleed.badge": {
       Text: { type: "TEXT", default: "Status" },
     },
-    "fincore.switch": {
+    "sorleed.switch": {
       Checked: { type: "TEXT", default: "false" },
     },
-    "fincore.tooltip": {
+    "sorleed.tooltip": {
       Content: { type: "TEXT", default: "Tooltip text" },
     },
-    "fincore.popover": {
+    "sorleed.popover": {
       Content: { type: "TEXT", default: "Popover content" },
     },
-    "fincore.drawer": {
+    "sorleed.drawer": {
       Title: { type: "TEXT", default: "Drawer title" },
     },
-    "fincore.divider": {
+    "sorleed.divider": {
       Orientation: { type: "TEXT", default: "horizontal" },
     },
-    "fincore.transaction-item": {
+    "sorleed.transaction-item": {
       Title: { type: "TEXT", default: "Transaction title" },
     },
-    "fincore.balance-card": {
+    "sorleed.balance-card": {
       Title: { type: "TEXT", default: "Balance title" },
     },
-    "fincore.amount-display": {
+    "sorleed.amount-display": {
       Amount: { type: "TEXT", default: "0.00" },
     },
-    "fincore.status-indicator": {
+    "sorleed.status-indicator": {
       Status: { type: "TEXT", default: "Active" },
     },
-    "fincore.stack": {
+    "sorleed.stack": {
       Gap: { type: "TEXT", default: "md" },
     },
-    "fincore.inline": {
+    "sorleed.inline": {
       Gap: { type: "TEXT", default: "md" },
     },
-    "fincore.container": {
+    "sorleed.container": {
       Size: { type: "TEXT", default: "md" },
     },
   };
 
   const EXPECTED_VARIANT_IDS = {
-    "fincore.button": [
+    "sorleed.button": [
       "87:4",
       "87:6",
       "87:8",
@@ -647,33 +647,33 @@ for (const entry of contracts) {
       "87:32",
       "87:35",
     ],
-    "fincore.input": ["99:2", "99:13", "99:24", "99:35"],
-    "fincore.phone-input": [],
-    "fincore.select": ["0:0"],
-    "fincore.checkbox": ["0:0"],
-    "fincore.radio-group": ["0:0"],
-    "fincore.textarea": ["0:0"],
-    "fincore.otp": ["0:0"],
-    "fincore.currency": ["0:0"],
-    "fincore.cvv": ["0:0"],
-    "fincore.date-picker": ["0:0"],
-    "fincore.card": ["0:0"],
-    "fincore.alert": ["0:0"],
-    "fincore.tabs": ["0:0"],
-    "fincore.table": ["0:0"],
-    "fincore.badge": ["0:0"],
-    "fincore.switch": ["0:0"],
-    "fincore.tooltip": ["0:0"],
-    "fincore.popover": ["0:0"],
-    "fincore.drawer": ["0:0"],
-    "fincore.divider": ["0:0"],
-    "fincore.transaction-item": ["0:0"],
-    "fincore.balance-card": ["0:0"],
-    "fincore.amount-display": ["0:0"],
-    "fincore.status-indicator": ["0:0"],
-    "fincore.stack": ["0:0"],
-    "fincore.inline": ["0:0"],
-    "fincore.container": ["0:0"],
+    "sorleed.input": ["99:2", "99:13", "99:24", "99:35"],
+    "sorleed.phone-input": [],
+    "sorleed.select": ["0:0"],
+    "sorleed.checkbox": ["0:0"],
+    "sorleed.radio-group": ["0:0"],
+    "sorleed.textarea": ["0:0"],
+    "sorleed.otp": ["0:0"],
+    "sorleed.currency": ["0:0"],
+    "sorleed.cvv": ["0:0"],
+    "sorleed.date-picker": ["0:0"],
+    "sorleed.card": ["0:0"],
+    "sorleed.alert": ["0:0"],
+    "sorleed.tabs": ["0:0"],
+    "sorleed.table": ["0:0"],
+    "sorleed.badge": ["0:0"],
+    "sorleed.switch": ["0:0"],
+    "sorleed.tooltip": ["0:0"],
+    "sorleed.popover": ["0:0"],
+    "sorleed.drawer": ["0:0"],
+    "sorleed.divider": ["0:0"],
+    "sorleed.transaction-item": ["0:0"],
+    "sorleed.balance-card": ["0:0"],
+    "sorleed.amount-display": ["0:0"],
+    "sorleed.status-indicator": ["0:0"],
+    "sorleed.stack": ["0:0"],
+    "sorleed.inline": ["0:0"],
+    "sorleed.container": ["0:0"],
   };
 
   if (expected) {
@@ -770,61 +770,61 @@ for (const entry of contracts) {
     dependencyNames.add(dependency.name);
 
     const prefix =
-      id === "fincore.button"
+      id === "sorleed.button"
         ? "button."
-        : id === "fincore.input"
+        : id === "sorleed.input"
           ? "input."
-          : id === "fincore.phone-input"
+          : id === "sorleed.phone-input"
             ? "phone-input."
-            : id === "fincore.select"
+            : id === "sorleed.select"
               ? "select."
-              : id === "fincore.checkbox"
+              : id === "sorleed.checkbox"
                 ? "checkbox."
-                : id === "fincore.radio-group"
+                : id === "sorleed.radio-group"
                   ? "radio-group."
-                  : id === "fincore.textarea"
+                  : id === "sorleed.textarea"
                     ? "textarea."
-                    : id === "fincore.otp"
+                    : id === "sorleed.otp"
                       ? "otp."
-                      : id === "fincore.currency"
+                      : id === "sorleed.currency"
                         ? "currency."
-                        : id === "fincore.cvv"
+                        : id === "sorleed.cvv"
                           ? "cvv."
-                          : id === "fincore.date-picker"
+                          : id === "sorleed.date-picker"
                             ? "date-picker."
-                            : id === "fincore.card"
+                            : id === "sorleed.card"
                               ? "card."
-                              : id === "fincore.alert"
+                              : id === "sorleed.alert"
                                 ? "alert."
-                                : id === "fincore.tabs"
+                                : id === "sorleed.tabs"
                                   ? "tabs."
-                                  : id === "fincore.table"
+                                  : id === "sorleed.table"
                                     ? "table."
-                                    : id === "fincore.badge"
+                                    : id === "sorleed.badge"
                                       ? "badge."
-                                      : id === "fincore.switch"
+                                      : id === "sorleed.switch"
                                         ? "switch."
-                                        : id === "fincore.tooltip"
+                                        : id === "sorleed.tooltip"
                                           ? "tooltip."
-                                          : id === "fincore.popover"
+                                          : id === "sorleed.popover"
                                             ? "popover."
-                                            : id === "fincore.drawer"
+                                            : id === "sorleed.drawer"
                                               ? "drawer."
-                                              : id === "fincore.divider"
+                                              : id === "sorleed.divider"
                                                 ? "divider."
-                                                : id === "fincore.transaction-item"
+                                                : id === "sorleed.transaction-item"
                                                   ? "transaction-item."
-                                                  : id === "fincore.balance-card"
+                                                  : id === "sorleed.balance-card"
                                                     ? "balance-card."
-                                                    : id === "fincore.amount-display"
+                                                    : id === "sorleed.amount-display"
                                                       ? "amount-display."
-                                                      : id === "fincore.status-indicator"
+                                                      : id === "sorleed.status-indicator"
                                                         ? "status-indicator."
-                                                        : id === "fincore.stack"
+                                                        : id === "sorleed.stack"
                                                           ? "stack."
-                                                          : id === "fincore.inline"
+                                                          : id === "sorleed.inline"
                                                             ? "inline."
-                                                            : id === "fincore.container"
+                                                            : id === "sorleed.container"
                                                               ? "container."
                                                               : null;
     if (!prefix || !dependency.name.startsWith(prefix)) {
@@ -936,7 +936,7 @@ for (const entry of contracts) {
     }
   }
 
-  if (id === "fincore.button") {
+  if (id === "sorleed.button") {
     if (dependencyNames.has("button.focus.radius")) {
       problems.push(`${relative}: button.focus.radius does not exist in the token source`);
     }
@@ -1016,7 +1016,7 @@ for (const entry of contracts) {
     }
   }
 
-  if (id === "fincore.input") {
+  if (id === "sorleed.input") {
     for (const forbidden of [
       "state",
       "focused",
@@ -1366,7 +1366,7 @@ function collectStrings(value, path = "$", out = []) {
 const failed = checks.filter((entry) => entry.problems.length > 0);
 const passed = checks.filter((entry) => entry.problems.length === 0);
 
-console.log("FinCore component contracts — validation");
+console.log("Sorleed component contracts — validation");
 console.log(
   `Contracts: ${contracts.map((entry) => entry.relative).join(", ") || "none"}`,
 );

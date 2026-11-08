@@ -14,7 +14,7 @@ test("Table contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/table/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/table/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.table");
+  assert.equal(contract.contract.id, "sorleed.table");
   assert.equal(contract.contract.name, "Table");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 15, "Table contract specifies 15 tokens");

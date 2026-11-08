@@ -14,7 +14,7 @@ test("Alert contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/alert/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/alert/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.alert");
+  assert.equal(contract.contract.id, "sorleed.alert");
   assert.equal(contract.contract.name, "Alert");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 19, "Alert contract specifies 19 tokens");

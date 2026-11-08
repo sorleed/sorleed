@@ -10,7 +10,7 @@ export const switchRegistry = {
     {
       id: 'switch-wrapper',
       source: resolveTemplatePath('components/switch/index.tsx'),
-      dest: ['components', 'fincore', 'switch', 'index.tsx'],
+      dest: ['components', 'sorleed', 'switch', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const switchRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'switch-css',
       source: resolveTemplatePath('styles/switch.css'),
-      dest: ['styles', 'fincore', 'switch.css'],
+      dest: ['styles', 'sorleed', 'switch.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const switchRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

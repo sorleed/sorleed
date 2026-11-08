@@ -10,7 +10,7 @@ export const popoverRegistry = {
     {
       id: 'popover-wrapper',
       source: resolveTemplatePath('components/popover/index.tsx'),
-      dest: ['components', 'fincore', 'popover', 'index.tsx'],
+      dest: ['components', 'sorleed', 'popover', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const popoverRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'popover-css',
       source: resolveTemplatePath('styles/popover.css'),
-      dest: ['styles', 'fincore', 'popover.css'],
+      dest: ['styles', 'sorleed', 'popover.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const popoverRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

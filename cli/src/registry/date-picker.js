@@ -10,7 +10,7 @@ export const datePickerRegistry = {
     {
       id: 'date-picker-wrapper',
       source: resolveTemplatePath('components/date-picker/index.tsx'),
-      dest: ['components', 'fincore', 'date-picker', 'index.tsx'],
+      dest: ['components', 'sorleed', 'date-picker', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const datePickerRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'date-picker-css',
       source: resolveTemplatePath('styles/date-picker.css'),
-      dest: ['styles', 'fincore', 'date-picker.css'],
+      dest: ['styles', 'sorleed', 'date-picker.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const datePickerRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

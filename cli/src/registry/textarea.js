@@ -10,7 +10,7 @@ export const textareaRegistry = {
     {
       id: 'textarea-wrapper',
       source: resolveTemplatePath('components/textarea/index.tsx'),
-      dest: ['components', 'fincore', 'textarea', 'index.tsx'],
+      dest: ['components', 'sorleed', 'textarea', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const textareaRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'textarea-css',
       source: resolveTemplatePath('styles/textarea.css'),
-      dest: ['styles', 'fincore', 'textarea.css'],
+      dest: ['styles', 'sorleed', 'textarea.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const textareaRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

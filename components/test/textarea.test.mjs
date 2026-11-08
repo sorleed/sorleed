@@ -14,7 +14,7 @@ test("Textarea contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/textarea/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/textarea/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.textarea");
+  assert.equal(contract.contract.id, "sorleed.textarea");
   assert.equal(contract.contract.name, "Textarea");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 29, "Textarea contract specifies 29 tokens");

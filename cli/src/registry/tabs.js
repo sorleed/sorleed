@@ -10,7 +10,7 @@ export const tabsRegistry = {
     {
       id: 'tabs-wrapper',
       source: resolveTemplatePath('components/tabs/index.tsx'),
-      dest: ['components', 'fincore', 'tabs', 'index.tsx'],
+      dest: ['components', 'sorleed', 'tabs', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const tabsRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'tabs-css',
       source: resolveTemplatePath('styles/tabs.css'),
-      dest: ['styles', 'fincore', 'tabs.css'],
+      dest: ['styles', 'sorleed', 'tabs.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const tabsRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

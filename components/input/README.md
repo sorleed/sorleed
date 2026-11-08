@@ -95,7 +95,7 @@ The Figma 320px width is a demo literal. Production width belongs to layout.
 |---|---|---|---|
 | `State` | VARIANT | `Default` | **Derived.** `Disabled > Error > Hover > Default`; not a prop |
 | `Label` | TEXT | `Email address` (demo) | `label`: required string |
-| `Value` | TEXT | `ada@fincore.dev` (demo) | `value`: required controlled string; default `""` |
+| `Value` | TEXT | `ada@sorleed.dev` (demo) | `value`: required controlled string; default `""` |
 | `Placeholder` | TEXT | `you@example.com` (demo) | `placeholder`: optional string; never a label |
 | `Helper` | TEXT | `We never share this.` (demo) | `helperText` plus a separate `errorMessage`; error replaces helper |
 | `Focused` | BOOLEAN | `false` | **Derived** from `:focus-visible`; suppressed by Disabled |
@@ -632,7 +632,7 @@ Disabled wins over hover, focus and error. The reason for unavailability is expl
 <Input id="email" label="Email" errorMessage="Enter a valid email." showHelper={false} />
 
 // Value and placeholder overlap.
-<Input id="email" label="Email" value="ada@fincore.dev" filled showPlaceholder />
+<Input id="email" label="Email" value="ada@sorleed.dev" filled showPlaceholder />
 
 // Unsupported type.
 <Input id="password" label="Password" type="password" value={password} onChange={setPassword} />

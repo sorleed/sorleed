@@ -44,10 +44,10 @@ Use `--dir` to target your consumer project root. Paths are resolved and must st
 
 ## What gets copied
 Each component copies:
-- `components/fincore/<component>/index.tsx` (button/input/phone-input)
-- `components/fincore/types/index.ts` (shared across Button, Input, and PhoneInput; contains types for all supported components)
-- `styles/fincore/<component>.css` (button/input/phone-input)
-- `styles/fincore/tokens.css` (shared)
+- `components/sorleed/<component>/index.tsx` (button/input/phone-input)
+- `components/sorleed/types/index.ts` (shared across Button, Input, and PhoneInput; contains types for all supported components)
+- `styles/sorleed/<component>.css` (button/input/phone-input)
+- `styles/sorleed/tokens.css` (shared)
 
 ## Dependencies
 - **Button and Input**: No extra runtime dependencies (peer deps: `react >=18.0.0`, `react-dom >=18.0.0`)
@@ -62,17 +62,17 @@ Each component copies:
 Import tokens first, then component styles:
 
 ```tsx
-import "./styles/fincore/tokens.css";
-import "./styles/fincore/button.css";
-import "./styles/fincore/input.css";
-import "./styles/fincore/phone-input.css";
+import "./styles/sorleed/tokens.css";
+import "./styles/sorleed/button.css";
+import "./styles/sorleed/input.css";
+import "./styles/sorleed/phone-input.css";
 ```
 
 ## Usage examples
 
 ### Button
 ```tsx
-import { Button } from "./components/fincore/button";
+import { Button } from "./components/sorleed/button";
 
 <Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
@@ -83,7 +83,7 @@ import { Button } from "./components/fincore/button";
 
 ### Input
 ```tsx
-import { Input } from "./components/fincore/input";
+import { Input } from "./components/sorleed/input";
 
 <Input label="Email" type="email" placeholder="you@example.com" />
 <Input label="Name" helperText="Enter your full name" />
@@ -94,7 +94,7 @@ import { Input } from "./components/fincore/input";
 
 ### PhoneInput
 ```tsx
-import { PhoneInput } from "./components/fincore/phone-input";
+import { PhoneInput } from "./components/sorleed/phone-input";
 
 <PhoneInput label="Phone" defaultCountry="US" onChange={(result) => {
   console.log(result.inputValue, result.e164, result.isValid);

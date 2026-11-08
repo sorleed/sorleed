@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.button",
+    "id": "sorleed.button",
     "name": "Button",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore's action control: one text label, three visual variants and five mutually exclusive Figma states. Authored from the verified Figma Button set and the 195-token foundation. Implemented as framework-agnostic CSS with native HTML reference markup; no runtime package or adapter.",
+    "summary": "Sorleed's action control: one text label, three visual variants and five mutually exclusive Figma states. Authored from the verified Figma Button set and the 195-token foundation. Implemented as framework-agnostic CSS with native HTML reference markup; no runtime package or adapter.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no runtime package",
     "lastUpdated": "2026-10-26",
     "canonical": {
