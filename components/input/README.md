@@ -2,7 +2,7 @@
 
 **Contract 1.0.0 · Component v0.1 · Implementation: framework-agnostic CSS + native HTML (Stage 2)**
 
-Input is FinCore's single-line text field. It renders a complete field — label, control and helper/error row — with four mutually exclusive Figma states, an independent keyboard-focus ring and 28 component tokens.
+Input is Sorleed's single-line text field. It renders a complete field — label, control and helper/error row — with four mutually exclusive Figma states, an independent keyboard-focus ring and 28 component tokens.
 
 The component renders state. It does **not** validate, format, mask or submit. Those are application responsibilities.
 

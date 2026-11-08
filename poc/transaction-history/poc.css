@@ -1,11 +1,11 @@
 /*
- * Application layout for the FinCore transaction-history proof of concept.
+ * Application layout for the Sorleed transaction-history proof of concept.
  *
- * This is NOT a FinCore component stylesheet and it defines no FinCore tokens.
+ * This is NOT a Sorleed component stylesheet and it defines no Sorleed tokens.
  * It consumes existing --fc-* variables only, and it never selects or overrides
  * .fc-button or .fc-input state rules.
  *
- * FinCore currently has no semantic spacing, radius or typography tokens, so
+ * Sorleed currently has no semantic spacing, radius or typography tokens, so
  * primitive tokens (space.*, radius.*, font.size.*, font.line-height.*,
  * font.weight.*, size.border.width) are used for page-level layout. That
  * exception is documented in README.md and does not change the rule for
@@ -240,7 +240,7 @@ body {
   margin: 0;
 }
 
-/* Mobile transaction list. Application scaffolding, not a FinCore component. */
+/* Mobile transaction list. Application scaffolding, not a Sorleed component. */
 .tx-list {
   display: none;
   margin: 0;

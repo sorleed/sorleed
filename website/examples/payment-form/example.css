@@ -1,8 +1,8 @@
 /*
- * Application layout for the FinCore payment-form example.
+ * Application layout for the Sorleed payment-form example.
  *
- * This is not a FinCore component stylesheet. It consumes existing --fc-*
- * variables, defines no FinCore tokens and never targets component classes.
+ * This is not a Sorleed component stylesheet. It consumes existing --fc-*
+ * variables, defines no Sorleed tokens and never targets component classes.
  * The Button and Input implementation CSS is loaded separately.
  */
 

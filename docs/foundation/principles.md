@@ -1,11 +1,11 @@
-# FinCore Principles
+# Sorleed Principles
 
 ## Status
 
 - Status: Draft
 - Applies to: Contributors, design, code, AI tooling
 
-This is the constitution of FinCore.
+This is the constitution of Sorleed.
 
 Every contributor should be able to read it and know:
 
@@ -46,11 +46,11 @@ Meaning > appearance.
 
 ## 3. Themeable by Design
 
-FinCore ships structure.
+Sorleed ships structure.
 
 Users bring branding.
 
-A bank, crypto app, or insurance company should all use FinCore without modifying component logic.
+A bank, crypto app, or insurance company should all use Sorleed without modifying component logic.
 
 ## 4. Source Owned
 

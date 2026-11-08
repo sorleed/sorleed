@@ -72,7 +72,7 @@ If focus moves to that field, it renders **Error + Focused**: the red border and
 
 ## 3. Component code — contract-shaped pseudocode (not runnable)
 
-> The TSX below is pseudocode for contract vocabulary only. FinCore does not export a React component; the runnable API is native HTML/CSS, as shown in the reference pages linked above.
+> The TSX below is pseudocode for contract vocabulary only. Sorleed does not export a React component; the runnable API is native HTML/CSS, as shown in the reference pages linked above.
 
 ```tsx
 // CONTRACT-SHAPED PSEUDOCODE ONLY. Not an exported API or a runnable page.
@@ -311,7 +311,7 @@ Each line below breaks a specific rule from the contracts.
 - It does not add a currency mask, formatting layer, async validation or submit API.
 - It does not use an inverse or dark surface.
 - It does not show a success state, because Input has none.
-- It does not claim the layout, copy or validation rules are FinCore standards; they are illustrative.
+- It does not claim the layout, copy or validation rules are Sorleed standards; they are illustrative.
 
 ---
 

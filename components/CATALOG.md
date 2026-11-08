@@ -1,6 +1,6 @@
-# FinCore component catalogue
+# Sorleed component catalogue
 
-This is the canonical list of **implemented** FinCore components. It documents
+This is the canonical list of **implemented** Sorleed components. It documents
 what the current contracts, CSS stylesheets, and React adapters support.
 
 | Component | Status | Contract | CSS | Native reference | React Adapter |
@@ -44,7 +44,7 @@ what the current contracts, CSS stylesheets, and React adapters support.
 
 ## Component References
 
-All 28 components follow the FinCore contract pattern:
+All 28 components follow the Sorleed contract pattern:
 - Framework-agnostic CSS consumed via `tokens/dist/tokens.css`
 - Native semantic HTML references
 - Zero-runtime CLI templates under `cli/templates`

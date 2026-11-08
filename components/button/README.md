@@ -2,7 +2,7 @@
 
 **Contract 1.0.0 · Component v0.1 · Implementation: framework-agnostic CSS + native HTML (Stage 2)**
 
-Button is FinCore's action control. It has one text label, three visual variants and five mutually exclusive Figma states. It is 40px high, borderless, and uses only `button.*` component tokens.
+Button is Sorleed's action control. It has one text label, three visual variants and five mutually exclusive Figma states. It is 40px high, borderless, and uses only `button.*` component tokens.
 
 This guide is the human-readable companion to the canonical machine contract:
 

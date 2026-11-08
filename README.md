@@ -1,14 +1,14 @@
-# FinCore
+# Sorleed
 
 An open-source AI-native design infrastructure for financial products.
 
-FinCore provides designers, developers, and AI agents with a shared language for building modern financial experiences.
+Sorleed provides designers, developers, and AI agents with a shared language for building modern financial experiences.
 
-By combining design systems, code, documentation, and AI context files, FinCore helps teams build consistent, accessible, and scalable fintech products faster.
+By combining design systems, code, documentation, and AI context files, Sorleed helps teams build consistent, accessible, and scalable fintech products faster.
 
 ---
 
-## Why FinCore?
+## Why Sorleed?
 
 Financial products repeatedly solve the same interface challenges:
 
@@ -26,13 +26,13 @@ Developers rebuild them.
 
 AI generates them differently every time.
 
-FinCore exists to create a shared foundation that improves consistency across the entire product development lifecycle.
+Sorleed exists to create a shared foundation that improves consistency across the entire product development lifecycle.
 
 ---
 
 ## Core Principles
 
-FinCore is governed by eight principles. The authoritative definitions and supporting
+Sorleed is governed by eight principles. The authoritative definitions and supporting
 commitments are maintained in [`docs/foundation/principles.md`](docs/foundation/principles.md).
 
 * Accessible by Default
@@ -51,7 +51,7 @@ additional principles.
 
 ## v0.1 Release Scope
 
-FinCore v0.1 is a framework-agnostic, native HTML/CSS **Button and Input
+Sorleed v0.1 is a framework-agnostic, native HTML/CSS **Button and Input
 component-system release**.
 
 ### Delivered
@@ -77,12 +77,12 @@ component-system release**.
 
 ---
 
-## Use FinCore
+## Use Sorleed
 
 Start with the [component consumption guide](components/README.md) and the
 [runnable transaction-history example](examples/transaction-history/README.md).
 
-Sorleed / FinCore components are distributed both as source-first HTML/CSS/React components and via the `@sorleed/react` package and `@sorleed/cli`.
+Sorleed / Sorleed components are distributed both as source-first HTML/CSS/React components and via the `@sorleed/react` package and `@sorleed/cli`.
 
 ### Architecture & Radix UI Primitives
 
@@ -161,7 +161,7 @@ MIT License.
 
 ## Status
 
-FinCore v0.1 is the Button/Input component-system release. Broader roadmap
+Sorleed v0.1 is the Button/Input component-system release. Broader roadmap
 items—Card, remaining foundation guides, the AI Context Layer,
 package/distribution and verified cross-browser/assistive-technology
 support—are deferred.
