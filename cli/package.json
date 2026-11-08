@@ -1,9 +1,10 @@
 {
   "name": "@sorleed/cli",
   "version": "0.1.0-alpha.8",
-  "description": "Source-distribution CLI for Weft components",
+  "description": "Source-distribution CLI for Sorleed components",
   "type": "module",
   "bin": {
+    "sorleed": "./src/index.js",
     "weft": "./bin/weft.mjs",
     "fincore": "./bin/fincore.mjs"
   },
