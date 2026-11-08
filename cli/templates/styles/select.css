@@ -59,10 +59,14 @@
   padding-block: calc(
     (var(--fc-select-height) - var(--fc-select-line-height) - (2 * var(--fc-select-border-width))) / 2
   );
-  padding-inline: var(--fc-select-padding-x);
+  padding-inline-start: var(--fc-select-padding-x);
+  padding-inline-end: calc(var(--fc-select-padding-x) * 3);
   border: var(--fc-select-border-width) solid var(--fc-select-border);
   border-radius: var(--fc-select-radius);
   background-color: var(--fc-select-background);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--fc-select-padding-x) center;
   color: var(--fc-select-text);
   font-family: inherit;
   font-size: var(--fc-select-font-size);

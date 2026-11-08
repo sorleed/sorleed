@@ -91,7 +91,8 @@
 .fc-phone-input__country-select {
   width: 100%;
   height: var(--fc-phone-input-height);
-  padding-inline: var(--fc-phone-input-country-select-padding-x);
+  padding-inline-start: var(--fc-phone-input-country-select-padding-x);
+  padding-inline-end: calc(var(--fc-phone-input-country-select-padding-x) * 3);
   padding-block: var(--fc-phone-input-padding-y);
   margin: 0;
   color: var(--fc-phone-input-text);
