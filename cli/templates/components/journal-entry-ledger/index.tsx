@@ -115,3 +115,4 @@ export const JournalEntryLedger = React.forwardRef<HTMLDivElement, JournalEntryL
 JournalEntryLedger.displayName = "JournalEntryLedger";
 
 export default JournalEntryLedger;
+

@@ -8,7 +8,7 @@ const repoRoot = path.resolve(cliRoot, '..');
 const templatesDir = path.resolve(cliRoot, 'templates');
 
 // Source -> Template destination map
-const templateManifest = [
+export const templateManifest = [
   // button
   {
     source: path.resolve(repoRoot, "react/button/index.tsx"),
