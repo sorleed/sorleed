@@ -165,6 +165,12 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .fc-currency__control {
+    transition: none;
+  }
+}
+
 
 /* Size variants */
 .fc-currency--sm .fc-currency__control {

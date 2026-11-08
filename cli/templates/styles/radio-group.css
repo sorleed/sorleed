@@ -192,3 +192,9 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .fc-radio-group__circle {
+    transition: none;
+  }
+}
+

@@ -65,3 +65,35 @@
   line-height: var(--fc-switch-label-line-height);
 }
 
+/* Preserve a visible boundary and focus indicator with system colours. */
+@media (forced-colors: active) {
+  .fc-switch {
+    border-color: ButtonText;
+  }
+
+  .fc-switch__thumb {
+    background-color: ButtonText;
+  }
+
+  .fc-switch[aria-checked="true"],
+  .fc-switch--checked {
+    border-color: Highlight;
+  }
+
+  .fc-switch[aria-checked="true"] .fc-switch__thumb,
+  .fc-switch--checked .fc-switch__thumb {
+    background-color: Highlight;
+  }
+
+  .fc-switch:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-switch,
+  .fc-switch__thumb {
+    transition: none;
+  }
+}
+

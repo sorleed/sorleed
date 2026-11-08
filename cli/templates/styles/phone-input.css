@@ -213,3 +213,23 @@
 .fc-phone-input__message--error {
   color: var(--fc-phone-input-text-error);
 }
+
+/* Preserve a visible boundary and focus indicator with system colours. */
+@media (forced-colors: active) {
+  .fc-phone-input__field,
+  .fc-phone-input__country-select {
+    border-color: ButtonText;
+  }
+
+  .fc-phone-input__field:focus-visible::before,
+  .fc-phone-input__country-select:focus-visible::before {
+    box-shadow: 0 0 0 var(--fc-phone-input-focus-width) Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-phone-input__field,
+  .fc-phone-input__country-select {
+    transition: none;
+  }
+}

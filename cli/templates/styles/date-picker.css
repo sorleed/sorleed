@@ -120,3 +120,20 @@
   opacity: 0.6;
   pointer-events: none;
 }
+
+/* Preserve a visible boundary and focus indicator with system colours. */
+@media (forced-colors: active) {
+  .fc-date-picker__field {
+    border-color: ButtonText;
+  }
+
+  .fc-date-picker__field:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-date-picker__field {
+    transition: none;
+  }
+}
