@@ -270,6 +270,204 @@ const templateManifest = [
     source: path.resolve(repoRoot, "components/container/container.css"),
     dest: path.resolve(templatesDir, "styles/container.css")
   },
+  // avatar
+  {
+    source: path.resolve(repoRoot, "react/avatar/index.tsx"),
+    dest: path.resolve(templatesDir, "components/avatar/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/avatar/avatar.css"),
+    dest: path.resolve(templatesDir, "styles/avatar.css")
+  },
+  // modal
+  {
+    source: path.resolve(repoRoot, "react/modal/index.tsx"),
+    dest: path.resolve(templatesDir, "components/modal/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/modal/modal.css"),
+    dest: path.resolve(templatesDir, "styles/modal.css")
+  },
+  // toast
+  {
+    source: path.resolve(repoRoot, "react/toast/index.tsx"),
+    dest: path.resolve(templatesDir, "components/toast/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/toast/toast.css"),
+    dest: path.resolve(templatesDir, "styles/toast.css")
+  },
+  // pin-input
+  {
+    source: path.resolve(repoRoot, "react/pin-input/index.tsx"),
+    dest: path.resolve(templatesDir, "components/pin-input/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/pin-input/pin-input.css"),
+    dest: path.resolve(templatesDir, "styles/pin-input.css")
+  },
+  // bank-selector
+  {
+    source: path.resolve(repoRoot, "react/bank-selector/index.tsx"),
+    dest: path.resolve(templatesDir, "components/bank-selector/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/bank-selector/bank-selector.css"),
+    dest: path.resolve(templatesDir, "styles/bank-selector.css")
+  },
+  // wallet-card
+  {
+    source: path.resolve(repoRoot, "react/wallet-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/wallet-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/wallet-card/wallet-card.css"),
+    dest: path.resolve(templatesDir, "styles/wallet-card.css")
+  },
+  // account-summary
+  {
+    source: path.resolve(repoRoot, "react/account-summary/index.tsx"),
+    dest: path.resolve(templatesDir, "components/account-summary/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/account-summary/account-summary.css"),
+    dest: path.resolve(templatesDir, "styles/account-summary.css")
+  },
+  // transfer-receipt
+  {
+    source: path.resolve(repoRoot, "react/transfer-receipt/index.tsx"),
+    dest: path.resolve(templatesDir, "components/transfer-receipt/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/transfer-receipt/transfer-receipt.css"),
+    dest: path.resolve(templatesDir, "styles/transfer-receipt.css")
+  },
+  // currency-exchange
+  {
+    source: path.resolve(repoRoot, "react/currency-exchange/index.tsx"),
+    dest: path.resolve(templatesDir, "components/currency-exchange/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/currency-exchange/currency-exchange.css"),
+    dest: path.resolve(templatesDir, "styles/currency-exchange.css")
+  },
+  // fee-breakdown
+  {
+    source: path.resolve(repoRoot, "react/fee-breakdown/index.tsx"),
+    dest: path.resolve(templatesDir, "components/fee-breakdown/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/fee-breakdown/fee-breakdown.css"),
+    dest: path.resolve(templatesDir, "styles/fee-breakdown.css")
+  },
+  // skeleton
+  {
+    source: path.resolve(repoRoot, "react/skeleton/index.tsx"),
+    dest: path.resolve(templatesDir, "components/skeleton/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/skeleton/skeleton.css"),
+    dest: path.resolve(templatesDir, "styles/skeleton.css")
+  },
+  // empty-state
+  {
+    source: path.resolve(repoRoot, "react/empty-state/index.tsx"),
+    dest: path.resolve(templatesDir, "components/empty-state/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/empty-state/empty-state.css"),
+    dest: path.resolve(templatesDir, "styles/empty-state.css")
+  },
+  // loan-calculator
+  {
+    source: path.resolve(repoRoot, "react/loan-calculator/index.tsx"),
+    dest: path.resolve(templatesDir, "components/loan-calculator/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/loan-calculator/loan-calculator.css"),
+    dest: path.resolve(templatesDir, "styles/loan-calculator.css")
+  },
+  // credit-score-gauge
+  {
+    source: path.resolve(repoRoot, "react/credit-score-gauge/index.tsx"),
+    dest: path.resolve(templatesDir, "components/credit-score-gauge/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/credit-score-gauge/credit-score-gauge.css"),
+    dest: path.resolve(templatesDir, "styles/credit-score-gauge.css")
+  },
+  // portfolio-summary
+  {
+    source: path.resolve(repoRoot, "react/portfolio-summary/index.tsx"),
+    dest: path.resolve(templatesDir, "components/portfolio-summary/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/portfolio-summary/portfolio-summary.css"),
+    dest: path.resolve(templatesDir, "styles/portfolio-summary.css")
+  },
+  // spending-meter
+  {
+    source: path.resolve(repoRoot, "react/spending-meter/index.tsx"),
+    dest: path.resolve(templatesDir, "components/spending-meter/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/spending-meter/spending-meter.css"),
+    dest: path.resolve(templatesDir, "styles/spending-meter.css")
+  },
+  // kyc-doc-uploader
+  {
+    source: path.resolve(repoRoot, "react/kyc-doc-uploader/index.tsx"),
+    dest: path.resolve(templatesDir, "components/kyc-doc-uploader/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/kyc-doc-uploader/kyc-doc-uploader.css"),
+    dest: path.resolve(templatesDir, "styles/kyc-doc-uploader.css")
+  },
+  // card-controls
+  {
+    source: path.resolve(repoRoot, "react/card-controls/index.tsx"),
+    dest: path.resolve(templatesDir, "components/card-controls/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/card-controls/card-controls.css"),
+    dest: path.resolve(templatesDir, "styles/card-controls.css")
+  },
+  // repayment-schedule
+  {
+    source: path.resolve(repoRoot, "react/repayment-schedule/index.tsx"),
+    dest: path.resolve(templatesDir, "components/repayment-schedule/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/repayment-schedule/repayment-schedule.css"),
+    dest: path.resolve(templatesDir, "styles/repayment-schedule.css")
+  },
+  // asset-allocation
+  {
+    source: path.resolve(repoRoot, "react/asset-allocation/index.tsx"),
+    dest: path.resolve(templatesDir, "components/asset-allocation/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/asset-allocation/asset-allocation.css"),
+    dest: path.resolve(templatesDir, "styles/asset-allocation.css")
+  },
+  // pagination
+  {
+    source: path.resolve(repoRoot, "react/pagination/index.tsx"),
+    dest: path.resolve(templatesDir, "components/pagination/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/pagination/pagination.css"),
+    dest: path.resolve(templatesDir, "styles/pagination.css")
+  },
+  // accordion
+  {
+    source: path.resolve(repoRoot, "react/accordion/index.tsx"),
+    dest: path.resolve(templatesDir, "components/accordion/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/accordion/accordion.css"),
+    dest: path.resolve(templatesDir, "styles/accordion.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

@@ -745,6 +745,10 @@ export interface BalanceCardProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   account?: React.ReactNode;
   amount: React.ReactNode;
   footer?: React.ReactNode;
+  allowToggleVisibility?: boolean;
+  defaultHidden?: boolean;
+  isHidden?: boolean;
+  onToggleVisibility?: (hidden: boolean) => void;
   className?: string;
 }
 
@@ -807,3 +811,289 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   as?: React.ElementType;
 }
+
+/* ==========================================================================
+   v0.2 & v0.3 Components
+   ========================================================================== */
+
+export type AvatarSize = "sm" | "md" | "lg" | "xl";
+export type AvatarStatus = "online" | "offline" | "away" | "busy";
+
+export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
+  src?: string;
+  alt?: string;
+  name?: string;
+  size?: AvatarSize;
+  status?: AvatarStatus;
+  className?: string;
+}
+
+export type ModalSize = "sm" | "md" | "lg" | "full";
+
+export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  open: boolean;
+  onClose?: () => void;
+  title?: React.ReactNode;
+  size?: ModalSize;
+  children?: React.ReactNode;
+  footer?: React.ReactNode;
+  className?: string;
+}
+
+export type ToastVariant = "info" | "success" | "warning" | "error";
+
+export interface ToastProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  variant?: ToastVariant;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  onClose?: () => void;
+  className?: string;
+}
+
+export interface PinInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  length?: 4 | 6;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (val: string) => void;
+  onComplete?: (val: string) => void;
+  disabled?: boolean;
+  error?: boolean;
+  name?: string;
+  autoFocus?: boolean;
+}
+
+export interface BankInstitution {
+  id: string;
+  name: string;
+  code: string;
+  logo?: string;
+}
+
+export interface BankSelectorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSelect"> {
+  banks: BankInstitution[];
+  selectedBankId?: string;
+  onSelectBank?: (bank: BankInstitution) => void;
+  placeholder?: string;
+  emptyMessage?: string;
+}
+
+export interface WalletCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  brand?: "visa" | "mastercard" | "verve" | "amex" | string;
+  cardNumber: string;
+  cardHolder: string;
+  expiry: string;
+  cvv: string;
+  isFlipped?: boolean;
+  onFlip?: (flipped: boolean) => void;
+}
+
+export interface AccountSummaryProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onCopy"> {
+  bankName: string;
+  accountName: string;
+  accountNumber: string;
+  accountType?: string;
+  routingOrSortCode?: string;
+  iban?: string;
+  balance?: string | number;
+  allowToggleVisibility?: boolean;
+  defaultHidden?: boolean;
+  onCopy?: (field: string, value: string) => void;
+}
+
+export type TransferReceiptStatus = "success" | "pending" | "failed";
+
+export interface TransferReceiptProps extends React.HTMLAttributes<HTMLDivElement> {
+  reference: string;
+  amount: number | string;
+  currency?: string;
+  status?: TransferReceiptStatus;
+  timestamp?: string;
+  recipientName: string;
+  recipientBank: string;
+  recipientAccount: string;
+  senderName?: string;
+  senderAccount?: string;
+  fee?: number | string;
+  allowRedaction?: boolean;
+  onDownload?: () => void;
+  onShare?: () => void;
+}
+
+export interface CurrencyExchangeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  baseCurrency: string;
+  targetCurrency: string;
+  baseAmount?: number | string;
+  targetAmount?: number | string;
+  exchangeRate: number;
+  availableCurrencies?: string[];
+  onBaseAmountChange?: (val: string) => void;
+  onTargetAmountChange?: (val: string) => void;
+  onSwapCurrencies?: () => void;
+  onBaseCurrencyChange?: (curr: string) => void;
+  onTargetCurrencyChange?: (curr: string) => void;
+}
+
+export interface FeeItem {
+  label: string;
+  amount: number | string;
+  isDiscount?: boolean;
+}
+
+export interface FeeBreakdownProps extends React.HTMLAttributes<HTMLDivElement> {
+  fees: FeeItem[];
+  currency?: string;
+  totalFee: number | string;
+  recipientGets?: number | string;
+  exchangeRateNotice?: string;
+}
+
+export type SkeletonVariant = "text" | "circular" | "rectangular";
+
+export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: SkeletonVariant;
+  width?: string | number;
+  height?: string | number;
+  animate?: boolean;
+}
+
+export interface EmptyStateProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  icon?: React.ReactNode;
+  action?: React.ReactNode;
+}
+
+/* ==========================================================================
+   Tier 2 Components (Lending, Credit, Wealth & Compliance)
+   ========================================================================== */
+
+export interface LoanCalculationResult {
+  principal: number;
+  tenureMonths: number;
+  monthlyPayment: number;
+  totalRepayment: number;
+  totalInterest: number;
+}
+
+export interface LoanCalculatorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onCalculate"> {
+  minAmount?: number;
+  maxAmount?: number;
+  stepAmount?: number;
+  defaultAmount?: number;
+  minTenure?: number;
+  maxTenure?: number;
+  defaultTenure?: number;
+  interestRate?: number;
+  currency?: string;
+  onCalculate?: (result: LoanCalculationResult) => void;
+}
+
+export type CreditScoreBand = "excellent" | "good" | "fair" | "poor";
+
+export interface CreditScoreGaugeProps extends React.HTMLAttributes<HTMLDivElement> {
+  score: number;
+  minScore?: number;
+  maxScore?: number;
+  lastUpdated?: string;
+}
+
+export interface PortfolioSummaryProps extends React.HTMLAttributes<HTMLDivElement> {
+  totalValue: number;
+  currency?: string;
+  returnsValue?: number;
+  returnsPercentage: number;
+  investedAmount?: number;
+  cashBalance?: number;
+  apy?: number;
+  allowToggleVisibility?: boolean;
+  defaultHidden?: boolean;
+}
+
+export interface SpendingMeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  currentSpent: number;
+  limit: number;
+  currency?: string;
+  warningThreshold?: number;
+  dangerThreshold?: number;
+}
+
+export interface KycDocUploaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  acceptedFormats?: string;
+  maxSizeMb?: number;
+  onFileSelect?: (file: File) => void;
+  onFileRemove?: () => void;
+}
+
+export interface CardControlItem {
+  id: string;
+  label: string;
+  description?: string;
+  enabled: boolean;
+  disabled?: boolean;
+}
+
+export interface CardControlsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  controls?: CardControlItem[];
+  onToggleControl?: (id: string, enabled: boolean) => void;
+}
+
+export interface RepaymentInstallment {
+  installmentNumber: number;
+  dueDate: string;
+  amount: number | string;
+  principal?: number | string;
+  interest?: number | string;
+  status: "paid" | "due" | "overdue" | "upcoming";
+}
+
+export interface RepaymentScheduleProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  currency?: string;
+  installments?: RepaymentInstallment[];
+  onPayInstallment?: (installmentNumber: number) => void;
+}
+
+export interface AssetItem {
+  id?: string;
+  name: string;
+  percentage: number;
+  amount?: number | string;
+  color?: string;
+}
+
+export interface AssetAllocationProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  assets?: AssetItem[];
+  totalValue?: number | string;
+  currency?: string;
+}
+
+export interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  siblingCount?: number;
+  showPrevNext?: boolean;
+}
+
+export interface AccordionItem {
+  id?: string;
+  title: React.ReactNode;
+  content: React.ReactNode;
+  disabled?: boolean;
+}
+
+export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
+  items?: AccordionItem[];
+  allowMultiple?: boolean;
+  defaultExpanded?: string[];
+}
+
+
+

@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Sorleed — Asset Allocation
+   Portfolio allocation breakdown (stocks, bonds, cash, crypto, commodities)
+   ========================================================================== */
+
+.fc-asset-allocation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-5);
+  font-family: var(--fc-font-family);
+  box-shadow: var(--fc-shadow-sm);
+  color: var(--fc-color-text);
+  box-sizing: border-box;
+}
+
+.fc-asset-allocation__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.fc-asset-allocation__title {
+  margin: 0;
+  font-size: var(--fc-font-size-base);
+  font-weight: 600;
+  color: var(--fc-color-text);
+}
+
+.fc-asset-allocation__total {
+  font-size: var(--fc-font-size-sm);
+  font-weight: 700;
+  color: var(--fc-color-text-secondary);
+}
+
+/* Multi-segmented distribution bar */
+.fc-asset-allocation__bar-track {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  border-radius: var(--fc-radius-full, 9999px);
+  overflow: hidden;
+  background-color: var(--fc-color-surface-hover);
+}
+
+.fc-asset-allocation__bar-segment {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+/* Asset breakdown list */
+.fc-asset-allocation__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+}
+
+.fc-asset-allocation__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--fc-space-2) var(--fc-space-1);
+  border-bottom: 1px solid var(--fc-color-border);
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-asset-allocation__item:last-child {
+  border-bottom: none;
+}
+
+.fc-asset-allocation__item-left {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-asset-allocation__color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.fc-asset-allocation__item-label {
+  font-weight: 500;
+  color: var(--fc-color-text);
+}
+
+.fc-asset-allocation__item-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-3);
+}
+
+.fc-asset-allocation__item-amount {
+  color: var(--fc-color-text-secondary);
+  font-family: var(--fc-font-mono, monospace);
+  font-size: var(--fc-font-size-xs);
+}
+
+.fc-asset-allocation__item-pct {
+  font-weight: 600;
+  min-width: 44px;
+  text-align: right;
+  color: var(--fc-color-text);
+}
+
+@media (forced-colors: active) {
+  .fc-asset-allocation {
+    border: 2px solid CanvasText;
+  }
+  .fc-asset-allocation__bar-track {
+    border: 1px solid CanvasText;
+  }
+}
+

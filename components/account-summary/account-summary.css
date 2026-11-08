@@ -1,0 +1,103 @@
+/*
+ * Sorleed AccountSummary — compact bank account overview card with copy actions.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-account-summary {
+  display: flex;
+  flex-direction: column;
+  padding: var(--fc-space-5);
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-4);
+}
+
+.fc-account-summary__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fc-account-summary__bank-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-account-summary__bank-name {
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+  margin: 0;
+}
+
+.fc-account-summary__account-type {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fc-account-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-3);
+  background-color: var(--fc-color-surface-subtle);
+  border-radius: var(--fc-radius-md);
+}
+
+.fc-account-summary__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-account-summary__field-label {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+.fc-account-summary__field-value-row {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-account-summary__field-value {
+  font-family: monospace;
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-account-summary__copy-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--fc-space-1);
+  border-radius: var(--fc-radius-sm);
+  color: var(--fc-blue-600);
+  font-size: var(--fc-font-size-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fc-account-summary__copy-btn:hover {
+  background-color: var(--fc-blue-50);
+}
+
+.fc-account-summary__copy-btn:focus-visible {
+  outline: 2px solid var(--fc-color-border-focus);
+}
+
+@media (forced-colors: active) {
+  .fc-account-summary {
+    border: 2px solid CanvasText;
+  }
+}
+

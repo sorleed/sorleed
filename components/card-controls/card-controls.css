@@ -1,0 +1,76 @@
+/*
+ * Sorleed CardControls — self-serve debit/credit card security & feature management.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-card-controls {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-5);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.fc-card-controls__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fc-card-controls__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-card-controls__subtitle {
+  margin: 0;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+.fc-card-controls__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+}
+
+.fc-card-controls__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--fc-space-3) var(--fc-space-4);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface-subtle);
+  gap: var(--fc-space-3);
+}
+
+.fc-card-controls__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-card-controls__item-label {
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-card-controls__item-desc {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+@media (forced-colors: active) {
+  .fc-card-controls {
+    border: 2px solid CanvasText;
+  }
+}
+

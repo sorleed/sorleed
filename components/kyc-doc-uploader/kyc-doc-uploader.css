@@ -1,0 +1,120 @@
+/*
+ * Sorleed KycDocUploader — regulatory compliance & document verification dropzone.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-kyc-doc-uploader {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-6);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.fc-kyc-doc-uploader__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-kyc-doc-uploader__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-kyc-doc-uploader__subtitle {
+  margin: 0;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-kyc-doc-uploader__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--fc-space-8) var(--fc-space-4);
+  border: 2px dashed var(--fc-color-border-control);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface-subtle);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  position: relative;
+}
+
+.fc-kyc-doc-uploader__dropzone:hover {
+  border-color: var(--fc-blue-500);
+  background-color: var(--fc-blue-50);
+}
+
+.fc-kyc-doc-uploader__dropzone:focus-visible {
+  outline: 2px solid var(--fc-color-border-focus);
+}
+
+.fc-kyc-doc-uploader__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--fc-radius-full);
+  background-color: var(--fc-color-surface-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fc-blue-600);
+  margin-bottom: var(--fc-space-2);
+}
+
+.fc-kyc-doc-uploader__prompt {
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+  margin: 0;
+}
+
+.fc-kyc-doc-uploader__hint {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+  margin: var(--fc-space-1) 0 0;
+}
+
+.fc-kyc-doc-uploader__input-hidden {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.fc-kyc-doc-uploader__preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--fc-space-3) var(--fc-space-4);
+  background-color: var(--fc-blue-50);
+  border: 1px solid var(--fc-blue-200);
+  border-radius: var(--fc-radius-md);
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-kyc-doc-uploader__remove-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--fc-color-status-error);
+  font-weight: var(--fc-font-weight-medium);
+  font-size: var(--fc-font-size-xs);
+}
+
+@media (forced-colors: active) {
+  .fc-kyc-doc-uploader__dropzone {
+    border: 2px dashed CanvasText;
+  }
+}

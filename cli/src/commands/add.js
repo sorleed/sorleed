@@ -29,6 +29,28 @@ import { phoneInputRegistry } from '../registry/phone-input.js';
 import { radioGroupRegistry } from '../registry/radio-group.js';
 import { selectRegistry } from '../registry/select.js';
 import { textareaRegistry } from '../registry/textarea.js';
+import { avatarRegistry } from '../registry/avatar.js';
+import { modalRegistry } from '../registry/modal.js';
+import { toastRegistry } from '../registry/toast.js';
+import { pinInputRegistry } from '../registry/pin-input.js';
+import { bankSelectorRegistry } from '../registry/bank-selector.js';
+import { walletCardRegistry } from '../registry/wallet-card.js';
+import { accountSummaryRegistry } from '../registry/account-summary.js';
+import { transferReceiptRegistry } from '../registry/transfer-receipt.js';
+import { currencyExchangeRegistry } from '../registry/currency-exchange.js';
+import { feeBreakdownRegistry } from '../registry/fee-breakdown.js';
+import { skeletonRegistry } from '../registry/skeleton.js';
+import { emptyStateRegistry } from '../registry/empty-state.js';
+import { loanCalculatorRegistry } from '../registry/loan-calculator.js';
+import { creditScoreGaugeRegistry } from '../registry/credit-score-gauge.js';
+import { portfolioSummaryRegistry } from '../registry/portfolio-summary.js';
+import { spendingMeterRegistry } from '../registry/spending-meter.js';
+import { kycDocUploaderRegistry } from '../registry/kyc-doc-uploader.js';
+import cardControlsRegistry from '../registry/card-controls.js';
+import repaymentScheduleRegistry from '../registry/repayment-schedule.js';
+import assetAllocationRegistry from '../registry/asset-allocation.js';
+import paginationRegistry from '../registry/pagination.js';
+import accordionRegistry from '../registry/accordion.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -61,6 +83,28 @@ function getRegistry(component) {
   if (component === 'radio-group' || component === 'radiogroup') return radioGroupRegistry;
   if (component === 'select') return selectRegistry;
   if (component === 'textarea') return textareaRegistry;
+  if (component === 'avatar') return avatarRegistry;
+  if (component === 'modal') return modalRegistry;
+  if (component === 'toast') return toastRegistry;
+  if (component === 'pin-input' || component === 'pininput') return pinInputRegistry;
+  if (component === 'bank-selector' || component === 'bankselector') return bankSelectorRegistry;
+  if (component === 'wallet-card' || component === 'walletcard') return walletCardRegistry;
+  if (component === 'account-summary' || component === 'accountsummary') return accountSummaryRegistry;
+  if (component === 'transfer-receipt' || component === 'transferreceipt') return transferReceiptRegistry;
+  if (component === 'currency-exchange' || component === 'currencyexchange') return currencyExchangeRegistry;
+  if (component === 'fee-breakdown' || component === 'feebreakdown') return feeBreakdownRegistry;
+  if (component === 'skeleton') return skeletonRegistry;
+  if (component === 'empty-state' || component === 'emptystate') return emptyStateRegistry;
+  if (component === 'loan-calculator' || component === 'loancalculator') return loanCalculatorRegistry;
+  if (component === 'credit-score-gauge' || component === 'creditscoregauge') return creditScoreGaugeRegistry;
+  if (component === 'portfolio-summary' || component === 'portfoliosummary') return portfolioSummaryRegistry;
+  if (component === 'spending-meter' || component === 'spendingmeter') return spendingMeterRegistry;
+  if (component === 'kyc-doc-uploader' || component === 'kycdocuploader') return kycDocUploaderRegistry;
+  if (component === 'card-controls' || component === 'cardcontrols') return cardControlsRegistry;
+  if (component === 'repayment-schedule' || component === 'repaymentschedule') return repaymentScheduleRegistry;
+  if (component === 'asset-allocation' || component === 'assetallocation') return assetAllocationRegistry;
+  if (component === 'pagination') return paginationRegistry;
+  if (component === 'accordion') return accordionRegistry;
   return null;
 }
 
