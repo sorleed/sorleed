@@ -100,6 +100,17 @@ Choose the solution that improves:
 * Data readability
 * Transaction confidence
 
+### Fintech Production Guardrails
+1. **Zero Ambiguity in Monetary Display:**
+   * Monetary figures must always be formatted unambiguously using canonical ISO 4217 currency codes or explicit locale standards (see `formatMoney`).
+   * Never truncate financial values or account identifiers with text ellipsis (`text-overflow: ellipsis`) without an explicit expansion pattern.
+   * Differentiate debit, credit, fee, and adjustment amounts visually and programmatically via `aria-label` or sign indicators (`+ $10.00` vs `- $10.00`), never by color alone.
+2. **Defensive State & Idempotency:**
+   * Transactional buttons must provide built-in double-submit guards during pending/loading operations.
+   * Form inputs must fail-closed: malformed data preserves explicit `aria-invalid="true"` and associated error messages.
+3. **Auditable & Non-Destructive Source:**
+   * All distributed code must be clean, transparent, and auditable for security compliance (SOC 2, ISO 27001). Zero proprietary telemetry or closed dependencies.
+
 ## 8. Component Driven
 
 Pages are assembled from components.
