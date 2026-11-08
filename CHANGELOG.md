@@ -30,6 +30,19 @@ semantic versioning.
 - Resolved `tsup` and `esbuild` advisories by upgrading to `tsup` 8.4.0 and
   pinning `esbuild` 0.25.12.
 
+## [0.1.0-alpha.5] — 2026-11-07
+
+### Added
+
+- Documented headless Radix UI integration (`@radix-ui/react-tabs`, `@radix-ui/react-tooltip`, `@radix-ui/react-popover`, `@radix-ui/react-dialog`) for Tabs, Tooltip, Popover, and Drawer with peer dependency requirements and WAI-ARIA behavioral details.
+- Updated package and CLI documentation to clarify native vs Radix overlay primitives.
+
+## [0.1.0-alpha.4] — 2026-11-07
+
+### Changed
+
+- Expanded package and CLI README documentation to list and categorize all 28 canonical components.
+
 ## [0.1.0-alpha.3] — 2026-11-07
 
 ### Added

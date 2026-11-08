@@ -82,8 +82,24 @@ component-system release**.
 Start with the [component consumption guide](components/README.md) and the
 [runnable transaction-history example](examples/transaction-history/README.md).
 
-FinCore components are framework-agnostic CSS with native HTML. There is no
-package manager, build step or JavaScript runtime to install.
+Sorleed / FinCore components are distributed both as source-first HTML/CSS/React components and via the `@sorleed/react` package and `@sorleed/cli`.
+
+### Architecture & Radix UI Primitives
+
+The majority of components (Button, Input, Card, Alert, Table, Badge, Switch, and all Fintech primitives) are 100% native HTML/CSS implementations without external runtime dependencies.
+
+For complex floating overlays and accessible keyboard interactions, Sorleed leverages unstyled [Radix UI](https://www.radix-ui.com/) headless primitives:
+- **Tabs:** `@radix-ui/react-tabs` (arrow-key roving tab index, ARIA tabs/tabpanel roles)
+- **Tooltip:** `@radix-ui/react-tooltip` (accessible hover/focus delays, escape dismissal, collision bounds)
+- **Popover:** `@radix-ui/react-popover` (focus trapping, click-outside dismissal, anchor positioning)
+- **Drawer:** `@radix-ui/react-dialog` (modal sheet overlay, body scroll lock, escape dismissal)
+
+All Radix primitives are styled exclusively with Sorleed `--fc-*` design tokens to ensure strict visual and theme consistency.
+
+When using these overlay components, install the respective Radix peer dependencies:
+```bash
+npm install @radix-ui/react-tabs @radix-ui/react-tooltip @radix-ui/react-popover @radix-ui/react-dialog
+```
 
 ---
 

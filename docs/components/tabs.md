@@ -25,6 +25,14 @@ import "@sorleed/react/styles/tabs.css";
 - Token contrast verified against standard surfaces.
 - Preserves high-contrast / forced-colors indicators.
 
+## Built on Radix UI
+
+`Tabs` is built on `@radix-ui/react-tabs`, providing unstyled, fully accessible tablist primitives:
+- **Keyboard navigation:** Automatic arrow-key navigation between tabs (`ArrowLeft`, `ArrowRight` or vertical variants).
+- **Roving tabindex:** Manages focus so only the active tab is in the natural tab sequence.
+- **ARIA conformance:** Automatic association of `role="tab"`, `role="tablist"`, and `role="tabpanel"` with appropriate `aria-selected` and `aria-controls` relations.
+- **Peer dependency:** `@radix-ui/react-tabs >=1.0.0`.
+
 ## Tokens
 
 Consumes `--fc-tabs-*` component tokens exclusively.

@@ -25,6 +25,15 @@ import "@sorleed/react/styles/tooltip.css";
 - Token contrast verified against standard surfaces.
 - Preserves high-contrast / forced-colors indicators.
 
+## Built on Radix UI
+
+`Tooltip` is built on `@radix-ui/react-tooltip`, ensuring robust accessibility and collision management:
+- **Hover & Focus timing:** Controlled display delays preventing accidental flashes while moving the pointer.
+- **Escape dismissal:** Pressing `Escape` immediately dismisses the active tooltip without shifting focus.
+- **Collision avoidance:** Automatically repositions or flips when rendered near viewport boundaries.
+- **ARIA attributes:** Adds `role="tooltip"` and links to the anchor element via `aria-describedby`.
+- **Peer dependency:** `@radix-ui/react-tooltip >=1.0.0`.
+
 ## Tokens
 
 Consumes `--fc-tooltip-*` component tokens exclusively.

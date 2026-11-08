@@ -25,6 +25,15 @@ import "@sorleed/react/styles/popover.css";
 - Token contrast verified against standard surfaces.
 - Preserves high-contrast / forced-colors indicators.
 
+## Built on Radix UI
+
+`Popover` is built on `@radix-ui/react-popover`, providing non-modal and modal interactive overlay behaviors:
+- **Focus trapping & restoration:** Safely moves focus inside the overlay upon trigger and restores it to the anchor on close.
+- **Dismissal mechanisms:** Dismisses cleanly on `Escape` keypress or clicks outside the popover container.
+- **Portaling & positioning:** Renders via portals into `document.body` with configurable collision detection.
+- **ARIA attributes:** Sets `aria-haspopup="dialog"`, `aria-expanded`, and links `aria-controls`.
+- **Peer dependency:** `@radix-ui/react-popover >=1.0.0`.
+
 ## Tokens
 
 Consumes `--fc-popover-*` component tokens exclusively.

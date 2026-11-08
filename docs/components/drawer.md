@@ -25,6 +25,15 @@ import "@sorleed/react/styles/drawer.css";
 - Token contrast verified against standard surfaces.
 - Preserves high-contrast / forced-colors indicators.
 
+## Built on Radix UI
+
+`Drawer` is built on `@radix-ui/react-dialog`, providing accessible modal sheet primitives:
+- **Focus trapping:** Restricts keyboard navigation inside the open drawer and restores focus on dismissal.
+- **Scroll locking:** Prevents body background scrolling while the overlay is visible.
+- **Dismissal triggers:** Dismisses on backdrop click, explicit close button, or pressing `Escape`.
+- **ARIA conformance:** Automatic `role="dialog"`, `aria-modal="true"`, and label/description associations.
+- **Peer dependency:** `@radix-ui/react-dialog >=1.0.0`.
+
 ## Tokens
 
 Consumes `--fc-drawer-*` component tokens exclusively.
