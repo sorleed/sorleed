@@ -10,7 +10,7 @@ export const passwordInputRegistry = {
     {
       id: 'password-input-wrapper',
       source: resolveTemplatePath('components/password-input/index.tsx'),
-      dest: ['components', 'fincore', 'password-input', 'index.tsx'],
+      dest: ['components', 'sorleed', 'password-input', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const passwordInputRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'password-input-css',
       source: resolveTemplatePath('styles/password-input.css'),
-      dest: ['styles', 'fincore', 'password-input.css'],
+      dest: ['styles', 'sorleed', 'password-input.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const passwordInputRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

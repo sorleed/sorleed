@@ -14,7 +14,7 @@ test("Checkbox contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/checkbox/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/checkbox/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.checkbox");
+  assert.equal(contract.contract.id, "sorleed.checkbox");
   assert.equal(contract.contract.name, "Checkbox");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 27, "Checkbox contract specifies 27 tokens");

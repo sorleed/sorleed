@@ -14,7 +14,7 @@ test("Divider contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/divider/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/divider/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.divider");
+  assert.equal(contract.contract.id, "sorleed.divider");
   assert.equal(contract.contract.name, "Divider");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 4, "Divider contract specifies 4 tokens");

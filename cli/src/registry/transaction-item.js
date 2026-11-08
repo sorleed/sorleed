@@ -10,7 +10,7 @@ export const transactionItemRegistry = {
     {
       id: 'transaction-item-wrapper',
       source: resolveTemplatePath('components/transaction-item/index.tsx'),
-      dest: ['components', 'fincore', 'transaction-item', 'index.tsx'],
+      dest: ['components', 'sorleed', 'transaction-item', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const transactionItemRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'transaction-item-css',
       source: resolveTemplatePath('styles/transaction-item.css'),
-      dest: ['styles', 'fincore', 'transaction-item.css'],
+      dest: ['styles', 'sorleed', 'transaction-item.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const transactionItemRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

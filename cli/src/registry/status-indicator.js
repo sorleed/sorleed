@@ -10,7 +10,7 @@ export const statusIndicatorRegistry = {
     {
       id: 'status-indicator-wrapper',
       source: resolveTemplatePath('components/status-indicator/index.tsx'),
-      dest: ['components', 'fincore', 'status-indicator', 'index.tsx'],
+      dest: ['components', 'sorleed', 'status-indicator', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const statusIndicatorRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'status-indicator-css',
       source: resolveTemplatePath('styles/status-indicator.css'),
-      dest: ['styles', 'fincore', 'status-indicator.css'],
+      dest: ['styles', 'sorleed', 'status-indicator.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const statusIndicatorRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

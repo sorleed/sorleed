@@ -10,7 +10,7 @@ export const checkboxRegistry = {
     {
       id: 'checkbox-wrapper',
       source: resolveTemplatePath('components/checkbox/index.tsx'),
-      dest: ['components', 'fincore', 'checkbox', 'index.tsx'],
+      dest: ['components', 'sorleed', 'checkbox', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const checkboxRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'checkbox-css',
       source: resolveTemplatePath('styles/checkbox.css'),
-      dest: ['styles', 'fincore', 'checkbox.css'],
+      dest: ['styles', 'sorleed', 'checkbox.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const checkboxRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

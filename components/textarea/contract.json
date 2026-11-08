@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.textarea",
+    "id": "sorleed.textarea",
     "name": "Textarea",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore's native multiline text area: label + control + helper/error message, four states, independent focus ring and only textarea.* component tokens.",
+    "summary": "Sorleed's native multiline text area: label + control + helper/error message, four states, independent focus ring and only textarea.* component tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-06",
     "canonical": {

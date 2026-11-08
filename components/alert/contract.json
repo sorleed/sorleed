@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.alert",
+    "id": "sorleed.alert",
     "name": "Alert",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore native Alert: banner callout with info, success, warning, and error status styles using only alert.* tokens.",
+    "summary": "Sorleed native Alert: banner callout with info, success, warning, and error status styles using only alert.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-06",
     "canonical": {

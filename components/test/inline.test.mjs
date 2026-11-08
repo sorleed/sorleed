@@ -14,7 +14,7 @@ test("Inline contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/inline/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/inline/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.inline");
+  assert.equal(contract.contract.id, "sorleed.inline");
   assert.equal(contract.contract.name, "Inline");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 5, "Inline contract specifies 5 tokens");

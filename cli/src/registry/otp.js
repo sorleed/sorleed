@@ -10,7 +10,7 @@ export const otpRegistry = {
     {
       id: 'otp-wrapper',
       source: resolveTemplatePath('components/otp/index.tsx'),
-      dest: ['components', 'fincore', 'otp', 'index.tsx'],
+      dest: ['components', 'sorleed', 'otp', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const otpRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'otp-css',
       source: resolveTemplatePath('styles/otp.css'),
-      dest: ['styles', 'fincore', 'otp.css'],
+      dest: ['styles', 'sorleed', 'otp.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const otpRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

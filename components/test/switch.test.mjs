@@ -14,7 +14,7 @@ test("Switch contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/switch/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/switch/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.switch");
+  assert.equal(contract.contract.id, "sorleed.switch");
   assert.equal(contract.contract.name, "Switch");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 18, "Switch contract specifies 18 tokens");

@@ -14,7 +14,7 @@ test("Badge contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/badge/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/badge/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.badge");
+  assert.equal(contract.contract.id, "sorleed.badge");
   assert.equal(contract.contract.name, "Badge");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 16, "Badge contract specifies 16 tokens");

@@ -10,7 +10,7 @@ export const tooltipRegistry = {
     {
       id: 'tooltip-wrapper',
       source: resolveTemplatePath('components/tooltip/index.tsx'),
-      dest: ['components', 'fincore', 'tooltip', 'index.tsx'],
+      dest: ['components', 'sorleed', 'tooltip', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const tooltipRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'tooltip-css',
       source: resolveTemplatePath('styles/tooltip.css'),
-      dest: ['styles', 'fincore', 'tooltip.css'],
+      dest: ['styles', 'sorleed', 'tooltip.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const tooltipRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

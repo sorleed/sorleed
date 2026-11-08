@@ -1,12 +1,12 @@
 {
   "$schema": "../contract.schema.json",
   "contract": {
-    "id": "fincore.container",
+    "id": "sorleed.container",
     "name": "Container",
     "version": "1.0.0",
     "status": "draft",
     "componentVersion": "0.1.0",
-    "summary": "FinCore Container: layout primitive using only container.* tokens.",
+    "summary": "Sorleed Container: layout primitive using only container.* tokens.",
     "maturity": "implemented; framework-agnostic CSS + native HTML; no Figma source",
     "lastUpdated": "2026-11-07",
     "canonical": {

@@ -14,7 +14,7 @@ test("StatusIndicator contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/status-indicator/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/status-indicator/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.status-indicator");
+  assert.equal(contract.contract.id, "sorleed.status-indicator");
   assert.equal(contract.contract.name, "StatusIndicator");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 12, "StatusIndicator contract specifies 12 tokens");

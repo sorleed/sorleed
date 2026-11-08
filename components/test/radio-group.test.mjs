@@ -14,7 +14,7 @@ test("Radio Group contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/radio-group/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/radio-group/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.radio-group");
+  assert.equal(contract.contract.id, "sorleed.radio-group");
   assert.equal(contract.contract.name, "Radio Group");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 31, "Radio Group contract specifies 31 tokens");

@@ -10,7 +10,7 @@ export const inlineRegistry = {
     {
       id: 'inline-wrapper',
       source: resolveTemplatePath('components/inline/index.tsx'),
-      dest: ['components', 'fincore', 'inline', 'index.tsx'],
+      dest: ['components', 'sorleed', 'inline', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const inlineRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'inline-css',
       source: resolveTemplatePath('styles/inline.css'),
-      dest: ['styles', 'fincore', 'inline.css'],
+      dest: ['styles', 'sorleed', 'inline.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const inlineRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

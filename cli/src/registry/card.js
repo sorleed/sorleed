@@ -10,7 +10,7 @@ export const cardRegistry = {
     {
       id: 'card-wrapper',
       source: resolveTemplatePath('components/card/index.tsx'),
-      dest: ['components', 'fincore', 'card', 'index.tsx'],
+      dest: ['components', 'sorleed', 'card', 'index.tsx'],
       required: true,
       type: 'component',
       shared: false,
@@ -19,17 +19,17 @@ export const cardRegistry = {
     {
       id: 'shared-types',
       source: resolveTemplatePath('components/types/index.ts'),
-      dest: ['components', 'fincore', 'types', 'index.ts'],
+      dest: ['components', 'sorleed', 'types', 'index.ts'],
       required: true,
       type: 'types',
       shared: true,
-      sharedKey: 'fincore-shared-types',
+      sharedKey: 'sorleed-shared-types',
       overwrite: 'skip-if-exists'
     },
     {
       id: 'card-css',
       source: resolveTemplatePath('styles/card.css'),
-      dest: ['styles', 'fincore', 'card.css'],
+      dest: ['styles', 'sorleed', 'card.css'],
       required: true,
       type: 'css',
       shared: false,
@@ -38,11 +38,11 @@ export const cardRegistry = {
     {
       id: 'tokens-css',
       source: resolveTemplatePath('styles/tokens.css'),
-      dest: ['styles', 'fincore', 'tokens.css'],
+      dest: ['styles', 'sorleed', 'tokens.css'],
       required: true,
       type: 'css',
       shared: true,
-      sharedKey: 'fincore-tokens',
+      sharedKey: 'sorleed-tokens',
       overwrite: 'skip-if-exists'
     }
   ],

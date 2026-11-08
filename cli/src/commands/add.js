@@ -185,8 +185,8 @@ export async function addCommand(args) {
   }
   
   console.log('Required CSS imports (order matters):');
-  console.log(`  1. import "./styles/fincore/tokens.css";`);
-  console.log(`  2. import "./styles/fincore/${component === 'phone-input' || component === 'phoneinput' ? 'phone-input' : component}.css";`);
+  console.log(`  1. import "./styles/sorleed/tokens.css";`);
+  console.log(`  2. import "./styles/sorleed/${component === 'phone-input' || component === 'phoneinput' ? 'phone-input' : component}.css";`);
   console.log('');
   console.log('  Note: CSS imports require a bundler that supports CSS imports.');
   console.log('  Tokens must be loaded before component CSS.');

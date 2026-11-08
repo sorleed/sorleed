@@ -14,7 +14,7 @@ test("Drawer contract is present and valid", () => {
   assert.ok(existsSync(resolve(root, "components/drawer/contract.json")), "contract.json must exist");
   const contract = JSON.parse(read("components/drawer/contract.json"));
 
-  assert.equal(contract.contract.id, "fincore.drawer");
+  assert.equal(contract.contract.id, "sorleed.drawer");
   assert.equal(contract.contract.name, "Drawer");
   assert.ok(Array.isArray(contract.tokens.dependencies));
   assert.equal(contract.tokens.dependencies.length, 11, "Drawer contract specifies 11 tokens");

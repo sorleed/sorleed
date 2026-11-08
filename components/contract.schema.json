@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:fincore:component-contract:1.0.0",
-  "title": "FinCore Component Contract",
-  "description": "Stage 1 machine-readable contract format for FinCore components. The contract separates design evidence from production requirements and never invents component capabilities.",
+  "$id": "urn:sorleed:component-contract:1.0.0",
+  "title": "Sorleed Component Contract",
+  "description": "Stage 1 machine-readable contract format for Sorleed components. The contract separates design evidence from production requirements and never invents component capabilities.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -118,7 +118,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^fincore\\.[a-z][a-z0-9-]*$"
+          "pattern": "^sorleed\\.[a-z][a-z0-9-]*$"
         },
         "name": {
           "type": "string",
