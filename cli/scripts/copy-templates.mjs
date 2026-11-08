@@ -270,6 +270,69 @@ const templateManifest = [
     source: path.resolve(repoRoot, "components/container/container.css"),
     dest: path.resolve(templatesDir, "styles/container.css")
   },
+  // avatar
+  {
+    source: path.resolve(repoRoot, "react/avatar/index.tsx"),
+    dest: path.resolve(templatesDir, "components/avatar/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/avatar/avatar.css"),
+    dest: path.resolve(templatesDir, "styles/avatar.css")
+  },
+  // modal
+  {
+    source: path.resolve(repoRoot, "react/modal/index.tsx"),
+    dest: path.resolve(templatesDir, "components/modal/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/modal/modal.css"),
+    dest: path.resolve(templatesDir, "styles/modal.css")
+  },
+  // toast
+  {
+    source: path.resolve(repoRoot, "react/toast/index.tsx"),
+    dest: path.resolve(templatesDir, "components/toast/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/toast/toast.css"),
+    dest: path.resolve(templatesDir, "styles/toast.css")
+  },
+  // pin-input
+  {
+    source: path.resolve(repoRoot, "react/pin-input/index.tsx"),
+    dest: path.resolve(templatesDir, "components/pin-input/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/pin-input/pin-input.css"),
+    dest: path.resolve(templatesDir, "styles/pin-input.css")
+  },
+  // bank-selector
+  {
+    source: path.resolve(repoRoot, "react/bank-selector/index.tsx"),
+    dest: path.resolve(templatesDir, "components/bank-selector/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/bank-selector/bank-selector.css"),
+    dest: path.resolve(templatesDir, "styles/bank-selector.css")
+  },
+  // wallet-card
+  {
+    source: path.resolve(repoRoot, "react/wallet-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/wallet-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/wallet-card/wallet-card.css"),
+    dest: path.resolve(templatesDir, "styles/wallet-card.css")
+  },
+  // account-summary
+  {
+    source: path.resolve(repoRoot, "react/account-summary/index.tsx"),
+    dest: path.resolve(templatesDir, "components/account-summary/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/account-summary/account-summary.css"),
+    dest: path.resolve(templatesDir, "styles/account-summary.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

@@ -807,3 +807,89 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   as?: React.ElementType;
 }
+
+/* ==========================================================================
+   v0.2 & v0.3 Components
+   ========================================================================== */
+
+export type AvatarSize = "sm" | "md" | "lg" | "xl";
+export type AvatarStatus = "online" | "offline" | "away" | "busy";
+
+export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
+  src?: string;
+  alt?: string;
+  name?: string;
+  size?: AvatarSize;
+  status?: AvatarStatus;
+  className?: string;
+}
+
+export type ModalSize = "sm" | "md" | "lg" | "full";
+
+export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  open: boolean;
+  onClose?: () => void;
+  title?: React.ReactNode;
+  size?: ModalSize;
+  children?: React.ReactNode;
+  footer?: React.ReactNode;
+  className?: string;
+}
+
+export type ToastVariant = "info" | "success" | "warning" | "error";
+
+export interface ToastProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  variant?: ToastVariant;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  onClose?: () => void;
+  className?: string;
+}
+
+export interface PinInputProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  length?: 4 | 6;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (val: string) => void;
+  onComplete?: (val: string) => void;
+  disabled?: boolean;
+  error?: boolean;
+  name?: string;
+  autoFocus?: boolean;
+}
+
+export interface BankInstitution {
+  id: string;
+  name: string;
+  code: string;
+  logo?: string;
+}
+
+export interface BankSelectorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSelect"> {
+  banks: BankInstitution[];
+  selectedBankId?: string;
+  onSelectBank?: (bank: BankInstitution) => void;
+  placeholder?: string;
+  emptyMessage?: string;
+}
+
+export interface WalletCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  brand?: "visa" | "mastercard" | "verve" | "amex" | string;
+  cardNumber: string;
+  cardHolder: string;
+  expiry: string;
+  cvv: string;
+  isFlipped?: boolean;
+  onFlip?: (flipped: boolean) => void;
+}
+
+export interface AccountSummaryProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onCopy"> {
+  bankName: string;
+  accountName: string;
+  accountNumber: string;
+  accountType?: string;
+  routingOrSortCode?: string;
+  iban?: string;
+  onCopy?: (field: string, value: string) => void;
+}
+

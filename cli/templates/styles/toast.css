@@ -1,0 +1,104 @@
+/*
+ * Sorleed Toast — notification banner system.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-toast-container {
+  position: fixed;
+  bottom: var(--fc-space-6);
+  right: var(--fc-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+  z-index: 200;
+  max-width: 400px;
+  width: calc(100% - var(--fc-space-8));
+  pointer-events: none;
+}
+
+.fc-toast {
+  pointer-events: auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-3) var(--fc-space-4);
+  border-radius: var(--fc-radius-md);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  background-color: var(--fc-color-surface-default);
+  color: var(--fc-color-content-primary);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  font-size: var(--fc-font-size-sm);
+  line-height: var(--fc-font-line-height-sm);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.fc-toast__content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-toast__title {
+  margin: 0;
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-toast__description {
+  margin: 0;
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-toast__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--fc-space-1);
+  border-radius: var(--fc-radius-sm);
+  color: var(--fc-color-content-muted);
+  flex-shrink: 0;
+}
+
+.fc-toast__close:hover {
+  background-color: var(--fc-color-surface-subtle);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-toast__close:focus-visible {
+  outline: 2px solid var(--fc-color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Variants */
+.fc-toast--info {
+  border-left: 4px solid var(--fc-blue-500);
+}
+
+.fc-toast--success {
+  border-left: 4px solid var(--fc-color-status-success);
+}
+
+.fc-toast--warning {
+  border-left: 4px solid var(--fc-color-status-warning);
+}
+
+.fc-toast--error {
+  border-left: 4px solid var(--fc-color-status-error);
+}
+
+@media (forced-colors: active) {
+  .fc-toast {
+    border: 2px solid CanvasText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-toast {
+    transition: none !important;
+  }
+}

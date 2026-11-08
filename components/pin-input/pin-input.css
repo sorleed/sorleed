@@ -1,0 +1,66 @@
+/*
+ * Sorleed PinInput — masked 4- or 6-digit transaction authorization PIN input.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-pin-input {
+  display: inline-flex;
+  gap: var(--fc-space-3);
+  align-items: center;
+}
+
+.fc-pin-input__cell {
+  width: var(--fc-space-10);
+  height: var(--fc-space-12);
+  text-align: center;
+  font-family: inherit;
+  font-size: var(--fc-font-size-xl);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-control);
+  border-radius: var(--fc-radius-md);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  -webkit-text-security: disc; /* bullet masking */
+}
+
+.fc-pin-input__cell:hover:not(:disabled) {
+  border-color: var(--fc-color-border-control-hover);
+}
+
+.fc-pin-input__cell:focus {
+  border-color: var(--fc-color-border-focus);
+  box-shadow: 0 0 0 2px var(--fc-color-surface-default), 0 0 0 4px var(--fc-color-border-focus);
+}
+
+.fc-pin-input__cell:disabled {
+  background-color: var(--fc-color-surface-muted);
+  color: var(--fc-color-content-disabled);
+  border-color: var(--fc-color-border-subtle);
+  cursor: not-allowed;
+}
+
+.fc-pin-input--error .fc-pin-input__cell {
+  border-color: var(--fc-color-border-error);
+}
+
+.fc-pin-input--error .fc-pin-input__cell:focus {
+  box-shadow: 0 0 0 2px var(--fc-color-surface-default), 0 0 0 4px var(--fc-color-border-error);
+}
+
+@media (forced-colors: active) {
+  .fc-pin-input__cell {
+    border: 2px solid ButtonBorder;
+  }
+  .fc-pin-input__cell:focus {
+    outline: 2px solid Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-pin-input__cell {
+    transition: none !important;
+  }
+}

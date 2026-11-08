@@ -1,7 +1,9 @@
 export { Alert, default as AlertDefault } from "./alert";
 export { AmountDisplay, default as AmountDisplayDefault } from "./amount-display";
+export { Avatar, default as AvatarDefault } from "./avatar";
 export { Badge, default as BadgeDefault } from "./badge";
 export { BalanceCard, default as BalanceCardDefault } from "./balance-card";
+export { BankSelector, default as BankSelectorDefault } from "./bank-selector";
 export { Button, default as ButtonDefault } from "./button";
 export { Card, default as CardDefault } from "./card";
 export { Checkbox, default as CheckboxDefault } from "./checkbox";
@@ -13,8 +15,10 @@ export { Divider, default as DividerDefault } from "./divider";
 export { Drawer, default as DrawerDefault } from "./drawer";
 export { Inline, default as InlineDefault } from "./inline";
 export { Input, default as InputDefault } from "./input";
+export { Modal, default as ModalDefault } from "./modal";
 export { OTP, default as OTPDefault } from "./otp";
 export { PasswordInput, default as PasswordInputDefault } from "./password-input";
+export { PinInput, default as PinInputDefault } from "./pin-input";
 export { Popover, default as PopoverDefault } from "./popover";
 export { RadioGroup, default as RadioGroupDefault } from "./radio-group";
 export { Select, default as SelectDefault } from "./select";
@@ -24,8 +28,11 @@ export { Switch, default as SwitchDefault } from "./switch";
 export { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, default as TableDefault } from "./table";
 export { Tabs, TabsList, TabsTrigger, TabsContent, default as TabsDefault } from "./tabs";
 export { Textarea, default as TextareaDefault } from "./textarea";
+export { Toast, default as ToastDefault } from "./toast";
 export { Tooltip, default as TooltipDefault } from "./tooltip";
 export { TransactionItem, default as TransactionItemDefault } from "./transaction-item";
+export { WalletCard, default as WalletCardDefault } from "./wallet-card";
+export { AccountSummary, default as AccountSummaryDefault } from "./account-summary";
 export { formatMoney, type FormatMoneyOptions } from "./utils/format";
 export type {
   AlertProps,
@@ -79,4 +86,16 @@ export type {
   TextareaResize,
   TooltipProps,
   TransactionItemProps,
+  AvatarProps,
+  AvatarSize,
+  AvatarStatus,
+  ModalProps,
+  ModalSize,
+  ToastProps,
+  ToastVariant,
+  PinInputProps,
+  BankSelectorProps,
+  BankInstitution,
+  WalletCardProps,
+  AccountSummaryProps,
 } from "./types";

@@ -29,6 +29,13 @@ import { phoneInputRegistry } from '../registry/phone-input.js';
 import { radioGroupRegistry } from '../registry/radio-group.js';
 import { selectRegistry } from '../registry/select.js';
 import { textareaRegistry } from '../registry/textarea.js';
+import { avatarRegistry } from '../registry/avatar.js';
+import { modalRegistry } from '../registry/modal.js';
+import { toastRegistry } from '../registry/toast.js';
+import { pinInputRegistry } from '../registry/pin-input.js';
+import { bankSelectorRegistry } from '../registry/bank-selector.js';
+import { walletCardRegistry } from '../registry/wallet-card.js';
+import { accountSummaryRegistry } from '../registry/account-summary.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -61,6 +68,13 @@ function getRegistry(component) {
   if (component === 'radio-group' || component === 'radiogroup') return radioGroupRegistry;
   if (component === 'select') return selectRegistry;
   if (component === 'textarea') return textareaRegistry;
+  if (component === 'avatar') return avatarRegistry;
+  if (component === 'modal') return modalRegistry;
+  if (component === 'toast') return toastRegistry;
+  if (component === 'pin-input' || component === 'pininput') return pinInputRegistry;
+  if (component === 'bank-selector' || component === 'bankselector') return bankSelectorRegistry;
+  if (component === 'wallet-card' || component === 'walletcard') return walletCardRegistry;
+  if (component === 'account-summary' || component === 'accountsummary') return accountSummaryRegistry;
   return null;
 }
 

@@ -1,0 +1,118 @@
+/*
+ * Sorleed Avatar — user avatar with image, initials fallback, and presence indicator.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--fc-radius-full);
+  background-color: var(--fc-color-surface-muted);
+  color: var(--fc-color-content-primary);
+  font-family: inherit;
+  font-weight: var(--fc-font-weight-medium);
+  user-select: none;
+  overflow: visible;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* Sizes */
+.fc-avatar--sm {
+  width: var(--fc-space-6);
+  height: var(--fc-space-6);
+  font-size: var(--fc-font-size-xs);
+  line-height: var(--fc-font-line-height-xs);
+}
+
+.fc-avatar--md {
+  width: var(--fc-space-8);
+  height: var(--fc-space-8);
+  font-size: var(--fc-font-size-sm);
+  line-height: var(--fc-font-line-height-sm);
+}
+
+.fc-avatar--lg {
+  width: var(--fc-space-10);
+  height: var(--fc-space-10);
+  font-size: var(--fc-font-size-md);
+  line-height: var(--fc-font-line-height-md);
+}
+
+.fc-avatar--xl {
+  width: var(--fc-space-14);
+  height: var(--fc-space-14);
+  font-size: var(--fc-font-size-xl);
+  line-height: var(--fc-font-line-height-xl);
+}
+
+/* Inner elements */
+.fc-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--fc-radius-full);
+}
+
+.fc-avatar__fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+}
+
+/* Presence indicator badge */
+.fc-avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-sizing: border-box;
+  border-radius: var(--fc-radius-full);
+  border: 2px solid var(--fc-color-surface-default);
+}
+
+.fc-avatar--sm .fc-avatar__status {
+  width: var(--fc-space-2);
+  height: var(--fc-space-2);
+}
+
+.fc-avatar--md .fc-avatar__status {
+  width: calc(var(--fc-space-2) + 2px);
+  height: calc(var(--fc-space-2) + 2px);
+}
+
+.fc-avatar--lg .fc-avatar__status,
+.fc-avatar--xl .fc-avatar__status {
+  width: var(--fc-space-3);
+  height: var(--fc-space-3);
+}
+
+.fc-avatar__status--online {
+  background-color: var(--fc-color-status-success);
+}
+
+.fc-avatar__status--offline {
+  background-color: var(--fc-neutral-400);
+}
+
+.fc-avatar__status--away {
+  background-color: var(--fc-color-status-warning);
+}
+
+.fc-avatar__status--busy {
+  background-color: var(--fc-color-status-error);
+}
+
+@media (forced-colors: active) {
+  .fc-avatar {
+    border: 1px solid CanvasText;
+  }
+  .fc-avatar__status {
+    border: 2px solid Canvas;
+    outline: 1px solid CanvasText;
+  }
+}
