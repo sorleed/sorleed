@@ -106,7 +106,7 @@ npm install @radix-ui/react-tabs @radix-ui/react-tooltip @radix-ui/react-popover
 ## Repository Structure
 
 ```text
-fincore/
+sorleed/
 
 ├── docs/
 ├── figma/
