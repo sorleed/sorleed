@@ -38,7 +38,7 @@ For a page at the repository root:
 ```
 
 If the page is nested, prefix the paths to match its depth. The
-[transaction-history example](../examples/transaction-history/index.html) uses
+transaction history demo uses
 `../../tokens/...` and `../../components/...`.
 
 The component stylesheets **do not import** token CSS. Loading `button.css` or
@@ -100,12 +100,12 @@ suppression; no fallback is bundled.
 
 ## Working example
 
-[examples/transaction-history](../examples/transaction-history/README.md) is a
+transaction history demo is a
 runnable financial interface that links the real token and component CSS and
 uses the actual `.fc-button` and `.fc-input` markup. Its filtering and layout
 are application code.
 
-The [payment-form example](../examples/payment-form/README.md) is a second
+The payment form is a second
 runnable composition with inline validation and a review state.
 
 ## Component references
