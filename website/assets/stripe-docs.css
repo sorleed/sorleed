@@ -1,0 +1,843 @@
+/* ==========================================================================
+   Stripe Docs Layout & Visual System (Light Mode Only)
+   Clean, Crisp, Minimalist Financial Developer Platform
+   100% IBM Plex Sans Typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Stripe Minimal Light Palette */
+  --bg-page: #FFFFFF;
+  --bg-sidebar: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F1F5F9;
+  --bg-code: #0F172A;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
+
+  --border-default: #E2E8F0;
+  --border-light: #F1F5F9;
+  --border-focus: #635BFF; /* Stripe Blurple Accent */
+
+  --accent-brand: #635BFF;
+  --accent-brand-hover: #5046E5;
+  --accent-brand-subtle: #EEF2FF;
+  --accent-green: #059669;
+  --accent-green-subtle: #ECFDF5;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent-brand);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Header: Stripe Global Nav (Light Mode Clean)
+   ========================================================================== */
+.docs-header {
+  height: 60px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.docs-header__left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.docs-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.docs-header__brand-badge {
+  width: 26px;
+  height: 26px;
+  background: var(--accent-brand);
+  color: #FFFFFF;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.docs-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.docs-header__nav a {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 0;
+  position: relative;
+}
+
+.docs-header__nav a:hover,
+.docs-header__nav a.active {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.docs-header__nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-brand);
+}
+
+.docs-header__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.badge-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.badge-metric:hover {
+  background: #E2E8F0;
+  text-decoration: none;
+}
+
+.btn-header-cta {
+  background: var(--accent-brand);
+  color: #FFFFFF !important;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: background 0.15s ease;
+}
+
+.btn-header-cta:hover {
+  background: var(--accent-brand-hover);
+}
+
+/* ==========================================================================
+   Homepage: Stripe Hero & Overview Layout
+   ========================================================================== */
+.hero-section {
+  padding: 72px 32px 64px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-brand);
+  background: var(--accent-brand-subtle);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin: 0 0 16px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin: 0 0 32px;
+}
+
+.hero-install-box {
+  background: #0F172A;
+  border-radius: 10px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 580px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+  margin-bottom: 48px;
+}
+
+.hero-install-code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #F8FAFC;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-install-prompt {
+  color: #64748B;
+  user-select: none;
+}
+
+.hero-install-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #F8FAFC;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hero-install-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Stripe Docs Grid (Categories / Products) */
+.stripe-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.stripe-category-card {
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  padding: 24px;
+  background: #FFFFFF;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.stripe-category-card:hover {
+  border-color: var(--accent-brand);
+  box-shadow: var(--shadow-card-hover);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.stripe-category-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--accent-brand-subtle);
+  color: var(--accent-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.stripe-category-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.stripe-category-card__desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.stripe-category-card__link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-brand);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   Documentation Detail Layout (Stripe Docs with Category Dropdowns)
+   ========================================================================== */
+.docs-layout {
+  display: flex;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: calc(100vh - 60px);
+}
+
+/* Stripe Collapsible Category Sidebar */
+.docs-sidebar {
+  width: 290px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-default);
+  background: var(--bg-sidebar);
+  height: calc(100vh - 60px);
+  position: sticky;
+  top: 60px;
+  overflow-y: auto;
+  padding: 24px 16px 48px;
+}
+
+@media (max-width: 900px) {
+  .docs-sidebar {
+    display: none;
+  }
+}
+
+.sidebar-group {
+  margin-bottom: 24px;
+}
+
+.sidebar-group__header {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-dropdown {
+  margin-bottom: 4px;
+}
+
+.sidebar-dropdown__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.12s ease;
+  list-style: none;
+}
+
+.sidebar-dropdown__summary::-webkit-details-marker {
+  display: none;
+}
+
+.sidebar-dropdown__summary:hover {
+  background: #E2E8F0;
+}
+
+.sidebar-dropdown__arrow {
+  transition: transform 0.2s ease;
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+}
+
+details[open] > .sidebar-dropdown__summary .sidebar-dropdown__arrow {
+  transform: rotate(90deg);
+}
+
+.sidebar-dropdown__list {
+  padding-left: 12px;
+  margin: 4px 0 8px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.12s ease;
+}
+
+.sidebar-link:hover {
+  color: var(--text-primary);
+  background: #E2E8F0;
+  text-decoration: none;
+}
+
+.sidebar-link.active {
+  color: var(--accent-brand);
+  background: var(--accent-brand-subtle);
+  font-weight: 600;
+}
+
+.sidebar-link-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: #E2E8F0;
+  color: var(--text-secondary);
+}
+
+/* Documentation Content Body */
+.docs-content {
+  flex-grow: 1;
+  max-width: 880px;
+  padding: 48px 64px 96px;
+}
+
+@media (max-width: 640px) {
+  .docs-content {
+    padding: 24px 20px 64px;
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.docs-title {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  color: var(--text-primary);
+}
+
+.docs-lede {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 40px;
+}
+
+/* ==========================================================================
+   Stripe Embedded Live Playground Box
+   ========================================================================== */
+.playground-box {
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  background: #FFFFFF;
+  margin: 32px 0 48px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.playground-stage {
+  padding: 56px 32px;
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.playground-panel {
+  padding: 18px 24px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.playground-ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ctrl-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ctrl-select {
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-default);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-primary);
+  background: #FFFFFF;
+}
+
+/* Code Snippet Box (Stripe Style) */
+.code-card {
+  background: var(--bg-code);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 16px 0 32px;
+}
+
+.code-card__header {
+  padding: 10px 18px;
+  background: #1E293B;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #94A3B8;
+  font-family: var(--font-mono);
+}
+
+.code-card__body {
+  padding: 18px;
+  margin: 0;
+  color: #F8FAFC;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+/* Stripe Footer */
+.docs-footer {
+  border-top: 1px solid var(--border-default);
+  padding: 40px 32px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Financial Component Polish & Responsive Fixes
+   ========================================================================== */
+
+.fc-preview-container {
+  width: 100% !important;
+  max-width: 580px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+.fc-preview-container > * {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Ensure bank selector, invoice, summary cards never overflow */
+.fc-bank-selector,
+.fc-account-summary,
+.fc-invoice,
+.fc-spending-meter,
+.fc-expense-receipt-uploader,
+.fc-repayment-schedule,
+.fc-journal-entry-ledger,
+.fc-tax-summary-card,
+
+.fc-balance-card {
+  width: 100% !important;
+  max-width: 560px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Account Summary Layout & Visibility */
+.fc-account-summary {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  padding: 24px !important;
+}
+
+.fc-account-summary__header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  margin-bottom: 20px !important;
+}
+
+.fc-account-summary__bank-name {
+  margin: 0 0 4px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+}
+
+.fc-account-summary__account-type {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+}
+
+.fc-account-summary__grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 16px 24px !important;
+  background: #F8FAFC !important;
+  padding: 16px 20px !important;
+  border-radius: 8px !important;
+  border: 1px solid #F1F5F9 !important;
+}
+
+.fc-account-summary__field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.fc-account-summary__field-label {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+  text-transform: uppercase !important;
+}
+
+.fc-account-summary__field-value-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.fc-account-summary__field-value {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-mono) !important;
+}
+
+.fc-account-summary__copy-btn {
+  background: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 4px !important;
+  padding: 2px 8px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--accent-brand) !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.fc-account-summary__copy-btn:hover {
+  background: var(--accent-brand-subtle) !important;
+  border-color: var(--accent-brand) !important;
+}
+
+/* Bank Selector Polish */
+.fc-bank-selector {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  padding: 20px !important;
+}
+
+.fc-bank-selector__input {
+  width: 100% !important;
+  height: 40px !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 6px !important;
+  padding: 0 14px !important;
+  font-size: 14px !important;
+  font-family: var(--font-sans) !important;
+  box-sizing: border-box !important;
+}
+
+.fc-bank-selector__list {
+  margin-top: 12px !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+}
+
+.fc-bank-selector__item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  cursor: pointer !important;
+  font-size: 13.5px !important;
+  transition: background 0.1s ease !important;
+}
+
+.fc-bank-selector__item:last-child {
+  border-bottom: none !important;
+}
+
+.fc-bank-selector__item:hover,
+.fc-bank-selector__item--selected {
+  background: #EFF6FF !important;
+  color: var(--accent-brand) !important;
+  font-weight: 600 !important;
+}
+
+/* Spending Meter Polish */
+.fc-spending-meter {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.fc-spending-meter__bar {
+  height: 8px !important;
+  background: #E2E8F0 !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  margin: 14px 0 10px !important;
+}
+
+.fc-spending-meter__fill {
+  height: 100% !important;
+  background: var(--accent-brand) !important;
+  border-radius: 4px !important;
+  transition: width 0.3s ease !important;
+}
+
+/* Expense Receipt Uploader Polish */
+.fc-expense-receipt-uploader {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Invoice Viewer Polish */
+.fc-invoice {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  padding: 24px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.fc-invoice__table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 16px 0 !important;
+}
+
+.fc-invoice__th, .fc-invoice__td {
+  padding: 10px 12px !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+}
+
+/* General interactive state change response */
+.playground-stage.state--hover .fc-button {
+  background: var(--accent-brand-hover) !important;
+}
+
+.playground-stage.state--focus .fc-button,
+.playground-stage.state--focus input,
+.playground-stage.state--focus select {
+  outline: 2px solid var(--accent-brand) !important;
+  outline-offset: 2px !important;
+}
+
+.playground-stage.state--disabled * {
+  opacity: 0.55 !important;
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
+/* WalletCard standard ISO credit card aspect ratio & size */
+.fc-wallet-card-container {
+  width: 100% !important;
+  max-width: 380px !important;
+  height: 240px !important;
+  margin: 0 auto !important;
+  perspective: 1000px !important;
+}
+
+.fc-wallet-card {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 380px !important;
+  border-radius: 14px !important;
+}

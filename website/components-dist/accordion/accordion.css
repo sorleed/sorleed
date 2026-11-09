@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Sorleed — Accordion
+   Collapsible panels for financial disclosures, FAQs, terms, and audit details
+   ========================================================================== */
+
+.fc-accordion {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-lg);
+  overflow: hidden;
+  background-color: var(--fc-color-surface);
+  font-family: var(--fc-font-family);
+  box-sizing: border-box;
+}
+
+.fc-accordion__item {
+  border-bottom: 1px solid var(--fc-color-border);
+}
+
+.fc-accordion__item:last-child {
+  border-bottom: none;
+}
+
+.fc-accordion__header {
+  margin: 0;
+}
+
+.fc-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--fc-space-4) var(--fc-space-5);
+  background: none;
+  border: none;
+  color: var(--fc-color-text);
+  font-size: var(--fc-font-size-base);
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.fc-accordion__trigger:hover {
+  background-color: var(--fc-color-surface-hover);
+}
+
+.fc-accordion__trigger:focus-visible {
+  outline: 2px solid var(--fc-color-primary);
+  outline-offset: -2px;
+}
+
+.fc-accordion__icon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.fc-accordion__trigger[aria-expanded="true"] .fc-accordion__icon {
+  transform: rotate(180deg);
+}
+
+.fc-accordion__panel {
+  padding: 0 var(--fc-space-5) var(--fc-space-4) var(--fc-space-5);
+  color: var(--fc-color-text-secondary);
+  font-size: var(--fc-font-size-sm);
+  line-height: 1.6;
+}
+
+.fc-accordion__panel[hidden] {
+  display: none;
+}
+
+@media (forced-colors: active) {
+  .fc-accordion {
+    border: 2px solid CanvasText;
+  }
+  .fc-accordion__item {
+    border-bottom: 1px solid CanvasText;
+  }
+}
+

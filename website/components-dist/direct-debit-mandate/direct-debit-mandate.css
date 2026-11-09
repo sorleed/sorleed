@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Sorleed — Direct Debit Mandate
+   Automated recurring billing authorization dialog powered by Radix Dialog
+   ========================================================================== */
+
+.fc-mandate-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--fc-color-overlay, rgba(0, 0, 0, 0.6));
+  backdrop-filter: blur(4px);
+  z-index: var(--fc-z-modal, 1000);
+}
+
+.fc-mandate-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 480px;
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  box-shadow: var(--fc-shadow-lg);
+  padding: var(--fc-space-6);
+  z-index: calc(var(--fc-z-modal, 1000) + 1);
+  font-family: var(--fc-font-family);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-mandate-dialog:focus {
+  outline: none;
+}
+
+.fc-mandate__header {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-3);
+}
+
+.fc-mandate__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--fc-radius-md);
+  background-color: rgba(37, 99, 235, 0.1);
+  color: var(--fc-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fc-mandate__title {
+  margin: 0;
+  font-size: var(--fc-font-size-base);
+  font-weight: 600;
+  color: var(--fc-color-text);
+}
+
+.fc-mandate__details-box {
+  background-color: var(--fc-color-surface-hover);
+  border-radius: var(--fc-radius-md);
+  padding: var(--fc-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-mandate__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fc-mandate__row-label {
+  color: var(--fc-color-text-secondary);
+}
+
+.fc-mandate__row-value {
+  font-weight: 600;
+  color: var(--fc-color-text);
+  font-family: var(--fc-font-mono, monospace);
+}
+
+.fc-mandate__guarantee-text {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-text-secondary);
+  line-height: 1.5;
+  border-left: 3px solid var(--fc-color-primary);
+  padding-left: var(--fc-space-3);
+  margin: 0;
+}
+
+.fc-mandate__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--fc-space-3);
+  margin-top: var(--fc-space-2);
+}
+
+@media (forced-colors: active) {
+  .fc-mandate-dialog {
+    border: 2px solid CanvasText;
+  }
+}
+

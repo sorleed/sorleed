@@ -1,0 +1,5 @@
+# Clean URLs & legacy redirects
+/docs          /docs.html        301
+/components    /docs.html        301
+/cli           /docs.html#cli    301
+

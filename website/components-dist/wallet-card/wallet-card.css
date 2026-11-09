@@ -1,0 +1,163 @@
+/*
+ * Sorleed WalletCard — debit/credit virtual payment card visualizer with flip CVV.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-wallet-card-container {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 360px;
+  height: 220px;
+  box-sizing: border-box;
+}
+
+.fc-wallet-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--fc-radius-lg);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15), 0 6px 10px -5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.fc-wallet-card--flipped {
+  transform: rotateY(180deg);
+}
+
+.fc-wallet-card__front,
+.fc-wallet-card__back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-6);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--fc-neutral-900) 0%, var(--fc-neutral-800) 100%);
+  color: var(--fc-white);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fc-wallet-card__back {
+  transform: rotateY(180deg);
+  padding-inline: 0;
+  padding-block: var(--fc-space-5);
+}
+
+/* Card front anatomy */
+.fc-wallet-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fc-wallet-card__chip {
+  width: var(--fc-space-10);
+  height: var(--fc-space-8);
+  background: linear-gradient(135deg, #e0c38c 0%, #d4af37 100%);
+  border-radius: var(--fc-radius-sm);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.fc-wallet-card__brand {
+  font-weight: var(--fc-font-weight-bold);
+  font-size: var(--fc-font-size-md);
+  letter-spacing: 1px;
+}
+
+.fc-wallet-card__number {
+  font-family: monospace;
+  font-size: var(--fc-font-size-lg);
+  letter-spacing: 2px;
+  word-spacing: 4px;
+}
+
+.fc-wallet-card__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.fc-wallet-card__holder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-wallet-card__label {
+  font-size: var(--fc-font-size-xs);
+  text-transform: uppercase;
+  color: var(--fc-neutral-400);
+  letter-spacing: 1px;
+}
+
+.fc-wallet-card__name {
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.fc-wallet-card__expiry {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--fc-space-1);
+}
+
+.fc-wallet-card__expiry-val {
+  font-family: monospace;
+  font-size: var(--fc-font-size-sm);
+}
+
+/* Card back anatomy */
+.fc-wallet-card__magnetic-strip {
+  width: 100%;
+  height: 40px;
+  background-color: var(--fc-black);
+}
+
+.fc-wallet-card__cvv-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-inline: var(--fc-space-6);
+  gap: var(--fc-space-3);
+}
+
+.fc-wallet-card__signature {
+  background-color: var(--fc-white);
+  height: 32px;
+  flex: 1 1 auto;
+  border-radius: var(--fc-radius-sm);
+}
+
+.fc-wallet-card__cvv {
+  background-color: var(--fc-neutral-100);
+  color: var(--fc-neutral-900);
+  font-family: monospace;
+  font-weight: var(--fc-font-weight-bold);
+  font-size: var(--fc-font-size-sm);
+  padding: var(--fc-space-1) var(--fc-space-2);
+  border-radius: var(--fc-radius-sm);
+  letter-spacing: 1px;
+}
+
+@media (forced-colors: active) {
+  .fc-wallet-card__front,
+  .fc-wallet-card__back {
+    border: 2px solid CanvasText;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-wallet-card {
+    transition: none !important;
+  }
+}
+

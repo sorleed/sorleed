@@ -1,0 +1,10 @@
+{
+  "name": "sorleed",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Production UI components for financial, banking, and wealth interfaces.",
+  "scripts": {
+    "build": "exit 0"
+  }
+}
+

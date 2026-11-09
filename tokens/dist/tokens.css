@@ -1,5 +1,5 @@
 /* Sorleed design tokens — generated file. Do not edit by hand. */
-/* Source: tokens/tokens.json (sha256: 0be18a9866d74b8251e203cc05482fcfe97b37a8c1b0482f3733032a21cdce82) */
+/* Source: tokens/tokens.json (sha256: 671117b5d5a757d8d1ed49bbac7ace7df5a4b46cbdc4b530587cf2ad6d44fdb0) */
 /* Themes: light (default) and dark ([data-theme="dark"], .dark). */
 /* Regenerate: node tokens/check.mjs --write */
 
@@ -90,8 +90,13 @@
   --fc-space-2: 8px;
   --fc-space-3: 12px;
   --fc-space-4: 16px;
+  --fc-space-5: 20px;
   --fc-space-6: 24px;
+  --fc-space-8: 32px;
+  --fc-space-10: 40px;
   --fc-space-12: 48px;
+  --fc-space-14: 56px;
+  --fc-space-16: 64px;
   --fc-radius-md: 6px;
   --fc-radius-lg: 8px;
   --fc-font-size-xs: 12px;

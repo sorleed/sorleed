@@ -4,145 +4,178 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <title>Sorleed — UI Infrastructure</title>
-  <meta name="description" content="Sorleed is a source-first UI toolkit for designers and developers: accessible components, design tokens, a source-distribution CLI and AI context.">
+  <title>Sorleed Documentation — Financial UI Infrastructure</title>
+  <meta name="description" content="Sorleed is a source-first UI toolkit for fintech, banking, and accounting interfaces.">
   <link rel="stylesheet" href="tokens-dist/tokens.css">
-  <link rel="stylesheet" href="../components/button/button.css">
-  <link rel="stylesheet" href="../components/input/input.css">
-  <link rel="stylesheet" href="../components/password-input/password-input.css">
-  <link rel="stylesheet" href="../components/phone-input/phone-input.css">
-  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="components-dist/all-components.css">
+  <link rel="stylesheet" href="assets/stripe-docs.css">
 </head>
-<body data-page="overview">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark" aria-hidden="true">S</span>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
         <span>Sorleed</span>
-        <span class="brand__sub">UI Infrastructure</span>
       </a>
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">🌙 Dark mode</button>
-        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
-        Menu
-      </button>
-      <nav class="site-nav" id="site-nav" data-nav aria-label="Primary">
-        <ul>
-          <li><a href="getting-started.html" data-page="start">Getting started</a></li>
-          <li><a href="components.html" data-page="components">Components</a></li>
-          <li><a href="playground.html" data-page="playground">Playground</a></li>
-          <li><a href="tokens.html" data-page="tokens">Tokens</a></li>
-          <li><a href="examples.html" data-page="examples">Examples</a></li>
-        </ul>
+      <nav class="docs-header__nav">
+        <a href="docs.html">Documentation</a>
+        <a href="docs.html">Components</a>
+        <a href="docs.html">API & CLI</a>
       </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" class="badge-metric" title="Star on GitHub" style="display:inline-flex; align-items:center; gap:6px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span data-github-stars style="font-weight:700; color:var(--text-primary);">1</span>
+      </a>
+      <a href="https://www.npmjs.com/package/@sorleed/react" target="_blank" rel="noreferrer" class="badge-metric" title="npm package downloads" style="display:inline-flex; align-items:center; gap:6px;">
+        <span style="font-weight:700; color:#EF4444;">npm</span>
+        <span data-npm-downloads style="font-weight:700; color:var(--text-primary);">3.4k</span>
+      </a>
+      <a href="docs.html" class="btn-header-cta">Get started</a>
     </div>
   </header>
 
-  <main id="main">
-    <div class="page">
-      <div class="content">
-        <section class="hero">
-          <p><span class="badge">Private alpha</span></p>
-          <h1>UI infrastructure you can own.</h1>
-          <p class="lede">
-            Sorleed is a source-first UI toolkit for designers and developers.
-            Four carefully specified components, one token system, a
-            source-distribution CLI and AI context that describes what actually
-            exists.
-          </p>
-          <div class="hero__actions">
-            <a class="button-link" href="getting-started.html">Get started</a>
-            <a class="button-link button-link--secondary" href="components.html">Browse components</a>
-          </div>
-        </section>
+  <main>
+    <section class="hero-section">
+      <div class="hero-pill">Production Ready • v0.1.0-alpha.10</div>
+      <h1 class="hero-title">Financial UI Infrastructure for Modern Engineering Teams</h1>
+      <p class="hero-subtitle">
+        Sorleed is a complete design system and component toolkit engineered for fintech, commercial banking, wealth management, and double-entry ledgers. Source-first, zero-runtime lock-in, and accessible by default.
+      </p>
 
-        <div class="demo">
-          <div class="demo__row">
-            <div class="demo__surface">
-              <div class="sl-input">
-                <label class="sl-input__label" for="hero-email">Work email</label>
-                <div class="sl-input__control">
-                  <input class="sl-input__field" id="hero-email" type="email" placeholder="you@example.com">
-                </div>
-                <p class="sl-input__message">We never send marketing email.</p>
-              </div>
-            </div>
-            <div class="demo__surface">
-              <div class="sl-input">
-                <label class="sl-input__label" for="hero-password">Password</label>
-                <div class="sl-password-input__control">
-                  <input class="sl-password-input__field" id="hero-password" type="password" value="correct-horse-battery">
-                  <button class="sl-password-input__toggle" type="button" aria-controls="hero-password" aria-pressed="false" data-password-toggle>Show password</button>
-                </div>
-              </div>
-            </div>
+      <!-- Dual Installation Hero Box (Left-Aligned with Copy Buttons) -->
+      <div style="display:flex; justify-content:flex-start; gap:20px; flex-wrap:wrap; margin:32px 0 36px; text-align:left;">
+        <!-- Option 1: CLI -->
+        <div style="background:#0F172A; border:1px solid #334155; border-radius:10px; padding:20px 24px; min-width:320px; flex:1; max-width:440px; box-shadow:var(--shadow-card); position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span style="font-size:12px; font-weight:700; color:#94A3B8; text-transform:uppercase; letter-spacing:0.05em;">Source Distribution (CLI)</span>
+            <span style="font-size:11px; padding:2px 8px; border-radius:4px; background:#1E293B; color:#38BDF8; font-weight:600;">Recommended</span>
           </div>
-          <div class="demo__row">
-            <div class="demo__surface">
-              <button class="sl-button sl-button--primary" type="button">Primary action</button>
+          <div style="display:flex; align-items:center; justify-content:space-between; background:#1E293B; padding:10px 14px; border-radius:6px; border:1px solid #334155; margin-bottom:14px;">
+            <div style="font-family:var(--font-mono); font-size:13.5px; color:#F8FAFC; overflow-x:auto; white-space:nowrap;">
+              <span style="color:#635BFF; margin-right:6px;">$</span><span id="cmd-cli">npx @sorleed/cli add balance-card</span>
             </div>
-            <div class="demo__surface">
-              <button class="sl-button sl-button--secondary" type="button">Secondary</button>
-            </div>
-            <div class="demo__surface">
-              <button class="sl-button sl-button--ghost" type="button">Ghost</button>
-            </div>
+            <button type="button" onclick="copySnippet('cmd-cli', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:4px; display:inline-flex; align-items:center; border-radius:4px; margin-left:8px; transition:color 0.15s ease;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
           </div>
+          <a href="docs.html#cli" style="font-size:13px; color:#38BDF8; text-decoration:none; font-weight:600;">Learn about CLI installation →</a>
         </div>
 
-        <h2>What is in the box</h2>
-        <div class="grid">
-          <article class="card">
-            <h3>Sorleed UI</h3>
-            <p>Button, Input, PasswordInput and PhoneInput. Native elements, visible focus, explicit states and no hidden behaviour.</p>
-          </article>
-          <article class="card">
-            <h3>Sorleed Tokens</h3>
-            <p>229 <code>--sl-*</code> custom properties across primitive, semantic and component layers. Generated CSS, reproducible output.</p>
-          </article>
-          <article class="card">
-            <h3>Sorleed CLI</h3>
-            <p>Copy canonical component source into your project. Existing files are never silently overwritten.</p>
-          </article>
-          <article class="card">
-            <h3>Sorleed AI</h3>
-            <p>Context files for AI coding tools, with explicit rules against inventing components, props or tokens.</p>
-          </article>
-          <article class="card">
-            <h3>Sorleed Figma</h3>
-            <p>Token import, component specifications and SVG evidence prepared for a Figma library. No Community Library is published yet.</p>
-          </article>
-          <article class="card">
-            <h3>Sorleed Website</h3>
-            <p>This static documentation site. No tracking, no build step and no external runtime.</p>
-          </article>
-        </div>
-
-        <h2>Install</h2>
-        <p>Use the React package when it is available in your environment, or copy source with the CLI.</p>
-        <pre><code>npm install @sorleed/react react react-dom
-
-import { Button } from "@sorleed/react";
-import "@sorleed/react/styles/tokens.css";
-import "@sorleed/react/styles/button.css";</code></pre>
-        <p>Or copy the canonical source:</p>
-        <pre><code>npx sorleed list
-npx sorleed add button --dir ./my-app</code></pre>
-
-        <div class="callout">
-          <p><strong>Alpha status.</strong> <code>@sorleed/react</code> and <code>@sorleed/cli</code> are private and unpublished. This site documents the implementation that exists in the repository; it is not a public release announcement.</p>
+        <!-- Option 2: Full React Library -->
+        <div style="background:#0F172A; border:1px solid #334155; border-radius:10px; padding:20px 24px; min-width:320px; flex:1; max-width:440px; box-shadow:var(--shadow-card); position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span style="font-size:12px; font-weight:700; color:#94A3B8; text-transform:uppercase; letter-spacing:0.05em;">Full Package (npm)</span>
+            <span style="font-size:11px; padding:2px 8px; border-radius:4px; background:#1E293B; color:#10B981; font-weight:600;">61 Components</span>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; background:#1E293B; padding:10px 14px; border-radius:6px; border:1px solid #334155; margin-bottom:14px;">
+            <div style="font-family:var(--font-mono); font-size:13.5px; color:#F8FAFC; overflow-x:auto; white-space:nowrap;">
+              <span style="color:#635BFF; margin-right:6px;">$</span><span id="cmd-npm">npm install @sorleed/react</span>
+            </div>
+            <button type="button" onclick="copySnippet('cmd-npm', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:4px; display:inline-flex; align-items:center; border-radius:4px; margin-left:8px; transition:color 0.15s ease;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </div>
+          <a href="docs.html" style="font-size:13px; color:#10B981; text-decoration:none; font-weight:600;">Browse documentation & API →</a>
         </div>
       </div>
-    </div>
+
+      <!-- Hero Call To Action Buttons (Left-Aligned) -->
+      <div style="display:flex; justify-content:flex-start; gap:14px; margin-bottom:56px;">
+        <a href="docs.html" class="btn-header-cta" style="padding:12px 28px; font-size:15px;">Get started with Sorleed</a>
+        <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:8px; border:1px solid #E2E8F0; background:#FFFFFF; color:var(--text-primary); text-decoration:none; font-weight:600; font-size:14.5px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+
+      <!-- Stripe-Style Category Hubs -->
+      <h2 style="font-size:24px; font-weight:700; margin:0 0 8px; color:var(--text-primary);">Explore by Financial Category</h2>
+      <p style="font-size:15px; color:var(--text-secondary); margin:0 0 24px;">All documentation and components are organized by functional domain.</p>
+
+      <div class="stripe-category-grid">
+        <!-- Banking -->
+        <a href="components/balance-card.html" class="stripe-category-card">
+          <div class="stripe-category-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          </div>
+          <h3 class="stripe-category-card__title">Banking & Wallets</h3>
+          <p class="stripe-category-card__desc">Checking account balance displays, privacy eye masking, IBAN summaries, and interactive payment cards.</p>
+          <span class="stripe-category-card__link">Explore Banking Components →</span>
+        </a>
+
+        <!-- Accounting -->
+        <a href="components/invoice-viewer.html" class="stripe-category-card">
+          <div class="stripe-category-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="stripe-category-card__title">Accounting & Ledgers</h3>
+          <p class="stripe-category-card__desc">Commercial invoices, double-entry bookkeeping ledgers, chart of accounts tree, and tax estimates.</p>
+          <span class="stripe-category-card__link">Explore Accounting Components →</span>
+        </a>
+
+        <!-- Credit & Wealth -->
+        <a href="components/spending-meter.html" class="stripe-category-card">
+          <div class="stripe-category-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="stripe-category-card__title">Credit & Wealth</h3>
+          <p class="stripe-category-card__desc">Loan amortization calculators, credit score radial gauges, spending meters, and portfolio diversification.</p>
+          <span class="stripe-category-card__link">Explore Wealth Components →</span>
+        </a>
+
+        <!-- Security & Identity -->
+        <a href="components/biometric-auth-prompt.html" class="stripe-category-card">
+          <div class="stripe-category-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 class="stripe-category-card__title">Security & Identity</h3>
+          <p class="stripe-category-card__desc">Face ID / biometric approval modals, KYC document dropzones, SEPA mandates, and PIN/OTP cells.</p>
+          <span class="stripe-category-card__link">Explore Security Components →</span>
+        </a>
+
+        <!-- Forms & Inputs -->
+        <a href="components/button.html" class="stripe-category-card">
+          <div class="stripe-category-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12h6M12 9v6"/></svg>
+          </div>
+          <h3 class="stripe-category-card__title">Forms & Core Controls</h3>
+          <p class="stripe-category-card__desc">Accessible buttons, financial numeric inputs, segmented tabs, dialog modals, and custom selects.</p>
+          <span class="stripe-category-card__link">Explore Core Controls →</span>
+        </a>
+
+        <!-- CLI & Distribution -->
+        <a href="cli.html" class="stripe-category-card">
+          <div class="stripe-category-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          </div>
+          <h3 class="stripe-category-card__title">CLI Source Distribution</h3>
+          <p class="stripe-category-card__desc">Copy component source code straight into your codebase with automatic dependency resolution.</p>
+          <span class="stripe-category-card__link">Learn CLI Usage →</span>
+        </a>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <p>Sorleed — UI Infrastructure. MIT licensed. Copyright (c) 2026 Sorleed.</p>
-      <p><a href="../README.md">Repository README</a> · <a href="../PRODUCT.md">Product</a> · <a href="../SECURITY.md">Security</a></p>
-    </div>
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure. Open source financial component library.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
   </footer>
-  <script src="assets/site.js"></script>
+
+  <script>
+    function copySnippet(elementId, btn) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+        }, 2000);
+      });
+    }
+  </script>
+  <script src="assets/metrics.js"></script>
 </body>
 </html>

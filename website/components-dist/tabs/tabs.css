@@ -58,3 +58,26 @@
   outline: none;
 }
 
+/* Preserve a visible boundary and focus indicator with system colours. */
+@media (forced-colors: active) {
+  .fc-tabs__list {
+    border: 1px solid ButtonText;
+  }
+
+  .fc-tabs__trigger[data-state="active"],
+  .fc-tabs__trigger--active {
+    border: 1px solid Highlight;
+    color: Highlight;
+  }
+
+  .fc-tabs__trigger:focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-tabs__trigger {
+    transition: none;
+  }
+}
+
