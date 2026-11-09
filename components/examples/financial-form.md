@@ -8,7 +8,6 @@
 >
 > - [Button native reference](../button/button.html) and [Button documentation](../button/README.md)
 > - [Input native reference](../input/input.html) and [Input documentation](../input/README.md)
-> - [Transaction-history example](../../examples/transaction-history/README.md)
 >
 > Every prop shown comes from [`../button/contract.json`](../button/contract.json) or [`../input/contract.json`](../input/contract.json). No unlisted prop, variant, state or token is used.
 

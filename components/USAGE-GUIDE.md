@@ -161,9 +161,9 @@ focus, invalid submission, empty/reset states and any review flow.
 
 ## Runnable examples
 
-- [Transaction history](../examples/transaction-history/README.md) — table/list
+- Transaction history — table/list
   filtering, empty state, one Primary and one secondary Clear.
-- [Payment form](../examples/payment-form/README.md) — validation, review and
+- Payment form — validation, review and
   reset with the same Button and Input APIs.
 
 Both examples link the real token and component stylesheets. They do not copy
