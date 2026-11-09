@@ -1,3 +1,58 @@
+
+// Mobile Drawer & Header Hamburger Setup
+function setupMobileNavigation() {
+  const header = document.querySelector('.docs-header');
+  const sidebar = document.querySelector('.docs-sidebar');
+  if (!header || !sidebar) return;
+
+  // 1. Create hamburger button if not present
+  let toggleBtn = header.querySelector('.docs-header__mobile-toggle');
+  if (!toggleBtn) {
+    toggleBtn = document.createElement('button');
+    toggleBtn.className = 'docs-header__mobile-toggle';
+    toggleBtn.setAttribute('aria-label', 'Toggle Navigation Menu');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+
+    const headerLeft = header.querySelector('.docs-header__left');
+    if (headerLeft) {
+      headerLeft.prepend(toggleBtn);
+    }
+  }
+
+  // 2. Create backdrop overlay if not present
+  let backdrop = document.querySelector('.docs-sidebar-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.className = 'docs-sidebar-backdrop';
+    document.body.appendChild(backdrop);
+  }
+
+  function toggleMenu(open) {
+    const isOpen = open !== undefined ? open : !sidebar.classList.contains('is-open');
+    sidebar.classList.toggle('is-open', isOpen);
+    backdrop.classList.toggle('is-open', isOpen);
+    toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  toggleBtn.addEventListener('click', () => toggleMenu());
+  backdrop.addEventListener('click', () => toggleMenu(false));
+
+  // Close drawer when a navigation link is clicked on mobile
+  sidebar.addEventListener('click', (e) => {
+    if (e.target.closest('.sidebar-link')) {
+      if (window.innerWidth <= 900) {
+        toggleMenu(false);
+      }
+    }
+  });
+}
+
 // Stripe Docs Collapsible Sidebar Navigation
 function renderStripeSidebar(activeId) {
   const sidebar = document.querySelector('.docs-sidebar');
@@ -271,6 +326,7 @@ window.updateComponentState = function(state) {
 
 // Interactive wire-up for all playground controls (Tree disclosure, Expense Switch, Eye Privacy, State Dropdown)
 document.addEventListener('DOMContentLoaded', () => {
+  setupMobileNavigation();
   // A. State Select listener
   const stateSelects = document.querySelectorAll('.ctrl-select');
   stateSelects.forEach(sel => {
