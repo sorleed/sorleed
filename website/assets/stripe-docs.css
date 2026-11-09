@@ -1150,7 +1150,7 @@ pre, code, .code-card__body, .code-snippet, pre[class*="language-"] {
   margin-bottom: 12px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .package-card-header {
     flex-direction: column;
     align-items: flex-start !important;
@@ -1159,7 +1159,7 @@ pre, code, .code-card__body, .code-snippet, pre[class*="language-"] {
 }
 
 /* 3. Responsive Footer (Stacks on Mobile with Clean Spacing) */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .docs-footer {
     padding: 24px 16px 36px !important;
     flex-direction: column !important;

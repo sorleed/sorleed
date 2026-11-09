@@ -68,7 +68,8 @@ function renderStripeSidebar(activeId) {
         { id: 'docs-home', label: 'Overview', href: root + 'docs.html#overview' },
         { id: 'cli', label: 'Sorleed CLI', href: root + 'docs.html#cli' },
         { id: 'tokens', label: 'Design Tokens', href: root + 'docs.html#tokens' },
-        { id: 'accessibility', label: 'Accessibility (AA)', href: root + 'docs.html#accessibility' }
+        { id: 'accessibility', label: 'Accessibility (AA)', href: root + 'docs.html#accessibility' },
+        { id: 'ai-skill', label: 'AI Agent Skill', href: root + 'docs.html#ai-skill' }
       ]
     },
     {

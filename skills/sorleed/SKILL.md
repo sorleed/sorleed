@@ -152,3 +152,4 @@ export function TwoFactorVerification() {
 ## 5. Machine-Readable Registry Reference
 The complete machine-readable registry of all 61 components is available at:
 `https://sorleed.com/registry.json`
+
