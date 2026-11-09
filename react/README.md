@@ -5,7 +5,7 @@ Sorleed React Component Library — precision financial, banking, investment, an
 - **Package:** `@sorleed/react`
 - **Release:** `0.1.0-alpha.9`
 - **License:** MIT
-- **Homepage:** [https://sorleed.dev](https://sorleed.dev)
+- **Homepage:** [https://sorleed.com](https://sorleed.com)
 - **Repository:** [https://github.com/sorleed/sorleed](https://github.com/sorleed/sorleed)
 - **Peer Dependencies:** `react >=18.0.0`, `react-dom >=18.0.0`
 - **Optional Dependencies:** `libphonenumber-js` (for national telephone formatting & validation)

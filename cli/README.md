@@ -7,7 +7,7 @@ Instead of heavy packaged runtimes, the Sorleed CLI installs clean, accessible T
 - **Package:** `@sorleed/cli`
 - **Release:** `0.1.0-alpha.9`
 - **License:** MIT
-- **Homepage:** [https://sorleed.dev](https://sorleed.dev)
+- **Homepage:** [https://sorleed.com](https://sorleed.com)
 - **Repository:** [https://github.com/sorleed/sorleed](https://github.com/sorleed/sorleed)
 - **Commands:** `sorleed`, `weft`, `fincore`
 
