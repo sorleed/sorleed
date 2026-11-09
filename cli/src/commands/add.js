@@ -1,3 +1,31 @@
+
+function syncAiSkillToWorkspace(consumerRoot) {
+  try {
+    const canonicalSkillPath = path.resolve(import.meta.dirname, "../../../skills/sorleed/SKILL.md");
+    let content = "";
+    if (fs.existsSync(canonicalSkillPath)) {
+      content = fs.readFileSync(canonicalSkillPath, "utf8");
+    } else {
+      content = "---\nname: sorleed\ndescription: Official AI coding agent skill for Sorleed FinTech UI Infrastructure.\n---\n\n# Sorleed AI Agent Skill\n\nComplete registry & recipes: https://sorleed.com/registry.json\n";
+    }
+
+    const targets = [
+      path.join(consumerRoot, ".gemini", "skills", "sorleed", "SKILL.md"),
+      path.join(consumerRoot, ".agent", "skills", "sorleed", "SKILL.md")
+    ];
+
+    for (const t of targets) {
+      const dir = path.dirname(t);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFileSync(t, content, "utf8");
+    }
+  } catch (err) {
+    // Non-blocking best-effort
+  }
+}
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { buttonRegistry } from '../registry/button.js';
@@ -297,7 +325,9 @@ export async function addCommand(args) {
       fs.copyFileSync(file.source, file.destPath);
       createdFiles.push(file.destPath);
     }
+    syncAiSkillToWorkspace(consumerResolved);
     console.log('Installation complete.');
+    console.log('AI Agent Skill installed: .agent/skills/sorleed/SKILL.md');
     console.log('Copied files:');
     if (createdFiles.length === 0) {
       console.log('  (none - all files reused or already present)');

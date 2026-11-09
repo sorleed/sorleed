@@ -1,0 +1,519 @@
+{
+  "$schema": "https://sorleed.com/schema/registry.json",
+  "name": "@sorleed/registry",
+  "version": "0.1.0-alpha.10",
+  "description": "Machine-readable registry of all 61 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
+  "homepage": "https://sorleed.com",
+  "components": {
+    "accordion": {
+      "name": "accordion",
+      "description": "Collapsible disclosure panels for compliance terms, fee FAQs, and transaction audits",
+      "category": "core",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/accordion.html",
+      "cliCommand": "npx @sorleed/cli add accordion"
+    },
+    "account-summary": {
+      "name": "account-summary",
+      "description": "Sorleed AccountSummary bank account overview component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/account-summary.html",
+      "cliCommand": "npx @sorleed/cli add account-summary"
+    },
+    "alert": {
+      "name": "alert",
+      "description": "Weft Alert component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/alert.html",
+      "cliCommand": "npx @sorleed/cli add alert"
+    },
+    "amount-display": {
+      "name": "amount-display",
+      "description": "Weft Amount Display component (pure CSS + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/amount-display.html",
+      "cliCommand": "npx @sorleed/cli add amount-display"
+    },
+    "asset-allocation": {
+      "name": "asset-allocation",
+      "description": "Wealth & investment asset distribution breakdown bar and portfolio allocation list",
+      "category": "fintech",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/asset-allocation.html",
+      "cliCommand": "npx @sorleed/cli add asset-allocation"
+    },
+    "avatar": {
+      "name": "avatar",
+      "description": "Sorleed Avatar component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/avatar.html",
+      "cliCommand": "npx @sorleed/cli add avatar"
+    },
+    "badge": {
+      "name": "badge",
+      "description": "Weft Badge component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/badge.html",
+      "cliCommand": "npx @sorleed/cli add badge"
+    },
+    "balance-card": {
+      "name": "balance-card",
+      "description": "Weft Balance Card component (pure CSS + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/balance-card.html",
+      "cliCommand": "npx @sorleed/cli add balance-card"
+    },
+    "bank-selector": {
+      "name": "bank-selector",
+      "description": "Sorleed BankSelector searchable financial institution picker (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/bank-selector.html",
+      "cliCommand": "npx @sorleed/cli add bank-selector"
+    },
+    "biometric-auth-prompt": {
+      "name": "biometric-auth-prompt",
+      "description": "FaceID, TouchID, and WebAuthn biometric verification dialog powered by Radix Dialog",
+      "category": "fintech",
+      "dependencies": [
+        "button"
+      ],
+      "docsUrl": "https://sorleed.com/components/biometric-auth-prompt.html",
+      "cliCommand": "npx @sorleed/cli add biometric-auth-prompt"
+    },
+    "button": {
+      "name": "button",
+      "description": "Weft Button component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/button.html",
+      "cliCommand": "npx @sorleed/cli add button"
+    },
+    "card-controls": {
+      "name": "card-controls",
+      "description": "Card security and feature toggles (online payments, ATM, freeze card, international use)",
+      "category": "fintech",
+      "dependencies": [
+        "switch"
+      ],
+      "docsUrl": "https://sorleed.com/components/card-controls.html",
+      "cliCommand": "npx @sorleed/cli add card-controls"
+    },
+    "card": {
+      "name": "card",
+      "description": "Weft Card component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/card.html",
+      "cliCommand": "npx @sorleed/cli add card"
+    },
+    "chart-of-accounts-tree": {
+      "name": "chart-of-accounts-tree",
+      "description": "Hierarchical general ledger chart of accounts tree (Assets, Liabilities, Equity)",
+      "category": "fintech",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/chart-of-accounts-tree.html",
+      "cliCommand": "npx @sorleed/cli add chart-of-accounts-tree"
+    },
+    "checkbox": {
+      "name": "checkbox",
+      "description": "Weft Checkbox component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/checkbox.html",
+      "cliCommand": "npx @sorleed/cli add checkbox"
+    },
+    "container": {
+      "name": "container",
+      "description": "Weft Container component (max-width layout primitive + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/container.html",
+      "cliCommand": "npx @sorleed/cli add container"
+    },
+    "credit-score-gauge": {
+      "name": "credit-score-gauge",
+      "description": "Sorleed CreditScoreGauge radial dial credit health meter (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/credit-score-gauge.html",
+      "cliCommand": "npx @sorleed/cli add credit-score-gauge"
+    },
+    "currency-exchange": {
+      "name": "currency-exchange",
+      "description": "Sorleed CurrencyExchange two-way currency converter (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/currency-exchange.html",
+      "cliCommand": "npx @sorleed/cli add currency-exchange"
+    },
+    "currency": {
+      "name": "currency",
+      "description": "Weft Currency component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/currency.html",
+      "cliCommand": "npx @sorleed/cli add currency"
+    },
+    "cvv": {
+      "name": "cvv",
+      "description": "Weft CVV component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/cvv.html",
+      "cliCommand": "npx @sorleed/cli add cvv"
+    },
+    "date-picker": {
+      "name": "date-picker",
+      "description": "Weft DatePicker component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/date-picker.html",
+      "cliCommand": "npx @sorleed/cli add date-picker"
+    },
+    "direct-debit-mandate": {
+      "name": "direct-debit-mandate",
+      "description": "Direct debit recurring billing authorization modal powered by Radix Dialog",
+      "category": "fintech",
+      "dependencies": [
+        "button"
+      ],
+      "docsUrl": "https://sorleed.com/components/direct-debit-mandate.html",
+      "cliCommand": "npx @sorleed/cli add direct-debit-mandate"
+    },
+    "divider": {
+      "name": "divider",
+      "description": "Weft Divider component (pure CSS + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/divider.html",
+      "cliCommand": "npx @sorleed/cli add divider"
+    },
+    "drawer": {
+      "name": "drawer",
+      "description": "Weft Drawer component (Radix UI Dialog + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/drawer.html",
+      "cliCommand": "npx @sorleed/cli add drawer"
+    },
+    "empty-state": {
+      "name": "empty-state",
+      "description": "Sorleed EmptyState zero-data placeholder (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/empty-state.html",
+      "cliCommand": "npx @sorleed/cli add empty-state"
+    },
+    "expense-receipt-uploader": {
+      "name": "expense-receipt-uploader",
+      "description": "Expense receipt dropzone with OCR extracted fields and reimbursement flag",
+      "category": "fintech",
+      "dependencies": [
+        "input",
+        "currency",
+        "switch",
+        "button"
+      ],
+      "docsUrl": "https://sorleed.com/components/expense-receipt-uploader.html",
+      "cliCommand": "npx @sorleed/cli add expense-receipt-uploader"
+    },
+    "fee-breakdown": {
+      "name": "fee-breakdown",
+      "description": "Sorleed FeeBreakdown transparent fee disclosure sheet (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/fee-breakdown.html",
+      "cliCommand": "npx @sorleed/cli add fee-breakdown"
+    },
+    "inline": {
+      "name": "inline",
+      "description": "Weft Inline component (horizontal layout primitive + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/inline.html",
+      "cliCommand": "npx @sorleed/cli add inline"
+    },
+    "input": {
+      "name": "input",
+      "description": "Weft Input component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/input.html",
+      "cliCommand": "npx @sorleed/cli add input"
+    },
+    "invoice-viewer": {
+      "name": "invoice-viewer",
+      "description": "Commercial invoice document with line-items, tax calculations, and status badges",
+      "category": "fintech",
+      "dependencies": [
+        "badge"
+      ],
+      "docsUrl": "https://sorleed.com/components/invoice-viewer.html",
+      "cliCommand": "npx @sorleed/cli add invoice-viewer"
+    },
+    "journal-entry-ledger": {
+      "name": "journal-entry-ledger",
+      "description": "Double-entry bookkeeping journal table enforcing debit and credit balancing",
+      "category": "fintech",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/journal-entry-ledger.html",
+      "cliCommand": "npx @sorleed/cli add journal-entry-ledger"
+    },
+    "kyc-doc-uploader": {
+      "name": "kyc-doc-uploader",
+      "description": "Sorleed KycDocUploader identity document verification dropzone (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/kyc-doc-uploader.html",
+      "cliCommand": "npx @sorleed/cli add kyc-doc-uploader"
+    },
+    "loan-calculator": {
+      "name": "loan-calculator",
+      "description": "Sorleed LoanCalculator real-time loan EMI calculation slider (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/loan-calculator.html",
+      "cliCommand": "npx @sorleed/cli add loan-calculator"
+    },
+    "modal": {
+      "name": "modal",
+      "description": "Sorleed Modal dialog component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/modal.html",
+      "cliCommand": "npx @sorleed/cli add modal"
+    },
+    "otp": {
+      "name": "otp",
+      "description": "Weft OTP component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/otp.html",
+      "cliCommand": "npx @sorleed/cli add otp"
+    },
+    "pagination": {
+      "name": "pagination",
+      "description": "Accessible pagination controls for ledger histories and multi-page statements",
+      "category": "navigation",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/pagination.html",
+      "cliCommand": "npx @sorleed/cli add pagination"
+    },
+    "password-input": {
+      "name": "password-input",
+      "description": "Weft PasswordInput component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/password-input.html",
+      "cliCommand": "npx @sorleed/cli add password-input"
+    },
+    "phone-input": {
+      "name": "phone-input",
+      "description": "Weft PhoneInput component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/phone-input.html",
+      "cliCommand": "npx @sorleed/cli add phone-input"
+    },
+    "pin-input": {
+      "name": "pin-input",
+      "description": "Sorleed PinInput transaction authorization component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/pin-input.html",
+      "cliCommand": "npx @sorleed/cli add pin-input"
+    },
+    "popover": {
+      "name": "popover",
+      "description": "Weft Popover component (Radix UI Popover + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/popover.html",
+      "cliCommand": "npx @sorleed/cli add popover"
+    },
+    "portfolio-summary": {
+      "name": "portfolio-summary",
+      "description": "Sorleed PortfolioSummary investment net worth card (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/portfolio-summary.html",
+      "cliCommand": "npx @sorleed/cli add portfolio-summary"
+    },
+    "radio-group": {
+      "name": "radio-group",
+      "description": "Weft RadioGroup component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/radio-group.html",
+      "cliCommand": "npx @sorleed/cli add radio-group"
+    },
+    "repayment-schedule": {
+      "name": "repayment-schedule",
+      "description": "Loan amortization and installment repayment schedule breakdown with pay actions",
+      "category": "fintech",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/repayment-schedule.html",
+      "cliCommand": "npx @sorleed/cli add repayment-schedule"
+    },
+    "select": {
+      "name": "select",
+      "description": "Weft Select component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/select.html",
+      "cliCommand": "npx @sorleed/cli add select"
+    },
+    "skeleton": {
+      "name": "skeleton",
+      "description": "Sorleed Skeleton shimmer loading placeholders (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/skeleton.html",
+      "cliCommand": "npx @sorleed/cli add skeleton"
+    },
+    "spending-meter": {
+      "name": "spending-meter",
+      "description": "Sorleed SpendingMeter daily/monthly budget tracking progress bar (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/spending-meter.html",
+      "cliCommand": "npx @sorleed/cli add spending-meter"
+    },
+    "split-bill-calculator": {
+      "name": "split-bill-calculator",
+      "description": "Bill splitting and expense calculator with tipping, participant weights, and payment links",
+      "category": "fintech",
+      "dependencies": [
+        "currency",
+        "avatar",
+        "button"
+      ],
+      "docsUrl": "https://sorleed.com/components/split-bill-calculator.html",
+      "cliCommand": "npx @sorleed/cli add split-bill-calculator"
+    },
+    "stack": {
+      "name": "stack",
+      "description": "Weft Stack component (vertical layout primitive + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/stack.html",
+      "cliCommand": "npx @sorleed/cli add stack"
+    },
+    "status-indicator": {
+      "name": "status-indicator",
+      "description": "Weft Status Indicator component (pure CSS + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/status-indicator.html",
+      "cliCommand": "npx @sorleed/cli add status-indicator"
+    },
+    "switch": {
+      "name": "switch",
+      "description": "Weft Switch component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/switch.html",
+      "cliCommand": "npx @sorleed/cli add switch"
+    },
+    "table": {
+      "name": "table",
+      "description": "Weft Table component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/table.html",
+      "cliCommand": "npx @sorleed/cli add table"
+    },
+    "tabs": {
+      "name": "tabs",
+      "description": "Weft Tabs component (Radix UI Tabs + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/tabs.html",
+      "cliCommand": "npx @sorleed/cli add tabs"
+    },
+    "tax-summary-card": {
+      "name": "tax-summary-card",
+      "description": "Tax compliance breakdown displaying gross income, deductions, taxable net, and liability",
+      "category": "fintech",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/tax-summary-card.html",
+      "cliCommand": "npx @sorleed/cli add tax-summary-card"
+    },
+    "textarea": {
+      "name": "textarea",
+      "description": "Weft Textarea component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/textarea.html",
+      "cliCommand": "npx @sorleed/cli add textarea"
+    },
+    "toast": {
+      "name": "toast",
+      "description": "Sorleed Toast notification component (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/toast.html",
+      "cliCommand": "npx @sorleed/cli add toast"
+    },
+    "tooltip": {
+      "name": "tooltip",
+      "description": "Weft Tooltip component (Radix UI Tooltip + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/tooltip.html",
+      "cliCommand": "npx @sorleed/cli add tooltip"
+    },
+    "transaction-item": {
+      "name": "transaction-item",
+      "description": "Weft Transaction Item component (pure CSS + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/transaction-item.html",
+      "cliCommand": "npx @sorleed/cli add transaction-item"
+    },
+    "transfer-receipt": {
+      "name": "transfer-receipt",
+      "description": "Sorleed TransferReceipt digital proof of payment (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/transfer-receipt.html",
+      "cliCommand": "npx @sorleed/cli add transfer-receipt"
+    },
+    "virtual-card-generator": {
+      "name": "virtual-card-generator",
+      "description": "Virtual card issuance studio with live preview, limit slider, and merchant lock controls",
+      "category": "fintech",
+      "dependencies": [
+        "wallet-card",
+        "input",
+        "switch",
+        "button"
+      ],
+      "docsUrl": "https://sorleed.com/components/virtual-card-generator.html",
+      "cliCommand": "npx @sorleed/cli add virtual-card-generator"
+    },
+    "wallet-card": {
+      "name": "wallet-card",
+      "description": "Sorleed WalletCard virtual debit/credit card visualizer (React + TypeScript wrapper)",
+      "category": "general",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/wallet-card.html",
+      "cliCommand": "npx @sorleed/cli add wallet-card"
+    },
+    "yield-curve-table": {
+      "name": "yield-curve-table",
+      "description": "Treasury bond yield curve and maturities schedule table with action triggers",
+      "category": "fintech",
+      "dependencies": [],
+      "docsUrl": "https://sorleed.com/components/yield-curve-table.html",
+      "cliCommand": "npx @sorleed/cli add yield-curve-table"
+    }
+  }
+}
