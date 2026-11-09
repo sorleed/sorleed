@@ -78,115 +78,53 @@
         Sorleed is a complete design system and component toolkit engineered for fintech, commercial banking, wealth management, and double-entry ledgers. Source-first, zero-runtime lock-in, and accessible by default.
       </p>
 
-      <!-- Dual Installation Hero Box (Left-Aligned with Copy Buttons) -->
-      <div style="display:flex; justify-content:flex-start; gap:20px; flex-wrap:wrap; margin:32px 0 36px; text-align:left;">
+      <!-- Vertical Stack Installation Boxes -->
+      <div class="hero-packages-container">
         <!-- Option 1: CLI -->
-        <div style="background:#0F172A; border:1px solid #334155; border-radius:10px; padding:20px 24px; min-width:320px; flex:1; max-width:440px; box-shadow:var(--shadow-card); position:relative;">
+        <div class="hero-package-card">
           <div class="package-card-header">
             <span style="font-size:12px; font-weight:700; color:#94A3B8; text-transform:uppercase; letter-spacing:0.05em;">Source Distribution (CLI)</span>
             <span style="font-size:11px; padding:2px 8px; border-radius:4px; background:#1E293B; color:#38BDF8; font-weight:600;">Recommended</span>
           </div>
-          <div style="display:flex; align-items:center; justify-content:space-between; background:#1E293B; padding:10px 14px; border-radius:6px; border:1px solid #334155; margin-bottom:14px;">
-            <div style="font-family:var(--font-mono); font-size:13.5px; color:#F8FAFC; overflow-x:auto; white-space:nowrap;">
+          <div class="hero-package-cmd-row">
+            <div class="hero-package-cmd-text">
               <span style="color:#635BFF; margin-right:6px;">$</span><span id="cmd-cli">npx @sorleed/cli add balance-card</span>
             </div>
             <button type="button" onclick="copySnippet('cmd-cli', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:4px; display:inline-flex; align-items:center; border-radius:4px; margin-left:8px; transition:color 0.15s ease;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             </button>
           </div>
-          <a href="docs.html#cli" style="font-size:13px; color:#38BDF8; text-decoration:none; font-weight:600;">Learn about CLI installation →</a>
+          <a href="docs.html#cli" style="color:#38BDF8; font-size:13px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+            Learn about CLI installation &rarr;
+          </a>
         </div>
 
-        <!-- Option 2: Full React Library -->
-        <div style="background:#0F172A; border:1px solid #334155; border-radius:10px; padding:20px 24px; min-width:320px; flex:1; max-width:440px; box-shadow:var(--shadow-card); position:relative;">
+        <!-- Option 2: Full React Package -->
+        <div class="hero-package-card">
           <div class="package-card-header">
             <span style="font-size:12px; font-weight:700; color:#94A3B8; text-transform:uppercase; letter-spacing:0.05em;">Full Package (npm)</span>
-            <span style="font-size:11px; padding:2px 8px; border-radius:4px; background:#1E293B; color:#10B981; font-weight:600;">61 Components</span>
+            <span style="font-size:11px; padding:2px 8px; border-radius:4px; background:#1E293B; color:#34D399; font-weight:600;">61 Components</span>
           </div>
-          <div style="display:flex; align-items:center; justify-content:space-between; background:#1E293B; padding:10px 14px; border-radius:6px; border:1px solid #334155; margin-bottom:14px;">
-            <div style="font-family:var(--font-mono); font-size:13.5px; color:#F8FAFC; overflow-x:auto; white-space:nowrap;">
+          <div class="hero-package-cmd-row">
+            <div class="hero-package-cmd-text">
               <span style="color:#635BFF; margin-right:6px;">$</span><span id="cmd-npm">npm install @sorleed/react</span>
             </div>
             <button type="button" onclick="copySnippet('cmd-npm', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:4px; display:inline-flex; align-items:center; border-radius:4px; margin-left:8px; transition:color 0.15s ease;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             </button>
           </div>
-          <a href="docs.html" style="font-size:13px; color:#10B981; text-decoration:none; font-weight:600;">Browse documentation & API →</a>
+          <a href="docs.html" style="color:#34D399; font-size:13px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+            Browse documentation &amp; API &rarr;
+          </a>
         </div>
       </div>
 
-      <!-- Hero Call To Action Buttons (Left-Aligned) -->
-      <div style="display:flex; justify-content:flex-start; gap:14px; margin-bottom:56px;">
-        <a href="docs.html" class="btn-header-cta" style="padding:12px 28px; font-size:15px;">Get started with Sorleed</a>
-        <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:8px; border:1px solid #E2E8F0; background:#FFFFFF; color:var(--text-primary); text-decoration:none; font-weight:600; font-size:14.5px;">
+      <!-- Action Buttons (Responsive on Mobile) -->
+      <div class="hero-cta-container">
+        <a href="docs.html" class="hero-cta-btn-primary">Get started with Sorleed</a>
+        <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" class="hero-cta-btn-secondary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          View on GitHub
-        </a>
-      </div>
-
-      <!-- Stripe-Style Category Hubs -->
-      <h2 style="font-size:24px; font-weight:700; margin:0 0 8px; color:var(--text-primary);">Explore by Financial Category</h2>
-      <p style="font-size:15px; color:var(--text-secondary); margin:0 0 24px;">All documentation and components are organized by functional domain.</p>
-
-      <div class="stripe-category-grid">
-        <!-- Banking -->
-        <a href="components/balance-card.html" class="stripe-category-card">
-          <div class="stripe-category-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-          </div>
-          <h3 class="stripe-category-card__title">Banking & Wallets</h3>
-          <p class="stripe-category-card__desc">Checking account balance displays, privacy eye masking, IBAN summaries, and interactive payment cards.</p>
-          <span class="stripe-category-card__link">Explore Banking Components →</span>
-        </a>
-
-        <!-- Accounting -->
-        <a href="components/invoice-viewer.html" class="stripe-category-card">
-          <div class="stripe-category-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </div>
-          <h3 class="stripe-category-card__title">Accounting & Ledgers</h3>
-          <p class="stripe-category-card__desc">Commercial invoices, double-entry bookkeeping ledgers, chart of accounts tree, and tax estimates.</p>
-          <span class="stripe-category-card__link">Explore Accounting Components →</span>
-        </a>
-
-        <!-- Credit & Wealth -->
-        <a href="components/spending-meter.html" class="stripe-category-card">
-          <div class="stripe-category-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3 class="stripe-category-card__title">Credit & Wealth</h3>
-          <p class="stripe-category-card__desc">Loan amortization calculators, credit score radial gauges, spending meters, and portfolio diversification.</p>
-          <span class="stripe-category-card__link">Explore Wealth Components →</span>
-        </a>
-
-        <!-- Security & Identity -->
-        <a href="components/biometric-auth-prompt.html" class="stripe-category-card">
-          <div class="stripe-category-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <h3 class="stripe-category-card__title">Security & Identity</h3>
-          <p class="stripe-category-card__desc">Face ID / biometric approval modals, KYC document dropzones, SEPA mandates, and PIN/OTP cells.</p>
-          <span class="stripe-category-card__link">Explore Security Components →</span>
-        </a>
-
-        <!-- Forms & Inputs -->
-        <a href="components/button.html" class="stripe-category-card">
-          <div class="stripe-category-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12h6M12 9v6"/></svg>
-          </div>
-          <h3 class="stripe-category-card__title">Forms & Core Controls</h3>
-          <p class="stripe-category-card__desc">Accessible buttons, financial numeric inputs, segmented tabs, dialog modals, and custom selects.</p>
-          <span class="stripe-category-card__link">Explore Core Controls →</span>
-        </a>
-
-        <!-- CLI & Distribution -->
-        <a href="cli.html" class="stripe-category-card">
-          <div class="stripe-category-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-          </div>
-          <h3 class="stripe-category-card__title">CLI Source Distribution</h3>
-          <p class="stripe-category-card__desc">Copy component source code straight into your codebase with automatic dependency resolution.</p>
-          <span class="stripe-category-card__link">Learn CLI Usage →</span>
+          <span>View on GitHub</span>
         </a>
       </div>
     </section>
