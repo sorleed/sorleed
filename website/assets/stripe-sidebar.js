@@ -65,11 +65,11 @@ function renderStripeSidebar(activeId) {
     {
       name: 'Getting Started',
       items: [
-        { id: 'docs-home', label: 'Overview', href: root + 'docs.html#overview' },
-        { id: 'cli', label: 'Sorleed CLI', href: root + 'docs.html#cli' },
-        { id: 'tokens', label: 'Design Tokens', href: root + 'docs.html#tokens' },
-        { id: 'accessibility', label: 'Accessibility (AA)', href: root + 'docs.html#accessibility' },
-        { id: 'ai-skill', label: 'AI Agent Skill', href: root + 'docs.html#ai-skill' }
+        { id: 'docs-home', label: 'Overview', href: root + 'docs#overview' },
+        { id: 'cli', label: 'Sorleed CLI', href: root + 'docs#cli' },
+        { id: 'tokens', label: 'Design Tokens', href: root + 'docs#tokens' },
+        { id: 'accessibility', label: 'Accessibility (AA)', href: root + 'docs#accessibility' },
+        { id: 'ai-skill', label: 'AI Agent Skill', href: root + 'docs#ai-skill' }
       ]
     },
     {
@@ -151,7 +151,7 @@ function renderStripeSidebar(activeId) {
   html += `<div class="sidebar-group__header">${groups[0].name}</div>`;
   for (const item of groups[0].items) {
     const isActive = item.id === activeId ? 'active' : '';
-    const clickHandler = item.href.includes('docs.html#') ? `onclick="if(window.location.pathname.endsWith('docs.html')){ switchDocsSection('${item.id === 'docs-home' ? 'overview' : item.id}'); return false; }"` : '';
+    const clickHandler = item.href.includes('docs#') ? `onclick="if(window.location.pathname.endsWith('docs')){ switchDocsSection('${item.id === 'docs-home' ? 'overview' : item.id}'); return false; }"` : '';
     html += `<a href="${item.href}" ${clickHandler} data-nav-id="${item.id}" class="sidebar-link ${isActive}">${item.label}</a>`;
   }
   html += `</div>`;
