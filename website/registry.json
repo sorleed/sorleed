@@ -1,7 +1,7 @@
 {
   "$schema": "https://sorleed.com/schema/registry.json",
   "name": "@sorleed/registry",
-  "version": "0.1.0-alpha.10",
+  "version": "0.1.0-alpha.11",
   "description": "Machine-readable registry of all 61 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
   "homepage": "https://sorleed.com",
   "components": {
