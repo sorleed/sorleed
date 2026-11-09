@@ -1,0 +1,16 @@
+# Linguist language detection overrides
+# Vendor copied templates so they don't count as project code
+cli/templates/** linguist-vendored
+cli/templates/**/* linguist-vendored
+
+# Documentation, reference specifications, and test fixtures
+components/**/*.html linguist-documentation
+components/reference-markup/** linguist-documentation
+poc/** linguist-documentation
+examples/** linguist-documentation
+
+# Mark all TypeScript components and contracts as primary
+react/**/*.tsx linguist-detectable=true
+react/**/*.ts linguist-detectable=true
+cli/src/**/*.ts linguist-detectable=true
+

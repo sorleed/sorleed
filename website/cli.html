@@ -4,120 +4,122 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <title>CLI — Sorleed</title>
-  <meta name="description" content="The Sorleed CLI copies canonical component source, types and CSS into a consumer project without overwriting existing files.">
-  <link rel="stylesheet" href="../tokens/dist/tokens.css">
-  <link rel="stylesheet" href="../components/button/button.css">
-  <link rel="stylesheet" href="assets/site.css">
+  <title>Sorleed CLI — Documentation</title>
+  <meta name="description" content="Copy canonical component source, types and CSS directly into consumer projects with zero runtime lock-in.">
+  <link rel="stylesheet" href="tokens-dist/tokens.css">
+  <link rel="stylesheet" href="components-dist/all-components.css">
+  <link rel="stylesheet" href="assets/stripe-docs.css">
 </head>
-<body data-page="cli">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark" aria-hidden="true">S</span>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
         <span>Sorleed</span>
-        <span class="brand__sub">UI Infrastructure</span>
       </a>
-      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav class="site-nav" id="site-nav" data-nav aria-label="Primary">
-        <ul>
-          <li><a href="index.html" data-page="overview">Overview</a></li>
-          <li><a href="getting-started.html" data-page="start">Getting started</a></li>
-          <li><a href="components.html" data-page="components">Components</a></li>
-          <li><a href="playground.html" data-page="playground">Playground</a></li>
-          <li><a href="tokens.html" data-page="tokens">Tokens</a></li>
-          <li><a href="cli.html" data-page="cli">CLI</a></li>
-          <li><a href="customisation.html" data-page="customisation">Customisation</a></li>
-          <li><a href="accessibility.html" data-page="accessibility">Accessibility</a></li>
-          <li><a href="ai.html" data-page="ai">AI</a></li>
-          <li><a href="limitations.html" data-page="limits">Limits</a></li>
-        </ul>
+      <nav class="docs-header__nav">
+        <a href="docs.html" class="active">Documentation</a>
+        <a href="docs.html">Components</a>
+        <a href="cli.html">API & CLI</a>
       </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" class="badge-metric" title="Star on GitHub" style="display:inline-flex; align-items:center; gap:6px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span data-github-stars style="font-weight:700; color:var(--text-primary);">1</span>
+      </a>
+      <a href="https://www.npmjs.com/package/@sorleed/cli" target="_blank" rel="noreferrer" class="badge-metric">
+        <span style="font-weight:700; color:#EF4444;">npm</span>
+        <span><span data-npm-downloads>1.6k</span> dl</span>
+      </a>
+      <a href="docs.html" class="btn-header-cta">Get started</a>
     </div>
   </header>
 
-  <main id="main">
-    <div class="page page--with-sidebar">
-      <aside class="sidebar" aria-label="On this page">
-        <h2>On this page</h2>
-        <ul>
-          <li><a href="#commands">Commands</a></li>
-          <li><a href="#files">Copied files</a></li>
-          <li><a href="#conflicts">Conflicts</a></li>
-          <li><a href="#phone">PhoneInput</a></li>
-          <li><a href="#limitations">Limitations</a></li>
-        </ul>
-      </aside>
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
 
-      <div class="content">
-        <h1>Sorleed CLI</h1>
-        <p class="lede">Copy canonical source into your project. Keep it. Edit it. The CLI never silently overwrites existing files.</p>
-
-        <h2 id="commands">Commands</h2>
-        <pre><code>sorleed --help
-sorleed --version
-sorleed list
-sorleed list --json
-sorleed add &lt;component&gt; [--dir &lt;path&gt;] [--dry-run]</code></pre>
-        <p><code>list</code> shows the four components and their runtime dependencies. <code>add</code> copies one component into the target directory.</p>
-        <div class="demo">
-          <div class="demo__surface">
-            <p><strong>Available components</strong></p>
-            <ul>
-              <li><code>button</code> — no extra runtime dependencies</li>
-              <li><code>input</code> — no extra runtime dependencies</li>
-              <li><code>password-input</code> — no extra runtime dependencies</li>
-              <li><code>phone-input</code> — requires <code>libphonenumber-js</code></li>
-            </ul>
-          </div>
-        </div>
-
-        <h2 id="files">Copied files</h2>
-        <pre><code>components/sorleed/&lt;component&gt;/index.tsx
-components/sorleed/types/index.ts      (shared)
-styles/sorleed/&lt;component&gt;.css
-styles/sorleed/tokens.css              (shared)</code></pre>
-        <p>Import tokens first, then the component styles:</p>
-        <pre><code>import "./styles/sorleed/tokens.css";
-import "./styles/sorleed/button.css";</code></pre>
-
-        <h2 id="conflicts">Conflicts</h2>
-        <ul>
-          <li>Shared files are reused only when they are byte-identical to the canonical source.</li>
-          <li>A different shared file is a conflict, and the install aborts.</li>
-          <li>Any existing component file aborts the install before anything is written.</li>
-          <li>On copy failure, only files created by that run are rolled back.</li>
-          <li>There is no <code>--force</code> or <code>--skip</code>. Resolve conflicts deliberately.</li>
-        </ul>
-        <p>Use <code>--dry-run</code> to see exactly what would be created, reused or conflict before writing anything.</p>
-
-        <h2 id="phone">PhoneInput dependency</h2>
-        <p>PhoneInput needs <code>libphonenumber-js</code> for parsing and format validation:</p>
-        <pre><code>npm install libphonenumber-js</code></pre>
-        <p>Button, Input and PasswordInput do not require it.</p>
-
-        <h2 id="limitations">Limitations</h2>
-        <ul>
-          <li>Private alpha and unpublished.</li>
-          <li>No browser rendering verification is performed by the CLI.</li>
-          <li>No interactive conflict resolution.</li>
-          <li>CSS imports require a bundler that supports them.</li>
-          <li>TypeScript consumers may need a <code>*.css</code> ambient declaration.</li>
-        </ul>
-        <div class="callout">
-          <p>Source: <code>cli/README.md</code>. Tests: <code>cd cli &amp;&amp; npm test</code>.</p>
-        </div>
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="docs.html">Documentation</a>
+        <span>/</span>
+        <span>Sorleed CLI</span>
       </div>
-    </div>
-  </main>
 
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <p>Sorleed — UI Infrastructure. MIT licensed. Copyright (c) 2026 Sorleed.</p>
-      <p><a href="../README.md">Repository README</a> · <a href="../PRODUCT.md">Product</a> · <a href="../SECURITY.md">Security</a></p>
-    </div>
+      <h1 class="docs-title">Sorleed CLI</h1>
+      <p class="docs-lede">
+        Copy canonical source directly into your codebase. You own the code: inspect it, edit it, customize it. The CLI is safe by design and never overwrites existing code.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:32px 0 12px; color:var(--text-primary);">Commands</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body"># Show command list and usage
+npx @sorleed/cli --help
+
+# List all available components and dependencies
+npx @sorleed/cli list
+
+# Output components in machine-readable JSON format
+npx @sorleed/cli list --json
+
+# Add an individual component to your workspace
+npx @sorleed/cli add balance-card
+
+# Preview file operations without writing anything to disk
+npx @sorleed/cli add balance-card --dry-run
+
+# Specify custom target output directory
+npx @sorleed/cli add balance-card --dir ./src/ui</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px; color:var(--text-primary);">Files Added to Your Workspace</h2>
+        <p style="color:var(--text-secondary); line-height:1.6;">
+          When running <code>add &lt;component&gt;</code>, the CLI distributes clean TypeScript JSX and CSS files directly into your project structure:
+        </p>
+        <div class="code-card">
+          <div class="code-card__header">Workspace Tree</div>
+          <pre class="code-card__body">components/sorleed/&lt;component&gt;/index.tsx
+components/sorleed/types/index.ts      (shared types)
+styles/sorleed/&lt;component&gt;.css
+styles/sorleed/tokens.css              (shared design tokens)</pre>
+        </div>
+        <p style="color:var(--text-secondary); margin-top:12px;">Import design tokens first, followed by your component styles:</p>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import "./styles/sorleed/tokens.css";
+import "./styles/sorleed/balance-card.css";
+import { BalanceCard } from "./components/sorleed/balance-card";</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px; color:var(--text-primary);">Conflict Protection</h2>
+        <ul style="color:var(--text-secondary); line-height:1.8;">
+          <li><strong>Zero Overwriting:</strong> Any existing component file halts execution immediately before writing to disk.</li>
+          <li><strong>Shared File Integrity:</strong> Shared files (such as <code>tokens.css</code> and <code>types/index.ts</code>) are reused only when byte-identical to the canonical source.</li>
+          <li><strong>Safe Rollbacks:</strong> On any copy error, any newly created files during that specific invocation are automatically rolled back.</li>
+          <li><strong>Predictable Planning:</strong> Run with <code>--dry-run</code> anytime to review planned modifications beforehand.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
   </footer>
-  <script src="assets/site.js"></script>
+
+  <script src="assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('cli');
+  </script>
+  <script src="assets/metrics.js"></script>
 </body>
 </html>

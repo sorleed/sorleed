@@ -1,0 +1,124 @@
+/*
+ * Sorleed BankSelector — searchable financial institution picker.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-bank-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.fc-bank-selector__search-container {
+  position: relative;
+  width: 100%;
+}
+
+.fc-bank-selector__search-input {
+  width: 100%;
+  box-sizing: border-box;
+  height: var(--fc-size-height-control-default);
+  padding: 0 var(--fc-space-4);
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-control);
+  border-radius: var(--fc-radius-md);
+  font-family: inherit;
+  font-size: var(--fc-font-size-sm);
+  color: var(--fc-color-content-primary);
+  outline: none;
+}
+
+.fc-bank-selector__search-input:focus {
+  border-color: var(--fc-color-border-focus);
+  box-shadow: 0 0 0 2px var(--fc-color-surface-default), 0 0 0 4px var(--fc-color-border-focus);
+}
+
+.fc-bank-selector__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+  max-height: 280px;
+  overflow-y: auto;
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-md);
+  padding: var(--fc-space-2);
+  background-color: var(--fc-color-surface-default);
+  list-style: none;
+  margin: 0;
+}
+
+.fc-bank-selector__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--fc-space-3) var(--fc-space-4);
+  border-radius: var(--fc-radius-sm);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  color: var(--fc-color-content-primary);
+  transition: background-color 0.15s ease;
+}
+
+.fc-bank-selector__item:hover {
+  background-color: var(--fc-color-surface-subtle);
+}
+
+.fc-bank-selector__item:focus-visible {
+  outline: 2px solid var(--fc-color-border-focus);
+  outline-offset: -2px;
+}
+
+.fc-bank-selector__item--selected {
+  background-color: var(--fc-blue-50);
+  color: var(--fc-blue-700);
+  font-weight: var(--fc-font-weight-medium);
+}
+
+.fc-bank-selector__item-info {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-3);
+}
+
+.fc-bank-selector__bank-icon {
+  width: var(--fc-space-8);
+  height: var(--fc-space-8);
+  border-radius: var(--fc-radius-sm);
+  background-color: var(--fc-color-surface-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--fc-font-weight-medium);
+  font-size: var(--fc-font-size-xs);
+  flex-shrink: 0;
+}
+
+.fc-bank-selector__bank-name {
+  font-size: var(--fc-font-size-sm);
+  line-height: var(--fc-font-line-height-sm);
+}
+
+.fc-bank-selector__bank-code {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-muted);
+}
+
+.fc-bank-selector__empty {
+  padding: var(--fc-space-6);
+  text-align: center;
+  font-size: var(--fc-font-size-sm);
+  color: var(--fc-color-content-muted);
+}
+
+@media (forced-colors: active) {
+  .fc-bank-selector__item--selected {
+    outline: 2px solid Highlight;
+  }
+}
+

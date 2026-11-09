@@ -4,322 +4,361 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <title>Components — Sorleed</title>
-  <meta name="description" content="Sorleed Button, Input, PhoneInput, Select, Checkbox, Radio Group, Textarea, OTP, Currency, CVV, DatePicker: states, props, accessibility and usage.">
+  <title>Components — Sorleed UI Infrastructure</title>
+  <meta name="description" content="Sorleed financial components catalog: banking, accounting, ledgers, security, and forms.">
   <link rel="stylesheet" href="tokens-dist/tokens.css">
-  <link rel="stylesheet" href="../tokens/dist/tokens.css">
-  <link rel="stylesheet" href="../components/button/button.css">
-  <link rel="stylesheet" href="../components/input/input.css">
-  <link rel="stylesheet" href="../components/password-input/password-input.css">
-  <link rel="stylesheet" href="../components/phone-input/phone-input.css">
-  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="components-dist/all-components.css">
+  <link rel="stylesheet" href="assets/sorleed-design.css">
 </head>
-<body data-page="components">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="index.html">
-        <span class="brand__mark" aria-hidden="true">S</span>
-        <span>Sorleed</span>
-        <span class="brand__sub">UI Infrastructure</span>
-      </a>
-      <div style="display: flex; align-items: center; gap: 0.75rem;">
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">🌙 Dark mode</button>
-        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">Menu</button>
+<body>
+  <header class="sl-header">
+    <a href="index.html" class="sl-header__brand">
+      <div class="sl-header__logo-badge">S</div>
+      <span>Sorleed</span>
+      <span style="font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.6); margin-left: 4px;">UI Infrastructure</span>
+    </a>
+    <nav class="sl-header__nav">
+      <a href="index.html">Overview</a>
+      <a href="components.html" class="active">Components</a>
+      <a href="tokens.html">Design Tokens</a>
+      <a href="getting-started.html">Documentation</a>
+    </nav>
+    <div class="sl-header__actions">
+      <div class="sl-header-toggle-wrap">
+        <span class="sl-toggle-label-text" id="theme-mode-text">Dark</span>
+        <button type="button" role="switch" id="site-theme-switch" class="fc-switch" aria-checked="false" aria-label="Toggle color theme" onclick="toggleTheme()">
+          <span class="fc-switch__thumb"></span>
+        </button>
       </div>
-      <nav class="site-nav" id="site-nav" data-nav aria-label="Primary">
-        <ul>
-          <li><a href="getting-started.html" data-page="start">Getting started</a></li>
-          <li><a href="components.html" data-page="components" aria-current="page">Components</a></li>
-          <li><a href="playground.html" data-page="playground">Playground</a></li>
-          <li><a href="tokens.html" data-page="tokens">Tokens</a></li>
-          <li><a href="examples.html" data-page="examples">Examples</a></li>
-        </ul>
-      </nav>
+      <span class="sl-cli-badge">v0.1.0-alpha.9</span>
     </div>
   </header>
 
-  <main id="main">
-    <div class="page page--with-sidebar">
-      <aside class="sidebar" aria-label="On this page">
-        <h2>Components</h2>
-        <ul>
-          <li><a href="components/button.html"><strong>Button ↗ (Playground)</strong></a></li>
-          <li><a href="components/input.html"><strong>Input ↗ (Playground)</strong></a></li>
-          <li><a href="components/card.html"><strong>Card ↗ (Playground)</strong></a></li>
-          <li><a href="components/alert.html"><strong>Alert ↗ (Playground)</strong></a></li>
-          <li><a href="components/tabs.html"><strong>Tabs ↗ (Playground)</strong></a></li>
-          <li><a href="#button">Button</a></li>
-          <li><a href="#input">Input</a></li>
-          <li><a href="#password-input">PasswordInput</a></li>
-          <li><a href="#phone-input">PhoneInput</a></li>
-          <li><a href="#select">Select</a></li>
-          <li><a href="#checkbox">Checkbox</a></li>
-          <li><a href="#radio-group">Radio Group</a></li>
-          <li><a href="#textarea">Textarea</a></li>
-          <li><a href="#otp">OTP</a></li>
-          <li><a href="#currency">Currency</a></li>
-          <li><a href="#cvv">CVV</a></li>
-          <li><a href="#date-picker">DatePicker</a></li>
-          <li><a href="#card">Card</a></li>
-          <li><a href="#alert">Alert</a></li>
-          <li><a href="#tabs">Tabs</a></li>
-          <li><a href="#table">Table</a></li>
-          <li><a href="#badge">Badge</a></li>
-          <li><a href="#switch">Switch</a></li>
-          <li><a href="#tooltip">Tooltip</a></li>
-          <li><a href="#popover">Popover</a></li>
-          <li><a href="#drawer">Drawer</a></li>
-          <li><a href="#divider">Divider</a></li>
-          <li><a href="#transaction-item">TransactionItem</a></li>
-          <li><a href="#balance-card">BalanceCard</a></li>
-          <li><a href="#amount-display">AmountDisplay</a></li>
-          <li><a href="#status-indicator">StatusIndicator</a></li>
-          <li><a href="#stack">Stack</a></li>
-          <li><a href="#inline">Inline</a></li>
-          <li><a href="#container">Container</a></li>
-          <li><a href="#shared">Shared rules</a></li>
-        </ul>
-      </aside>
+  <div class="sl-layout">
+    <aside class="sl-sidebar"></aside>
 
-      <div class="content">
-        <h1>Components</h1>
-        <p class="lede">Complete suite of 28 canonical Sorleed components. Full contract validation, dark theme, and size/loading variant support. Each one has a contract, canonical CSS, native reference markup and a React adapter.</p>
-        <p class="callout"><strong>New:</strong> <a href="playground.html">Open the interactive playground →</a> to change size, variant and state, and switch between light and dark themes using the real component CSS.</p>
+    <main class="sl-content" id="main">
+      <div class="sl-page-heading">
+        <span class="sl-badge-pill">Sorleed Design System</span>
+        <h1 class="sl-page-title">Components</h1>
+        <p class="sl-page-subtitle">
+          Sorleed source-distributed UI components are production building blocks for banking, accounting, and fintech applications. Powered exclusively by <strong>IBM Plex Sans</strong>.
+        </p>
+      </div>
 
-        <h2 id="button">Button</h2>
-        <p>A native <code>&lt;button&gt;</code>. Defaults to <code>type="button"</code> and the primary variant. <a href="components/button.html"><strong>Open Interactive Button Playground →</strong></a></p>
-        <div class="demo">
-          <div class="demo__row">
-            <div class="demo__surface"><button class="fc-button fc-button--primary" type="button">Primary</button></div>
-            <div class="demo__surface"><button class="fc-button fc-button--secondary" type="button">Secondary</button></div>
-            <div class="demo__surface"><button class="fc-button fc-button--ghost" type="button">Ghost</button></div>
-            <div class="demo__surface"><button class="fc-button fc-button--primary" type="button" disabled>Disabled</button></div>
-          </div>
-        </div>
-        <pre><code>import { Button } from "@sorleed/react";
+      <div class="sl-chips">
+        <button class="sl-chip active" onclick="filterCat('all', this)">All components</button>
+        <button class="sl-chip" onclick="filterCat('banking', this)">Banking & Wallets</button>
+        <button class="sl-chip" onclick="filterCat('accounting', this)">Accounting & Ledgers</button>
+        <button class="sl-chip" onclick="filterCat('credit', this)">Credit & Wealth</button>
+        <button class="sl-chip" onclick="filterCat('security', this)">Security & Identity</button>
+        <button class="sl-chip" onclick="filterCat('forms', this)">Forms & Primitives</button>
+      </div>
 
-&lt;Button variant="primary"&gt;Continue&lt;/Button&gt;
-&lt;Button variant="secondary"&gt;Cancel&lt;/Button&gt;
-&lt;Button variant="ghost"&gt;Back&lt;/Button&gt;
-&lt;Button disabled&gt;Unavailable&lt;/Button&gt;</code></pre>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
-          <table>
-            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Notes</th></tr></thead>
-            <tbody>
-              <tr><td><code>variant</code></td><td><code>"primary" | "secondary" | "ghost"</code></td><td><code>"primary"</code></td><td>Visual variant.</td></tr>
-              <tr><td><code>type</code></td><td>Native button type</td><td><code>"button"</code></td><td>Prevents accidental form submission.</td></tr>
-              <tr><td>native attributes</td><td><code>ButtonHTMLAttributes</code></td><td>—</td><td><code>disabled</code>, <code>aria-*</code>, <code>data-*</code> pass through.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>States: default, hover, active, focus-visible and disabled. Disabled wins over every other state.</p>
-
-        <h2 id="input">Input</h2>
-        <p>A native text-like input with a required label, optional helper and explicit error state. <a href="components/input.html"><strong>Open Interactive Input Playground →</strong></a></p>
-        <div class="demo">
-          <div class="demo__row">
-            <div class="demo__surface">
-              <div class="fc-input">
-                <label class="fc-input__label" for="demo-email">Email</label>
-                <div class="fc-input__control">
-                  <input class="fc-input__field" id="demo-email" type="email" placeholder="you@example.com">
-                </div>
-                <p class="fc-input__message">We only use this for account notices.</p>
-              </div>
-            </div>
-            <div class="demo__surface">
-              <div class="fc-input">
-                <label class="fc-input__label" for="demo-error">Account number</label>
-                <div class="fc-input__control">
-                  <input class="fc-input__field" id="demo-error" type="text" value="1234" aria-invalid="true" aria-describedby="demo-error-message">
-                </div>
-                <p class="fc-input__message fc-input__message--error" id="demo-error-message">Account number must be 10 digits.</p>
-              </div>
-            </div>
-            <div class="demo__surface">
-              <div class="fc-input">
-                <label class="fc-input__label" for="demo-disabled">Read only field</label>
-                <div class="fc-input__control">
-                  <input class="fc-input__field" id="demo-disabled" type="text" value="Not editable" disabled>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <pre><code>import { Input } from "@sorleed/react";
-
-&lt;Input label="Email" type="email" placeholder="you@example.com" /&gt;
-&lt;Input label="Name" helperText="Enter your full name." /&gt;
-&lt;Input
-  label="Account number"
-  value={value}
-  onChange={(event) =&gt; setValue(event.target.value)}
-  errorMessage={error}
-/&gt;</code></pre>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
-          <table>
-            <thead><tr><th>Prop</th><th>Type</th><th>Notes</th></tr></thead>
-            <tbody>
-              <tr><td><code>label</code></td><td><code>string</code></td><td>Required. Visible or visually hidden.</td></tr>
-              <tr><td><code>hideLabel</code></td><td><code>boolean</code></td><td>Hides visually; keeps the accessible name.</td></tr>
-              <tr><td><code>helperText</code></td><td><code>string</code></td><td>Shown when there is no error.</td></tr>
-              <tr><td><code>errorMessage</code></td><td><code>string</code></td><td>Replaces helper text and sets <code>aria-invalid</code>.</td></tr>
-              <tr><td><code>type</code></td><td><code>"text" | "email" | "tel" | "number" | "url"</code></td><td>Other types are out of scope.</td></tr>
-              <tr><td><code>id</code></td><td><code>string</code></td><td>Generated when omitted.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2 id="password-input">PasswordInput</h2>
-        <p>A password input with a real toggle button. The toggle reports its state with <code>aria-pressed</code>.</p>
-        <div class="demo">
-          <div class="demo__surface">
-            <div class="sl-password-input">
-              <label class="sl-password-input__label" for="demo-password">Password</label>
-              <div class="sl-password-input__control">
-                <input class="sl-password-input__field" id="demo-password" type="password" value="correct-horse-battery" aria-describedby="demo-password-helper">
-                <button class="sl-password-input__toggle" type="button" aria-controls="demo-password" aria-pressed="false" data-password-toggle>Show password</button>
-              </div>
-              <p class="sl-password-input__message" id="demo-password-helper">Use at least 12 characters.</p>
-            </div>
-          </div>
-        </div>
-        <pre><code>import { PasswordInput } from "@sorleed/react";
-
-&lt;PasswordInput
-  label="Password"
-  autoComplete="current-password"
-  helperText="Use at least 12 characters."
-/&gt;</code></pre>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
-          <table>
-            <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Notes</th></tr></thead>
-            <tbody>
-              <tr><td><code>label</code></td><td><code>string</code></td><td>—</td><td>Required.</td></tr>
-              <tr><td><code>hideLabel</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Visually hides the label.</td></tr>
-              <tr><td><code>helperText</code></td><td><code>string</code></td><td>—</td><td>Shown when there is no error.</td></tr>
-              <tr><td><code>errorMessage</code></td><td><code>string</code></td><td>—</td><td>Sets <code>aria-invalid</code>.</td></tr>
-              <tr><td><code>visible</code></td><td><code>boolean</code></td><td>—</td><td>Controlled visibility.</td></tr>
-              <tr><td><code>defaultVisible</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Uncontrolled initial visibility.</td></tr>
-              <tr><td><code>onVisibleChange</code></td><td><code>(visible: boolean) =&gt; void</code></td><td>—</td><td>Toggle callback.</td></tr>
-              <tr><td><code>showPasswordLabel</code></td><td><code>string</code></td><td><code>"Show password"</code></td><td>Accessible toggle name.</td></tr>
-              <tr><td><code>hidePasswordLabel</code></td><td><code>string</code></td><td><code>"Hide password"</code></td><td>Accessible toggle name.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2 id="phone-input">PhoneInput</h2>
-        <p>A phone field with a native country selector and optional <code>libphonenumber-js</code> validation. No IP geolocation and no forced default country.</p>
-        <div class="demo">
-          <div class="demo__surface">
-            <div class="sl-phone-input">
-              <label class="sl-phone-input__label" for="demo-phone">Phone number</label>
-              <div class="sl-phone-input__row">
-                <div class="sl-phone-input__country">
-                  <label class="sl-phone-input__country-label" for="demo-phone-country">Country</label>
-                  <select class="sl-phone-input__country-select" id="demo-phone-country" data-phone-country aria-label="Country">
-                    <option value="">Select country</option>
-                    <option value="US" data-dial="1">United States (+1)</option>
-                    <option value="GB" data-dial="44">United Kingdom (+44)</option>
-                    <option value="CA" data-dial="1">Canada (+1)</option>
-                    <option value="DE" data-dial="49">Germany (+49)</option>
-                    <option value="NG" data-dial="234">Nigeria (+234)</option>
-                  </select>
-                </div>
-                <div class="sl-phone-input__control">
-                  <input class="sl-phone-input__field" id="demo-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 (555) 000-0000" aria-describedby="demo-phone-helper">
-                </div>
-              </div>
-              <p class="sl-phone-input__message" id="demo-phone-helper">Dial code: <span data-phone-dial>+</span>. Include your country code.</p>
-            </div>
-          </div>
-        </div>
-        <pre><code>import { PhoneInput } from "@sorleed/react/phone-input";
-
-&lt;PhoneInput
-  label="Phone number"
-  helperText="Include your country code."
-  onChange={({ inputValue, e164, country, status, isValid }) =&gt; {
-    // The application decides what to display.
-  }}
-/&gt;</code></pre>
-        <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table">
-          <table>
-            <thead><tr><th>Prop</th><th>Type</th><th>Notes</th></tr></thead>
-            <tbody>
-              <tr><td><code>label</code></td><td><code>string</code></td><td>Required.</td></tr>
-              <tr><td><code>value</code> / <code>defaultValue</code></td><td><code>string</code></td><td>Controlled or uncontrolled editing value.</td></tr>
-              <tr><td><code>country</code> / <code>defaultCountry</code></td><td><code>string</code></td><td>ISO 3166-1 alpha-2. Never inferred from IP.</td></tr>
-              <tr><td><code>countries</code></td><td><code>string[]</code></td><td>Optional ISO allow-list.</td></tr>
-              <tr><td><code>onChange</code></td><td><code>(result: PhoneInputChangeResult) =&gt; void</code></td><td>Reports editing value and status.</td></tr>
-              <tr><td><code>onCountryChange</code></td><td><code>(country?: string) =&gt; void</code></td><td>Selector callback.</td></tr>
-              <tr><td><code>errorMessage</code></td><td><code>string</code></td><td>Sets <code>aria-invalid</code> and shows the message.</td></tr>
-              <tr><td><code>international</code></td><td><code>boolean</code></td><td>Accepted for compatibility; does not change behaviour yet.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p><code>isValid</code> means numbering-plan format validity. It does not prove that a number is active, reachable or owned.</p>
-
+      <div class="sl-grid" id="components-grid">
         
-        <h2 id="select">Select</h2>
-        <p>A native <code>&lt;select&gt;</code> dropdown with associated label, control wrapper, and message row. Supports <code>sm</code>, <code>md</code>, and <code>lg</code> sizes plus loading states.</p>
-
-        <h2 id="checkbox">Checkbox</h2>
-        <p>Accessible native checkbox input with persistent label and error/helper text wiring.</p>
-
-        <h2 id="radio-group">Radio Group</h2>
-        <p>Group of native radio inputs sharing a common name for mutual exclusion and accessible keyboard navigation.</p>
-
-        <h2 id="textarea">Textarea</h2>
-        <p>Multi-line native <code>&lt;textarea&gt;</code> control with flexible resize behavior, size variants, and loading support.</p>
-
-        <h2 id="otp">OTP</h2>
-        <p>Group of single-character inputs supporting automatic advance, backspace navigation, and paste handling.</p>
-
-        <h2 id="currency">Currency</h2>
-        <p>Financial input control with configurable prefix (e.g. <code>$</code>) and suffix currency symbols.</p>
-
-        <h2 id="cvv">CVV</h2>
-        <p>Short fixed-length masked input for payment card verification with optional visibility toggle.</p>
-
-        <h2 id="date-picker">DatePicker</h2>
-        <p>Native date field with accessible label associations, min/max range limits, and validation states.</p>
-
-        <h2 id="amount-display">AmountDisplay</h2>
-        <p>Production fintech monetary display formatted according to ISO 4217. Automatically coordinates signs (<code>+</code>/<code>-</code>) and currency symbols using <code>formatMoney</code>.</p>
-        <pre><code>import { AmountDisplay } from "@sorleed/react";
-
-&lt;AmountDisplay
-  value={1450.25}
-  currency="USD"
-  variant="positive"
-  size="lg"
-/&gt;</code></pre>
-
-        <h2 id="shared">Shared rules</h2>
-        <ul>
-          <li>Native elements only for forms and actions. No custom listbox or hidden input tricks.</li>
-          <li>Tabs, Tooltip, Popover, and Drawer leverage headless Radix UI primitives for robust WAI-ARIA and roving keyboard navigation.</li>
-          <li>Every field has a programmatic label.</li>
-          <li>Focus is an additive overlay, visible for keyboard and pointer focus.</li>
-          <li>Disabled wins over hover, error and focus.</li>
-          <li>Errors are never colour-only; a message is required.</li>
-          <li>No state, variant or prop outside the contract.</li>
-        </ul>
-        <div class="callout">
-          <p>Read the full contracts in <code>components/&lt;component&gt;/contract.json</code> and the human guides in <code>components/&lt;component&gt;/README.md</code>.</p>
+    <a href="components/balance-card.html" class="sl-card" data-category="banking">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='15' y='15' width='150' height='70' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='28' y='28' width='60' height='8' rx='2' fill='#93C5FD'/><rect x='28' y='44' width='90' height='14' rx='2' fill='#2563EB'/><circle cx='140' cy='32' r='8' fill='#60A5FA'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">banking</span>
+        </div>
+        <h3 class="sl-card__title">BalanceCard</h3>
+        <p class="sl-card__desc">Financial balance display with sensitive data eye mask.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add balance-card</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
         </div>
       </div>
-    </div>
-  </main>
+    </a>
+  
+    <a href="components/button.html" class="sl-card" data-category="forms">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='32' width='140' height='36' rx='6' fill='#2563EB'/><circle cx='90' cy='50' r='14' fill='white' fill-opacity='0.2'/><rect x='60' y='46' width='60' height='8' rx='2' fill='white'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">forms</span>
+        </div>
+        <h3 class="sl-card__title">Button</h3>
+        <p class="sl-card__desc">Financial action trigger with primary, secondary, and ghost variants.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add button</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/invoice-viewer.html" class="sl-card" data-category="accounting">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='25' y='12' width='130' height='76' rx='6' fill='#FFFFFF' stroke='#BFDBFE'/><rect x='35' y='22' width='50' height='6' rx='1' fill='#2563EB'/><rect x='115' y='20' width='30' height='10' rx='5' fill='#DCFCE7'/><line x1='35' y1='38' x2='145' y2='38' stroke='#E2E8F0'/><rect x='35' y='46' width='70' height='5' fill='#94A3B8'/><rect x='35' y='56' width='50' height='5' fill='#94A3B8'/><rect x='120' y='68' width='25' height='8' rx='1' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">accounting</span>
+        </div>
+        <h3 class="sl-card__title">InvoiceViewer</h3>
+        <p class="sl-card__desc">Commercial invoice document with line-items, tax calculations, and status badges.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add invoice-viewer</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/input.html" class="sl-card" data-category="forms">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='28' width='140' height='44' rx='6' fill='#FFFFFF' stroke='#2563EB' stroke-width='2'/><rect x='32' y='22' width='44' height='12' fill='#FFFFFF'/><text x='34' y='31' font-family='IBM Plex Sans, sans-serif' font-size='10' fill='#2563EB' font-weight='600'>Amount</text><line x1='34' y1='48' x2='34' y2='64' stroke='#2563EB' stroke-width='2'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">forms</span>
+        </div>
+        <h3 class="sl-card__title">Input</h3>
+        <p class="sl-card__desc">Text input with helper text, error validation, and focus rings.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add input</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/spending-meter.html" class="sl-card" data-category="credit">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='25' width='140' height='50' rx='8' fill='#FFFFFF' stroke='#BFDBFE'/><rect x='32' y='35' width='60' height='6' rx='1' fill='#60A5FA'/><rect x='32' y='49' width='116' height='8' rx='4' fill='#EFF6FF'/><rect x='32' y='49' width='88' height='8' rx='4' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">credit</span>
+        </div>
+        <h3 class="sl-card__title">SpendingMeter</h3>
+        <p class="sl-card__desc">Budget expenditure progress tracker with threshold warnings.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add spending-meter</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/currency-exchange.html" class="sl-card" data-category="banking">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='16' y='18' width='65' height='64' rx='6' fill='#FFFFFF' stroke='#BFDBFE'/><rect x='99' y='18' width='65' height='64' rx='6' fill='#FFFFFF' stroke='#BFDBFE'/><circle cx='90' cy='50' r='14' fill='#2563EB'/><path d='M86 48 L94 48 M91 45 L94 48 L91 51' stroke='white' stroke-width='1.5'/><path d='M94 52 L86 52 M89 49 L86 52 L89 55' stroke='white' stroke-width='1.5'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">banking</span>
+        </div>
+        <h3 class="sl-card__title">CurrencyExchange</h3>
+        <p class="sl-card__desc">Real-time multi-currency FX calculator and converter.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add currency-exchange</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/wallet-card.html" class="sl-card" data-category="banking">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='25' y='18' width='130' height='64' rx='8' fill='url(#slCardGrad)'/><defs><linearGradient id='slCardGrad' x1='25' y1='18' x2='155' y2='82' gradientUnits='userSpaceOnUse'><stop stop-color='#2563EB'/><stop offset='1' stop-color='#1D4ED8'/></linearGradient></defs><rect x='35' y='30' width='18' height='14' rx='2' fill='#FDE68A'/><circle cx='130' cy='66' r='8' fill='#F43F5E' fill-opacity='0.9'/><circle cx='140' cy='66' r='8' fill='#FBBF24' fill-opacity='0.9'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">banking</span>
+        </div>
+        <h3 class="sl-card__title">WalletCard</h3>
+        <p class="sl-card__desc">Interactive 3D-flipping physical/virtual payment card.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add wallet-card</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/credit-score-gauge.html" class="sl-card" data-category="credit">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><path d='M40 75 A 50 50 0 0 1 140 75' stroke='#EFF6FF' stroke-width='12' stroke-linecap='round'/><path d='M40 75 A 50 50 0 0 1 125 40' stroke='#2563EB' stroke-width='12' stroke-linecap='round'/><text x='90' y='72' font-family='IBM Plex Sans, sans-serif' font-size='16' font-weight='bold' text-anchor='middle' fill='#2563EB'>785</text></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">credit</span>
+        </div>
+        <h3 class="sl-card__title">CreditScoreGauge</h3>
+        <p class="sl-card__desc">Radial gauge visualizer with dynamic credit rating bands.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add credit-score-gauge</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/loan-calculator.html" class="sl-card" data-category="credit">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='18' width='140' height='64' rx='6' fill='#FFFFFF' stroke='#BFDBFE'/><line x1='34' y1='38' x2='146' y2='38' stroke='#EFF6FF' stroke-width='4' stroke-linecap='round'/><line x1='34' y1='38' x2='95' y2='38' stroke='#2563EB' stroke-width='4' stroke-linecap='round'/><circle cx='95' cy='38' r='6' fill='#2563EB'/><line x1='34' y1='58' x2='146' y2='58' stroke='#EFF6FF' stroke-width='4' stroke-linecap='round'/><line x1='34' y1='58' x2='70' y2='58' stroke='#2563EB' stroke-width='4' stroke-linecap='round'/><circle cx='70' cy='58' r='6' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">credit</span>
+        </div>
+        <h3 class="sl-card__title">LoanCalculator</h3>
+        <p class="sl-card__desc">Loan amortization schedule and interactive tenure slider.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add loan-calculator</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/biometric-auth-prompt.html" class="sl-card" data-category="security">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='40' y='10' width='100' height='80' rx='8' fill='#FFFFFF' stroke='#2563EB' stroke-width='1.5'/><circle cx='90' cy='38' r='14' stroke='#2563EB' stroke-width='2' fill='#EFF6FF'/><path d='M83 45 Q 90 40 97 45' stroke='#2563EB' stroke-width='1.5' fill='none'/><rect x='60' y='64' width='60' height='14' rx='4' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">security</span>
+        </div>
+        <h3 class="sl-card__title">BiometricAuthPrompt</h3>
+        <p class="sl-card__desc">Face ID / Fingerprint step-up biometric transaction confirmation.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add biometric-auth-prompt</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/tabs.html" class="sl-card" data-category="forms">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='15' y='25' width='150' height='50' rx='6' fill='#FFFFFF' stroke='#E2E8F0'/><rect x='15' y='25' width='50' height='20' fill='#EFF6FF'/><rect x='25' y='33' width='30' height='5' fill='#2563EB'/><rect x='75' y='33' width='30' height='5' fill='#CBD5E1'/><rect x='125' y='33' width='30' height='5' fill='#CBD5E1'/><line x1='15' y1='45' x2='65' y2='45' stroke='#2563EB' stroke-width='2'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">forms</span>
+        </div>
+        <h3 class="sl-card__title">Tabs</h3>
+        <p class="sl-card__desc">Segmented account navigation for balances, activity, and statements.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add tabs</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/account-summary.html" class="sl-card" data-category="banking">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='20' width='140' height='60' rx='6' fill='#FFFFFF' stroke='#BFDBFE'/><rect x='34' y='34' width='70' height='8' rx='2' fill='#2563EB'/><rect x='34' y='50' width='112' height='6' rx='2' fill='#EFF6FF'/><rect x='34' y='60' width='90' height='6' rx='2' fill='#EFF6FF'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">banking</span>
+        </div>
+        <h3 class="sl-card__title">AccountSummary</h3>
+        <p class="sl-card__desc">Account credentials, IBAN, and SWIFT numbers with copy actions.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add account-summary</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/journal-entry-ledger.html" class="sl-card" data-category="accounting">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='20' width='140' height='60' rx='6' fill='#FFFFFF' stroke='#BFDBFE'/><rect x='34' y='34' width='70' height='8' rx='2' fill='#2563EB'/><rect x='34' y='50' width='112' height='6' rx='2' fill='#EFF6FF'/><rect x='34' y='60' width='90' height='6' rx='2' fill='#EFF6FF'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">accounting</span>
+        </div>
+        <h3 class="sl-card__title">JournalEntryLedger</h3>
+        <p class="sl-card__desc">Double-entry bookkeeping ledger with debit and credit balance checks.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add journal-entry-ledger</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/tax-summary-card.html" class="sl-card" data-category="accounting">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='20' width='140' height='60' rx='6' fill='#FFFFFF' stroke='#BFDBFE'/><rect x='34' y='34' width='70' height='8' rx='2' fill='#2563EB'/><rect x='34' y='50' width='112' height='6' rx='2' fill='#EFF6FF'/><rect x='34' y='60' width='90' height='6' rx='2' fill='#EFF6FF'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">accounting</span>
+        </div>
+        <h3 class="sl-card__title">TaxSummaryCard</h3>
+        <p class="sl-card__desc">Taxable profit computations, brackets, and liability estimates.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add tax-summary-card</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="components/chart-of-accounts-tree.html" class="sl-card" data-category="accounting">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='20' width='140' height='60' rx='6' fill='#FFFFFF' stroke='#BFDBFE'/><rect x='34' y='34' width='70' height='8' rx='2' fill='#2563EB'/><rect x='34' y='50' width='112' height='6' rx='2' fill='#EFF6FF'/><rect x='34' y='60' width='90' height='6' rx='2' fill='#EFF6FF'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta">
+          <span class="sl-card__tag">accounting</span>
+        </div>
+        <h3 class="sl-card__title">ChartOfAccountsTree</h3>
+        <p class="sl-card__desc">Hierarchical general ledger account tree navigation.</p>
+        <div class="sl-card__cli">
+          <code>npx @sorleed/cli add chart-of-accounts-tree</code>
+          <span style="color: #1D4ED8; font-weight: 700;">Open →</span>
+        </div>
+      </div>
+    </a>
+  
+      </div>
+    </main>
+  </div>
 
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <p>Sorleed — UI Infrastructure. MIT licensed. Copyright (c) 2026 Sorleed.</p>
-      <p><a href="../README.md">Repository README</a> · <a href="../PRODUCT.md">Product</a> · <a href="../SECURITY.md">Security</a></p>
-    </div>
+  <footer class="sl-footer">
+    <div><strong>Sorleed UI Infrastructure</strong> — Open source financial design system.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
   </footer>
-  <script src="assets/site.js"></script>
+
+  <script src="assets/sidebar-nav.js"></script>
+  <script>
+    renderDocsSidebar('components-all');
+    function filterCat(cat, btn) {
+      if (btn) {
+        document.querySelectorAll('.sl-chip').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      document.querySelectorAll('.sl-card').forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('sorleed-theme', next);
+      updateThemeToggle();
+    }
+    function updateThemeToggle() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const sw = document.getElementById('site-theme-switch');
+      const text = document.getElementById('theme-mode-text');
+      if (sw) {
+        sw.setAttribute('aria-checked', isDark);
+        sw.className = isDark ? 'fc-switch fc-switch--checked' : 'fc-switch';
+      }
+      if (text) text.textContent = isDark ? 'Light' : 'Dark';
+    }
+    const saved = localStorage.getItem('sorleed-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    updateThemeToggle();
+  </script>
+  <script src="assets/metrics.js"></script>
 </body>
 </html>

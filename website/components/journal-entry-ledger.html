@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>JournalEntryLedger — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed JournalEntryLedger component documentation, interactive playground, and props.">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html" class="active">Documentation</a>
+        <a href="../docs.html">Components</a>
+        <a href="../docs.html">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" class="badge-metric" title="Star on GitHub" style="display:inline-flex; align-items:center; gap:6px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span data-github-stars style="font-weight:700; color:var(--text-primary);">1</span>
+      </a>
+      <a href="https://www.npmjs.com/package/@sorleed/react" target="_blank" rel="noreferrer" class="badge-metric" title="npm package downloads" style="display:inline-flex; align-items:center; gap:6px;">
+        <span style="font-weight:700; color:#EF4444;">npm</span>
+        <span data-npm-downloads style="font-weight:700; color:var(--text-primary);">3.4k</span>
+      </a>
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="../docs.html">Components</a>
+        <span>/</span>
+        <span>JournalEntryLedger</span>
+      </div>
+
+      <h1 class="docs-title">JournalEntryLedger</h1>
+      <p class="docs-lede">
+        Production-tested JournalEntryLedger component for financial, banking, and wealth interfaces. Built with pure CSS tokens and zero runtime lock-in.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" id="stage-journal-entry-ledger">
+      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
+        <div class="fc-journal-entry" role="region" aria-label="General Journal Entry" memo="Payroll settlement for London engineering department"><div style="display:flex;justify-content:space-between;align-items:baseline"><div><h3 style="margin:0;font-size:16px;font-weight:600">General Journal Entry</h3><span style="font-size:12px;color:var(--fc-color-text-secondary)">JE-2026-0089 • 2026-11-09</span></div><span class="fc-journal-entry__status fc-journal-entry__status--balanced" style="font-weight:600;font-size:13px">✓ BALANCED</span></div><div class="fc-journal-entry__table-wrap"><table class="fc-journal-entry__table"><thead><tr><th class="fc-journal-entry__th">Account</th><th class="fc-journal-entry__th">Description</th><th class="fc-journal-entry__th fc-journal-entry__th--right">Debit (USD)</th><th class="fc-journal-entry__th fc-journal-entry__th--right">Credit (USD)</th></tr></thead><tbody><tr><td class="fc-journal-entry__td" style="font-weight:500"></td><td class="fc-journal-entry__td" style="color:var(--fc-color-text-secondary)">—</td><td class="fc-journal-entry__td fc-journal-entry__td--right" style="font-family:var(--fc-font-mono, monospace)">45000.00</td><td class="fc-journal-entry__td fc-journal-entry__td--right" style="font-family:var(--fc-font-mono, monospace)">—</td></tr><tr><td class="fc-journal-entry__td" style="font-weight:500"></td><td class="fc-journal-entry__td" style="color:var(--fc-color-text-secondary)">—</td><td class="fc-journal-entry__td fc-journal-entry__td--right" style="font-family:var(--fc-font-mono, monospace)">—</td><td class="fc-journal-entry__td fc-journal-entry__td--right" style="font-family:var(--fc-font-mono, monospace)">9500.00</td></tr><tr><td class="fc-journal-entry__td" style="font-weight:500"></td><td class="fc-journal-entry__td" style="color:var(--fc-color-text-secondary)">—</td><td class="fc-journal-entry__td fc-journal-entry__td--right" style="font-family:var(--fc-font-mono, monospace)">—</td><td class="fc-journal-entry__td fc-journal-entry__td--right" style="font-family:var(--fc-font-mono, monospace)">35500.00</td></tr></tbody></table></div><div class="fc-journal-entry__footer"><span>Totals:</span><div style="display:flex;gap:24px;font-family:var(--fc-font-mono, monospace)"><span>Debits: USD 45000.00</span><span>Credits: USD 45000.00</span></div></div></div>
+      </div>
+    </div>
+    <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">State</span>
+              <select class="ctrl-select">
+                <option value="default">Default</option>
+                <option value="active">Active</option>
+                <option value="disabled">Disabled</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <p style="color:var(--text-secondary);">Add this component directly to your project using the Sorleed CLI:</p>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add journal-entry-ledger</pre>
+        </div>
+        <p style="color:var(--text-secondary);">Or install the full React library from npm:</p>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npm install @sorleed/react</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { JournalEntryLedger } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/journal-entry-ledger.css';
+
+export function Example() {
+  return (
+    &lt;JournalEntryLedger /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('journal-entry-ledger');
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

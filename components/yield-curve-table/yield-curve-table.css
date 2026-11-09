@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Sorleed — Yield Curve Table
+   Fixed-income treasury bills & bond maturity schedule with coupon rates & yields
+   ========================================================================== */
+
+.fc-yield-curve {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-5);
+  font-family: var(--fc-font-family);
+  box-shadow: var(--fc-shadow-sm);
+  color: var(--fc-color-text);
+  box-sizing: border-box;
+}
+
+.fc-yield-curve__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.fc-yield-curve__title {
+  margin: 0;
+  font-size: var(--fc-font-size-base);
+  font-weight: 600;
+  color: var(--fc-color-text);
+}
+
+.fc-yield-curve__table-wrap {
+  overflow-x: auto;
+}
+
+.fc-yield-curve__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fc-font-size-sm);
+  text-align: left;
+}
+
+.fc-yield-curve__th {
+  padding: var(--fc-space-3);
+  background-color: var(--fc-color-surface-hover);
+  font-weight: 600;
+  color: var(--fc-color-text-secondary);
+  border-bottom: 1px solid var(--fc-color-border);
+}
+
+.fc-yield-curve__td {
+  padding: var(--fc-space-3);
+  border-bottom: 1px solid var(--fc-color-border);
+  color: var(--fc-color-text);
+}
+
+.fc-yield-curve__rate {
+  font-family: var(--fc-font-mono, monospace);
+  font-weight: 700;
+  color: var(--fc-color-success, #10b981);
+}
+
+@media (forced-colors: active) {
+  .fc-yield-curve {
+    border: 2px solid CanvasText;
+  }
+}
+

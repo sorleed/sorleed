@@ -51,6 +51,16 @@ import repaymentScheduleRegistry from '../registry/repayment-schedule.js';
 import assetAllocationRegistry from '../registry/asset-allocation.js';
 import paginationRegistry from '../registry/pagination.js';
 import accordionRegistry from '../registry/accordion.js';
+import biometricAuthPromptRegistry from '../registry/biometric-auth-prompt.js';
+import virtualCardGeneratorRegistry from '../registry/virtual-card-generator.js';
+import splitBillCalculatorRegistry from '../registry/split-bill-calculator.js';
+import yieldCurveTableRegistry from '../registry/yield-curve-table.js';
+import directDebitMandateRegistry from '../registry/direct-debit-mandate.js';
+import invoiceViewerRegistry from '../registry/invoice-viewer.js';
+import expenseReceiptUploaderRegistry from '../registry/expense-receipt-uploader.js';
+import journalEntryLedgerRegistry from '../registry/journal-entry-ledger.js';
+import taxSummaryCardRegistry from '../registry/tax-summary-card.js';
+import chartOfAccountsTreeRegistry from '../registry/chart-of-accounts-tree.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -105,6 +115,16 @@ function getRegistry(component) {
   if (component === 'asset-allocation' || component === 'assetallocation') return assetAllocationRegistry;
   if (component === 'pagination') return paginationRegistry;
   if (component === 'accordion') return accordionRegistry;
+  if (component === 'biometric-auth-prompt' || component === 'biometricauthprompt') return biometricAuthPromptRegistry;
+  if (component === 'virtual-card-generator' || component === 'virtualcardgenerator') return virtualCardGeneratorRegistry;
+  if (component === 'split-bill-calculator' || component === 'splitbillcalculator') return splitBillCalculatorRegistry;
+  if (component === 'yield-curve-table' || component === 'yieldcurvetable') return yieldCurveTableRegistry;
+  if (component === 'direct-debit-mandate' || component === 'directdebitmandate') return directDebitMandateRegistry;
+  if (component === 'invoice-viewer' || component === 'invoiceviewer') return invoiceViewerRegistry;
+  if (component === 'expense-receipt-uploader' || component === 'expensereceiptuploader') return expenseReceiptUploaderRegistry;
+  if (component === 'journal-entry-ledger' || component === 'journalentryledger') return journalEntryLedgerRegistry;
+  if (component === 'tax-summary-card' || component === 'taxsummarycard') return taxSummaryCardRegistry;
+  if (component === 'chart-of-accounts-tree' || component === 'chartofaccountstree') return chartOfAccountsTreeRegistry;
   return null;
 }
 

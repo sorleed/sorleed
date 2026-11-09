@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Sorleed — Journal Entry Ledger
+   Double-entry bookkeeping table enforcing Debit == Credit balance rule
+   ========================================================================== */
+
+.fc-journal-entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  padding: var(--fc-space-5);
+  font-family: var(--fc-font-family);
+  box-shadow: var(--fc-shadow-sm);
+  color: var(--fc-color-text);
+  box-sizing: border-box;
+}
+
+.fc-journal-entry__table-wrap {
+  overflow-x: auto;
+}
+
+.fc-journal-entry__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-journal-entry__th {
+  text-align: left;
+  padding: var(--fc-space-3);
+  background-color: var(--fc-color-surface-hover);
+  border-bottom: 1px solid var(--fc-color-border);
+  font-weight: 600;
+}
+
+.fc-journal-entry__th--right,
+.fc-journal-entry__td--right {
+  text-align: right;
+}
+
+.fc-journal-entry__td {
+  padding: var(--fc-space-3);
+  border-bottom: 1px solid var(--fc-color-border);
+}
+
+.fc-journal-entry__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--fc-space-3);
+  background-color: var(--fc-color-surface-hover);
+  border-radius: var(--fc-radius-md);
+  font-weight: 600;
+}
+
+.fc-journal-entry__status--balanced {
+  color: var(--fc-color-success, #10b981);
+}
+
+.fc-journal-entry__status--unbalanced {
+  color: var(--fc-color-danger, #ef4444);
+}
+
+@media (forced-colors: active) {
+  .fc-journal-entry {
+    border: 2px solid CanvasText;
+  }
+}
+

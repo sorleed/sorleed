@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Sorleed — Tax Summary Card
+   Tax breakdown (VAT, GST, sales tax liability, deductions, due date)
+   ========================================================================== */
+
+.fc-tax-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  padding: var(--fc-space-5);
+  font-family: var(--fc-font-family);
+  box-shadow: var(--fc-shadow-sm);
+  color: var(--fc-color-text);
+  box-sizing: border-box;
+}
+
+.fc-tax-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-tax-summary__metric {
+  background-color: var(--fc-color-surface-hover);
+  border-radius: var(--fc-radius-md);
+  padding: var(--fc-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-tax-summary__metric-label {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-text-secondary);
+}
+
+.fc-tax-summary__metric-val {
+  font-size: var(--fc-font-size-base);
+  font-weight: 700;
+  font-family: var(--fc-font-mono, monospace);
+}
+
+.fc-tax-summary__liability {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(249, 115, 22, 0.08));
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (forced-colors: active) {
+  .fc-tax-summary {
+    border: 2px solid CanvasText;
+  }
+}
+

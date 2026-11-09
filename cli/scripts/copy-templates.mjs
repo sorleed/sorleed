@@ -8,7 +8,7 @@ const repoRoot = path.resolve(cliRoot, '..');
 const templatesDir = path.resolve(cliRoot, 'templates');
 
 // Source -> Template destination map
-const templateManifest = [
+export const templateManifest = [
   // button
   {
     source: path.resolve(repoRoot, "react/button/index.tsx"),
@@ -467,6 +467,96 @@ const templateManifest = [
   {
     source: path.resolve(repoRoot, "components/accordion/accordion.css"),
     dest: path.resolve(templatesDir, "styles/accordion.css")
+  },
+  // biometric-auth-prompt
+  {
+    source: path.resolve(repoRoot, "react/biometric-auth-prompt/index.tsx"),
+    dest: path.resolve(templatesDir, "components/biometric-auth-prompt/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/biometric-auth-prompt/biometric-auth-prompt.css"),
+    dest: path.resolve(templatesDir, "styles/biometric-auth-prompt.css")
+  },
+  // virtual-card-generator
+  {
+    source: path.resolve(repoRoot, "react/virtual-card-generator/index.tsx"),
+    dest: path.resolve(templatesDir, "components/virtual-card-generator/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/virtual-card-generator/virtual-card-generator.css"),
+    dest: path.resolve(templatesDir, "styles/virtual-card-generator.css")
+  },
+  // split-bill-calculator
+  {
+    source: path.resolve(repoRoot, "react/split-bill-calculator/index.tsx"),
+    dest: path.resolve(templatesDir, "components/split-bill-calculator/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/split-bill-calculator/split-bill-calculator.css"),
+    dest: path.resolve(templatesDir, "styles/split-bill-calculator.css")
+  },
+  // yield-curve-table
+  {
+    source: path.resolve(repoRoot, "react/yield-curve-table/index.tsx"),
+    dest: path.resolve(templatesDir, "components/yield-curve-table/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/yield-curve-table/yield-curve-table.css"),
+    dest: path.resolve(templatesDir, "styles/yield-curve-table.css")
+  },
+  // direct-debit-mandate
+  {
+    source: path.resolve(repoRoot, "react/direct-debit-mandate/index.tsx"),
+    dest: path.resolve(templatesDir, "components/direct-debit-mandate/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/direct-debit-mandate/direct-debit-mandate.css"),
+    dest: path.resolve(templatesDir, "styles/direct-debit-mandate.css")
+  },
+  // invoice-viewer
+  {
+    source: path.resolve(repoRoot, "react/invoice-viewer/index.tsx"),
+    dest: path.resolve(templatesDir, "components/invoice-viewer/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/invoice-viewer/invoice-viewer.css"),
+    dest: path.resolve(templatesDir, "styles/invoice-viewer.css")
+  },
+  // expense-receipt-uploader
+  {
+    source: path.resolve(repoRoot, "react/expense-receipt-uploader/index.tsx"),
+    dest: path.resolve(templatesDir, "components/expense-receipt-uploader/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/expense-receipt-uploader/expense-receipt-uploader.css"),
+    dest: path.resolve(templatesDir, "styles/expense-receipt-uploader.css")
+  },
+  // journal-entry-ledger
+  {
+    source: path.resolve(repoRoot, "react/journal-entry-ledger/index.tsx"),
+    dest: path.resolve(templatesDir, "components/journal-entry-ledger/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/journal-entry-ledger/journal-entry-ledger.css"),
+    dest: path.resolve(templatesDir, "styles/journal-entry-ledger.css")
+  },
+  // tax-summary-card
+  {
+    source: path.resolve(repoRoot, "react/tax-summary-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/tax-summary-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/tax-summary-card/tax-summary-card.css"),
+    dest: path.resolve(templatesDir, "styles/tax-summary-card.css")
+  },
+  // chart-of-accounts-tree
+  {
+    source: path.resolve(repoRoot, "react/chart-of-accounts-tree/index.tsx"),
+    dest: path.resolve(templatesDir, "components/chart-of-accounts-tree/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/chart-of-accounts-tree/chart-of-accounts-tree.css"),
+    dest: path.resolve(templatesDir, "styles/chart-of-accounts-tree.css")
   },
   // Shared types
   {

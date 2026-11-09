@@ -1095,5 +1095,175 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultExpanded?: string[];
 }
 
+export type BiometricAuthType = "face" | "touch";
+export type BiometricStatus = "idle" | "authenticating" | "success" | "error";
+
+export interface BiometricAuthPromptProps {
+  open: boolean;
+  onOpenChange?: (open: boolean) => void;
+  type?: BiometricAuthType;
+  status?: BiometricStatus;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  amount?: number | string;
+  currency?: string;
+  onAuthenticate?: () => void;
+  onUsePasscode?: () => void;
+  className?: string;
+}
+
+export interface VirtualCardCreationData {
+  label: string;
+  cardholderName: string;
+  limit: number;
+  singleUse: boolean;
+  lockToMerchant: boolean;
+  theme: string;
+}
+
+export interface VirtualCardGeneratorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  cardholderName?: string;
+  currency?: string;
+  defaultLimit?: number;
+  maxLimit?: number;
+  onCreateCard?: (data: VirtualCardCreationData) => void;
+}
+
+export interface BillParticipant {
+  id: string;
+  name: string;
+  shareAmount?: number;
+}
+
+export interface SplitBillPaymentRequest {
+  totalAmount: number;
+  perPersonShare: number;
+  participants: BillParticipant[];
+}
+
+export interface SplitBillCalculatorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  initialBill?: number;
+  currency?: string;
+  initialParticipants?: BillParticipant[];
+  onRequestPayment?: (data: SplitBillPaymentRequest) => void;
+}
+
+export interface TreasuryRateItem {
+  tenor: string;
+  yieldPercent: number;
+  changeBps?: number;
+  instrument?: string;
+}
+
+export interface YieldCurveTableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  asOfDate?: string;
+  rates?: TreasuryRateItem[];
+  onSelectTenor?: (rate: TreasuryRateItem) => void;
+}
+
+export interface DirectDebitMandateProps {
+  open: boolean;
+  onOpenChange?: (open: boolean) => void;
+  creditorName?: string;
+  creditorId?: string;
+  mandateReference?: string;
+  accountHolderName?: string;
+  bankName?: string;
+  accountNumberMasked?: string;
+  frequency?: string;
+  maxAmount?: number | string;
+  currency?: string;
+  onAuthorize?: () => void;
+  onCancel?: () => void;
+  className?: string;
+}
+
+export interface InvoiceParty {
+  name: string;
+  address?: string;
+  email?: string;
+  taxId?: string;
+}
+
+export interface InvoiceItem {
+  description: string;
+  quantity: number;
+  unitPrice: number;
+}
+
+export interface InvoiceViewerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  invoiceNumber: string;
+  issueDate: string;
+  dueDate: string;
+  status?: "paid" | "due" | "overdue";
+  issuer: InvoiceParty;
+  client: InvoiceParty;
+  items: InvoiceItem[];
+  currency?: string;
+  taxRate?: number;
+  discount?: number;
+  notes?: string;
+}
+
+export interface ExpenseReceiptData {
+  fileName: string;
+  merchant: string;
+  amount: number;
+  category: string;
+  reimbursable: boolean;
+}
+
+export interface ExpenseReceiptUploaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  currency?: string;
+  onSubmitExpense?: (data: ExpenseReceiptData) => void;
+}
+
+export interface JournalEntryRow {
+  accountCode?: string;
+  accountName: string;
+  description?: string;
+  debit?: number | string;
+  credit?: number | string;
+}
+
+export interface JournalEntryLedgerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  entryNumber?: string;
+  date?: string;
+  entries?: JournalEntryRow[];
+  currency?: string;
+  onPostEntry?: () => void;
+}
+
+export interface TaxSummaryCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  jurisdiction?: string;
+  currency?: string;
+  grossRevenue?: number;
+  deductions?: number;
+  taxableIncome?: number;
+  estimatedTaxLiability?: number;
+  dueDate?: string;
+  taxRatePercent?: number;
+}
+
+export interface ChartAccountNode {
+  code: string;
+  name: string;
+  balance: number | string;
+  children?: ChartAccountNode[];
+}
+
+export interface ChartOfAccountsTreeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  currency?: string;
+  accounts?: ChartAccountNode[];
+  onSelectAccount?: (account: ChartAccountNode) => void;
+}
+
+
+
 
 

@@ -772,3 +772,17 @@
   --fc-color-feedback-info-border: var(--fc-blue-800);
   --fc-color-feedback-info-foreground: var(--fc-blue-300);
 }
+
+/* Fallback & compatibility aliases for financial components */
+:root {
+  --fc-space-5: 20px;
+  --fc-space-8: 32px;
+  --fc-space-10: 40px;
+  --fc-space-14: 56px;
+  --fc-space-16: 64px;
+  --fc-color-text-secondary: var(--fc-color-content-secondary, #475569);
+  --fc-color-text-muted: var(--fc-color-content-tertiary, #64748B);
+  --fc-color-text-primary: var(--fc-color-content-primary, #0F172A);
+  --fc-color-border-subtle: var(--fc-color-border-default, #E2E8F0);
+  --fc-color-surface-subtle: #F8FAFC;
+}

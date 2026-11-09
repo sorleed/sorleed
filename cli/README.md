@@ -1,35 +1,40 @@
 # @sorleed/cli
 
-Source-distribution CLI for Sorleed components.
+Source-distribution CLI for Sorleed fintech, banking, and accounting UI components.
 
-Instead of installing heavy bundled dependencies, the Sorleed CLI copies canonical, contract-tested component source files directly into your consumer project.
+Instead of heavy packaged runtimes, the Sorleed CLI installs clean, accessible TypeScript and CSS source files directly into your codebase (shadcn-style).
 
 - **Package:** `@sorleed/cli`
-- **Release:** `0.1.0-alpha.8`
+- **Release:** `0.1.0-alpha.9`
+- **License:** MIT
+- **Homepage:** [https://sorleed.com](https://sorleed.com)
+- **Repository:** [https://github.com/sorleed/sorleed](https://github.com/sorleed/sorleed)
 - **Commands:** `sorleed`, `weft`, `fincore`
 
 ---
 
-## 28 Supported Components
+## 50+ Financial Components Available
 
-You can add any of the 28 Sorleed components directly into your codebase:
+Add any component directly to your project:
 
 ```bash
 npx @sorleed/cli add <component>
 ```
 
 | Category | Available Components |
-|---|---|
-| **Buttons & Actions** | `button` |
-| **Form Controls** | `input`, `password-input`, `phone-input`, `select`, `checkbox`, `radio-group`, `textarea`, `switch`, `otp` |
-| **Fintech Primitives** | `currency`, `cvv`, `date-picker`, `transaction-item`, `balance-card`, `amount-display`, `status-indicator` |
-| **Surfaces & Feedback** | `card`, `alert`, `badge`, `divider` |
-| **Overlays & Floating** | `tabs`, `table`, `tooltip`, `popover`, `drawer` |
-| **Layout Primitives** | `stack`, `inline`, `container` |
+| :--- | :--- |
+| **Banking & Payments** | `balance-card`, `wallet-card`, `account-summary`, `transfer-receipt`, `currency-exchange`, `fee-breakdown`, `bank-selector`, `pin-input` |
+| **Security & Privacy** | `password-input`, `biometric-auth-prompt`, `card-controls`, `virtual-card-generator`, `cvv` |
+| **Lending & Credit** | `loan-calculator`, `credit-score-gauge`, `repayment-schedule` |
+| **Wealth & Investment** | `portfolio-summary`, `asset-allocation`, `yield-curve-table` |
+| **Accounting & Invoicing** | `invoice-viewer`, `expense-receipt-uploader`, `journal-entry-ledger`, `tax-summary-card`, `chart-of-accounts-tree` |
+| **Compliance & Verification**| `kyc-doc-uploader`, `direct-debit-mandate`, `split-bill-calculator` |
+| **Forms & Primitives** | `button`, `input`, `phone-input`, `currency`, `date-picker`, `select`, `checkbox`, `radio-group`, `switch`, `otp`, `textarea` |
+| **Surfaces & Feedback** | `card`, `alert`, `badge`, `divider`, `skeleton`, `empty-state`, `modal`, `drawer`, `toast`, `tabs`, `table`, `pagination`, `accordion` |
 
 ---
 
-## Usage
+## CLI Usage
 
 ### 1. Add a Component
 ```bash
@@ -37,43 +42,19 @@ npx @sorleed/cli add balance-card
 ```
 
 ### 2. Preview Installation (Dry Run)
-Inspect files and target paths without writing to disk:
+Inspect destination files and dependencies without writing to disk:
 ```bash
-npx @sorleed/cli add transaction-item --dry-run
+npx @sorleed/cli add invoice-viewer --dry-run
 ```
 
-### 3. Specify Target Directory
+### 3. Custom Output Directory
+Specify where component sources should be placed:
 ```bash
-npx @sorleed/cli add card --dir ./src/ui
+npx @sorleed/cli add wallet-card --dir ./src/components/ui
 ```
-
----
-
-## Radix UI Peer Dependencies
-
-Components that require complex floating or roving focus behavior (`tabs`, `tooltip`, `popover`, `drawer`) are built on unstyled [Radix UI](https://www.radix-ui.com/) primitives. When adding any of these components, ensure your project installs the corresponding Radix dependency:
-
-| Component | Required Dependency |
-|---|---|
-| `tabs` | `@radix-ui/react-tabs` |
-| `tooltip` | `@radix-ui/react-tooltip` |
-| `popover` | `@radix-ui/react-popover` |
-| `drawer` | `@radix-ui/react-dialog` |
-
-All other 24 components are 100% native with zero external runtime dependencies.
-
----
-
-## What Gets Copied
-
-When you add a component:
-1. **Component implementation (`.tsx`):** Self-contained, typed React component.
-2. **Component styles (`.css`):** Scoped CSS consuming token variables.
-3. **Shared Types (`types/index.ts`):** Complete TypeScript definitions.
-4. **Token definitions (`tokens.css`):** Canonical design system tokens with dark-theme support.
 
 ---
 
 ## License
 
-MIT
+MIT © [Sorleed](https://github.com/sorleed/sorleed)

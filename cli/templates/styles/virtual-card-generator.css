@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Sorleed — Virtual Card Generator
+   Interactive card issuance studio with limit setup and merchant controls
+   ========================================================================== */
+
+.fc-card-generator {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-5);
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  padding: var(--fc-space-6);
+  font-family: var(--fc-font-family);
+  box-shadow: var(--fc-shadow-sm);
+  color: var(--fc-color-text);
+  box-sizing: border-box;
+}
+
+.fc-card-generator__preview-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--fc-space-4) 0;
+}
+
+.fc-card-generator__config-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-card-generator__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+}
+
+.fc-card-generator__label {
+  font-size: var(--fc-font-size-sm);
+  font-weight: 600;
+  color: var(--fc-color-text);
+}
+
+.fc-card-generator__themes {
+  display: flex;
+  gap: var(--fc-space-2);
+}
+
+.fc-card-generator__theme-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.fc-card-generator__theme-pill:hover {
+  transform: scale(1.08);
+}
+
+.fc-card-generator__theme-pill--selected {
+  border-color: var(--fc-color-text);
+  transform: scale(1.1);
+}
+
+.fc-card-generator__theme-pill:focus-visible {
+  outline: 2px solid var(--fc-color-primary);
+  outline-offset: 2px;
+}
+
+.fc-card-generator__slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-card-generator__slider-value {
+  font-weight: 700;
+  font-family: var(--fc-font-mono, monospace);
+  color: var(--fc-color-primary);
+}
+
+.fc-card-generator__slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--fc-color-surface-hover);
+  accent-color: var(--fc-color-primary);
+  cursor: pointer;
+}
+
+.fc-card-generator__switches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-3) 0;
+  border-top: 1px solid var(--fc-color-border);
+  border-bottom: 1px solid var(--fc-color-border);
+}
+
+.fc-card-generator__switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fc-card-generator__switch-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.fc-card-generator__switch-title {
+  font-size: var(--fc-font-size-sm);
+  font-weight: 500;
+  color: var(--fc-color-text);
+}
+
+.fc-card-generator__switch-desc {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-text-secondary);
+}
+
+@media (forced-colors: active) {
+  .fc-card-generator {
+    border: 2px solid CanvasText;
+  }
+}
+

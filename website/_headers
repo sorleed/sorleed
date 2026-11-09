@@ -1,0 +1,16 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Cache static CSS and JS assets efficiently
+/assets/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/tokens-dist/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/components-dist/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+

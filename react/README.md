@@ -1,27 +1,44 @@
 # @sorleed/react
 
-Sorleed React Component Library — production UI components engineered for precision, accessible financial interfaces, and design token fidelity.
+Sorleed React Component Library — precision financial, banking, investment, and accounting UI components built for accessible, secure applications with full design token fidelity.
 
 - **Package:** `@sorleed/react`
-- **Release:** `0.1.0-alpha.8`
+- **Release:** `0.1.0-alpha.9`
+- **License:** MIT
+- **Homepage:** [https://sorleed.com](https://sorleed.com)
+- **Repository:** [https://github.com/sorleed/sorleed](https://github.com/sorleed/sorleed)
 - **Peer Dependencies:** `react >=18.0.0`, `react-dom >=18.0.0`
-- **Optional Dependencies:** `libphonenumber-js` (for PhoneInput validation)
+- **Optional Dependencies:** `libphonenumber-js` (for national telephone formatting & validation)
 - **Radix UI Peer Dependencies:** `@radix-ui/react-tabs`, `@radix-ui/react-tooltip`, `@radix-ui/react-popover`, `@radix-ui/react-dialog` (for overlay/tabbed components)
 
 ---
 
-## 28 Implemented Components
+## 50+ Specialized Financial Components
 
-Sorleed provides 28 canonical, contract-backed components:
+Sorleed provides a comprehensive component system spanning retail banking, wealth management, lending, corporate treasury, and SME accounting:
 
 | Category | Components |
-|---|---|
-| **Buttons & Actions** | `Button` |
-| **Form Controls** | `Input`, `PasswordInput`, `PhoneInput`, `Select`, `Checkbox`, `RadioGroup`, `Textarea`, `Switch`, `OTP` |
-| **Fintech Primitives** | `Currency`, `CVV`, `DatePicker`, `TransactionItem`, `BalanceCard`, `AmountDisplay`, `StatusIndicator` |
-| **Surfaces & Feedback** | `Card`, `Alert`, `Badge`, `Divider` |
-| **Overlays & Floating** | `Tabs`, `Table`, `Tooltip`, `Popover`, `Drawer` |
-| **Layout Primitives** | `Stack`, `Inline`, `Container` |
+| :--- | :--- |
+| **Retail Banking & Payments** | `BalanceCard`, `WalletCard`, `AccountSummary`, `TransferReceipt`, `CurrencyExchange`, `FeeBreakdown`, `BankSelector`, `PinInput` |
+| **Security & Privacy** | `PasswordInput`, `BiometricAuthPrompt`, `CardControls`, `VirtualCardGenerator`, `CVV` |
+| **Lending & Credit** | `LoanCalculator`, `CreditScoreGauge`, `RepaymentSchedule` |
+| **Wealth & Investment** | `PortfolioSummary`, `AssetAllocation`, `YieldCurveTable` |
+| **Accounting & Invoicing** | `InvoiceViewer`, `ExpenseReceiptUploader`, `JournalEntryLedger`, `TaxSummaryCard`, `ChartOfAccountsTree` |
+| **Compliance & Verification** | `KycDocUploader`, `DirectDebitMandate`, `SplitBillCalculator` |
+| **Form & Input Controls** | `Input`, `PhoneInput`, `Currency`, `DatePicker`, `Select`, `Checkbox`, `RadioGroup`, `Switch`, `OTP`, `Textarea` |
+| **Data & Navigation** | `Table`, `Tabs`, `Pagination`, `Accordion`, `StatusIndicator`, `SpendingMeter` |
+| **Surfaces & Feedback** | `Button`, `Card`, `Badge`, `Alert`, `Modal`, `Drawer`, `Toast`, `Tooltip`, `Popover`, `Divider`, `Skeleton`, `EmptyState`, `Avatar` |
+| **Layout** | `Stack`, `Inline`, `Container` |
+
+---
+
+## Security & Privacy Guardrails
+
+Financial interfaces require strict defense-in-depth:
+- **Shoulder-Surfing Defense**: Native balance and account masking (`••••••••`) with accessible eye-toggle buttons (`BalanceCard`, `PortfolioSummary`, `AccountSummary`).
+- **Social Receipt Redaction**: Built-in account masking (`01••••89`) on `TransferReceipt` for public proof-of-payment sharing.
+- **Card Security & Burner Cards**: Self-serve card freeze toggles (`CardControls`) and single-use burner cards (`VirtualCardGenerator`).
+- **Accounting Validation**: Real-time double-entry balancing enforcement ($\sum \text{Debit} = \sum \text{Credit}$) on `JournalEntryLedger`.
 
 ---
 
@@ -32,48 +49,40 @@ npm install @sorleed/react
 ```
 
 ### Optional & Peer Dependencies
-- **PhoneInput:** For country dialing codes and national validation:
-  ```bash
-  npm install libphonenumber-js
-  ```
-- **Radix UI Primitives:** The overlay and tab components (`Tabs`, `Tooltip`, `Popover`, `Drawer`) are built on headless Radix UI primitives for robust WAI-ARIA and keyboard navigation. If using these components, install the required peer packages:
-  ```bash
-  npm install @radix-ui/react-tabs @radix-ui/react-tooltip @radix-ui/react-popover @radix-ui/react-dialog
-  ```
+```bash
+# For telephone dialing code validation
+npm install libphonenumber-js
+
+# For dialog, tab, and tooltip floating primitives
+npm install @radix-ui/react-dialog @radix-ui/react-tabs @radix-ui/react-tooltip @radix-ui/react-popover
+```
 
 ---
 
-## Usage
-
-Import tokens and component styles before using the components:
+## Usage Example
 
 ```tsx
+import React from "react";
+import { BalanceCard, InvoiceViewer, WalletCard } from "@sorleed/react";
 import "@sorleed/react/styles/tokens.css";
-import "@sorleed/react/styles/button.css";
-import "@sorleed/react/styles/input.css";
 
-import { Button, Input, BalanceCard, AmountDisplay } from "@sorleed/react";
-
-export function Dashboard() {
+export function FinancialDashboard() {
   return (
-    <BalanceCard
-      title="Checking Account"
-      account="•••• 4242"
-      amount={<AmountDisplay value="14,250.80" currency="$" variant="positive" />}
-      footer={<Button variant="primary">Transfer Funds</Button>}
-    />
+    <div style={{ maxWidth: 800, margin: "0 auto", padding: 24 }}>
+      <BalanceCard
+        balance={142850.75}
+        currency="USD"
+        accountName="Treasury Reserve Account"
+        accountNumber="4092817263"
+        allowToggleVisibility
+      />
+    </div>
   );
 }
 ```
 
 ---
 
-## Design Tokens & Dark Theme
+## License
 
-Sorleed components consume standard `--fc-*` tokens generated from `tokens.json`. Dark theme is supported out of the box by toggling `[data-theme="dark"]` or `.dark` on any root or parent container.
-
----
-
-## Documentation
-
-Full interactive documentation, live playgrounds, and API specifications are available in the Sorleed repository and documentation portal.
+MIT © [Sorleed](https://github.com/sorleed/sorleed)

@@ -1,0 +1,117 @@
+/*
+ * Sorleed LoanCalculator — real-time loan EMI & total interest calculation slider.
+ * Consumes existing foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-loan-calculator {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--fc-color-surface-default);
+  border: var(--fc-size-border-width) solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  padding: var(--fc-space-6);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--fc-space-5);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.fc-loan-calculator__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-loan-calculator__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-loan-calculator__subtitle {
+  margin: 0;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-loan-calculator__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-loan-calculator__control-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+}
+
+.fc-loan-calculator__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-loan-calculator__label {
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-loan-calculator__value {
+  font-weight: var(--fc-font-weight-bold);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-loan-calculator__slider {
+  width: 100%;
+  accent-color: var(--fc-blue-600);
+  cursor: pointer;
+}
+
+.fc-loan-calculator__summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-4);
+  background-color: var(--fc-blue-50);
+  border: 1px solid var(--fc-blue-200);
+  border-radius: var(--fc-radius-md);
+}
+
+.fc-loan-calculator__emi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.fc-loan-calculator__emi-label {
+  font-size: var(--fc-font-size-sm);
+  color: var(--fc-blue-800);
+  font-weight: var(--fc-font-weight-medium);
+}
+
+.fc-loan-calculator__emi-amount {
+  font-size: var(--fc-font-size-2xl);
+  font-weight: var(--fc-font-weight-bold);
+  color: var(--fc-blue-900);
+}
+
+.fc-loan-calculator__stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--fc-space-2);
+  padding-top: var(--fc-space-2);
+  border-top: 1px solid var(--fc-blue-200);
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-blue-800);
+}
+
+@media (forced-colors: active) {
+  .fc-loan-calculator {
+    border: 2px solid CanvasText;
+  }
+  .fc-loan-calculator__summary-card {
+    border: 1px solid CanvasText;
+  }
+}

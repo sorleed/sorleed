@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Sorleed — Biometric Auth Prompt
+   FaceID, TouchID, and WebAuthn verification dialog powered by Radix Dialog
+   ========================================================================== */
+
+.fc-biometric-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--fc-color-overlay, rgba(0, 0, 0, 0.6));
+  backdrop-filter: blur(4px);
+  z-index: var(--fc-z-modal, 1000);
+  animation: fc-fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fc-biometric-prompt {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 400px;
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  box-shadow: var(--fc-shadow-lg);
+  padding: var(--fc-space-6);
+  z-index: calc(var(--fc-z-modal, 1000) + 1);
+  font-family: var(--fc-font-family);
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fc-scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fc-biometric-prompt:focus {
+  outline: none;
+}
+
+.fc-biometric-prompt__icon-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--fc-space-4);
+  background-color: var(--fc-color-surface-hover);
+  color: var(--fc-color-primary);
+}
+
+.fc-biometric-prompt__icon-wrapper--authenticating {
+  color: var(--fc-color-primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+  animation: fc-pulse-ring 1.8s infinite;
+}
+
+.fc-biometric-prompt__icon-wrapper--success {
+  background-color: rgba(16, 185, 129, 0.12);
+  color: var(--fc-color-success, #10b981);
+}
+
+.fc-biometric-prompt__icon-wrapper--error {
+  background-color: rgba(239, 68, 68, 0.12);
+  color: var(--fc-color-danger, #ef4444);
+}
+
+.fc-biometric-prompt__icon {
+  width: 44px;
+  height: 44px;
+}
+
+.fc-biometric-prompt__title {
+  margin: 0 0 var(--fc-space-2) 0;
+  font-size: var(--fc-font-size-lg);
+  font-weight: 600;
+  color: var(--fc-color-text);
+}
+
+.fc-biometric-prompt__desc {
+  margin: 0 0 var(--fc-space-4) 0;
+  font-size: var(--fc-font-size-sm);
+  color: var(--fc-color-text-secondary);
+  line-height: 1.5;
+}
+
+.fc-biometric-prompt__amount-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-1);
+  padding: var(--fc-space-2) var(--fc-space-4);
+  background-color: var(--fc-color-surface-hover);
+  border-radius: var(--fc-radius-full, 9999px);
+  font-size: var(--fc-font-size-base);
+  font-weight: 700;
+  color: var(--fc-color-text);
+  margin-bottom: var(--fc-space-5);
+  font-family: var(--fc-font-mono, monospace);
+}
+
+.fc-biometric-prompt__actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--fc-space-2);
+}
+
+.fc-biometric-prompt__btn-fallback {
+  background: none;
+  border: none;
+  padding: var(--fc-space-2);
+  color: var(--fc-color-primary);
+  font-size: var(--fc-font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.fc-biometric-prompt__btn-fallback:hover {
+  opacity: 0.85;
+}
+
+@keyframes fc-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fc-scale-in {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes fc-pulse-ring {
+  0% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+  100% { transform: scale(0.98); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+@media (forced-colors: active) {
+  .fc-biometric-prompt {
+    border: 2px solid CanvasText;
+  }
+}
+

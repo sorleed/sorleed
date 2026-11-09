@@ -1,7 +1,29 @@
 {
   "name": "@sorleed/cli",
-  "version": "0.1.0-alpha.8",
-  "description": "Source-distribution CLI for Sorleed components",
+  "version": "0.1.0-alpha.10",
+  "description": "Source-distribution CLI for Sorleed fintech, banking, and accounting UI components",
+  "license": "MIT",
+  "homepage": "https://sorleed.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorleed/sorleed.git",
+    "directory": "cli"
+  },
+  "bugs": {
+    "url": "https://github.com/sorleed/sorleed/issues"
+  },
+  "keywords": [
+    "cli",
+    "sorleed",
+    "fintech",
+    "react",
+    "components",
+    "shadcn",
+    "copy-paste",
+    "banking-ui",
+    "accounting-ui"
+  ],
+  "author": "Sorleed",
   "type": "module",
   "bin": {
     "sorleed": "./src/index.js",
@@ -17,7 +39,8 @@
     "bin",
     "src",
     "templates",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "publishConfig": {
     "access": "public"

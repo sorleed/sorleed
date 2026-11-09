@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Sorleed — Pagination
+   Accessible pagination navigation for transaction ledgers and statements
+   ========================================================================== */
+
+.fc-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fc-space-2);
+  font-family: var(--fc-font-family);
+  box-sizing: border-box;
+}
+
+.fc-pagination__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 var(--fc-space-2);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface);
+  color: var(--fc-color-text);
+  font-size: var(--fc-font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  user-select: none;
+}
+
+.fc-pagination__btn:hover:not(:disabled) {
+  background-color: var(--fc-color-surface-hover);
+  border-color: var(--fc-color-border-hover, var(--fc-color-primary));
+}
+
+.fc-pagination__btn:focus-visible {
+  outline: 2px solid var(--fc-color-primary);
+  outline-offset: 2px;
+}
+
+.fc-pagination__btn--active {
+  background-color: var(--fc-color-primary);
+  color: var(--fc-color-primary-contrast, #ffffff);
+  border-color: var(--fc-color-primary);
+  font-weight: 600;
+}
+
+.fc-pagination__btn--active:hover {
+  background-color: var(--fc-color-primary-hover, var(--fc-color-primary));
+}
+
+.fc-pagination__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fc-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 36px;
+  color: var(--fc-color-text-secondary);
+  font-weight: 600;
+}
+
+@media (forced-colors: active) {
+  .fc-pagination__btn {
+    border: 1px solid ButtonText;
+  }
+  .fc-pagination__btn--active {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
+
