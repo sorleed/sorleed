@@ -66,7 +66,6 @@ function renderStripeSidebar(activeId) {
       name: 'Getting Started',
       items: [
         { id: 'docs-home', label: 'Overview', href: root + 'docs.html#overview' },
-        { id: 'components', label: 'Component Catalog', href: root + 'docs.html#components' },
         { id: 'cli', label: 'Sorleed CLI', href: root + 'docs.html#cli' },
         { id: 'tokens', label: 'Design Tokens', href: root + 'docs.html#tokens' },
         { id: 'accessibility', label: 'Accessibility (AA)', href: root + 'docs.html#accessibility' },
