@@ -6,6 +6,39 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <title>Sorleed Documentation — Financial UI Infrastructure</title>
   <meta name="description" content="Sorleed is a source-first UI toolkit for fintech, banking, and accounting interfaces.">
+  <link rel="canonical" href="https://sorleed.com/">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/">
+  <meta property="og:title" content="Sorleed — Financial UI Infrastructure">
+  <meta property="og:description" content="Production-tested React & CSS UI toolkit for fintech, banking, wealth, and accounting interfaces. Zero runtime lock-in.">
+  <meta property="og:site_name" content="Sorleed">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sorleed.com/">
+  <meta name="twitter:title" content="Sorleed — Financial UI Infrastructure">
+  <meta name="twitter:description" content="Production-tested React & CSS UI toolkit for fintech, banking, wealth, and accounting interfaces. Zero runtime lock-in.">
+
+  <!-- JSON-LD Structured Data for Search Engines & AI Agents -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sorleed",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "description": "Production-grade UI components and design tokens for financial, banking, and wealth interfaces.",
+    "url": "https://sorleed.com",
+    "softwareVersion": "0.1.0",
+    "license": "https://github.com/sorleed/sorleed/blob/main/LICENSE",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
   <link rel="stylesheet" href="tokens-dist/tokens.css">
   <link rel="stylesheet" href="components-dist/all-components.css">
   <link rel="stylesheet" href="assets/stripe-docs.css">
@@ -18,9 +51,10 @@
         <span>Sorleed</span>
       </a>
       <nav class="docs-header__nav">
-        <a href="docs.html">Documentation</a>
-        <a href="docs.html">Components</a>
-        <a href="docs.html">API & CLI</a>
+        <a href="docs.html#overview">Documentation</a>
+        <a href="components/balance-card.html">Components</a>
+        <a href="docs.html#ai-skill">AI Skills</a>
+        <a href="docs.html#cli">API & CLI</a>
       </nav>
     </div>
     <div class="docs-header__right">
@@ -39,14 +73,14 @@
 
   <main>
     <section class="hero-section">
-      <div class="hero-pill">Production Ready • v0.1.0-alpha.10</div>
+      <div class="hero-pill">Production Ready • v0.1.0-alpha.11</div>
       <h1 class="hero-title">Financial UI Infrastructure for Modern Engineering Teams</h1>
       <p class="hero-subtitle">
-        Sorleed is a complete design system and component toolkit engineered for fintech, commercial banking, wealth management, and double-entry ledgers. Source-first, zero-runtime lock-in, and accessible by default.
+        Sorleed is a complete design system and component toolkit engineered for fintech, commercial banking, wealth management, and double-entry ledgers. Source-first, zero-runtime lock-in, accessible by default, and equipped with native AI agent skills and machine-readable registry for autonomous agentic workflows.
       </p>
 
       <!-- Dual Installation Hero Box (Left-Aligned with Copy Buttons) -->
-      <div style="display:flex; justify-content:flex-start; gap:20px; flex-wrap:wrap; margin:32px 0 36px; text-align:left;">
+      <div class="hero-install-grid" style="display:flex; justify-content:flex-start; gap:20px; flex-wrap:wrap; margin:32px 0 36px; text-align:left;">
         <!-- Option 1: CLI -->
         <div style="background:#0F172A; border:1px solid #334155; border-radius:10px; padding:20px 24px; min-width:320px; flex:1; max-width:440px; box-shadow:var(--shadow-card); position:relative;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -83,7 +117,7 @@
       </div>
 
       <!-- Hero Call To Action Buttons (Left-Aligned) -->
-      <div style="display:flex; justify-content:flex-start; gap:14px; margin-bottom:56px;">
+      <div class="hero-actions" style="display:flex; justify-content:flex-start; gap:14px; margin-bottom:56px;">
         <a href="docs.html" class="btn-header-cta" style="padding:12px 28px; font-size:15px;">Get started with Sorleed</a>
         <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:8px; border:1px solid #E2E8F0; background:#FFFFFF; color:var(--text-primary); text-decoration:none; font-weight:600; font-size:14.5px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -154,6 +188,16 @@
           <h3 class="stripe-category-card__title">CLI Source Distribution</h3>
           <p class="stripe-category-card__desc">Copy component source code straight into your codebase with automatic dependency resolution.</p>
           <span class="stripe-category-card__link">Learn CLI Usage →</span>
+        </a>
+
+        <!-- AI Agent Skills & Registry -->
+        <a href="docs.html#ai-skill" class="stripe-category-card">
+          <div class="stripe-category-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3 class="stripe-category-card__title">AI Agent Skills &amp; Registry</h3>
+          <p class="stripe-category-card__desc">Official skill definitions and machine-readable JSON registry powering Antigravity, Claude Code, and Cursor.</p>
+          <span class="stripe-category-card__link">Explore AI Agent Skills →</span>
         </a>
       </div>
     </section>

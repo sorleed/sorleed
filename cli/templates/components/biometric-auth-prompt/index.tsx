@@ -50,11 +50,15 @@ export const BiometricAuthPrompt: React.FC<BiometricAuthPromptProps> = ({
     }
     // Face ID icon
     return (
-      <svg className="fc-biometric-prompt__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M9 3H5a2 2 0 0 0-2 2v4m18-6h-4a2 2 0 0 0-2 2v4m-12 10H5a2 2 0 0 1-2-2v-4m18 6h-4a2 2 0 0 1-2-2v-4" />
-        <circle cx="9" cy="10" r="1" fill="currentColor" />
-        <circle cx="15" cy="10" r="1" fill="currentColor" />
-        <path d="M10 15c.5.8 1.4 1.2 2 1.2s1.5-.4 2-1.2" />
+      <svg className="fc-biometric-prompt__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M7 3H5a2 2 0 0 0-2 2v2" />
+        <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+        <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+        <path d="M3 17v2a2 2 0 0 0 2 2h2" />
+        <circle cx="9" cy="9" r="0.5" fill="currentColor" />
+        <circle cx="15" cy="9" r="0.5" fill="currentColor" />
+        <path d="M12 11v2.5" />
+        <path d="M8.5 16.5c1.5 1.5 5.5 1.5 7 0" />
       </svg>
     );
   };

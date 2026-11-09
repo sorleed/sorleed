@@ -6,6 +6,14 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <title>Documentation & Guides — Sorleed</title>
   <meta name="description" content="Sorleed documentation: Overview, CLI, Tokens, Accessibility, and Financial Components.">
+  <link rel="canonical" href="https://sorleed.com/docs.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sorleed.com/docs.html">
+  <meta property="og:title" content="Documentation — Sorleed Financial UI">
+  <meta property="og:description" content="Complete documentation, architecture guide, design tokens, and CLI usage for Sorleed UI.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Documentation — Sorleed Financial UI">
+  <meta name="twitter:description" content="Complete documentation, architecture guide, design tokens, and CLI usage for Sorleed UI.">
   <link rel="stylesheet" href="tokens-dist/tokens.css">
   <link rel="stylesheet" href="components-dist/all-components.css">
   <link rel="stylesheet" href="assets/stripe-docs.css">
@@ -31,9 +39,10 @@
         <span>Sorleed</span>
       </a>
       <nav class="docs-header__nav">
-        <a href="docs.html" class="active">Documentation</a>
-        <a href="docs.html#components">Components</a>
-        <a href="docs.html#cli">API & CLI</a>
+        <a href="#overview" onclick="switchDocsSection('overview'); return false;">Documentation</a>
+        <a href="components/balance-card.html">Components</a>
+        <a href="#ai-skill" onclick="switchDocsSection('ai-skill'); return false;">AI Skills</a>
+        <a href="#cli" onclick="switchDocsSection('cli'); return false;">API & CLI</a>
       </nav>
     </div>
     <div class="docs-header__right">
@@ -76,14 +85,14 @@
             Building modern financial interfaces is hard: sensitive numbers must be masked, currency conversions require strict rounding precision, and WCAG AA accessibility is legally mandated in regulated environments.
           </p>
           <p style="color:var(--text-secondary); line-height:1.7;">
-            Sorleed gives development teams complete UI ownership. We distribute source-first components built on pure CSS tokens with zero runtime lock-in. You can use Sorleed in two official ways:
+            Sorleed gives engineering teams and autonomous AI agents complete UI ownership. We distribute source-first components built on pure CSS tokens with zero runtime lock-in. You can consume and build with Sorleed in three primary ways:
           </p>
 
           <!-- Vertical Stack Layout for Packages -->
           <div style="display:flex; flex-direction:column; gap:20px; margin:24px 0 36px; max-width:760px;">
             <!-- 1. The Sorleed CLI -->
             <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:10px; padding:24px; box-shadow:var(--shadow-sm);">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <div class="package-card-header">
                 <div style="display:flex; align-items:center; gap:10px;">
                   <span style="display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:6px; background:#EEF2FF; color:var(--accent-brand); font-weight:700; font-size:14px;">1</span>
                   <h3 style="font-size:17px; font-weight:700; margin:0; color:var(--text-primary);">The Sorleed CLI</h3>
@@ -112,7 +121,7 @@ sorleed add account-summary</pre>
 
             <!-- 2. The React Package -->
             <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:10px; padding:24px; box-shadow:var(--shadow-sm);">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <div class="package-card-header">
                 <div style="display:flex; align-items:center; gap:10px;">
                   <span style="display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:6px; background:#ECFDF5; color:#059669; font-weight:700; font-size:14px;">2</span>
                   <h3 style="font-size:17px; font-weight:700; margin:0; color:var(--text-primary);">The React Package</h3>
@@ -136,6 +145,38 @@ sorleed add account-summary</pre>
 import { BalanceCard } from '@sorleed/react';
 import '@sorleed/react/styles/tokens.css';
 import '@sorleed/react/styles/balance-card.css';</pre>
+              </div>
+            </div>
+
+            <!-- 3. AI Agent Skills & Registry -->
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:10px; padding:24px; box-shadow:var(--shadow-sm);">
+              <div class="package-card-header">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:6px; background:#F5F3FF; color:#7C3AED; font-weight:700; font-size:14px;">3</span>
+                  <h3 style="font-size:17px; font-weight:700; margin:0; color:var(--text-primary);">AI Agent Skills &amp; Machine-Readable Registry</h3>
+                </div>
+                <span style="font-size:11.5px; padding:3px 10px; border-radius:4px; background:#F5F3FF; color:#7C3AED; font-weight:600;">Agentic Development</span>
+              </div>
+              <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin:0 0 16px;">
+                Designed from the ground up for agentic development. Equip autonomous AI coding assistants (Google Antigravity, Claude Code, Cursor, Copilot) with our official skill definition and complete JSON registry of all 61 components to eliminate prop hallucinations and guarantee token accuracy.
+              </p>
+              
+              <div class="code-card" style="margin:0 0 14px;">
+                <div class="code-card__header">
+                  <span>Terminal — One-line skill install for your agent</span>
+                  <button type="button" onclick="copySnippet('code-ai-overview-stack', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:2px; display:inline-flex; align-items:center;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  </button>
+                </div>
+                <pre class="code-card__body" id="code-ai-overview-stack"># Option A: Google Antigravity & Gemini CLI
+curl -s https://sorleed.com/skills/SKILL.md -o .gemini/skills/sorleed/SKILL.md
+
+# Option B: Claude Code & Agent Skill Engine
+curl -s https://sorleed.com/skills/SKILL.md -o .agent/skills/sorleed/SKILL.md</pre>
+              </div>
+              <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+                <a href="#ai-skill" onclick="switchDocsSection('ai-skill')" style="font-size:13px; color:#7C3AED; text-decoration:none; font-weight:600;">Explore AI Agent Skill Documentation →</a>
+                <a href="registry.json" target="_blank" style="font-size:13px; color:var(--text-secondary); text-decoration:none; font-weight:500;">Inspect registry.json →</a>
               </div>
             </div>
           </div>
@@ -260,6 +301,7 @@ import './styles/sorleed/balance-card.css';</pre>
           </ul>
         </section>
       </section>
+
 
       <!-- TAB 2: CLI -->
       <section id="tab-cli" class="docs-tab-content">
@@ -443,6 +485,86 @@ import { BalanceCard } from "./components/sorleed/balance-card";</pre>
           </ul>
         </section>
       </section>
+    
+      <!-- TAB 5: AI AGENT SKILL -->
+      <section id="tab-ai-skill" class="docs-tab-content">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:16px;">
+          <div>
+            <h1 class="docs-title" style="margin-bottom:8px;">Sorleed AI Agent Skill</h1>
+            <p class="docs-lede" style="margin-bottom:0;">
+              Official skill definition to empower AI coding assistants (Antigravity, Cursor, Claude Code, GitHub Copilot) to build bug-free financial interfaces.
+            </p>
+          </div>
+          <!-- Download Buttons -->
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="skills/SKILL.md" download="SKILL.md" class="btn-header-cta" style="padding:10px 20px; font-size:14px; display:inline-flex; align-items:center; gap:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download SKILL.md</span>
+            </a>
+            <a href="registry.json" download="registry.json" style="padding:10px 18px; font-size:14px; display:inline-flex; align-items:center; gap:8px; border:1px solid #CBD5E1; background:#FFFFFF; color:var(--text-primary); border-radius:6px; font-weight:600; text-decoration:none; transition:all 0.15s ease;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span>Download registry.json</span>
+            </a>
+          </div>
+        </div>
+
+        <section style="margin:32px 0;">
+          <h2 style="font-size:22px; font-weight:700; margin:0 0 12px; color:var(--text-primary);">How to install in your IDE or Agent</h2>
+          <div style="display:flex; flex-direction:column; gap:20px; margin:20px 0; max-width:760px;">
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:10px; padding:20px; box-shadow:var(--shadow-sm);">
+              <div style="font-weight:700; font-size:16px; color:var(--text-primary); margin-bottom:8px;">Google Antigravity &amp; Gemini CLI</div>
+              <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin:0 0 12px;">
+                Place the skill into your workspace configuration:
+              </p>
+              <div class="code-card" style="margin-bottom:0;">
+                <div class="code-card__header">
+                  <span>Terminal</span>
+                  <button type="button" onclick="copySnippet('cmd-skill-gemini', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:2px; display:inline-flex; align-items:center;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  </button>
+                </div>
+                <pre class="code-card__body" id="cmd-skill-gemini" style="font-size:12px;">curl -s https://sorleed.com/skills/SKILL.md -o .gemini/skills/sorleed/SKILL.md</pre>
+              </div>
+            </div>
+
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:10px; padding:20px; box-shadow:var(--shadow-sm);">
+              <div style="font-weight:700; font-size:16px; color:var(--text-primary); margin-bottom:8px;">Claude Code / Agent Skill Engine</div>
+              <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin:0 0 12px;">
+                Add directly into your project's agent skills directory:
+              </p>
+              <div class="code-card" style="margin-bottom:0;">
+                <div class="code-card__header">
+                  <span>Terminal</span>
+                  <button type="button" onclick="copySnippet('cmd-skill-agent', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:2px; display:inline-flex; align-items:center;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  </button>
+                </div>
+                <pre class="code-card__body" id="cmd-skill-agent" style="font-size:12px;">curl -s https://sorleed.com/skills/SKILL.md -o .agent/skills/sorleed/SKILL.md</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style="margin:36px 0;">
+          <h2 style="font-size:22px; font-weight:700; margin:0 0 12px; color:var(--text-primary);">Skill Definition Preview</h2>
+          <div class="code-card">
+            <div class="code-card__header">skills/sorleed/SKILL.md</div>
+            <pre class="code-card__body" style="font-size:13px; max-height:480px; overflow-y:auto;">---
+name: sorleed
+description: Official AI coding agent skill for Sorleed FinTech UI Infrastructure.
+---
+
+# Sorleed AI Agent Skill
+
+1. Zero Hallucination of Props: Always use exact TypeScript interfaces.
+2. Design Tokens First: Never generate arbitrary inline colors. Use --fc-* tokens.
+3. Financial Precision: Pass numeric values as valid numbers (e.g. 8450290.40).
+4. Client Components: Add "use client" in Next.js App Router for interactive modals.
+
+Registry: https://sorleed.com/registry.json</pre>
+          </div>
+        </section>
+      </section>
     </main>
   </div>
 
@@ -454,12 +576,20 @@ import { BalanceCard } from "./components/sorleed/balance-card";</pre>
   <script src="assets/stripe-sidebar.js"></script>
   <script>
     function switchDocsSection(tabId) {
+      if (!tabId || tabId === '' || tabId === '#') tabId = 'overview';
+      tabId = tabId.replace('#', '');
+
       const titles = {
         'overview': 'Overview',
         'cli': 'Sorleed CLI',
         'tokens': 'Design Tokens',
-        'accessibility': 'Accessibility (AA)'
+        'accessibility': 'Accessibility (AA)',
+        'ai-skill': 'AI Agent Skill'
       };
+
+      if (!titles[tabId]) {
+        tabId = 'overview';
+      }
 
       document.querySelectorAll('.docs-tab-content').forEach(el => el.classList.remove('active'));
       
@@ -469,40 +599,48 @@ import { BalanceCard } from "./components/sorleed/balance-card";</pre>
       const crumb = document.getElementById('crumb-current');
       if (crumb && titles[tabId]) crumb.textContent = titles[tabId];
 
-      // Update URL hash without causing page reload
+      // Update URL hash without causing full page reload
       if (history.replaceState) {
         history.replaceState(null, null, '#' + tabId);
       }
 
+      // Re-highlight top header nav item
+      document.querySelectorAll('.docs-header__nav a').forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href') || '';
+        if (
+          (tabId === 'overview' && href.includes('overview')) ||
+          (tabId === 'ai-skill' && href.includes('ai-skill')) ||
+          (tabId === 'cli' && href.includes('cli'))
+        ) {
+          link.classList.add('active');
+        }
+      });
+
       // Re-highlight sidebar item
       document.querySelectorAll('.sidebar-link').forEach(link => link.classList.remove('active'));
       const activeLink = document.querySelector(`.sidebar-link[data-nav-id="${tabId}"]`) || 
-                         document.querySelector(`.sidebar-link[data-nav-id="docs-home"]`);
-      if (activeLink && tabId !== 'overview') {
-        const matchingLink = document.querySelector(`.sidebar-link[data-nav-id="${tabId}"]`);
-        if (matchingLink) matchingLink.classList.add('active');
-      } else if (activeLink) {
+                         (tabId === 'overview' ? document.querySelector(`.sidebar-link[data-nav-id="docs-home"]`) : null);
+      if (activeLink) {
         activeLink.classList.add('active');
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    window.switchDocsSection = switchDocsSection;
+    window.switchDocsTab = switchDocsSection;
+
     renderStripeSidebar('docs-home');
 
-    // Handle initial hash on load
-    window.addEventListener('DOMContentLoaded', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (['overview', 'cli', 'tokens', 'accessibility'].includes(hash)) {
-        switchDocsSection(hash);
-      }
-    });
-    window.addEventListener('hashchange', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (['overview', 'cli', 'tokens', 'accessibility'].includes(hash)) {
-        switchDocsSection(hash);
-      }
-    });
+    // Handle initial hash on load and hash changes
+    function handleLocationHash() {
+      const hash = window.location.hash.replace('#', '') || 'overview';
+      switchDocsSection(hash);
+    }
+
+    window.addEventListener('DOMContentLoaded', handleLocationHash);
+    window.addEventListener('hashchange', handleLocationHash);
 
     function copySnippet(elementId, btn) {
       const el = document.getElementById(elementId);

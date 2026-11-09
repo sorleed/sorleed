@@ -567,6 +567,11 @@ export const templateManifest = [
   {
     source: path.resolve(repoRoot, "tokens/dist/tokens.css"),
     dest: path.resolve(templatesDir, "styles/tokens.css")
+  },
+  // Official AI Agent Skill
+  {
+    source: path.resolve(repoRoot, "skills/sorleed/SKILL.md"),
+    dest: path.resolve(templatesDir, "SKILL.md")
   }
 ];
 
