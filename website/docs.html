@@ -41,6 +41,7 @@
       <nav class="docs-header__nav">
         <a href="docs.html" class="active">Documentation</a>
         <a href="docs.html#components">Components</a>
+        <a href="docs.html#ai-skill">AI Skills</a>
         <a href="docs.html#cli">API & CLI</a>
       </nav>
     </div>
@@ -84,7 +85,7 @@
             Building modern financial interfaces is hard: sensitive numbers must be masked, currency conversions require strict rounding precision, and WCAG AA accessibility is legally mandated in regulated environments.
           </p>
           <p style="color:var(--text-secondary); line-height:1.7;">
-            Sorleed gives development teams complete UI ownership. We distribute source-first components built on pure CSS tokens with zero runtime lock-in. You can use Sorleed in two official ways:
+            Sorleed gives engineering teams and autonomous AI agents complete UI ownership. We distribute source-first components built on pure CSS tokens with zero runtime lock-in. You can consume and build with Sorleed in three primary ways:
           </p>
 
           <!-- Vertical Stack Layout for Packages -->
@@ -144,6 +145,38 @@ sorleed add account-summary</pre>
 import { BalanceCard } from '@sorleed/react';
 import '@sorleed/react/styles/tokens.css';
 import '@sorleed/react/styles/balance-card.css';</pre>
+              </div>
+            </div>
+
+            <!-- 3. AI Agent Skills & Registry -->
+            <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:10px; padding:24px; box-shadow:var(--shadow-sm);">
+              <div class="package-card-header">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:6px; background:#F5F3FF; color:#7C3AED; font-weight:700; font-size:14px;">3</span>
+                  <h3 style="font-size:17px; font-weight:700; margin:0; color:var(--text-primary);">AI Agent Skills &amp; Machine-Readable Registry</h3>
+                </div>
+                <span style="font-size:11.5px; padding:3px 10px; border-radius:4px; background:#F5F3FF; color:#7C3AED; font-weight:600;">Agentic Development</span>
+              </div>
+              <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin:0 0 16px;">
+                Designed from the ground up for agentic development. Equip autonomous AI coding assistants (Google Antigravity, Claude Code, Cursor, Copilot) with our official skill definition and complete JSON registry of all 61 components to eliminate prop hallucinations and guarantee token accuracy.
+              </p>
+              
+              <div class="code-card" style="margin:0 0 14px;">
+                <div class="code-card__header">
+                  <span>Terminal — One-line skill install for your agent</span>
+                  <button type="button" onclick="copySnippet('code-ai-overview-stack', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:2px; display:inline-flex; align-items:center;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  </button>
+                </div>
+                <pre class="code-card__body" id="code-ai-overview-stack"># Option A: Google Antigravity & Gemini CLI
+curl -s https://sorleed.com/skills/SKILL.md -o .gemini/skills/sorleed/SKILL.md
+
+# Option B: Claude Code & Agent Skill Engine
+curl -s https://sorleed.com/skills/SKILL.md -o .agent/skills/sorleed/SKILL.md</pre>
+              </div>
+              <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+                <a href="#ai-skill" onclick="switchDocsTab('ai-skill')" style="font-size:13px; color:#7C3AED; text-decoration:none; font-weight:600;">Explore AI Agent Skill Documentation →</a>
+                <a href="registry.json" target="_blank" style="font-size:13px; color:var(--text-secondary); text-decoration:none; font-weight:500;">Inspect registry.json →</a>
               </div>
             </div>
           </div>

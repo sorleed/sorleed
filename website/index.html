@@ -52,8 +52,9 @@
       </a>
       <nav class="docs-header__nav">
         <a href="docs.html">Documentation</a>
-        <a href="docs.html">Components</a>
-        <a href="docs.html">API & CLI</a>
+        <a href="docs.html#components">Components</a>
+        <a href="docs.html#ai-skill">AI Skills</a>
+        <a href="docs.html#cli">API & CLI</a>
       </nav>
     </div>
     <div class="docs-header__right">
@@ -75,10 +76,10 @@
       <div class="hero-pill">Production Ready • v0.1.0-alpha.10</div>
       <h1 class="hero-title">Financial UI Infrastructure for Modern Engineering Teams</h1>
       <p class="hero-subtitle">
-        Sorleed is a complete design system and component toolkit engineered for fintech, commercial banking, wealth management, and double-entry ledgers. Source-first, zero-runtime lock-in, and accessible by default.
+        Sorleed is a complete design system and component toolkit engineered for fintech, commercial banking, wealth management, and double-entry ledgers. Source-first, zero-runtime lock-in, accessible by default, and equipped with native AI agent skills and machine-readable registry for autonomous agentic workflows.
       </p>
 
-      <!-- Dual Installation Hero Box (Left-Aligned with Copy Buttons) -->
+      <!-- Triple Installation Hero Box (Left-Aligned with Copy Buttons) -->
       <div class="hero-install-grid" style="display:flex; justify-content:flex-start; gap:20px; flex-wrap:wrap; margin:32px 0 36px; text-align:left;">
         <!-- Option 1: CLI -->
         <div style="background:#0F172A; border:1px solid #334155; border-radius:10px; padding:20px 24px; min-width:320px; flex:1; max-width:440px; box-shadow:var(--shadow-card); position:relative;">
@@ -112,6 +113,23 @@
             </button>
           </div>
           <a href="docs.html" style="font-size:13px; color:#10B981; text-decoration:none; font-weight:600;">Browse documentation & API →</a>
+        </div>
+
+        <!-- Option 3: AI Agent Skills & Registry -->
+        <div style="background:#0F172A; border:1px solid #334155; border-radius:10px; padding:20px 24px; min-width:320px; flex:1; max-width:440px; box-shadow:var(--shadow-card); position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span style="font-size:12px; font-weight:700; color:#94A3B8; text-transform:uppercase; letter-spacing:0.05em;">AI Agent Skill &amp; Registry</span>
+            <span style="font-size:11px; padding:2px 8px; border-radius:4px; background:#1E293B; color:#A78BFA; font-weight:600;">Agentic Ready</span>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; background:#1E293B; padding:10px 14px; border-radius:6px; border:1px solid #334155; margin-bottom:14px;">
+            <div style="font-family:var(--font-mono); font-size:13.5px; color:#F8FAFC; overflow-x:auto; white-space:nowrap;">
+              <span style="color:#635BFF; margin-right:6px;">$</span><span id="cmd-skill">curl -s https://sorleed.com/skills/SKILL.md</span>
+            </div>
+            <button type="button" onclick="copySnippet('cmd-skill', this)" title="Copy command" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; padding:4px; display:inline-flex; align-items:center; border-radius:4px; margin-left:8px; transition:color 0.15s ease;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </div>
+          <a href="docs.html#ai-skill" style="font-size:13px; color:#A78BFA; text-decoration:none; font-weight:600;">Download skills &amp; registry →</a>
         </div>
       </div>
 
@@ -187,6 +205,16 @@
           <h3 class="stripe-category-card__title">CLI Source Distribution</h3>
           <p class="stripe-category-card__desc">Copy component source code straight into your codebase with automatic dependency resolution.</p>
           <span class="stripe-category-card__link">Learn CLI Usage →</span>
+        </a>
+
+        <!-- AI Agent Skills & Registry -->
+        <a href="docs.html#ai-skill" class="stripe-category-card">
+          <div class="stripe-category-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3 class="stripe-category-card__title">AI Agent Skills &amp; Registry</h3>
+          <p class="stripe-category-card__desc">Official skill definitions and machine-readable JSON registry powering Antigravity, Claude Code, and Cursor.</p>
+          <span class="stripe-category-card__link">Explore AI Agent Skills →</span>
         </a>
       </div>
     </section>
