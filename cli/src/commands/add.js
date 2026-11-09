@@ -1,9 +1,12 @@
 
 function syncAiSkillToWorkspace(consumerRoot) {
   try {
+    const templateSkillPath = path.resolve(import.meta.dirname, "../../templates/SKILL.md");
     const canonicalSkillPath = path.resolve(import.meta.dirname, "../../../skills/sorleed/SKILL.md");
     let content = "";
-    if (fs.existsSync(canonicalSkillPath)) {
+    if (fs.existsSync(templateSkillPath)) {
+      content = fs.readFileSync(templateSkillPath, "utf8");
+    } else if (fs.existsSync(canonicalSkillPath)) {
       content = fs.readFileSync(canonicalSkillPath, "utf8");
     } else {
       content = "---\nname: sorleed\ndescription: Official AI coding agent skill for Sorleed FinTech UI Infrastructure.\n---\n\n# Sorleed AI Agent Skill\n\nComplete registry & recipes: https://sorleed.com/registry.json\n";
