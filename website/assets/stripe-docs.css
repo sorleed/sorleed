@@ -1178,22 +1178,27 @@ pre, code, .code-card__body, .code-snippet, pre[class*="language-"] {
 /* Mobile-only stack for Hero install boxes and action buttons */
 @media (max-width: 768px) {
   .hero-install-grid {
+    display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
     width: 100% !important;
     max-width: 100% !important;
   }
 
-  .hero-install-box {
+  .hero-install-grid > div {
+    display: block !important;
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
     flex: none !important;
+    box-sizing: border-box !important;
   }
 
   .hero-actions {
+    display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
+    gap: 12px !important;
     align-items: stretch !important;
   }
 
