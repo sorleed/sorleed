@@ -1,0 +1,81 @@
+# Sorleed UI — FinTech Design System & Component Library
+
+> Production-tested React and CSS components for financial, banking, and wealth interfaces. Built with pure design tokens, WCAG 2.2 AA accessibility, and zero runtime lock-in.
+
+## Core Documentation
+- [Overview](https://sorleed.com/docs.html): Architecture, principles, and philosophy.
+- [Sorleed CLI](https://sorleed.com/cli.html): Command-line tool to add standalone components directly into any repository.
+- [Design Tokens](https://sorleed.com/tokens.html): Foundation colors, spacing, typography, and contrast tokens.
+- [Accessibility](https://sorleed.com/accessibility.html): WCAG 2.2 AA compliance standards and verification.
+
+## Component Registry (61 Components)
+- [Accordion](https://sorleed.com/components/accordion.html): Interactive playground, props, and install instructions.
+- [AccountSummary](https://sorleed.com/components/account-summary.html): Interactive playground, props, and install instructions.
+- [Alert](https://sorleed.com/components/alert.html): Interactive playground, props, and install instructions.
+- [AmountDisplay](https://sorleed.com/components/amount-display.html): Interactive playground, props, and install instructions.
+- [AssetAllocation](https://sorleed.com/components/asset-allocation.html): Interactive playground, props, and install instructions.
+- [Avatar](https://sorleed.com/components/avatar.html): Interactive playground, props, and install instructions.
+- [Badge](https://sorleed.com/components/badge.html): Interactive playground, props, and install instructions.
+- [BalanceCard](https://sorleed.com/components/balance-card.html): Interactive playground, props, and install instructions.
+- [BankSelector](https://sorleed.com/components/bank-selector.html): Interactive playground, props, and install instructions.
+- [BiometricAuthPrompt](https://sorleed.com/components/biometric-auth-prompt.html): Interactive playground, props, and install instructions.
+- [Button](https://sorleed.com/components/button.html): Interactive playground, props, and install instructions.
+- [CardControls](https://sorleed.com/components/card-controls.html): Interactive playground, props, and install instructions.
+- [Card](https://sorleed.com/components/card.html): Interactive playground, props, and install instructions.
+- [ChartOfAccountsTree](https://sorleed.com/components/chart-of-accounts-tree.html): Interactive playground, props, and install instructions.
+- [Checkbox](https://sorleed.com/components/checkbox.html): Interactive playground, props, and install instructions.
+- [Container](https://sorleed.com/components/container.html): Interactive playground, props, and install instructions.
+- [CreditScoreGauge](https://sorleed.com/components/credit-score-gauge.html): Interactive playground, props, and install instructions.
+- [CurrencyExchange](https://sorleed.com/components/currency-exchange.html): Interactive playground, props, and install instructions.
+- [Currency](https://sorleed.com/components/currency.html): Interactive playground, props, and install instructions.
+- [Cvv](https://sorleed.com/components/cvv.html): Interactive playground, props, and install instructions.
+- [DatePicker](https://sorleed.com/components/date-picker.html): Interactive playground, props, and install instructions.
+- [DirectDebitMandate](https://sorleed.com/components/direct-debit-mandate.html): Interactive playground, props, and install instructions.
+- [Divider](https://sorleed.com/components/divider.html): Interactive playground, props, and install instructions.
+- [Drawer](https://sorleed.com/components/drawer.html): Interactive playground, props, and install instructions.
+- [EmptyState](https://sorleed.com/components/empty-state.html): Interactive playground, props, and install instructions.
+- [ExpenseReceiptUploader](https://sorleed.com/components/expense-receipt-uploader.html): Interactive playground, props, and install instructions.
+- [FeeBreakdown](https://sorleed.com/components/fee-breakdown.html): Interactive playground, props, and install instructions.
+- [Inline](https://sorleed.com/components/inline.html): Interactive playground, props, and install instructions.
+- [Input](https://sorleed.com/components/input.html): Interactive playground, props, and install instructions.
+- [InvoiceViewer](https://sorleed.com/components/invoice-viewer.html): Interactive playground, props, and install instructions.
+- [JournalEntryLedger](https://sorleed.com/components/journal-entry-ledger.html): Interactive playground, props, and install instructions.
+- [KycDocUploader](https://sorleed.com/components/kyc-doc-uploader.html): Interactive playground, props, and install instructions.
+- [LoanCalculator](https://sorleed.com/components/loan-calculator.html): Interactive playground, props, and install instructions.
+- [Modal](https://sorleed.com/components/modal.html): Interactive playground, props, and install instructions.
+- [Otp](https://sorleed.com/components/otp.html): Interactive playground, props, and install instructions.
+- [Pagination](https://sorleed.com/components/pagination.html): Interactive playground, props, and install instructions.
+- [PasswordInput](https://sorleed.com/components/password-input.html): Interactive playground, props, and install instructions.
+- [PhoneInput](https://sorleed.com/components/phone-input.html): Interactive playground, props, and install instructions.
+- [PinInput](https://sorleed.com/components/pin-input.html): Interactive playground, props, and install instructions.
+- [Popover](https://sorleed.com/components/popover.html): Interactive playground, props, and install instructions.
+- [PortfolioSummary](https://sorleed.com/components/portfolio-summary.html): Interactive playground, props, and install instructions.
+- [RadioGroup](https://sorleed.com/components/radio-group.html): Interactive playground, props, and install instructions.
+- [RepaymentSchedule](https://sorleed.com/components/repayment-schedule.html): Interactive playground, props, and install instructions.
+- [Select](https://sorleed.com/components/select.html): Interactive playground, props, and install instructions.
+- [Skeleton](https://sorleed.com/components/skeleton.html): Interactive playground, props, and install instructions.
+- [SpendingMeter](https://sorleed.com/components/spending-meter.html): Interactive playground, props, and install instructions.
+- [SplitBillCalculator](https://sorleed.com/components/split-bill-calculator.html): Interactive playground, props, and install instructions.
+- [Stack](https://sorleed.com/components/stack.html): Interactive playground, props, and install instructions.
+- [StatusIndicator](https://sorleed.com/components/status-indicator.html): Interactive playground, props, and install instructions.
+- [Switch](https://sorleed.com/components/switch.html): Interactive playground, props, and install instructions.
+- [Table](https://sorleed.com/components/table.html): Interactive playground, props, and install instructions.
+- [Tabs](https://sorleed.com/components/tabs.html): Interactive playground, props, and install instructions.
+- [TaxSummaryCard](https://sorleed.com/components/tax-summary-card.html): Interactive playground, props, and install instructions.
+- [Textarea](https://sorleed.com/components/textarea.html): Interactive playground, props, and install instructions.
+- [Toast](https://sorleed.com/components/toast.html): Interactive playground, props, and install instructions.
+- [Tooltip](https://sorleed.com/components/tooltip.html): Interactive playground, props, and install instructions.
+- [TransactionItem](https://sorleed.com/components/transaction-item.html): Interactive playground, props, and install instructions.
+- [TransferReceipt](https://sorleed.com/components/transfer-receipt.html): Interactive playground, props, and install instructions.
+- [VirtualCardGenerator](https://sorleed.com/components/virtual-card-generator.html): Interactive playground, props, and install instructions.
+- [WalletCard](https://sorleed.com/components/wallet-card.html): Interactive playground, props, and install instructions.
+- [YieldCurveTable](https://sorleed.com/components/yield-curve-table.html): Interactive playground, props, and install instructions.
+
+## Quick Installation
+```bash
+# Copy individual component source into your project
+npx @sorleed/cli add balance-card
+
+# Or install the complete React package
+npm install @sorleed/react
+```
