@@ -29,19 +29,30 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Sorleed",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "description": "Production-grade UI components and design tokens for financial, banking, and wealth interfaces.",
-    "url": "https://sorleed.com",
-    "softwareVersion": "0.1.0",
-    "license": "https://github.com/sorleed/sorleed/blob/main/LICENSE",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Sorleed UI Infrastructure",
+        "alternateName": ["Sorleed", "@sorleed/react", "@sorleed/cli"],
+        "url": "https://sorleed.com/"
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "Sorleed UI Infrastructure",
+        "alternateName": ["Sorleed", "@sorleed/react", "@sorleed/cli"],
+        "description": "Open-source source-first financial UI infrastructure, design system, and React component toolkit for fintech, banking, wealth, and accounting interfaces.",
+        "url": "https://sorleed.com",
+        "codeRepository": "https://github.com/sorleed/sorleed",
+        "programmingLanguage": ["TypeScript", "CSS", "React"],
+        "version": "0.1.0-alpha.11",
+        "license": "https://opensource.org/licenses/MIT",
+        "author": {
+          "@type": "Person",
+          "name": "Cephas Osayi",
+          "url": "https://github.com/cephasosayi"
+        }
+      }
+    ]
   }
   </script>
   <link rel="stylesheet" href="tokens-dist/tokens.css">
