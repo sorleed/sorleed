@@ -811,16 +811,84 @@ details[open] > .sidebar-dropdown__summary .sidebar-dropdown__arrow {
 /* General interactive state change response */
 .playground-stage.state--hover .fc-button {
   background: var(--accent-brand-hover) !important;
+  box-shadow: 0 4px 12px rgba(99, 91, 255, 0.25) !important;
+}
+
+.playground-stage.state--hover .fc-input__control,
+.playground-stage.state--hover .fc-currency__control,
+.playground-stage.state--hover .fc-password-input__control,
+.playground-stage.state--hover .fc-phone-input__control,
+.playground-stage.state--hover .fc-cvv__control,
+.playground-stage.state--hover .fc-date-picker__control,
+.playground-stage.state--hover .fc-select__control,
+.playground-stage.state--hover .fc-textarea__field,
+.playground-stage.state--hover .fc-otp__cell,
+.playground-stage.state--hover .fc-pin-input__cell {
+  border-color: var(--accent-brand) !important;
+}
+
+.playground-stage.state--hover .fc-card,
+.playground-stage.state--hover .fc-alert,
+.playground-stage.state--hover .fc-portfolio-summary,
+.playground-stage.state--hover .fc-direct-debit,
+.playground-stage.state--hover .fc-expense-uploader,
+.playground-stage.state--hover .fc-chart-accounts,
+.playground-stage.state--hover .fc-tabs__trigger:first-child {
+  border-color: var(--accent-brand) !important;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.1) !important;
 }
 
 .playground-stage.state--focus .fc-button,
-.playground-stage.state--focus input,
-.playground-stage.state--focus select {
+.playground-stage.state--active .fc-button,
+.playground-stage.state--focus .fc-tabs__trigger:first-child,
+.playground-stage.state--active .fc-tabs__trigger:first-child,
+.playground-stage.state--focus .fc-accordion__trigger:first-child,
+.playground-stage.state--active .fc-accordion__trigger:first-child {
   outline: 2px solid var(--accent-brand) !important;
   outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(99, 91, 255, 0.16) !important;
 }
 
-.playground-stage.state--disabled * {
+.playground-stage.state--focus .fc-input__control,
+.playground-stage.state--active .fc-input__control,
+.playground-stage.state--focus .fc-currency__control,
+.playground-stage.state--active .fc-currency__control,
+.playground-stage.state--focus .fc-password-input__control,
+.playground-stage.state--active .fc-password-input__control,
+.playground-stage.state--focus .fc-phone-input__control,
+.playground-stage.state--active .fc-phone-input__control,
+.playground-stage.state--focus .fc-cvv__control,
+.playground-stage.state--active .fc-cvv__control,
+.playground-stage.state--focus .fc-date-picker__control,
+.playground-stage.state--active .fc-date-picker__control,
+.playground-stage.state--focus .fc-select__control,
+.playground-stage.state--active .fc-select__control,
+.playground-stage.state--focus .fc-textarea__field,
+.playground-stage.state--active .fc-textarea__field,
+.playground-stage.state--focus .fc-otp__cell:first-child,
+.playground-stage.state--active .fc-otp__cell:first-child,
+.playground-stage.state--focus .fc-pin-input__cell:first-child,
+.playground-stage.state--active .fc-pin-input__cell:first-child,
+.playground-stage.state--focus .fc-switch,
+.playground-stage.state--active .fc-switch,
+.playground-stage.state--focus .fc-checkbox__box,
+.playground-stage.state--active .fc-checkbox__box,
+.playground-stage.state--focus .fc-radio__circle,
+.playground-stage.state--active .fc-radio__circle,
+.playground-stage.state--focus select,
+.playground-stage.state--active select {
+  border-color: var(--accent-brand) !important;
+  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.2) !important;
+  outline: none !important;
+}
+
+.playground-stage.state--focus .fc-preview-container > *:not(.fc-input):not(.fc-currency):not(.fc-password-input):not(.fc-phone-input):not(.fc-cvv):not(.fc-date-picker):not(.fc-select):not(.fc-textarea):not(.fc-otp):not(.fc-pin-input):not(.fc-button):not(.fc-checkbox):not(.fc-radio-group):not(.fc-switch),
+.playground-stage.state--active .fc-preview-container > *:not(.fc-input):not(.fc-currency):not(.fc-password-input):not(.fc-phone-input):not(.fc-cvv):not(.fc-date-picker):not(.fc-select):not(.fc-textarea):not(.fc-otp):not(.fc-pin-input):not(.fc-button):not(.fc-checkbox):not(.fc-radio-group):not(.fc-switch) {
+  border-color: var(--accent-brand) !important;
+  box-shadow: 0 0 0 2px var(--accent-brand), 0 0 0 5px rgba(99, 91, 255, 0.15) !important;
+}
+
+.playground-stage.state--disabled .fc-preview-container {
   opacity: 0.55 !important;
   pointer-events: none !important;
   cursor: not-allowed !important;
