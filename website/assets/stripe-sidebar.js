@@ -453,4 +453,223 @@ document.addEventListener('DOMContentLoaded', () => {
       sw.classList.remove('fc-switch--checked');
     }
   });
+
+  // G. Accordion toggle
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.fc-accordion__trigger');
+    if (!trigger) return;
+    const panelId = trigger.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
+    const expanded = trigger.getAttribute('aria-expanded') === 'true';
+    trigger.setAttribute('aria-expanded', String(!expanded));
+    if (panel) panel.hidden = expanded;
+  });
+
+  // H. PasswordInput visibility toggle
+  document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('.fc-password-input__toggle');
+    if (!toggle) return;
+    const wrap = toggle.closest('.fc-password-input');
+    const input = wrap ? wrap.querySelector('.fc-password-input__field') : null;
+    if (!input) return;
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    toggle.setAttribute('aria-pressed', String(isPassword));
+    toggle.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+    toggle.textContent = isPassword ? 'Hide password' : 'Show password';
+  });
+
+  // I. Tabs switching
+  document.addEventListener('click', (e) => {
+    const tab = e.target.closest('.fc-tabs__trigger');
+    if (!tab) return;
+    const tabsRoot = tab.closest('.fc-tabs');
+    if (!tabsRoot) return;
+    tabsRoot.querySelectorAll('.fc-tabs__trigger').forEach(t => {
+      t.classList.remove('fc-tabs__trigger--active');
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+    });
+    tabsRoot.querySelectorAll('.fc-tabs__content').forEach(p => { p.hidden = true; });
+    tab.classList.add('fc-tabs__trigger--active');
+    tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('tabindex', '0');
+    const panelId = tab.getAttribute('aria-controls');
+    const panel = panelId ? tabsRoot.querySelector('#' + panelId) : null;
+    if (panel) panel.hidden = false;
+  });
+
+  // J. Pagination page selection
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.fc-pagination__btn');
+    if (!btn || btn.disabled) return;
+    const nav = btn.closest('.fc-pagination');
+    if (!nav) return;
+    const pageBtns = Array.from(nav.querySelectorAll('.fc-pagination__btn')).filter(b => /^\d+$/.test(b.textContent.trim()));
+    if (!pageBtns.length) return;
+    const currentIdx = pageBtns.findIndex(b => b.classList.contains('fc-pagination__btn--active'));
+    let nextIdx = currentIdx;
+    if (btn.classList.contains('fc-pagination__btn--prev')) {
+      nextIdx = Math.max(0, currentIdx - 1);
+    } else if (btn.classList.contains('fc-pagination__btn--next')) {
+      nextIdx = Math.min(pageBtns.length - 1, currentIdx + 1);
+    } else if (/^\d+$/.test(btn.textContent.trim())) {
+      nextIdx = pageBtns.indexOf(btn);
+    }
+    if (nextIdx >= 0 && nextIdx < pageBtns.length) {
+      pageBtns.forEach(b => {
+        b.classList.remove('fc-pagination__btn--active');
+        b.removeAttribute('aria-current');
+      });
+      pageBtns[nextIdx].classList.add('fc-pagination__btn--active');
+      pageBtns[nextIdx].setAttribute('aria-current', 'page');
+    }
+  });
+
+  // K. BankSelector search & selection
+  document.querySelectorAll('.fc-bank-selector').forEach(selector => {
+    const searchInput = selector.querySelector('.fc-bank-selector__search-input');
+    const items = Array.from(selector.querySelectorAll('.fc-bank-selector__item'));
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.trim().toLowerCase();
+        items.forEach(item => {
+          const li = item.closest('li') || item;
+          li.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+        });
+      });
+    }
+    selector.addEventListener('click', (e) => {
+      const item = e.target.closest('.fc-bank-selector__item');
+      if (!item) return;
+      items.forEach(i => {
+        i.classList.remove('fc-bank-selector__item--selected');
+        i.setAttribute('aria-selected', 'false');
+      });
+      item.classList.add('fc-bank-selector__item--selected');
+      item.setAttribute('aria-selected', 'true');
+    });
+  });
+
+  // L. CurrencyExchange live conversion & swap
+  document.querySelectorAll('.fc-currency-exchange').forEach(fx => {
+    const inputs = fx.querySelectorAll('.fc-currency-exchange__input');
+    const selects = fx.querySelectorAll('.fc-currency-exchange__currency-select');
+    const swapBtn = fx.querySelector('.fc-currency-exchange__swap-button');
+    const ticker = fx.querySelector('.fc-currency-exchange__rate-ticker span:last-child');
+    if (inputs.length < 2 || selects.length < 2) return;
+
+    const usdRates = { USD: 1, EUR: 0.9225, GBP: 0.785, NGN: 1580, CAD: 1.38, GHS: 15.2, KES: 129.5 };
+    selects[0].value = fx.getAttribute('fromCurrency') || 'USD';
+    selects[1].value = fx.getAttribute('toCurrency') || 'EUR';
+    inputs[0].value = fx.getAttribute('fromAmount') || '5000.00';
+
+    function recalc(fromReceive = false) {
+      const fromCur = selects[0].value;
+      const toCur = selects[1].value;
+      const rate = (usdRates[toCur] || 1) / (usdRates[fromCur] || 1);
+      if (ticker) ticker.textContent = `1 ${fromCur} = ${rate.toFixed(4)} ${toCur}`;
+      if (fromReceive) {
+        const val = parseFloat(inputs[1].value.replace(/,/g, '')) || 0;
+        inputs[0].value = (val / rate).toFixed(2);
+      } else {
+        const val = parseFloat(inputs[0].value.replace(/,/g, '')) || 0;
+        inputs[1].value = (val * rate).toFixed(2);
+      }
+    }
+
+    inputs[0].addEventListener('input', () => recalc(false));
+    inputs[1].addEventListener('input', () => recalc(true));
+    selects[0].addEventListener('change', () => recalc(false));
+    selects[1].addEventListener('change', () => recalc(false));
+    if (swapBtn) {
+      swapBtn.addEventListener('click', () => {
+        const tmp = selects[0].value;
+        selects[0].value = selects[1].value;
+        selects[1].value = tmp;
+        recalc(false);
+      });
+    }
+    recalc(false);
+  });
+
+  // M. LoanCalculator live EMI sliders
+  document.querySelectorAll('.fc-loan-calculator').forEach(calc => {
+    const sliders = calc.querySelectorAll('.fc-loan-calculator__slider');
+    const values = calc.querySelectorAll('.fc-loan-calculator__value');
+    const emiEl = calc.querySelector('.fc-loan-calculator__emi-amount');
+    const stats = calc.querySelectorAll('.fc-loan-calculator__stats-grid strong');
+    if (sliders.length < 2) return;
+
+    function updateLoan() {
+      const P = parseFloat(sliders[0].value) || 10000;
+      const n = parseInt(sliders[1].value, 10) || 24;
+      const r = 0.12 / 12;
+      const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      const totalRepay = emi * n;
+      const totalInterest = totalRepay - P;
+
+      if (values[0]) values[0].textContent = `USD ${Math.round(P).toLocaleString()}`;
+      if (values[1]) values[1].textContent = `${n} Months (${(n / 12).toFixed(1).replace(/\.0$/, '')} yrs)`;
+      if (emiEl) emiEl.textContent = `USD ${Math.round(emi).toLocaleString()}/mo`;
+      if (stats[0]) stats[0].textContent = `USD ${Math.round(totalInterest).toLocaleString()}`;
+      if (stats[1]) stats[1].textContent = `USD ${Math.round(totalRepay).toLocaleString()}`;
+    }
+
+    sliders[0].addEventListener('input', updateLoan);
+    sliders[1].addEventListener('input', updateLoan);
+    updateLoan();
+  });
+
+  // N. SplitBillCalculator live tip & total calculation
+  document.querySelectorAll('.fc-split-bill').forEach(bill => {
+    const amountInput = bill.querySelector('.fc-currency__field');
+    const tipBtns = Array.from(bill.querySelectorAll('.fc-split-bill__tip-btn'));
+    const heroAmount = bill.querySelector('.fc-split-bill__hero-amount');
+    const shareEls = bill.querySelectorAll('.fc-split-bill__participant-share');
+    const tipHeading = Array.from(bill.querySelectorAll('span')).find(s => s.textContent.includes('Add Tip'));
+    const participantsCount = shareEls.length || 3;
+    let tipPct = 15;
+
+    function updateSplit() {
+      const total = parseFloat(amountInput ? amountInput.value.replace(/,/g, '') : 120) || 0;
+      const perPerson = (total * (1 + tipPct / 100)) / participantsCount;
+      const formatted = `USD ${perPerson.toFixed(2)}`;
+      if (heroAmount) heroAmount.textContent = formatted;
+      shareEls.forEach(el => { el.textContent = formatted; });
+      if (tipHeading) tipHeading.textContent = `Add Tip (${tipPct}%)`;
+    }
+
+    tipBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tipBtns.forEach(b => {
+          b.classList.remove('fc-split-bill__tip-btn--selected');
+          b.setAttribute('aria-checked', 'false');
+        });
+        btn.classList.add('fc-split-bill__tip-btn--selected');
+        btn.setAttribute('aria-checked', 'true');
+        const m = btn.textContent.match(/(\d+)/);
+        tipPct = m ? parseInt(m[1], 10) : 0;
+        updateSplit();
+      });
+    });
+
+    if (amountInput) {
+      amountInput.addEventListener('input', updateSplit);
+    }
+  });
+
+  // O. BiometricAuthPrompt Scan Face ID button
+  const bioActionBtn = document.getElementById('bio-action-btn');
+  if (bioActionBtn) {
+    bioActionBtn.addEventListener('click', () => {
+      const stateSelect = document.querySelector('.playground-panel .ctrl-select');
+      window.updateComponentState('authenticating');
+      if (stateSelect) stateSelect.value = 'authenticating';
+      setTimeout(() => {
+        window.updateComponentState('success');
+        if (stateSelect) stateSelect.value = 'success';
+      }, 900);
+    });
+  }
 });

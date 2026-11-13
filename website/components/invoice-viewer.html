@@ -128,7 +128,7 @@ export function Example() {
   </script>
 <script>
       function updateInvBadge(st) {
-        const b = document.getElementById('inv-badge');
+        const b = document.querySelector('#stage-invoice-viewer .fc-badge');
         if (!b) return;
         b.textContent = st;
         b.className = 'fc-badge';
