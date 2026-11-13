@@ -143,7 +143,13 @@ export function Example() {
     }
     function updateBcCurr(c) {
       bcCurr = c;
-      document.getElementById('bc-val').textContent = bcMasked ? bcCurr + ' ••••••••' : bcCurr + '42,850.75';
+      const amountEl = document.querySelector('#stage-balance-card .fc-balance-card__amount');
+      const eyeBtn = document.querySelector('#stage-balance-card .fc-balance-card__privacy-toggle');
+      if (!amountEl) return;
+      const formatted = bcCurr + '42,850.75';
+      amountEl.setAttribute('data-raw-val', formatted);
+      const isHidden = eyeBtn && eyeBtn.getAttribute('aria-pressed') === 'true';
+      amountEl.textContent = isHidden ? '••••••••' : formatted;
     }
   </script>
   <script src="../assets/metrics.js"></script>
