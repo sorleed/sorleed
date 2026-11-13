@@ -40,6 +40,20 @@ function setupMobileNavigation() {
     }
   }
 
+  function syncToggleVisibility() {
+    if (window.innerWidth <= 900) {
+      toggleBtn.style.display = 'inline-flex';
+    } else {
+      toggleBtn.style.display = 'none';
+      if (sidebar.classList.contains('is-open')) {
+        toggleMenu(false);
+      }
+    }
+  }
+
+  syncToggleVisibility();
+  window.addEventListener('resize', syncToggleVisibility);
+
   toggleBtn.addEventListener('click', () => toggleMenu());
   backdrop.addEventListener('click', () => toggleMenu(false));
 
@@ -188,42 +202,24 @@ window.updateComponentState = function(state) {
   if (!stage) return;
 
   // Clear previous state classes
-  stage.classList.remove('state--default', 'state--hover', 'state--focus', 'state--error', 'state--disabled', 'state--authenticating', 'state--success');
+  stage.classList.remove('state--default', 'state--active', 'state--hover', 'state--focus', 'state--error', 'state--disabled', 'state--authenticating', 'state--success');
   stage.classList.add('state--' + state);
 
   const isError = state === 'error';
   const isDisabled = state === 'disabled';
   const isFocus = state === 'focus';
-  const isHover = state === 'hover';
+  const isActive = state === 'active';
 
   // 1. Inputs, Buttons, Form elements disabled toggle
   const formElements = stage.querySelectorAll('input, button:not(.ctrl-select), select:not(.ctrl-select), textarea');
   formElements.forEach(el => {
-    // Skip internal playground controls if any
     if (el.closest('.playground-panel')) return;
     if (isDisabled) {
       el.setAttribute('disabled', 'true');
     } else {
       el.removeAttribute('disabled');
     }
-  
-  // F. WalletCard Interactive 3D Flip (Click & Keyboard Enter/Space)
-  document.addEventListener('click', (e) => {
-    const card = e.target.closest('.fc-wallet-card');
-    if (!card) return;
-    card.classList.toggle('fc-wallet-card--flipped');
   });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      const card = e.target.closest('.fc-wallet-card');
-      if (card) {
-        e.preventDefault();
-        card.classList.toggle('fc-wallet-card--flipped');
-      }
-    }
-  });
-});
 
   // 2. OTP component state handling
   const otp = stage.querySelector('.fc-otp');
@@ -318,10 +314,10 @@ window.updateComponentState = function(state) {
     }
   }
 
-  // 5. Standard text input focus styling
-  const firstInput = stage.querySelector('.fc-input__field, input[type="text"], input[type="password"]');
-  if (isFocus && firstInput) {
-    firstInput.focus();
+  // 5. Standard input / control focus or active styling
+  const firstInput = stage.querySelector('.fc-input__field, .fc-currency__field, .fc-password-input__field, .fc-phone-input__field, .fc-cvv__field, .fc-date-picker__field, .fc-textarea__field, .fc-select__field, input:not([type="hidden"]), select, textarea');
+  if ((isFocus || isActive) && firstInput && !isDisabled) {
+    firstInput.focus({ preventScroll: true });
   }
 };
 
@@ -336,6 +332,23 @@ document.addEventListener('DOMContentLoaded', () => {
       sel.addEventListener('change', (e) => {
         window.updateComponentState(e.target.value);
       });
+    }
+  });
+
+  // F. WalletCard Interactive 3D Flip (Click & Keyboard Enter/Space)
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.fc-wallet-card');
+    if (!card) return;
+    card.classList.toggle('fc-wallet-card--flipped');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const card = e.target.closest('.fc-wallet-card');
+      if (card) {
+        e.preventDefault();
+        card.classList.toggle('fc-wallet-card--flipped');
+      }
     }
   });
 
