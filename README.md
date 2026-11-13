@@ -1,104 +1,119 @@
-# Sorleed
+# Sorleed UI Infrastructure
 
-An open-source AI-native design infrastructure for financial products.
+An open-source, source-first financial UI infrastructure, design system, and React component toolkit for fintech, banking, wealth, and accounting interfaces.
 
-Sorleed provides designers, developers, and AI agents with a shared language for building modern financial experiences.
+**[Documentation & Live Playground →](https://sorleed.com)** · **[Component Reference →](https://sorleed.com/components/balance-card)** · **[AI Agent Skill →](https://sorleed.com/docs#ai-skill)**
 
-By combining design systems, code, documentation, and AI context files, Sorleed helps teams build consistent, accessible, and scalable fintech products faster.
+Sorleed provides designers, developers, and AI coding agents with a shared, token-driven foundation for building accessible, predictable financial products with zero runtime lock-in.
 
 ---
 
 ## Why Sorleed?
 
-Financial products repeatedly solve the same interface challenges:
+Financial products repeatedly solve the same high-stakes interface challenges:
 
-* Authentication
-* Wallets
-* Transfers
-* Payments
-* KYC Verification
-* Transaction Histories
-* Account Management
+* Authentication, 2FA OTP, PIN & Biometrics
+* Balances, Wallets, Cards & Transfers
+* Currency Exchange, Lending & Yield
+* Double-Entry Bookkeeping, Invoices & Tax Summaries
+* KYC Verification & Compliance
 
-Designers redesign them.
+Designers redesign them. Developers rebuild them. AI generates them inconsistently.
 
-Developers rebuild them.
-
-AI generates them differently every time.
-
-Sorleed exists to create a shared foundation that improves consistency across the entire product development lifecycle.
+[Sorleed UI Infrastructure](https://sorleed.com) establishes a single canonical source of truth combining WCAG 2.1 AA CSS components, TypeScript React adapters, generated `--fc-*` design tokens, and machine-readable AI agent skills.
 
 ---
 
-## Core Principles
+## Quick Start
 
-Sorleed is governed by eight principles. The authoritative definitions and supporting
-commitments are maintained in [`docs/foundation/principles.md`](docs/foundation/principles.md).
+### Option 1: Copy Source-Owned Components via CLI (Recommended)
 
-* Accessible by Default
-* Semantic Over Visual
-* Themeable by Design
-* Source Owned
-* Consistent Yet Flexible
-* AI Friendly
-* Fintech First
-* Component Driven
+Install any component directly into your codebase with its CSS, TypeScript definitions, design tokens, and official AI Agent Skill (`.agent/skills/sorleed/SKILL.md` and `.gemini/skills/sorleed/SKILL.md`):
 
-Supporting commitments, including Mobile First, are recorded there rather than as
-additional principles.
+```bash
+npx @sorleed/cli add balance-card
+```
 
----
+### Option 2: Install the React Package
 
-## v0.1 Release Scope
+```bash
+npm install @sorleed/react@alpha
+```
 
-Sorleed v0.1 is a framework-agnostic, native HTML/CSS **Button and Input
-component-system release**.
+```tsx
+import { BalanceCard } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/balance-card.css';
 
-### Delivered
-
-- Native HTML/CSS Button and Input components.
-- Generated design-token CSS and machine-readable component contracts.
-- Existing token, contract and implementation checks.
-- Component catalogue, contract-first usage guide and native reference pages.
-- Color System, Design Principles and Token Architecture documentation.
-- Runnable transaction-history and payment-form examples.
-
-### Not part of this release
-
-- Card and other planned components.
-- Remaining foundation guides: Typography, Spacing, Radius, Sizing, Border,
-  Elevation and Motion. Color System, Design Principles and Token Architecture
-  are available.
-- The AI Context Layer.
-- Package, distribution and framework-adapter support.
-- Verified cross-browser and assistive-technology support. Only the checks
-  recorded in the repository are claimed; unrun environments are not marked as
-  passing.
+export function TreasuryOverview() {
+  return (
+    <BalanceCard
+      title="Primary Checking"
+      account="•••• 9012"
+      amount="$42,850.75"
+    />
+  );
+}
+```
 
 ---
 
-## Use Sorleed
+## What's Included (`v0.1.0-alpha.11`)
 
-Start with the [component consumption guide](components/README.md) and the
-[runnable transaction-history example](examples/transaction-history/README.md).
+- **61 Production Components** across Core Primitives, Banking & Payments, Lending & Wealth, and Double-Entry Accounting:
+  - **Core & Form Primitives:** `Button`, `Input`, `PasswordInput`, `PhoneInput`, `Select`, `Checkbox`, `RadioGroup`, `Textarea`, `Switch`, `Card`, `Alert`, `Tabs`, `Table`, `Badge`, `Tooltip`, `Popover`, `Drawer`, `Modal`, `Toast`, `Accordion`, `Pagination`, `Skeleton`, `EmptyState`, `Avatar`, `Divider`, `Stack`, `Inline`, `Container`
+  - **Financial & Banking:** `BalanceCard`, `WalletCard`, `TransactionItem`, `AmountDisplay`, `Currency`, `CurrencyExchange`, `OTP`, `PinInput`, `CVV`, `DatePicker`, `BankSelector`, `CardControls`, `TransferReceipt`, `BiometricAuthPrompt`, `VirtualCardGenerator`, `DirectDebitMandate`, `StatusIndicator`
+  - **Lending, Credit & Wealth:** `LoanCalculator`, `RepaymentSchedule`, `CreditScoreGauge`, `PortfolioSummary`, `AssetAllocation`, `YieldCurveTable`, `SpendingMeter`, `SplitBillCalculator`, `FeeBreakdown`, `KycDocUploader`
+  - **Accounting & Bookkeeping:** `InvoiceViewer`, `ExpenseReceiptUploader`, `JournalEntryLedger`, `TaxSummaryCard`, `ChartOfAccountsTree`
+- **708 Generated Design Tokens (`--fc-*`)** with automated WCAG 2.1 AA contrast validation (`tokens/check.mjs`).
+- **AI Agent Skill & Registry:** [`skills/sorleed/SKILL.md`](skills/sorleed/SKILL.md) and [`registry.json`](registry.json) for Google Antigravity, Gemini CLI, Claude Code, and Cursor.
+- **Interactive Documentation:** Full live component playground at [https://sorleed.com](https://sorleed.com).
 
-Sorleed / Sorleed components are distributed both as source-first HTML/CSS/React components and via the `@sorleed/react` package and `@sorleed/cli`.
+---
 
-### Architecture & Radix UI Primitives
+## AI Agent Integration
 
-The majority of components (Button, Input, Card, Alert, Table, Badge, Switch, and all Fintech primitives) are 100% native HTML/CSS implementations without external runtime dependencies.
+Install the official Sorleed skill so AI coding agents use exact TypeScript props, `--fc-*` tokens, and financial guardrails:
 
-For complex floating overlays and accessible keyboard interactions, Sorleed leverages unstyled [Radix UI](https://www.radix-ui.com/) headless primitives:
-- **Tabs:** `@radix-ui/react-tabs` (arrow-key roving tab index, ARIA tabs/tabpanel roles)
-- **Tooltip:** `@radix-ui/react-tooltip` (accessible hover/focus delays, escape dismissal, collision bounds)
-- **Popover:** `@radix-ui/react-popover` (focus trapping, click-outside dismissal, anchor positioning)
-- **Drawer:** `@radix-ui/react-dialog` (modal sheet overlay, body scroll lock, escape dismissal)
+```bash
+# Google Antigravity & Gemini CLI
+curl -s https://sorleed.com/skills/SKILL.md -o .gemini/skills/sorleed/SKILL.md
 
-All Radix primitives are styled exclusively with Sorleed `--fc-*` design tokens to ensure strict visual and theme consistency.
+# Claude Code / Agent Skill Engine
+curl -s https://sorleed.com/skills/SKILL.md -o .agent/skills/sorleed/SKILL.md
+```
 
-When using these overlay components, install the respective Radix peer dependencies:
+Or read [`https://sorleed.com/llms.txt`](https://sorleed.com/llms.txt) and [`https://sorleed.com/registry.json`](https://sorleed.com/registry.json).
+
+---
+
+## Architecture & Radix UI Primitives
+
+Most Sorleed components (`Button`, `Input`, `Card`, `Alert`, `Table`, `Badge`, `Switch`, and financial primitives) are native HTML/CSS implementations without external runtime dependencies.
+
+For complex floating overlays and accessible keyboard interactions, Sorleed uses unstyled [Radix UI](https://www.radix-ui.com/) headless primitives styled exclusively with Sorleed `--fc-*` tokens:
+
+- **Tabs:** `@radix-ui/react-tabs`
+- **Tooltip:** `@radix-ui/react-tooltip`
+- **Popover:** `@radix-ui/react-popover`
+- **Drawer / Dialog:** `@radix-ui/react-dialog`
+
 ```bash
 npm install @radix-ui/react-tabs @radix-ui/react-tooltip @radix-ui/react-popover @radix-ui/react-dialog
+```
+
+---
+
+## Verification
+
+Run token, contract, template parity, TypeScript, and CLI checks locally:
+
+```bash
+node tokens/check.mjs
+node components/validate-contracts.mjs
+node components/validate-parity.mjs
+npm --prefix react run typecheck
+npm --prefix cli test
 ```
 
 ---
@@ -107,61 +122,25 @@ npm install @radix-ui/react-tabs @radix-ui/react-tooltip @radix-ui/react-popover
 
 ```text
 sorleed/
-
-├── docs/
-├── figma/
-├── ai/
-├── tokens/
-├── components/
-├── website/
-
-├── README.md
-├── ROADMAP.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-└── LICENSE
+├── cli/          # @sorleed/cli source-first installer & templates
+├── components/   # Canonical CSS, HTML reference markup & JSON contracts
+├── react/        # @sorleed/react TypeScript component adapters & dist
+├── skills/       # Official AI Agent Skill (SKILL.md)
+├── tokens/       # Three-layer design token source & WCAG AA checker
+├── website/      # Production documentation & interactive playground (sorleed.com)
+├── registry.json # Machine-readable component & prop registry
+└── LICENSE       # MIT License
 ```
-
----
-
-## Current Roadmap
-
-### Version 0.1
-
-Delivered as the Button/Input component-system release. See the v0.1 Release
-Scope above. Card, the remaining foundation guides, the AI Context Layer,
-package/distribution and verified cross-browser/assistive-technology support are
-deferred.
-
-### Version 0.2
-
-* Core Components Expansion
-
-### Version 0.3
-
-* Fintech Components
-
-See ROADMAP.md for details.
 
 ---
 
 ## Contributing
 
 We welcome designers, developers, technical writers, and product thinkers.
-
-Please read CONTRIBUTING.md before submitting contributions.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting contributions.
 
 ---
 
 ## License
 
-MIT License.
-
----
-
-## Status
-
-Sorleed v0.1 is the Button/Input component-system release. Broader roadmap
-items—Card, remaining foundation guides, the AI Context Layer,
-package/distribution and verified cross-browser/assistive-technology
-support—are deferred.
+MIT License — see [LICENSE](LICENSE).
