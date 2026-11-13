@@ -40,6 +40,20 @@ function setupMobileNavigation() {
     }
   }
 
+  function syncToggleVisibility() {
+    if (window.innerWidth <= 900) {
+      toggleBtn.style.display = 'inline-flex';
+    } else {
+      toggleBtn.style.display = 'none';
+      if (sidebar.classList.contains('is-open')) {
+        toggleMenu(false);
+      }
+    }
+  }
+
+  syncToggleVisibility();
+  window.addEventListener('resize', syncToggleVisibility);
+
   toggleBtn.addEventListener('click', () => toggleMenu());
   backdrop.addEventListener('click', () => toggleMenu(false));
 
