@@ -1,0 +1,171 @@
+/*
+ * Sorleed MoneyTransferFlow — layout-only stylesheet.
+ * All interactive controls use Sorleed primitives (Card, BeneficiaryPicker, Input, Select, RadioGroup, FeeBreakdown, Tabs, BiometricAuthPrompt, OTP, PinInput, TransferReceipt, Button, Badge, Alert).
+ */
+
+.fc-transfer-flow {
+  width: 100%;
+  max-width: 600px;
+}
+
+.fc-transfer-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-transfer-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-transfer-flow__stepper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--fc-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fc-transfer-flow__step {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-2) var(--fc-space-3);
+  border-radius: var(--fc-radius-lg);
+  border: 1px solid var(--fc-color-border-subtle);
+  background-color: var(--fc-color-surface-subtle);
+}
+
+.fc-transfer-flow__step--active {
+  background-color: var(--fc-blue-50);
+  border-color: var(--fc-blue-300);
+}
+
+.fc-transfer-flow__step--done {
+  background-color: var(--fc-green-50);
+  border-color: var(--fc-green-200);
+}
+
+.fc-transfer-flow__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+  background-color: var(--fc-color-surface-default);
+  color: var(--fc-color-content-secondary);
+  border: 1px solid var(--fc-color-border-default);
+}
+
+.fc-transfer-flow__step--active .fc-transfer-flow__step-num {
+  background-color: var(--fc-blue-600);
+  color: var(--fc-white);
+  border-color: var(--fc-blue-600);
+}
+
+.fc-transfer-flow__step--done .fc-transfer-flow__step-num {
+  background-color: var(--fc-green-600);
+  color: var(--fc-white);
+  border-color: var(--fc-green-600);
+}
+
+.fc-transfer-flow__step-label {
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fc-transfer-flow__step--active .fc-transfer-flow__step-label {
+  color: var(--fc-blue-700);
+}
+
+.fc-transfer-flow__step--done .fc-transfer-flow__step-label {
+  color: var(--fc-green-800);
+}
+
+.fc-transfer-flow__grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-transfer-flow__amount-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 124px 124px;
+  gap: var(--fc-space-3);
+  align-items: start;
+}
+
+.fc-transfer-flow__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fc-space-2);
+}
+
+.fc-transfer-flow__summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-transfer-flow__summary-label {
+  display: block;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-tertiary);
+}
+
+.fc-transfer-flow__summary-value {
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-neutral-900);
+}
+
+.fc-transfer-flow__tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  padding-top: var(--fc-space-3);
+}
+
+.fc-transfer-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  padding-top: var(--fc-space-2);
+}
+
+.fc-transfer-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-transfer-flow__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 540px) {
+  .fc-transfer-flow__stepper,
+  .fc-transfer-flow__grid-2,
+  .fc-transfer-flow__amount-grid,
+  .fc-transfer-flow__summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

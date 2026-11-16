@@ -1,0 +1,140 @@
+/*
+ * Sorleed TransferLimitMeter — daily/monthly payment & ATM velocity limit tracker.
+ * Consumes foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-transfer-limit {
+  font-family: var(--fc-font-family-sans, "IBM Plex Sans", system-ui, sans-serif);
+  background: var(--fc-color-surface-default, #ffffff);
+  border: 1px solid var(--fc-color-border-subtle, #e2e8f0);
+  border-radius: var(--fc-radius-lg, 8px);
+  padding: var(--fc-space-5, 20px);
+  color: var(--fc-color-content-primary, #0f172a);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+}
+
+.fc-transfer-limit__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3, 12px);
+  margin-bottom: var(--fc-space-4, 16px);
+}
+
+.fc-transfer-limit__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md, 16px);
+  font-weight: 600;
+  color: var(--fc-color-content-primary, #0f172a);
+}
+
+.fc-transfer-limit__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4, 16px);
+}
+
+.fc-transfer-limit__item {
+  padding: var(--fc-space-3, 12px);
+  background: var(--fc-color-surface-canvas, #f8fafc);
+  border: 1px solid var(--fc-color-border-subtle, #e2e8f0);
+  border-radius: var(--fc-radius-md, 6px);
+}
+
+.fc-transfer-limit__row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-2, 8px);
+  margin-bottom: 6px;
+}
+
+.fc-transfer-limit__label-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fc-transfer-limit__label {
+  font-size: var(--fc-font-size-sm, 14px);
+  font-weight: 600;
+  color: var(--fc-color-content-primary, #0f172a);
+}
+
+.fc-transfer-limit__rail {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: var(--fc-color-surface-default, #ffffff);
+  border: 1px solid var(--fc-color-border-subtle, #e2e8f0);
+  color: var(--fc-color-content-secondary, #334155);
+}
+
+.fc-transfer-limit__amounts {
+  font-size: var(--fc-font-size-xs, 12px);
+  font-variant-numeric: tabular-nums;
+  color: var(--fc-color-content-secondary, #334155);
+  font-weight: 500;
+}
+
+.fc-transfer-limit__track {
+  width: 100%;
+  height: 8px;
+  background: var(--fc-color-surface-muted, #e2e8f0);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.fc-transfer-limit__fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--fc-blue-600, #2563eb);
+  transition: width 0.25s ease;
+}
+
+.fc-transfer-limit__fill--warning {
+  background: #d97706;
+}
+
+.fc-transfer-limit__fill--exceeded {
+  background: #dc2626;
+}
+
+.fc-transfer-limit__row-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-2, 8px);
+  font-size: var(--fc-font-size-xs, 12px);
+  color: var(--fc-color-content-helper, #475569);
+}
+
+.fc-transfer-limit__remaining {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.fc-transfer-limit__increase-btn {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fc-blue-700, #1d4ed8);
+  cursor: pointer;
+}
+
+.fc-transfer-limit__increase-btn:hover {
+  text-decoration: underline;
+}
+
+.fc-transfer-limit__increase-btn:focus-visible {
+  outline: 2px solid var(--fc-color-border-focus, #2563eb);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

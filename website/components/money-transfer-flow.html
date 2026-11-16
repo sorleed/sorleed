@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>MoneyTransferFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed MoneyTransferFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/money-transfer-flow">
+  <meta property="og:title" content="MoneyTransferFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed MoneyTransferFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="money-transfer-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>MoneyTransferFlow</span></div>
+      <h1 class="docs-title">MoneyTransferFlow</h1>
+      <p class="docs-lede">
+        Streamlined 3-step send flow composing <code>Card</code>, <code>BeneficiaryPicker</code>, <code>Input</code>, <code>Select</code>, <code>RadioGroup</code>, <code>FeeBreakdown</code>, <code>Tabs</code>, <code>OTP</code>, <code>PinInput</code>, and <code>TransferReceipt</code>.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-transfer-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-transfer-flow__header">
+                    <div>
+                      <h3 class="fc-card__title" id="mtf-title">Send money</h3>
+                      <p class="fc-card__description" id="mtf-sub">Available balance: $25,000.00</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="mtf-rate-badge">1 USD = 0.92 EUR · 04:58</span>
+                  </div>
+                </div>
+                <div class="fc-card__body">
+                  <div class="fc-transfer-flow__stack">
+                    <ol class="fc-transfer-flow__stepper" id="mtf-stepper"></ol>
+                    <div id="mtf-alert-wrap" style="display:none;"></div>
+                    <div class="fc-transfer-flow__stack" id="mtf-body"></div>
+                    <div class="fc-transfer-flow__actions" id="mtf-actions"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Account Type</span>
+              <select class="ctrl-select" onchange="mtf.accountType=this.value; renderMtf();">
+                <option value="personal">Personal Account</option>
+                <option value="business">Business Treasury</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Send Currency</span>
+              <select class="ctrl-select" id="mtf-curr-panel" onchange="mtf.sourceCurrency=this.value; renderMtf();">
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="NGN">NGN (₦)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Simulate State</span>
+              <button type="button" class="ctrl-select" onclick="mtf.rateExpired=true;mtf.step=1;renderMtf();" style="cursor:pointer;">Expire Rate Lock</button>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="mtfRestart()" style="cursor:pointer;">Restart Flow</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add money-transfer-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card"><div class="code-card__header">App.tsx</div><pre class="code-card__body">import { MoneyTransferFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;MoneyTransferFlow
+      senderName="Operating Account"
+      sourceCurrency="USD"
+      targetCurrency="EUR"
+      availableBalance={25000}
+      beneficiaries={[
+        { id: "1", name: "Acme Cloud Ltd", bankName: "Mercury Bank", accountMask: "•••• 4829", rail: "ACH", verificationStatus: "verified" }
+      ]}
+    /&gt;
+  );
+}</pre></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('money-transfer-flow');
+
+    const M_SYM = { USD: '$', EUR: '€', GBP: '£', NGN: '₦' };
+    const mtf = {
+      step: 0, // 0 recipient, 1 amount+rail+fees, 2 confirm+auth
+      sent: false,
+      accountType: 'personal',
+      sourceCurrency: 'USD',
+      targetCurrency: 'EUR',
+      amount: 1000,
+      rail: 'ach',
+      balance: 25000,
+      limit: 15000,
+      rateExpired: false,
+      addingNew: false,
+      query: '',
+      authTab: 'passkey',
+      error: '',
+      shared: false,
+      selectedId: '1',
+      beneficiaries: [
+        { id: '1', name: 'Acme Cloud Ltd', bankName: 'Mercury Bank', accountMask: '•••• 4829', rail: 'ACH', currency: 'USD' },
+        { id: '2', name: 'Elena Rostova', bankName: 'Deutsche Bank', accountMask: '•••• 9012', rail: 'SEPA', currency: 'EUR' }
+      ],
+      newBen: { name: '', bankName: '', account: '', currency: 'EUR' }
+    };
+
+    const RAIL_INFO = {
+      ach: { label: 'ACH Standard — Free · 1-2 business days', name: 'ACH Standard', fee: 0, eta: '1-2 business days' },
+      swift: { label: 'Wire / SWIFT — Same business day ($15 fee)', name: 'Wire / SWIFT', fee: 15, eta: 'Today by 5 PM' },
+      sepa: { label: 'SEPA Instant — Under 10 seconds ($1.50 fee)', name: 'SEPA Instant', fee: 1.5, eta: 'Under 10 seconds' }
+    };
+
+    function mtfRestart() {
+      mtf.step = 0; mtf.sent = false; mtf.rateExpired = false; mtf.error = ''; mtf.addingNew = false; mtf.shared = false;
+      renderMtf();
+    }
+
+    function mtfRadio(name, val, checked, label, onchange) {
+      return `<label class="fc-radio-group__item"><span class="fc-radio-group__control"><input type="radio" name="${name}" value="${val}" ${checked ? 'checked' : ''} class="fc-radio-group__field" onchange="${onchange}"><span class="fc-radio-group__circle" aria-hidden="true"><span class="fc-radio-group__dot"></span></span></span><span class="fc-radio-group__item-label">${label}</span></label>`;
+    }
+
+    function renderMtf() {
+      const sym = M_SYM[mtf.sourceCurrency] || '$';
+      const ts = M_SYM[mtf.targetCurrency] || '€';
+      const activeBen = mtf.beneficiaries.find(b => b.id === mtf.selectedId) || mtf.beneficiaries[0];
+      const railInfo = RAIL_INFO[mtf.rail];
+      const rate = mtf.sourceCurrency === mtf.targetCurrency ? 1 : 0.92;
+      const receives = +(Math.max(0, mtf.amount - railInfo.fee) * rate).toFixed(2);
+
+      document.getElementById('mtf-sub').textContent = mtf.accountType === 'business'
+        ? `Business treasury (Operating Account) · Available: ${sym}${mtf.balance.toLocaleString()}`
+        : `Available balance: ${sym}${mtf.balance.toLocaleString()}`;
+
+      const rBadge = document.getElementById('mtf-rate-badge');
+      rBadge.className = 'fc-badge ' + (mtf.rateExpired ? 'fc-badge--warning' : 'fc-badge--info');
+      rBadge.textContent = mtf.rateExpired ? 'Rate expired' : `1 ${mtf.sourceCurrency} = ${rate} ${mtf.targetCurrency} · 04:58`;
+
+      const stepLabels = ['Recipient', 'Amount & Rail', 'Confirm & Send'];
+      document.getElementById('mtf-stepper').innerHTML = stepLabels.map((lbl, i) => {
+        const done = mtf.sent || i < mtf.step;
+        const active = !mtf.sent && i === mtf.step;
+        const cls = 'fc-transfer-flow__step' + (done ? ' fc-transfer-flow__step--done' : active ? ' fc-transfer-flow__step--active' : '');
+        return `<li class="${cls}"><span class="fc-transfer-flow__step-num">${done ? '✓' : i + 1}</span><span class="fc-transfer-flow__step-label">${lbl}</span></li>`;
+      }).join('');
+
+      const alertWrap = document.getElementById('mtf-alert-wrap');
+      if (mtf.error) {
+        alertWrap.style.display = 'block';
+        alertWrap.innerHTML = `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Check transfer details</p><div class="fc-alert__message">${mtf.error}</div></div>`;
+      } else if (mtf.rateExpired && !mtf.sent) {
+        alertWrap.style.display = 'block';
+        alertWrap.innerHTML = `<div class="fc-alert fc-alert--warning" role="alert"><p class="fc-alert__title">Exchange rate quote expired</p><div class="fc-alert__message">Refresh the quote to continue with live pricing.</div></div>`;
+      } else {
+        alertWrap.style.display = 'none';
+      }
+
+      const body = document.getElementById('mtf-body');
+      const actions = document.getElementById('mtf-actions');
+
+      if (mtf.sent) {
+        actions.innerHTML = `<button type="button" class="fc-button fc-button--secondary" onclick="mtf.shared=true;renderMtf();">Share Receipt</button><button type="button" class="fc-button fc-button--primary" onclick="mtfRestart()">Restart</button>`;
+        body.innerHTML = `
+          <div class="fc-transfer-receipt">
+            <div class="fc-transfer-receipt__header"><div class="fc-transfer-receipt__status-icon fc-transfer-receipt__status-icon--success">✓</div><div class="fc-transfer-receipt__amount">${sym}${mtf.amount.toLocaleString(undefined,{minimumFractionDigits:2})}</div><p class="fc-transfer-receipt__subtitle">Transfer Successful</p></div>
+            <div class="fc-transfer-receipt__list">
+              <div class="fc-transfer-receipt__row"><span class="fc-transfer-receipt__row-label">Reference</span><span class="fc-transfer-receipt__row-value">TXN-849201</span></div>
+              <div class="fc-transfer-receipt__row"><span class="fc-transfer-receipt__row-label">Recipient</span><span class="fc-transfer-receipt__row-value">${activeBen.name}</span></div>
+              <div class="fc-transfer-receipt__row"><span class="fc-transfer-receipt__row-label">Bank</span><span class="fc-transfer-receipt__row-value">${activeBen.bankName}</span></div>
+              <div class="fc-transfer-receipt__row"><span class="fc-transfer-receipt__row-label">Account</span><span class="fc-transfer-receipt__row-value">${activeBen.accountMask}</span></div>
+              <div class="fc-transfer-receipt__row"><span class="fc-transfer-receipt__row-label">Recipient gets</span><span class="fc-transfer-receipt__row-value">${ts}${receives.toLocaleString(undefined,{minimumFractionDigits:2})}</span></div>
+            </div>
+          </div>
+          ${mtf.shared ? `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Receipt link copied</p><div class="fc-alert__message">Shareable receipt details for TXN-849201 are ready.</div></div>` : ''}`;
+        return;
+      }
+
+      if (mtf.step === 0) {
+        const filtered = mtf.beneficiaries.filter(b => b.name.toLowerCase().includes(mtf.query.toLowerCase()) || b.bankName.toLowerCase().includes(mtf.query.toLowerCase()));
+        body.innerHTML = `<div class="fc-beneficiary-picker">
+          <div class="fc-beneficiary-picker__header"><h3 class="fc-beneficiary-picker__title">Select recipient</h3><button type="button" class="fc-beneficiary-picker__add-btn" onclick="mtf.addingNew=!mtf.addingNew;renderMtf();">${mtf.addingNew ? 'Close' : '+ New Recipient'}</button></div>
+          <div class="fc-beneficiary-picker__search-wrap"><svg class="fc-beneficiary-picker__search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="search" class="fc-beneficiary-picker__search" placeholder="Search name, bank, or rail..." value="${mtf.query}" oninput="mtf.query=this.value;renderMtf();"></div>
+          <ul class="fc-beneficiary-picker__list" role="listbox">${filtered.map(b => `<li><button type="button" role="option" aria-selected="${b.id===mtf.selectedId}" class="fc-beneficiary-picker__item ${b.id===mtf.selectedId?'fc-beneficiary-picker__item--selected':''}" onclick="mtf.selectedId='${b.id}';renderMtf();"><div class="fc-beneficiary-picker__left"><span class="fc-beneficiary-picker__avatar">${b.name.slice(0,2).toUpperCase()}</span><div class="fc-beneficiary-picker__info"><div class="fc-beneficiary-picker__name">${b.name}</div><div class="fc-beneficiary-picker__meta">${b.bankName} · ${b.accountMask}</div></div></div><div class="fc-beneficiary-picker__right"><span class="fc-beneficiary-picker__rail">${b.rail}</span><span class="fc-beneficiary-picker__status fc-beneficiary-picker__status--verified">Verified</span></div></button></li>`).join('')}</ul>
+        </div>
+        ${mtf.addingNew ? `<div class="fc-card"><div class="fc-card__header"><h3 class="fc-card__title">Add new recipient</h3></div><div class="fc-card__body"><div class="fc-transfer-flow__stack">
+          <div class="fc-transfer-flow__grid-2">
+            <div class="fc-input"><label class="fc-input__label">Recipient name</label><div class="fc-input__control"><input class="fc-input__field" placeholder="Global Freight Ltd" oninput="mtf.newBen.name=this.value"></div></div>
+            <div class="fc-input"><label class="fc-input__label">Bank name</label><div class="fc-input__control"><input class="fc-input__field" placeholder="Citibank N.A." oninput="mtf.newBen.bankName=this.value"></div></div>
+          </div>
+          <div class="fc-transfer-flow__grid-2">
+            <div class="fc-input"><label class="fc-input__label">Account / IBAN</label><div class="fc-input__control"><input class="fc-input__field" placeholder="•••• 1120" oninput="mtf.newBen.account=this.value"></div></div>
+            <div class="fc-select"><label class="fc-select__label">Currency</label><div class="fc-select__control"><select class="fc-select__field" onchange="mtf.newBen.currency=this.value"><option>EUR</option><option>USD</option><option>GBP</option></select></div></div>
+          </div>
+          <div class="fc-transfer-flow__actions-right"><button type="button" class="fc-button fc-button--secondary fc-button--sm" onclick="addMtfBen()">Save recipient</button></div>
+        </div></div></div>` : ''}`;
+        actions.innerHTML = `<button type="button" class="fc-button fc-button--ghost" onclick="mtfRestart()">Restart</button><button type="button" class="fc-button fc-button--primary" onclick="mtf.step=1;mtf.error='';renderMtf();">Continue</button>`;
+      } else if (mtf.step === 1) {
+        body.innerHTML = `<div class="fc-transfer-flow__amount-grid">
+          <div class="fc-input"><label class="fc-input__label">You send</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="${mtf.amount}" oninput="mtf.amount=Math.max(0,parseFloat(this.value)||0);renderMtfFeeLive();"></div></div>
+          <div class="fc-select"><label class="fc-select__label">From</label><div class="fc-select__control"><select class="fc-select__field" onchange="mtf.sourceCurrency=this.value;document.getElementById('mtf-curr-panel').value=this.value;renderMtf();"><option ${mtf.sourceCurrency==='USD'?'selected':''}>USD</option><option ${mtf.sourceCurrency==='EUR'?'selected':''}>EUR</option><option ${mtf.sourceCurrency==='GBP'?'selected':''}>GBP</option><option ${mtf.sourceCurrency==='NGN'?'selected':''}>NGN</option></select></div></div>
+          <div class="fc-select"><label class="fc-select__label">To</label><div class="fc-select__control"><select class="fc-select__field" onchange="mtf.targetCurrency=this.value;renderMtf();"><option ${mtf.targetCurrency==='EUR'?'selected':''}>EUR</option><option ${mtf.targetCurrency==='USD'?'selected':''}>USD</option><option ${mtf.targetCurrency==='GBP'?'selected':''}>GBP</option><option ${mtf.targetCurrency==='NGN'?'selected':''}>NGN</option></select></div></div>
+        </div>
+        <div class="fc-transfer-flow__chips">
+          ${[250, 1000, 5000].map(q => `<button type="button" class="fc-button fc-button--secondary fc-button--sm" onclick="mtf.amount=${q};renderMtf();">${sym}${q.toLocaleString()}</button>`).join('')}
+        </div>
+        <fieldset class="fc-radio-group"><legend class="fc-radio-group__label">Transfer rail</legend><div class="fc-radio-group__items">
+          ${mtfRadio('mtf-rail','ach',mtf.rail==='ach',RAIL_INFO.ach.label,"mtf.rail='ach';renderMtf();")}
+          ${mtfRadio('mtf-rail','swift',mtf.rail==='swift',RAIL_INFO.swift.label,"mtf.rail='swift';renderMtf();")}
+          ${mtfRadio('mtf-rail','sepa',mtf.rail==='sepa',RAIL_INFO.sepa.label,"mtf.rail='sepa';renderMtf();")}
+        </div></fieldset>
+        <div class="fc-fee-breakdown" id="mtf-fee-live"></div>`;
+        renderMtfFeeLive();
+        actions.innerHTML = `<button type="button" class="fc-button fc-button--ghost" onclick="mtf.step=0;mtf.error='';renderMtf();">Back</button>
+          <div class="fc-transfer-flow__actions-right">${mtf.rateExpired ? `<button type="button" class="fc-button fc-button--secondary" onclick="mtf.rateExpired=false;renderMtf();">Refresh rate</button>` : ''}<button type="button" class="fc-button fc-button--primary" onclick="goMtfConfirm()">Continue to confirm</button></div>`;
+      } else {
+        body.innerHTML = `<div class="fc-card"><div class="fc-card__header"><h3 class="fc-card__title">Review transfer to ${activeBen.name}</h3><p class="fc-card__description">${activeBen.bankName} · ${activeBen.accountMask} · ${railInfo.eta}</p></div><div class="fc-card__body"><div class="fc-transfer-flow__summary-grid"><div><span class="fc-transfer-flow__summary-label">Total debited</span><span class="fc-transfer-flow__summary-value">${sym}${(mtf.amount + railInfo.fee).toFixed(2)}</span></div><div><span class="fc-transfer-flow__summary-label">Recipient gets</span><span class="fc-transfer-flow__summary-value">${ts}${receives.toFixed(2)}</span></div></div></div></div>
+        <div class="fc-tabs"><div class="fc-tabs__list" role="tablist">
+          <button type="button" class="fc-tabs__trigger" data-state="${mtf.authTab==='passkey'?'active':'inactive'}" onclick="mtf.authTab='passkey';renderMtf();">Passkey</button>
+          <button type="button" class="fc-tabs__trigger" data-state="${mtf.authTab==='otp'?'active':'inactive'}" onclick="mtf.authTab='otp';renderMtf();">Text / App Code</button>
+          <button type="button" class="fc-tabs__trigger" data-state="${mtf.authTab==='pin'?'active':'inactive'}" onclick="mtf.authTab='pin';renderMtf();">Account PIN</button>
+        </div>
+        <div class="fc-transfer-flow__tab-panel">
+          ${mtf.authTab==='passkey' ? `<div><button type="button" class="fc-button fc-button--primary" onclick="mtf.sent=true;renderMtf();">Confirm &amp; Send with Passkey</button></div>`
+          : mtf.authTab==='otp' ? `<div class="fc-otp"><span class="fc-otp__label">Enter 6-digit verification code</span><div class="fc-otp__cells">${[0,1,2,3,4,5].map(i=>`<div class="fc-otp__cell-wrapper"><input class="fc-otp__cell" maxlength="1" value="${i+1}"></div>`).join('')}</div></div><div><button type="button" class="fc-button fc-button--primary" onclick="mtf.sent=true;renderMtf();">Confirm &amp; Send</button></div>`
+          : `<div class="fc-pin-input" role="group" aria-label="PIN">${[1,2,3,4].map(()=>`<input type="password" class="fc-pin-input__cell" maxlength="1" value="5">`).join('')}</div><div><button type="button" class="fc-button fc-button--primary" onclick="mtf.sent=true;renderMtf();">Confirm &amp; Send</button></div>`}
+        </div></div>`;
+        actions.innerHTML = `<button type="button" class="fc-button fc-button--ghost" onclick="mtf.step=1;renderMtf();">Back</button><span></span>`;
+      }
+    }
+
+    function renderMtfFeeLive() {
+      const box = document.getElementById('mtf-fee-live');
+      if (!box) return;
+      const railInfo = RAIL_INFO[mtf.rail];
+      const rate = mtf.sourceCurrency === mtf.targetCurrency ? 1 : 0.92;
+      const receives = +(Math.max(0, mtf.amount - railInfo.fee) * rate).toFixed(2);
+      box.innerHTML = `<div class="fc-fee-breakdown__list"><div class="fc-fee-breakdown__item"><span>Send amount</span><span>${mtf.sourceCurrency} ${mtf.amount.toFixed(2)}</span></div><div class="fc-fee-breakdown__item"><span>${railInfo.name} fee</span><span>${mtf.sourceCurrency} ${railInfo.fee.toFixed(2)}</span></div></div><div class="fc-fee-breakdown__divider"></div><div class="fc-fee-breakdown__total-row"><span>Total debited</span><span>${mtf.sourceCurrency} ${(mtf.amount + railInfo.fee).toFixed(2)}</span></div><div class="fc-fee-breakdown__recipient-gets"><span>Recipient gets</span><span>${mtf.targetCurrency} ${receives.toLocaleString(undefined,{minimumFractionDigits:2})}</span></div><p class="fc-fee-breakdown__notice">Guaranteed rate: 1 ${mtf.sourceCurrency} = ${rate} ${mtf.targetCurrency} · Arrives ${railInfo.eta}</p>`;
+    }
+
+    function addMtfBen() {
+      if (!mtf.newBen.name || !mtf.newBen.bankName) return;
+      const id = String(Date.now());
+      mtf.beneficiaries.unshift({ id, name: mtf.newBen.name, bankName: mtf.newBen.bankName, accountMask: mtf.newBen.account || '•••• 0091', rail: 'WIRE', currency: mtf.newBen.currency });
+      mtf.selectedId = id; mtf.addingNew = false; renderMtf();
+    }
+
+    function goMtfConfirm() {
+      if (mtf.rateExpired) { mtf.error = 'FX rate lock expired. Refresh rate to continue.'; renderMtf(); return; }
+      if (mtf.amount <= 0) { mtf.error = 'Enter a transfer amount greater than 0.'; renderMtf(); return; }
+      if (mtf.amount > mtf.balance) { mtf.error = 'Insufficient account balance.'; renderMtf(); return; }
+      if (mtf.amount > mtf.limit) { mtf.error = `Amount exceeds your ${M_SYM[mtf.sourceCurrency]}${mtf.limit.toLocaleString()} daily limit.`; renderMtf(); return; }
+      mtf.error = ''; mtf.step = 2; renderMtf();
+    }
+
+    renderMtf();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

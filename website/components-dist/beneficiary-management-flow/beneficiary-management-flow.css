@@ -1,0 +1,119 @@
+/*
+ * Sorleed BeneficiaryManagementFlow — layout-only stylesheet.
+ * Uses Sorleed primitives (Card, Tabs, BankSelector, Input, Select, OTP, Tooltip, Badge, Alert, Button).
+ */
+
+.fc-ben-mgmt-flow {
+  width: 100%;
+  max-width: 600px;
+}
+
+.fc-ben-mgmt-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-ben-mgmt-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-ben-mgmt-flow__grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-ben-mgmt-flow__option-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+}
+
+.fc-ben-mgmt-flow__select-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-3) var(--fc-space-4);
+  border-radius: var(--fc-radius-md);
+  border: 1px solid var(--fc-color-border-subtle);
+  background-color: var(--fc-color-surface-default);
+}
+
+.fc-ben-mgmt-flow__select-title {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-semibold);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-ben-mgmt-flow__select-meta {
+  margin-top: var(--fc-space-1);
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-ben-mgmt-flow__select-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+  flex-shrink: 0;
+}
+
+.fc-ben-mgmt-flow__tip-anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.fc-ben-mgmt-flow__tip-bubble {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.fc-ben-mgmt-flow__tip-anchor:hover .fc-ben-mgmt-flow__tip-bubble,
+.fc-ben-mgmt-flow__tip-anchor:focus-within .fc-ben-mgmt-flow__tip-bubble {
+  opacity: 1;
+}
+
+.fc-ben-mgmt-flow__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-ben-mgmt-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  width: 100%;
+}
+
+.fc-ben-mgmt-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+@media (max-width: 540px) {
+  .fc-ben-mgmt-flow__grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .fc-ben-mgmt-flow__select-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

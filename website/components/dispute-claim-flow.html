@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>DisputeClaimFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed DisputeClaimFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/dispute-claim-flow">
+  <meta property="og:title" content="DisputeClaimFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed DisputeClaimFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="dispute-claim-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>DisputeClaimFlow</span></div>
+      <h1 class="docs-title">DisputeClaimFlow</h1>
+      <p class="docs-lede">
+        Cardholder transaction dispute and chargeback filing workflow composing <code>Card</code>, <code>Tabs</code>, <code>Select</code>, <code>Textarea</code>, <code>KycDocUploader</code>, <code>Checkbox</code>, <code>Alert</code>, <code>Badge</code>, and <code>Button</code>.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-dispute-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-dispute-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Dispute a transaction</h3>
+                      <p class="fc-card__description">Report an unrecognized charge, duplicate billing, or undelivered order.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="dc-badge">Step 1/4</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="dc-body"></div>
+                <div class="fc-card__footer" id="dc-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Card Type</span>
+              <select class="ctrl-select" id="dc-type" onchange="dcReset(this.value)">
+                <option value="personal">Personal card</option>
+                <option value="business">Business card</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="dcReset(dcState.accountType)" style="cursor:pointer;">Restart Claim</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add dispute-claim-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { DisputeClaimFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;DisputeClaimFlow
+      accountType="personal"
+      onSubmitClaim={(claim) =&gt; console.log(claim.claimId)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('dispute-claim-flow');
+
+    const DC_ICONS = {
+      left: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>',
+      right: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      shield: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>',
+      refresh: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>'
+    };
+
+    const dcTxs = [
+      { id: 'tx1', merchant: 'Skyline Airlines', date: 'Nov 11, 2026', amount: 642.00, mask: '•••• 8841' },
+      { id: 'tx2', merchant: 'Unknown Digital Charge', date: 'Nov 10, 2026', amount: 189.50, mask: '•••• 8841' },
+      { id: 'tx3', merchant: 'Metro SaaS Billing', date: 'Nov 08, 2026', amount: 399.00, mask: '•••• 3914' }
+    ];
+
+    const dcState = {
+      accountType: 'personal',
+      step: 1,
+      status: 'selecting',
+      txId: 'tx2',
+      reason: 'unrecognized',
+      notes: 'Charge appeared on statement with no authorization.',
+      evidence: '',
+      confirmed: true,
+      error: '',
+      claimId: ''
+    };
+
+    function dcReset(type) {
+      dcState.accountType = type || 'personal';
+      document.getElementById('dc-type').value = dcState.accountType;
+      dcState.step = 1;
+      dcState.status = 'selecting';
+      dcState.error = '';
+      dcState.claimId = '';
+      renderDc();
+    }
+
+    function dcContinue() {
+      dcState.error = '';
+      if (dcState.step === 2 && !dcState.notes.trim()) {
+        dcState.error = 'Add a short explanation of the issue before continuing.';
+        renderDc();
+        return;
+      }
+      if (dcState.step < 4) {
+        dcState.step += 1;
+        renderDc();
+      } else {
+        if (!dcState.confirmed) { dcState.error = 'Confirm your dispute declaration.'; renderDc(); return; }
+        dcState.claimId = 'DSP-' + Math.floor(100000 + Math.random() * 900000);
+        dcState.status = 'submitted';
+        renderDc();
+      }
+    }
+
+    function renderDc() {
+      const isBiz = dcState.accountType === 'business';
+      const tx = dcTxs.find(t => t.id === dcState.txId) || dcTxs[0];
+
+      const badge = document.getElementById('dc-badge');
+      badge.className = 'fc-badge fc-badge--' + (dcState.status === 'submitted' ? 'success' : 'info');
+      badge.textContent = dcState.status === 'submitted' ? `Claim ${dcState.claimId}` : `Step ${dcState.step}/4`;
+
+      const top = `<div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="dcReset('personal')">Personal card</button><button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="dcReset('business')">Business card</button></div></div>`;
+      const stepper = `<nav aria-label="Dispute claim steps"><ol class="fc-dispute-flow__stepper" aria-live="polite">${['Transaction','Reason','Evidence','Review'].map((l,i)=>{
+        const s=i+1; const done = dcState.step>s || dcState.status==='submitted'; const act = !done && dcState.step===s;
+        return `<li class="fc-dispute-flow__step ${act?'fc-dispute-flow__step--active':''} ${done?'fc-dispute-flow__step--done':''}"><span class="fc-dispute-flow__step-num" aria-hidden="true">${done?'✓':s}</span><span class="fc-dispute-flow__step-label">${l}</span></li>`;
+      }).join('')}</ol></nav>`;
+      const err = dcState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Missing information</p><div class="fc-alert__message">${dcState.error}</div></div>` : '';
+
+      let body = '';
+      if (dcState.status === 'submitted') {
+        body = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Dispute submitted (${dcState.claimId})</p><div class="fc-alert__message">Claim filed for USD ${tx.amount.toFixed(2)} at ${tx.merchant}. Provisional credit updates appear within 24 hours.</div></div>`;
+      } else if (dcState.step === 1) {
+        body = `<div class="fc-dispute-flow__option-list">${dcTxs.map(t=>`<div class="fc-dispute-flow__select-row ${t.id===dcState.txId?'fc-dispute-flow__select-row--selected':''}"><div><div class="fc-dispute-flow__select-title">${t.merchant}</div><div class="fc-dispute-flow__select-meta">${t.date} · ${t.mask}</div></div><div class="fc-dispute-flow__select-right"><span class="fc-badge fc-badge--default">USD ${t.amount.toFixed(2)}</span><button type="button" class="fc-button fc-button--sm fc-button--${t.id===dcState.txId?'primary':'secondary'}" onclick="dcState.txId='${t.id}';renderDc();">${t.id===dcState.txId?'Selected':'Select'}</button></div></div>`).join('')}</div>`;
+      } else if (dcState.step === 2) {
+        body = `<div class="fc-dispute-flow__stack">
+          <div class="fc-select"><label class="fc-select__label">Reason for dispute</label><div class="fc-select__control"><select class="fc-select__field" onchange="dcState.reason=this.value;"><option value="unrecognized" ${dcState.reason==='unrecognized'?'selected':''}>Unrecognized charge</option><option value="duplicate" ${dcState.reason==='duplicate'?'selected':''}>Duplicate billing</option><option value="not_received" ${dcState.reason==='not_received'?'selected':''}>Order not received</option></select></div></div>
+          <div class="fc-textarea"><label class="fc-textarea__label">Details of the issue</label><div class="fc-textarea__control"><textarea class="fc-textarea__field" rows="3" oninput="dcState.notes=this.value">${dcState.notes}</textarea></div></div>
+        </div>`;
+      } else if (dcState.step === 3) {
+        body = `<div class="fc-kyc-doc-uploader"><div class="fc-kyc-doc-uploader__header"><h3 class="fc-kyc-doc-uploader__title">Upload supporting evidence (optional)</h3><p class="fc-kyc-doc-uploader__subtitle">Attach receipts, emails, or cancellation proof.</p></div>${
+          dcState.evidence ? `<div class="fc-kyc-doc-uploader__preview"><span>${dcState.evidence}</span><button type="button" class="fc-kyc-doc-uploader__remove-btn" onclick="dcState.evidence='';renderDc();">Remove</button></div>`
+          : `<div class="fc-kyc-doc-uploader__dropzone" role="button" tabindex="0" onclick="dcState.evidence='Receipt_Screenshot.png';renderDc();"><p class="fc-kyc-doc-uploader__prompt">Click to attach sample evidence</p><p class="fc-kyc-doc-uploader__hint">PDF, PNG, JPG up to 10MB</p></div>`
+        }</div>`;
+      } else {
+        body = `<div class="fc-dispute-flow__stack"><div class="fc-dispute-flow__summary-box">
+          <div class="fc-dispute-flow__summary-row"><span>Merchant</span><strong>${tx.merchant}</strong></div>
+          <div class="fc-dispute-flow__summary-row"><span>Amount</span><strong>USD ${tx.amount.toFixed(2)}</strong></div>
+          <div class="fc-dispute-flow__summary-row"><span>Reason</span><strong>${dcState.reason}</strong></div>
+          <div class="fc-dispute-flow__summary-row"><span>Evidence</span><strong>${dcState.evidence||'None attached'}</strong></div>
+        </div>
+        <label class="fc-checkbox"><span class="fc-checkbox__control"><input type="checkbox" class="fc-checkbox__field" ${dcState.confirmed?'checked':''} onchange="dcState.confirmed=this.checked"><span class="fc-checkbox__box"></span></span><span class="fc-checkbox__label">I confirm this dispute claim is accurate and I have not received a refund.</span></label></div>`;
+      }
+
+      document.getElementById('dc-body').innerHTML = `<div class="fc-dispute-flow__stack">${top}${stepper}${err}${body}</div>`;
+      document.getElementById('dc-footer').innerHTML = dcState.status === 'submitted'
+        ? `<div class="fc-dispute-flow__actions"><span></span><button type="button" class="fc-button fc-button--secondary" onclick="dcReset(dcState.accountType)"><span class="fc-dispute-flow__btn-inner">${DC_ICONS.refresh} Restart</span></button></div>`
+        : `<div class="fc-dispute-flow__actions"><button type="button" class="fc-button fc-button--ghost" ${dcState.step===1?'disabled':''} onclick="dcState.step=Math.max(1,dcState.step-1);renderDc();"><span class="fc-dispute-flow__btn-inner">${DC_ICONS.left} Back</span></button><div class="fc-dispute-flow__actions-right"><button type="button" class="fc-button fc-button--primary" onclick="dcContinue()"><span class="fc-dispute-flow__btn-inner">${dcState.step<4?`Continue ${DC_ICONS.right}`:`${DC_ICONS.shield} Submit Claim`}</span></button></div></div>`;
+    }
+
+    renderDc();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

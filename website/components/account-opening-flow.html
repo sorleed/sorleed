@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>AccountOpeningFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed AccountOpeningFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/account-opening-flow">
+  <meta property="og:title" content="AccountOpeningFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed AccountOpeningFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="account-opening-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>AccountOpeningFlow</span></div>
+      <h1 class="docs-title">AccountOpeningFlow</h1>
+      <p class="docs-lede">
+        Multi-step Personal and Business account opening workflow composing <code>Card</code>, <code>Tabs</code>, <code>Input</code>, <code>Select</code>, <code>KycDocUploader</code>, <code>Checkbox</code>, <code>IbanAccountDetails</code>, <code>Alert</code>, <code>Badge</code>, and <code>Button</code>.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-account-open-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-account-open-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Open a financial account</h3>
+                      <p class="fc-card__description">Guided onboarding for multi-currency personal or business accounts.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="ao-badge">Step 1/4</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="ao-body"></div>
+                <div class="fc-card__footer" id="ao-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Account Path</span>
+              <select class="ctrl-select" id="ao-path" onchange="aoReset(this.value)">
+                <option value="individual">Personal</option>
+                <option value="business">Business</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Simulate Outcome</span>
+              <select class="ctrl-select" id="ao-outcome" onchange="aoState.outcome=this.value;">
+                <option value="created">Account Created</option>
+                <option value="manual-review">Manual Review Pending</option>
+                <option value="error">Validation Error</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="aoReset(aoState.accountType)" style="cursor:pointer;">Restart Flow</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add account-opening-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { AccountOpeningFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;AccountOpeningFlow
+      accountType="individual"
+      initialCurrency="USD"
+      onComplete={(res) =&gt; console.log(res.accountNumber, res.status)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('account-opening-flow');
+
+    const AO_ICONS = {
+      left: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>',
+      right: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      check: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+      cam: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>',
+      refresh: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>'
+    };
+
+    const aoState = {
+      accountType: 'individual',
+      step: 1,
+      status: 'filling',
+      outcome: 'created',
+      currency: 'USD',
+      country: 'United States',
+      fullName: 'Alex Morgan Rivera',
+      email: 'alex@example.com',
+      dob: '1993-08-21',
+      idType: 'passport',
+      idFile: 'Passport_Scan.pdf',
+      selfieDone: true,
+      companyName: 'Northstar Logistics Ltd',
+      regNumber: 'REG-9482014',
+      incFile: 'Certificate_Inc.pdf',
+      addrFile: 'Registered_Address.pdf',
+      directorName: 'Jordan Blake',
+      ownershipPct: '100',
+      dirIdFile: 'Director_Passport.pdf',
+      acceptedTerms: true,
+      error: ''
+    };
+
+    function aoReset(nextType) {
+      aoState.accountType = nextType || 'individual';
+      document.getElementById('ao-path').value = aoState.accountType;
+      aoState.step = 1;
+      aoState.status = 'filling';
+      aoState.error = '';
+      renderAo();
+    }
+
+    function aoInput(label, val, ph, handler) {
+      return `<div class="fc-input"><label class="fc-input__label">${label}</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${val}" placeholder="${ph}" oninput="${handler}"></div></div>`;
+    }
+
+    function aoSelect(label, opts, val, handler) {
+      return `<div class="fc-select"><label class="fc-select__label">${label}</label><div class="fc-select__control"><select class="fc-select__field" onchange="${handler}">${opts.map(o => `<option value="${o}" ${o===val?'selected':''}>${o}</option>`).join('')}</select></div></div>`;
+    }
+
+    function aoUploader(title, desc, file, pickExpr, rmExpr) {
+      return `<div class="fc-kyc-doc-uploader"><div class="fc-kyc-doc-uploader__header"><h3 class="fc-kyc-doc-uploader__title">${title}</h3><p class="fc-kyc-doc-uploader__subtitle">${desc}</p></div>${
+        file
+          ? `<div class="fc-kyc-doc-uploader__preview"><span>${file}</span><button type="button" class="fc-kyc-doc-uploader__remove-btn" onclick="${rmExpr}">Re-upload</button></div>`
+          : `<div class="fc-kyc-doc-uploader__dropzone" role="button" tabindex="0" onclick="${pickExpr}"><p class="fc-kyc-doc-uploader__prompt">Click to upload sample document</p><p class="fc-kyc-doc-uploader__hint">PDF, PNG or JPG up to 10MB</p></div>`
+      }</div>`;
+    }
+
+    function aoNext() {
+      aoState.error = '';
+      if (aoState.outcome === 'error') {
+        aoState.status = 'error';
+        aoState.error = 'Required onboarding fields or documents are incomplete.';
+        renderAo();
+        return;
+      }
+      if (aoState.step < 4) {
+        aoState.step += 1;
+        aoState.status = aoState.step === 2 ? 'uploading' : aoState.step === 4 ? 'reviewing' : 'filling';
+      }
+      renderAo();
+    }
+
+    function aoBack() {
+      aoState.error = '';
+      aoState.step = Math.max(1, aoState.step - 1);
+      aoState.status = aoState.step === 2 ? 'uploading' : 'filling';
+      renderAo();
+    }
+
+    function aoSubmit(manual) {
+      aoState.error = '';
+      if (!aoState.acceptedTerms || aoState.outcome === 'error') {
+        aoState.status = 'error';
+        aoState.error = 'Confirm the accuracy declaration before submitting.';
+        renderAo();
+        return;
+      }
+      aoState.status = (manual || aoState.outcome === 'manual-review') ? 'manual-review' : 'success';
+      renderAo();
+    }
+
+    function renderAo() {
+      const isBiz = aoState.accountType === 'business';
+      const labels = isBiz
+        ? ['Company details', 'Business docs', 'Owners', 'Review']
+        : ['Personal details', 'ID upload', 'Selfie', 'Review'];
+
+      const badge = document.getElementById('ao-badge');
+      badge.className = 'fc-badge fc-badge--' + (aoState.status === 'success' ? 'success' : aoState.status === 'manual-review' ? 'warning' : 'info');
+      badge.textContent = aoState.status === 'success' ? 'Active' : aoState.status === 'manual-review' ? 'Manual review' : `Step ${aoState.step}/4`;
+
+      const topBar = `<div class="fc-account-open-flow__top-row">
+        <div class="fc-tabs"><div class="fc-tabs__list" role="tablist">
+          <button type="button" role="tab" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="aoReset('individual')">Personal</button>
+          <button type="button" role="tab" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="aoReset('business')">Business</button>
+        </div></div>
+        <div class="fc-account-open-flow__currency-wrap">${aoSelect('Primary currency', ['USD','EUR','GBP','NGN'], aoState.currency, 'aoState.currency=this.value;renderAo();')}</div>
+      </div>`;
+
+      const stepper = `<nav aria-label="Account opening steps"><ol class="fc-account-open-flow__stepper" aria-live="polite">${labels.map((l, i) => {
+        const idx = i + 1;
+        const done = aoState.step > idx || aoState.status === 'success' || aoState.status === 'manual-review';
+        const active = !done && aoState.step === idx;
+        return `<li class="fc-account-open-flow__step ${active?'fc-account-open-flow__step--active':''} ${done?'fc-account-open-flow__step--done':''}"><span class="fc-account-open-flow__step-num" aria-hidden="true">${done?'✓':idx}</span><span class="fc-account-open-flow__step-label">${l}</span></li>`;
+      }).join('')}</ol></nav>`;
+
+      const errHtml = aoState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Action required</p><div class="fc-alert__message">${aoState.error}</div></div>` : '';
+
+      let stepHtml = '';
+      if (aoState.status === 'success') {
+        stepHtml = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Account created</p><div class="fc-alert__message">Your ${isBiz?'business':'personal'} ${aoState.currency} account is active and ready to receive funds.</div></div>
+        <div class="fc-iban-details"><div class="fc-iban-details__header"><div class="fc-iban-details__holder">${isBiz?aoState.companyName:aoState.fullName}</div><span class="fc-badge fc-badge--info">${aoState.currency} · Local Rails</span></div>
+        <div class="fc-iban-details__grid"><div class="fc-iban-details__row"><span class="fc-iban-details__label">Account number</span><span class="fc-iban-details__value">US88-49201844</span></div><div class="fc-iban-details__row"><span class="fc-iban-details__label">Country</span><span class="fc-iban-details__value">${aoState.country}</span></div></div></div>`;
+      } else if (aoState.status === 'manual-review') {
+        stepHtml = `<div class="fc-alert fc-alert--warning" role="status"><p class="fc-alert__title">Manual review in progress</p><div class="fc-alert__message">Reference US88-49201844 is queued for specialist review (expected under 2 hours).</div></div>`;
+      } else if (aoState.step === 1) {
+        stepHtml = `<div class="fc-account-open-flow__grid-2">${
+          !isBiz
+            ? aoInput('Full legal name', aoState.fullName, 'Alex Morgan Rivera', 'aoState.fullName=this.value') +
+              aoInput('Email address', aoState.email, 'alex@example.com', 'aoState.email=this.value') +
+              aoInput('Date of birth', aoState.dob, 'YYYY-MM-DD', 'aoState.dob=this.value')
+            : aoInput('Registered company name', aoState.companyName, 'Northstar Logistics Ltd', 'aoState.companyName=this.value') +
+              aoInput('Registration / EIN', aoState.regNumber, 'REG-9482014', 'aoState.regNumber=this.value')
+        }${aoSelect(isBiz?'Country of incorporation':'Country of residence', ['United States','United Kingdom','Germany','Nigeria','Canada'], aoState.country, 'aoState.country=this.value')}</div>`;
+      } else if (aoState.step === 2) {
+        stepHtml = !isBiz
+          ? `<div class="fc-account-open-flow__stack">${aoSelect('Document type', ['passport','national_id','drivers_license'], aoState.idType, 'aoState.idType=this.value;renderAo();')}${aoUploader('Upload government ID', 'Make sure all corners are legible.', aoState.idFile, "aoState.idFile='Passport_Scan.pdf';renderAo();", "aoState.idFile='';renderAo();")}</div>`
+          : `<div class="fc-account-open-flow__grid-2">` +
+            aoUploader('Certificate of incorporation', 'Issued within last 12 months.', aoState.incFile, "aoState.incFile='Certificate_Inc.pdf';renderAo();", "aoState.incFile='';renderAo();") +
+            aoUploader('Proof of business address', 'Utility bill or bank statement.', aoState.addrFile, "aoState.addrFile='Registered_Address.pdf';renderAo();", "aoState.addrFile='';renderAo();") +
+            `</div>`;
+      } else if (aoState.step === 3) {
+        stepHtml = !isBiz
+          ? `<div class="fc-account-open-flow__inline-status"><button type="button" class="fc-button fc-button--${aoState.selfieDone?'secondary':'primary'}" onclick="aoState.selfieDone=true;renderAo();"><span class="fc-account-open-flow__btn-inner">${AO_ICONS.cam} ${aoState.selfieDone?'Selfie captured':'Capture live selfie'}</span></button><span class="fc-badge fc-badge--${aoState.selfieDone?'success':'default'}">${aoState.selfieDone?'Liveness matched':'Awaiting capture'}</span></div>`
+          : `<div class="fc-account-open-flow__stack"><div class="fc-account-open-flow__grid-2">${aoInput('Beneficial owner name', aoState.directorName, 'Jordan Blake', 'aoState.directorName=this.value')}${aoInput('Ownership stake (%)', aoState.ownershipPct, '100', 'aoState.ownershipPct=this.value')}</div>${aoUploader('Beneficial owner ID', 'Passport or national ID.', aoState.dirIdFile, "aoState.dirIdFile='Director_Passport.pdf';renderAo();", "aoState.dirIdFile='';renderAo();")}</div>`;
+      } else {
+        stepHtml = `<div class="fc-account-open-flow__stack"><div class="fc-account-open-flow__summary-box">
+          <div class="fc-account-open-flow__summary-row"><span>Account path</span><strong>${isBiz?'Business':'Personal'} (${aoState.currency})</strong></div>
+          <div class="fc-account-open-flow__summary-row"><span>Holder</span><strong>${isBiz?aoState.companyName:aoState.fullName}</strong></div>
+          <div class="fc-account-open-flow__summary-row"><span>Jurisdiction</span><strong>${aoState.country}</strong></div>
+        </div>
+        <label class="fc-checkbox"><span class="fc-checkbox__control"><input type="checkbox" class="fc-checkbox__field" ${aoState.acceptedTerms?'checked':''} onchange="aoState.acceptedTerms=this.checked"><span class="fc-checkbox__box" aria-hidden="true"></span></span><span class="fc-checkbox__label">I confirm that all onboarding details are accurate and authorize account creation.</span></label></div>`;
+      }
+
+      document.getElementById('ao-body').innerHTML = `<div class="fc-account-open-flow__stack">${topBar}${stepper}${errHtml}${stepHtml}</div>`;
+      const footer = document.getElementById('ao-footer');
+      if (aoState.status === 'success' || aoState.status === 'manual-review') {
+        footer.innerHTML = `<div class="fc-account-open-flow__actions"><span></span><button type="button" class="fc-button fc-button--secondary" onclick="aoReset(aoState.accountType)"><span class="fc-account-open-flow__btn-inner">${AO_ICONS.refresh} Restart</span></button></div>`;
+      } else {
+        footer.innerHTML = `<div class="fc-account-open-flow__actions"><button type="button" class="fc-button fc-button--ghost" ${aoState.step===1?'disabled':''} onclick="aoBack()"><span class="fc-account-open-flow__btn-inner">${AO_ICONS.left} Back</span></button><div class="fc-account-open-flow__actions-right">${
+          aoState.step < 4
+            ? `<button type="button" class="fc-button fc-button--primary" onclick="aoNext()"><span class="fc-account-open-flow__btn-inner">Next ${AO_ICONS.right}</span></button>`
+            : `<button type="button" class="fc-button fc-button--secondary" onclick="aoSubmit(true)">Submit for review</button><button type="button" class="fc-button fc-button--primary" onclick="aoSubmit(false)"><span class="fc-account-open-flow__btn-inner">${AO_ICONS.check} Submit</span></button>`
+        }</div></div>`;
+      }
+    }
+
+    renderAo();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>KycVerificationFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed KycVerificationFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/kyc-verification-flow">
+  <meta property="og:title" content="KycVerificationFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed KycVerificationFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="kyc-verification-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>KycVerificationFlow</span></div>
+      <h1 class="docs-title">KycVerificationFlow</h1>
+      <p class="docs-lede">
+        Streamlined 3-step identity onboarding composing <code>Card</code>, <code>RadioGroup</code>, <code>Input</code>, <code>Select</code>, <code>BankSelector</code>, <code>KycDocUploader</code>, <code>Badge</code>, <code>Alert</code>, and <code>Button</code> with selectable verification methods.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-kyc-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-kyc-flow__header">
+                    <div>
+                      <h3 class="fc-card__title" id="kyc-title">Verify your identity</h3>
+                      <p class="fc-card__description" id="kyc-desc">Quick 3-step check — pick the verification option that works best for you.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="kyc-status-badge">~90 sec</span>
+                  </div>
+                </div>
+                <div class="fc-card__body">
+                  <div class="fc-kyc-flow__stack">
+                    <div id="kyc-stepper-wrap"></div>
+                    <div class="fc-kyc-flow__sr" aria-live="polite" id="kyc-live"></div>
+                    <div id="kyc-error-wrap" style="display:none;"></div>
+                    <div class="fc-kyc-flow__stack" id="kyc-step-body"></div>
+                    <div class="fc-kyc-flow__actions" id="kyc-actions"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Account Type</span>
+              <select class="ctrl-select" id="kyc-type-sel" onchange="kycState.accountType=this.value; kycState.step=0; kycState.phase='editing'; kycState.error=''; renderKyc();">
+                <option value="individual">Personal Account</option>
+                <option value="business">Business Account</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Step Style</span>
+              <select class="ctrl-select" onchange="kycState.stepVariant=this.value; renderKyc();">
+                <option value="pills">Modern Pills</option>
+                <option value="numbered">Numbered Steps</option>
+                <option value="progress">Slim Progress Bar</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Submit Outcome</span>
+              <select class="ctrl-select" onchange="kycState.outcome=this.value;">
+                <option value="approved">Instant Approval</option>
+                <option value="manual_review">Manual Review (&lt; 2 hours)</option>
+                <option value="error">Validation / Upload Error</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="kycRestart()" style="cursor:pointer;">Restart Flow</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add kyc-verification-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { KycVerificationFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;KycVerificationFlow
+      accountType="individual"
+      stepVariant="pills"
+      defaultPersonalMethod="document_selfie"
+      initialCountry="United States"
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('kyc-verification-flow');
+
+    const kycState = {
+      accountType: 'individual',
+      stepVariant: 'pills',
+      step: 0, // 0 details+method, 1 verify, 2 status
+      phase: 'editing',
+      outcome: 'approved',
+      error: '',
+      personalMethod: 'document_selfie', // document_selfie | bank_id | passkey_id
+      businessMethod: 'upload_bundle',   // upload_bundle | invite_director | registry_bank
+      bank: 'Mercury Bank',
+      personal: { fullName: 'Jane Doe', dob: '1992-05-14', nationality: 'United States', address: '420 Market St, San Francisco, CA', docType: 'passport', idFile: 'Passport_Front.pdf', selfieDone: false },
+      business: { legalName: 'Acme Treasury Inc.', regNumber: 'DE-8492014', country: 'United States', address: '548 Market St, San Francisco, CA', incFile: 'Certificate_of_Incorporation.pdf', addrFile: 'Utility_Bill_Q1.pdf', directorName: 'Jordan Vance', directorEmail: 'jordan@acme.io', directorOwnership: '60', directorIdFile: '' }
+    };
+
+    function kycSteps() {
+      return kycState.accountType === 'business'
+        ? ['Company & Method', 'Verify Business', 'Status']
+        : ['Details & Method', 'Verify Identity', 'Status'];
+    }
+
+    function kycRestart() {
+      kycState.step = 0;
+      kycState.phase = 'editing';
+      kycState.error = '';
+      kycState.personal.selfieDone = false;
+      renderKyc();
+    }
+
+    function kycInput(label, val, placeholder, onchange, type = 'text') {
+      return `<div class="fc-input"><label class="fc-input__label">${label}</label><div class="fc-input__control"><input type="${type}" class="fc-input__field" value="${val}" placeholder="${placeholder}" oninput="${onchange}"></div></div>`;
+    }
+
+    function kycSelect(label, opts, val, onchange) {
+      return `<div class="fc-select"><label class="fc-select__label">${label}</label><div class="fc-select__control"><select class="fc-select__field" onchange="${onchange}">${opts.map(o => `<option value="${o.value}" ${o.value === val ? 'selected' : ''}>${o.label}</option>`).join('')}</select></div></div>`;
+    }
+
+    function kycRadioGroup(legend, name, opts, selectedVal, onchangeExpr) {
+      return `<fieldset class="fc-radio-group"><legend class="fc-radio-group__label">${legend}</legend><div class="fc-radio-group__items">
+        ${opts.map(o => `<label class="fc-radio-group__item"><span class="fc-radio-group__control"><input type="radio" name="${name}" value="${o.value}" ${selectedVal===o.value?'checked':''} class="fc-radio-group__field" onchange="${onchangeExpr.replace('VAL', o.value)}"><span class="fc-radio-group__circle" aria-hidden="true"><span class="fc-radio-group__dot"></span></span></span><span class="fc-radio-group__item-label">${o.label}</span></label>`).join('')}
+      </div></fieldset>`;
+    }
+
+    function kycUploader(title, desc, fileName, onPick, onRemove) {
+      return `<div class="fc-kyc-doc-uploader">
+        <div class="fc-kyc-doc-uploader__header"><h3 class="fc-kyc-doc-uploader__title">${title}</h3><p class="fc-kyc-doc-uploader__subtitle">${desc}</p></div>
+        ${fileName ? `<div class="fc-kyc-doc-uploader__preview"><span style="font-weight:500;">${fileName}</span><button type="button" class="fc-kyc-doc-uploader__remove-btn" onclick="${onRemove}">Re-upload</button></div>`
+        : `<div class="fc-kyc-doc-uploader__dropzone" tabindex="0" role="button" onclick="${onPick}"><div class="fc-kyc-doc-uploader__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><p class="fc-kyc-doc-uploader__prompt">Click to upload sample document</p><p class="fc-kyc-doc-uploader__hint">PDF, PNG or JPG up to 10MB</p></div>`}
+      </div>`;
+    }
+
+    function kycBankSelector() {
+      return `<div class="fc-bank-selector">
+        <div class="fc-bank-selector__search-container"><input type="search" class="fc-bank-selector__search-input" placeholder="Search your bank..."></div>
+        <ul class="fc-bank-selector__list" role="listbox">${['Mercury Bank','JPMorgan Chase','Revolut'].map(b => `<li role="presentation"><button type="button" role="option" aria-selected="${kycState.bank===b}" class="fc-bank-selector__item ${kycState.bank===b?'fc-bank-selector__item--selected':''}" onclick="kycState.bank='${b}';renderKyc();"><div class="fc-bank-selector__item-info"><div class="fc-bank-selector__bank-icon">${b.slice(0,2).toUpperCase()}</div><span class="fc-bank-selector__bank-name">${b}</span></div><span class="fc-bank-selector__bank-code">${kycState.bank===b?'Selected':'Connect'}</span></button></li>`).join('')}</ul>
+      </div>`;
+    }
+
+    function renderKyc() {
+      const steps = kycSteps();
+      const isBiz = kycState.accountType === 'business';
+      document.getElementById('kyc-title').textContent = isBiz ? 'Verify your business' : 'Verify your identity';
+      document.getElementById('kyc-desc').textContent = isBiz
+        ? 'Fast 3-step company onboarding with your choice of verification method.'
+        : 'Quick 3-step check — pick the verification option that works best for you.';
+
+      const badge = document.getElementById('kyc-status-badge');
+      if (kycState.phase === 'success') {
+        badge.className = 'fc-badge fc-badge--success'; badge.textContent = 'Verified';
+      } else if (kycState.phase === 'manual_review') {
+        badge.className = 'fc-badge fc-badge--warning'; badge.textContent = 'In Review';
+      } else {
+        badge.className = 'fc-badge fc-badge--info'; badge.textContent = '~90 sec';
+      }
+
+      const sw = document.getElementById('kyc-stepper-wrap');
+      if (kycState.stepVariant === 'progress') {
+        const pct = Math.round(((kycState.step + 1) / steps.length) * 100);
+        sw.innerHTML = `<div class="fc-kyc-flow__progress-wrap"><div class="fc-kyc-flow__progress-meta"><span>Step ${kycState.step + 1} of ${steps.length} · ${steps[kycState.step]}</span><span>${pct}%</span></div><div class="fc-kyc-flow__progress-track"><div class="fc-kyc-flow__progress-fill" style="width:${pct}%"></div></div></div>`;
+      } else {
+        const numberedCls = kycState.stepVariant === 'numbered' ? ' fc-kyc-flow__stepper--numbered' : '';
+        sw.innerHTML = `<ol class="fc-kyc-flow__stepper${numberedCls}">${steps.map((lbl, i) => {
+          const done = kycState.step === 2 || i < kycState.step;
+          const active = kycState.step !== 2 && i === kycState.step;
+          const cls = 'fc-kyc-flow__step' + (done ? ' fc-kyc-flow__step--done' : active ? ' fc-kyc-flow__step--active' : '');
+          return `<li class="${cls}"><span class="fc-kyc-flow__step-num">${done ? '✓' : i + 1}</span><span class="fc-kyc-flow__step-label">${lbl}</span></li>`;
+        }).join('')}</ol>`;
+      }
+
+      document.getElementById('kyc-live').textContent = `Step ${kycState.step + 1} of 3: ${steps[kycState.step]}`;
+      const errWrap = document.getElementById('kyc-error-wrap');
+      if (kycState.error) {
+        errWrap.style.display = 'block';
+        errWrap.innerHTML = `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Action required</p><div class="fc-alert__message">${kycState.error}</div></div>`;
+      } else {
+        errWrap.style.display = 'none';
+      }
+
+      const body = document.getElementById('kyc-step-body');
+      const actions = document.getElementById('kyc-actions');
+
+      if (kycState.step === 2) {
+        actions.innerHTML = `<div><button type="button" class="fc-button fc-button--secondary" onclick="kycRestart()">Restart</button></div><span></span>`;
+        const methodUsed = isBiz ? kycState.businessMethod : kycState.personalMethod;
+        body.innerHTML = (kycState.phase === 'success'
+          ? `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Verification complete</p><div class="fc-alert__message">${isBiz ? `${kycState.business.legalName} is verified with full treasury and payout limits.` : 'Your identity is verified. Transfers, deposits, and cards are now unlocked.'}</div></div>`
+          : `<div class="fc-alert fc-alert--warning" role="status"><p class="fc-alert__title">In manual review (&lt; 2 hours)</p><div class="fc-alert__message">${isBiz && methodUsed === 'invite_director' ? `Verification link sent to ${kycState.business.directorEmail}. We'll activate your account once completed.` : 'Our team is finishing a quick review and will notify you within 2 hours.'}</div></div>`) +
+          `<div class="fc-card"><div class="fc-card__header"><h3 class="fc-card__title">Verification summary</h3></div><div class="fc-card__body"><dl class="fc-kyc-flow__summary-list"><div><dt class="fc-kyc-flow__summary-term">Account</dt><dd class="fc-kyc-flow__summary-val">${isBiz ? kycState.business.legalName : kycState.personal.fullName}</dd></div><div><dt class="fc-kyc-flow__summary-term">Method</dt><dd class="fc-kyc-flow__summary-val">${methodUsed.replace(/_/g,' ')}</dd></div></dl></div></div>`;
+        return;
+      }
+
+      if (kycState.step === 0) {
+        if (!isBiz) {
+          const p = kycState.personal;
+          body.innerHTML =
+            kycRadioGroup('Account type', 'kyc-acc', [{value:'individual',label:'Personal Account'},{value:'business',label:'Business Account'}], kycState.accountType, "kycState.accountType='VAL';document.getElementById('kyc-type-sel').value='VAL';kycState.error='';renderKyc();") +
+            kycInput('Full legal name', p.fullName, 'Jane Doe', 'kycState.personal.fullName=this.value') +
+            `<div class="fc-kyc-flow__grid-2">` +
+            kycInput('Date of birth', p.dob, 'YYYY-MM-DD', 'kycState.personal.dob=this.value', 'date') +
+            kycSelect('Country / Nationality', [{value:'United States',label:'United States'},{value:'United Kingdom',label:'United Kingdom'},{value:'Germany',label:'Germany'},{value:'Nigeria',label:'Nigeria'}], p.nationality, 'kycState.personal.nationality=this.value') +
+            `</div>` +
+            kycInput('Residential address', p.address, '420 Market St, San Francisco, CA', 'kycState.personal.address=this.value') +
+            kycRadioGroup('Choose how to verify', 'kyc-pm', [
+              { value: 'document_selfie', label: 'Government ID + Selfie (Upload document)' },
+              { value: 'bank_id', label: 'Instant Bank Verification (No upload required)' },
+              { value: 'passkey_id', label: 'Device Passkey / Biometric ID (~30 sec)' }
+            ], kycState.personalMethod, "kycState.personalMethod='VAL';renderKyc();");
+        } else {
+          const b = kycState.business;
+          body.innerHTML =
+            kycRadioGroup('Account type', 'kyc-acc', [{value:'individual',label:'Personal Account'},{value:'business',label:'Business Account'}], kycState.accountType, "kycState.accountType='VAL';document.getElementById('kyc-type-sel').value='VAL';kycState.error='';renderKyc();") +
+            kycInput('Company legal name', b.legalName, 'Acme Treasury Inc.', 'kycState.business.legalName=this.value') +
+            `<div class="fc-kyc-flow__grid-2">` +
+            kycInput('Registration number', b.regNumber, 'DE-8492014', 'kycState.business.regNumber=this.value') +
+            kycSelect('Country of incorporation', [{value:'United States',label:'United States'},{value:'United Kingdom',label:'United Kingdom'},{value:'Germany',label:'Germany'},{value:'Nigeria',label:'Nigeria'}], b.country, 'kycState.business.country=this.value') +
+            `</div>` +
+            kycInput('Registered business address', b.address, '548 Market St, San Francisco, CA', 'kycState.business.address=this.value') +
+            kycRadioGroup('Choose business verification option', 'kyc-bm', [
+              { value: 'upload_bundle', label: 'Upload Company Docs & Owner ID' },
+              { value: 'invite_director', label: 'Send Verification Link to Beneficial Owner' },
+              { value: 'registry_bank', label: 'Instant Registry + Corporate Bank Check' }
+            ], kycState.businessMethod, "kycState.businessMethod='VAL';renderKyc();");
+        }
+        actions.innerHTML = `<button type="button" class="fc-button fc-button--ghost" onclick="kycRestart()">Restart</button><button type="button" class="fc-button fc-button--primary" onclick="kycState.step=1;kycState.error='';renderKyc();">Continue</button>`;
+      } else {
+        if (!isBiz) {
+          const p = kycState.personal;
+          if (kycState.personalMethod === 'document_selfie') {
+            body.innerHTML =
+              kycSelect('Document type', [{value:'passport',label:'Passport'},{value:'national_id',label:'National ID Card'},{value:'drivers_license',label:"Driver's License"}], p.docType, 'kycState.personal.docType=this.value') +
+              kycUploader('Upload your government ID', 'Make sure all four corners are clear and readable.', p.idFile, "kycState.personal.idFile='Government_ID_Scan.pdf';kycState.error='';renderKyc();", "kycState.personal.idFile='';renderKyc();") +
+              `<div class="fc-card"><div class="fc-card__header"><h3 class="fc-card__title">Quick selfie match</h3><p class="fc-card__description">Complete biometric face match for instant approval.</p></div><div class="fc-card__footer"><div class="fc-kyc-flow__actions-right"><button type="button" class="fc-button fc-button--secondary fc-button--sm" onclick="kycState.personal.selfieDone=true;renderKyc();">${p.selfieDone?'Retake selfie':'Start selfie check'}</button>${p.selfieDone?'<span class="fc-badge fc-badge--success">Selfie matched</span>':''}</div></div></div>`;
+          } else if (kycState.personalMethod === 'bank_id') {
+            body.innerHTML = kycBankSelector() + `<div class="fc-alert fc-alert--info" role="status"><p class="fc-alert__title">Instant read-only confirmation</p><div class="fc-alert__message">Sign in with ${kycState.bank} to confirm your identity without uploading documents.</div></div>`;
+          } else {
+            body.innerHTML = `<div class="fc-card"><div class="fc-card__header"><h3 class="fc-card__title">Verify with device passkey</h3><p class="fc-card__description">Approve with Face ID, Touch ID, or device security key.</p></div><div class="fc-card__footer"><div class="fc-kyc-flow__actions-right"><button type="button" class="fc-button fc-button--primary fc-button--sm" onclick="kycState.personal.selfieDone=true;renderKyc();">${p.selfieDone?'Passkey verified':'Verify with Passkey'}</button>${p.selfieDone?'<span class="fc-badge fc-badge--success">Confirmed</span>':''}</div></div></div>`;
+          }
+        } else {
+          const b = kycState.business;
+          if (kycState.businessMethod === 'upload_bundle') {
+            body.innerHTML =
+              kycUploader('Certificate of Incorporation', 'Official business registration filing.', b.incFile, "kycState.business.incFile='Certificate_of_Incorporation.pdf';renderKyc();", "kycState.business.incFile='';renderKyc();") +
+              kycUploader('Proof of business address', 'Utility bill or bank statement from the last 90 days.', b.addrFile, "kycState.business.addrFile='Utility_Bill_Q1.pdf';renderKyc();", "kycState.business.addrFile='';renderKyc();") +
+              `<div class="fc-kyc-flow__grid-2">` + kycInput('Beneficial owner / director', b.directorName, 'Jordan Vance', 'kycState.business.directorName=this.value') + kycInput('Ownership %', b.directorOwnership, '60', 'kycState.business.directorOwnership=this.value') + `</div>` +
+              kycUploader('Owner / director government ID', 'Passport or national ID for this owner.', b.directorIdFile, "kycState.business.directorIdFile='Director_Passport.pdf';renderKyc();", "kycState.business.directorIdFile='';renderKyc();");
+          } else if (kycState.businessMethod === 'invite_director') {
+            body.innerHTML =
+              kycUploader('Certificate of Incorporation', 'Official business registration filing.', b.incFile, "kycState.business.incFile='Certificate_of_Incorporation.pdf';renderKyc();", "kycState.business.incFile='';renderKyc();") +
+              `<div class="fc-kyc-flow__grid-2">` + kycInput('Beneficial owner name', b.directorName, 'Jordan Vance', 'kycState.business.directorName=this.value') + kycInput('Beneficial owner email', b.directorEmail, 'jordan@acme.io', 'kycState.business.directorEmail=this.value', 'email') + `</div>` +
+              `<div class="fc-alert fc-alert--info" role="status"><p class="fc-alert__title">One-tap owner invite</p><div class="fc-alert__message">We will send a secure verification link directly to ${b.directorName || 'your beneficial owner'}.</div></div>`;
+          } else {
+            body.innerHTML = kycBankSelector() + `<div class="fc-alert fc-alert--info" role="status"><p class="fc-alert__title">Instant company match</p><div class="fc-alert__message">Confirm ${b.legalName} via corporate registry and ${kycState.bank}.</div></div>`;
+          }
+        }
+        actions.innerHTML = `<button type="button" class="fc-button fc-button--ghost" onclick="kycState.step=0;kycState.error='';renderKyc();">Back</button>
+          <div class="fc-kyc-flow__actions-right">
+            <button type="button" class="fc-button fc-button--secondary" onclick="submitKyc(true)">Submit for review</button>
+            <button type="button" class="fc-button fc-button--primary" onclick="submitKyc(false)">Complete verification</button>
+          </div>`;
+      }
+    }
+
+    function submitKyc(manual) {
+      kycState.error = '';
+      if (kycState.outcome === 'error') {
+        kycState.error = 'Verification document could not be read clearly. Please check your file and try again.';
+        renderKyc();
+        return;
+      }
+      kycState.step = 2;
+      kycState.phase = (manual || kycState.outcome === 'manual_review') ? 'manual_review' : 'success';
+      renderKyc();
+    }
+
+    renderKyc();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

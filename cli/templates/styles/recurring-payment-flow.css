@@ -1,0 +1,162 @@
+/*
+ * Sorleed RecurringPaymentFlow — layout-only stylesheet.
+ * Uses Sorleed primitives (Card, Tabs, BeneficiaryPicker, Input, Select, StandingOrderCard, Badge, Alert, Button).
+ */
+
+.fc-recurring-flow {
+  width: 100%;
+  max-width: 600px;
+}
+
+.fc-recurring-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-recurring-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-recurring-flow__top-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-recurring-flow__currency-wrap {
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.fc-recurring-flow__stepper {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fc-recurring-flow__step {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-2) var(--fc-space-3);
+  border-radius: var(--fc-radius-lg);
+  border: 1px solid var(--fc-color-border-subtle);
+  background-color: var(--fc-color-surface-subtle);
+}
+
+.fc-recurring-flow__step--active {
+  background-color: var(--fc-blue-50);
+  border-color: var(--fc-blue-300);
+}
+
+.fc-recurring-flow__step--done {
+  background-color: var(--fc-green-50);
+  border-color: var(--fc-green-200);
+}
+
+.fc-recurring-flow__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+  background-color: var(--fc-color-surface-default);
+  color: var(--fc-color-content-secondary);
+  border: 1px solid var(--fc-color-border-default);
+}
+
+.fc-recurring-flow__step--active .fc-recurring-flow__step-num {
+  background-color: var(--fc-blue-600);
+  color: var(--fc-white);
+  border-color: var(--fc-blue-600);
+}
+
+.fc-recurring-flow__step--done .fc-recurring-flow__step-num {
+  background-color: var(--fc-green-600);
+  color: var(--fc-white);
+  border-color: var(--fc-green-600);
+}
+
+.fc-recurring-flow__step-label {
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-recurring-flow__step--active .fc-recurring-flow__step-label {
+  color: var(--fc-blue-700);
+}
+
+.fc-recurring-flow__step--done .fc-recurring-flow__step-label {
+  color: var(--fc-green-800);
+}
+
+.fc-recurring-flow__grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-recurring-flow__summary-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-3) var(--fc-space-4);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface-subtle);
+  border: 1px solid var(--fc-color-border-subtle);
+}
+
+.fc-recurring-flow__summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  font-size: var(--fc-font-size-sm);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-recurring-flow__summary-row strong {
+  color: var(--fc-color-content-primary);
+  font-weight: var(--fc-font-weight-medium);
+}
+
+.fc-recurring-flow__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-recurring-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  width: 100%;
+}
+
+.fc-recurring-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+@media (max-width: 540px) {
+  .fc-recurring-flow__stepper,
+  .fc-recurring-flow__grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

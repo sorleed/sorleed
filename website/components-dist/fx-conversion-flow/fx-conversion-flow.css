@@ -1,0 +1,165 @@
+/*
+ * Sorleed FXConversionFlow — layout-only stylesheet.
+ * Uses Sorleed primitives (Card, Tabs, Select, Input, FeeBreakdown, TransferReceipt, Tooltip, Badge, Alert, Button).
+ */
+
+.fc-fx-flow {
+  width: 100%;
+  max-width: 600px;
+}
+
+.fc-fx-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-fx-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-fx-flow__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-fx-flow__stepper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--fc-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fc-fx-flow__step {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-2) var(--fc-space-3);
+  border-radius: var(--fc-radius-lg);
+  border: 1px solid var(--fc-color-border-subtle);
+  background-color: var(--fc-color-surface-subtle);
+}
+
+.fc-fx-flow__step--active {
+  background-color: var(--fc-blue-50);
+  border-color: var(--fc-blue-300);
+}
+
+.fc-fx-flow__step--done {
+  background-color: var(--fc-green-50);
+  border-color: var(--fc-green-200);
+}
+
+.fc-fx-flow__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+  background-color: var(--fc-color-surface-default);
+  color: var(--fc-color-content-secondary);
+  border: 1px solid var(--fc-color-border-default);
+}
+
+.fc-fx-flow__step--active .fc-fx-flow__step-num {
+  background-color: var(--fc-blue-600);
+  color: var(--fc-white);
+  border-color: var(--fc-blue-600);
+}
+
+.fc-fx-flow__step--done .fc-fx-flow__step-num {
+  background-color: var(--fc-green-600);
+  color: var(--fc-white);
+  border-color: var(--fc-green-600);
+}
+
+.fc-fx-flow__step-label {
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fc-fx-flow__step--active .fc-fx-flow__step-label {
+  color: var(--fc-blue-700);
+}
+
+.fc-fx-flow__step--done .fc-fx-flow__step-label {
+  color: var(--fc-green-800);
+}
+
+.fc-fx-flow__pair-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: var(--fc-space-3);
+  align-items: end;
+}
+
+.fc-fx-flow__grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-fx-flow__tip-anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.fc-fx-flow__tip-bubble {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.fc-fx-flow__tip-anchor:hover .fc-fx-flow__tip-bubble,
+.fc-fx-flow__tip-anchor:focus-within .fc-fx-flow__tip-bubble {
+  opacity: 1;
+}
+
+.fc-fx-flow__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-fx-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  width: 100%;
+}
+
+.fc-fx-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+@media (max-width: 540px) {
+  .fc-fx-flow__stepper,
+  .fc-fx-flow__pair-grid,
+  .fc-fx-flow__grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

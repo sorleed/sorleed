@@ -1,0 +1,62 @@
+/*
+ * Sorleed StatementExportFlow — layout-only stylesheet.
+ * Uses Sorleed primitives (Card, Tabs, RadioGroup, Select, Input, Tooltip, Badge, Alert, Button).
+ */
+
+.fc-statement-flow {
+  width: 100%;
+  max-width: 600px;
+}
+
+.fc-statement-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-statement-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-statement-flow__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-statement-flow__grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-statement-flow__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-statement-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  width: 100%;
+}
+
+.fc-statement-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+@media (max-width: 540px) {
+  .fc-statement-flow__grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

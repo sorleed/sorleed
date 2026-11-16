@@ -1,0 +1,84 @@
+/*
+ * Sorleed DepositFundingFlow — layout-only stylesheet.
+ * All interactive controls use Sorleed primitives (Card, RadioGroup, Input, Select, Button, Badge, Alert, BankSelector, IbanAccountDetails, FeeBreakdown).
+ */
+
+.fc-deposit-flow {
+  width: 100%;
+  max-width: 580px;
+}
+
+.fc-deposit-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-deposit-flow__header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-deposit-flow__amount-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 128px;
+  gap: var(--fc-space-3);
+  align-items: start;
+}
+
+.fc-deposit-flow__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fc-space-2);
+}
+
+.fc-deposit-flow__summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-deposit-flow__summary-label {
+  display: block;
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-tertiary);
+}
+
+.fc-deposit-flow__summary-value {
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  font-variant-numeric: tabular-nums;
+  color: var(--fc-neutral-900);
+}
+
+.fc-deposit-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  padding-top: var(--fc-space-2);
+}
+
+.fc-deposit-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-deposit-flow__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 540px) {
+  .fc-deposit-flow__amount-grid,
+  .fc-deposit-flow__summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

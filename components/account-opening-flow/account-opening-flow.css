@@ -1,0 +1,174 @@
+/*
+ * Sorleed AccountOpeningFlow — layout-only stylesheet.
+ * Uses Sorleed primitives (Card, Tabs, Input, Select, RadioGroup, KycDocUploader, Checkbox, IbanAccountDetails, Badge, Alert, Button, Tooltip).
+ */
+
+.fc-account-open-flow {
+  width: 100%;
+  max-width: 600px;
+}
+
+.fc-account-open-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-account-open-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-account-open-flow__top-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-account-open-flow__currency-wrap {
+  width: 148px;
+  flex-shrink: 0;
+}
+
+.fc-account-open-flow__stepper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--fc-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fc-account-open-flow__step {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-2) var(--fc-space-3);
+  border-radius: var(--fc-radius-lg);
+  border: 1px solid var(--fc-color-border-subtle);
+  background-color: var(--fc-color-surface-subtle);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.fc-account-open-flow__step--active {
+  background-color: var(--fc-blue-50);
+  border-color: var(--fc-blue-300);
+}
+
+.fc-account-open-flow__step--done {
+  background-color: var(--fc-green-50);
+  border-color: var(--fc-green-200);
+}
+
+.fc-account-open-flow__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+  background-color: var(--fc-color-surface-default);
+  color: var(--fc-color-content-secondary);
+  border: 1px solid var(--fc-color-border-default);
+}
+
+.fc-account-open-flow__step--active .fc-account-open-flow__step-num {
+  background-color: var(--fc-blue-600);
+  color: var(--fc-white);
+  border-color: var(--fc-blue-600);
+}
+
+.fc-account-open-flow__step--done .fc-account-open-flow__step-num {
+  background-color: var(--fc-green-600);
+  color: var(--fc-white);
+  border-color: var(--fc-green-600);
+}
+
+.fc-account-open-flow__step-label {
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-content-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fc-account-open-flow__step--active .fc-account-open-flow__step-label {
+  color: var(--fc-blue-700);
+}
+
+.fc-account-open-flow__step--done .fc-account-open-flow__step-label {
+  color: var(--fc-green-800);
+}
+
+.fc-account-open-flow__grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-account-open-flow__inline-status {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-account-open-flow__summary-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-3) var(--fc-space-4);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface-subtle);
+  border: 1px solid var(--fc-color-border-subtle);
+}
+
+.fc-account-open-flow__summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  font-size: var(--fc-font-size-sm);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-account-open-flow__summary-row strong {
+  color: var(--fc-color-content-primary);
+  font-weight: var(--fc-font-weight-medium);
+  text-align: right;
+}
+
+.fc-account-open-flow__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-account-open-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  width: 100%;
+}
+
+.fc-account-open-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+@media (max-width: 560px) {
+  .fc-account-open-flow__stepper,
+  .fc-account-open-flow__grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

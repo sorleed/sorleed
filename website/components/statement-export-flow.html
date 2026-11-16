@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>StatementExportFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed StatementExportFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/statement-export-flow">
+  <meta property="og:title" content="StatementExportFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed StatementExportFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="statement-export-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>StatementExportFlow</span></div>
+      <h1 class="docs-title">StatementExportFlow</h1>
+      <p class="docs-lede">
+        PDF and CSV ledger export workflow composing <code>Card</code>, <code>Tabs</code>, <code>Select</code>, <code>Input</code>, <code>RadioGroup</code>, <code>Alert</code>, <code>Badge</code>, and <code>Button</code> with direct download and email delivery options.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-statement-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-statement-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Export account statement</h3>
+                      <p class="fc-card__description">Generate official PDF bank statements or CSV ledgers for accounting.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="se-badge">PDF</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="se-body"></div>
+                <div class="fc-card__footer" id="se-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Profile</span>
+              <select class="ctrl-select" id="se-type" onchange="seReset(this.value)">
+                <option value="personal">Personal statements</option>
+                <option value="business">Business audit pack</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="seReset(seState.accountType)" style="cursor:pointer;">Reset Export</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add statement-export-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { StatementExportFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;StatementExportFlow
+      accountType="business"
+      defaultEmail="finance@company.com"
+      onExport={(exp) =&gt; console.log(exp.fileName, exp.delivery)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('statement-export-flow');
+
+    const SE_ICONS = {
+      file: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>',
+      download: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>',
+      mail: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
+      refresh: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>'
+    };
+
+    const seState = {
+      accountType: 'personal',
+      accountId: 'acc-usd',
+      range: 'last_30_days',
+      start: '2026-10-01',
+      end: '2026-10-31',
+      format: 'pdf',
+      delivery: 'download',
+      email: 'finance@company.com',
+      status: 'selecting',
+      error: '',
+      fileName: ''
+    };
+
+    function seReset(type) {
+      seState.accountType = type || 'personal';
+      document.getElementById('se-type').value = seState.accountType;
+      seState.status = 'selecting';
+      seState.error = '';
+      seState.fileName = '';
+      renderSe();
+    }
+
+    function seGenerate() {
+      seState.error = '';
+      if (seState.range === 'custom' && (!seState.start || !seState.end || seState.end < seState.start)) {
+        seState.status = 'error';
+        seState.error = 'Provide a valid custom start and end date (YYYY-MM-DD).';
+        renderSe();
+        return;
+      }
+      if (seState.delivery === 'email' && !seState.email.includes('@')) {
+        seState.status = 'error';
+        seState.error = 'Enter a valid email address.';
+        renderSe();
+        return;
+      }
+      seState.fileName = `statement-${seState.accountId.replace('acc-','')}-${seState.range}.${seState.format}`;
+      seState.status = 'ready';
+      renderSe();
+    }
+
+    function renderSe() {
+      const isBiz = seState.accountType === 'business';
+      const badge = document.getElementById('se-badge');
+      badge.className = 'fc-badge fc-badge--' + (seState.status === 'ready' ? 'success' : 'info');
+      badge.textContent = seState.status === 'ready' ? 'File ready' : seState.format.toUpperCase();
+
+      const top = `<div class="fc-statement-flow__top-row">
+        <div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="seReset('personal')">Personal statements</button><button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="seReset('business')">Business audit pack</button></div></div>
+      </div>`;
+      const err = seState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Export could not start</p><div class="fc-alert__message">${seState.error}</div></div>` : '';
+
+      let inner = '';
+      if (seState.status === 'ready') {
+        inner = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Statement generated</p><div class="fc-alert__message">${seState.fileName} is ready. ${seState.delivery==='email'?'Emailed copy to '+seState.email+'.':'Use Download or Email below.'}</div></div>`;
+      } else {
+        inner = `<div class="fc-statement-flow__stack">
+          <div class="fc-statement-flow__grid-2">
+            <div class="fc-select"><label class="fc-select__label">Account</label><div class="fc-select__control"><select class="fc-select__field" onchange="seState.accountId=this.value"><option value="acc-usd" ${seState.accountId==='acc-usd'?'selected':''}>Primary Checking (•••• 4410) · USD</option><option value="acc-eur" ${seState.accountId==='acc-eur'?'selected':''}>Euro Operating (•••• 9921) · EUR</option></select></div></div>
+            <div class="fc-select"><label class="fc-select__label">Date range</label><div class="fc-select__control"><select class="fc-select__field" onchange="seState.range=this.value;renderSe();"><option value="last_30_days" ${seState.range==='last_30_days'?'selected':''}>Last 30 days</option><option value="last_quarter" ${seState.range==='last_quarter'?'selected':''}>Previous quarter</option><option value="ytd" ${seState.range==='ytd'?'selected':''}>Year to date</option><option value="custom" ${seState.range==='custom'?'selected':''}>Custom date range</option></select></div></div>
+          </div>
+          ${seState.range==='custom'?`<div class="fc-statement-flow__grid-2"><div class="fc-input"><label class="fc-input__label">Start date</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${seState.start}" oninput="seState.start=this.value"></div></div><div class="fc-input"><label class="fc-input__label">End date</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${seState.end}" oninput="seState.end=this.value"></div></div></div>`:''}
+          <div class="fc-statement-flow__grid-2">
+            <div class="fc-select"><label class="fc-select__label">Format</label><div class="fc-select__control"><select class="fc-select__field" onchange="seState.format=this.value;renderSe();"><option value="pdf" ${seState.format==='pdf'?'selected':''}>Signed PDF statement</option><option value="csv" ${seState.format==='csv'?'selected':''}>CSV ledger export</option></select></div></div>
+            <div class="fc-select"><label class="fc-select__label">Delivery</label><div class="fc-select__control"><select class="fc-select__field" onchange="seState.delivery=this.value;renderSe();"><option value="download" ${seState.delivery==='download'?'selected':''}>Direct download</option><option value="email" ${seState.delivery==='email'?'selected':''}>Send via email</option></select></div></div>
+          </div>
+          ${seState.delivery==='email'?`<div class="fc-input"><label class="fc-input__label">Recipient email</label><div class="fc-input__control"><input type="email" class="fc-input__field" value="${seState.email}" oninput="seState.email=this.value"></div></div>`:''}
+        </div>`;
+      }
+
+      document.getElementById('se-body').innerHTML = `<div class="fc-statement-flow__stack">${top}${err}${inner}</div>`;
+      document.getElementById('se-footer').innerHTML = seState.status === 'ready'
+        ? `<div class="fc-statement-flow__actions"><button type="button" class="fc-button fc-button--ghost" onclick="seReset(seState.accountType)"><span class="fc-statement-flow__btn-inner">${SE_ICONS.refresh} Reset</span></button><div class="fc-statement-flow__actions-right"><button type="button" class="fc-button fc-button--secondary" onclick="alert('Emailed '+seState.fileName+' to '+seState.email)"><span class="fc-statement-flow__btn-inner">${SE_ICONS.mail} Email</span></button><button type="button" class="fc-button fc-button--primary" onclick="alert('Downloading '+seState.fileName)"><span class="fc-statement-flow__btn-inner">${SE_ICONS.download} Download</span></button></div></div>`
+        : `<div class="fc-statement-flow__actions"><button type="button" class="fc-button fc-button--ghost" onclick="seReset(seState.accountType)"><span class="fc-statement-flow__btn-inner">${SE_ICONS.refresh} Reset</span></button><div class="fc-statement-flow__actions-right"><button type="button" class="fc-button fc-button--primary" onclick="seGenerate()"><span class="fc-statement-flow__btn-inner">${SE_ICONS.file} Generate</span></button></div></div>`;
+    }
+
+    renderSe();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

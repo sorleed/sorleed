@@ -1,0 +1,155 @@
+/*
+ * Sorleed IbanAccountDetails — local & international bank account details sheet with copy & mask controls.
+ * Consumes foundation tokens from tokens/dist/tokens.css.
+ */
+
+.fc-iban-details {
+  font-family: var(--fc-font-family-sans, "IBM Plex Sans", system-ui, sans-serif);
+  background: var(--fc-color-surface-default, #ffffff);
+  border: 1px solid var(--fc-color-border-subtle, #e2e8f0);
+  border-radius: var(--fc-radius-lg, 8px);
+  padding: var(--fc-space-5, 20px);
+  color: var(--fc-color-content-primary, #0f172a);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+}
+
+.fc-iban-details__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--fc-space-3, 12px);
+  padding-bottom: var(--fc-space-4, 16px);
+  border-bottom: 1px solid var(--fc-color-border-subtle, #e2e8f0);
+  margin-bottom: var(--fc-space-4, 16px);
+}
+
+.fc-iban-details__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md, 16px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--fc-color-content-primary, #0f172a);
+}
+
+.fc-iban-details__subtitle {
+  margin: 2px 0 0;
+  font-size: var(--fc-font-size-xs, 12px);
+  color: var(--fc-color-content-helper, #475569);
+}
+
+.fc-iban-details__badges {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2, 8px);
+  flex-shrink: 0;
+}
+
+.fc-iban-details__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--fc-blue-50, #eff6ff);
+  color: var(--fc-blue-700, #1d4ed8);
+  border: 1px solid var(--fc-blue-200, #bfdbfe);
+}
+
+.fc-iban-details__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3, 12px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fc-iban-details__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3, 12px);
+  padding: var(--fc-space-2, 8px) var(--fc-space-3, 12px);
+  background: var(--fc-color-surface-canvas, #f8fafc);
+  border: 1px solid var(--fc-color-border-subtle, #e2e8f0);
+  border-radius: var(--fc-radius-md, 6px);
+}
+
+.fc-iban-details__field {
+  min-width: 0;
+  flex: 1;
+}
+
+.fc-iban-details__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fc-color-content-helper, #475569);
+  margin-bottom: 2px;
+}
+
+.fc-iban-details__value {
+  display: block;
+  font-size: var(--fc-font-size-sm, 14px);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--fc-color-content-primary, #0f172a);
+  word-break: break-all;
+}
+
+.fc-iban-details__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-1, 4px);
+  flex-shrink: 0;
+}
+
+.fc-iban-details__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--fc-color-content-secondary, #334155);
+  background: var(--fc-color-surface-default, #ffffff);
+  border: 1px solid var(--fc-color-border-default, #cbd5e1);
+  border-radius: var(--fc-radius-md, 6px);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.fc-iban-details__btn:hover {
+  background: var(--fc-color-surface-subtle, #f1f5f9);
+  border-color: var(--fc-color-border-strong, #94a3b8);
+}
+
+.fc-iban-details__btn:focus-visible {
+  outline: 2px solid var(--fc-color-border-focus, #2563eb);
+  outline-offset: 2px;
+}
+
+.fc-iban-details__btn--copied {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+  color: #065f46;
+}
+
+.fc-iban-details__footer {
+  margin-top: var(--fc-space-4, 16px);
+  padding-top: var(--fc-space-3, 12px);
+  border-top: 1px solid var(--fc-color-border-subtle, #e2e8f0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3, 12px);
+  font-size: var(--fc-font-size-xs, 12px);
+  color: var(--fc-color-content-helper, #475569);
+}
+
