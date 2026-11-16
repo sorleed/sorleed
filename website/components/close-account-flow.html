@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>CloseAccountFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed CloseAccountFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/close-account-flow">
+  <meta property="og:title" content="CloseAccountFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed CloseAccountFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="close-account-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>CloseAccountFlow</span></div>
+      <h1 class="docs-title">CloseAccountFlow</h1>
+      <p class="docs-lede">
+        Permanent account offboarding workflow composing <code>Card</code>, <code>Tabs</code>, <code>RadioGroup</code>, <code>Textarea</code>, <code>Select</code>, <code>Checkbox</code>, <code>Alert</code>, <code>Badge</code>, and <code>Button</code> with remaining-balance sweep validation.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-close-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-close-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Close account</h3>
+                      <p class="fc-card__description">Permanent closure workflow for Primary USD Checking •••• 4410.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--warning" id="ca-badge">Balance: USD 420.50</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="ca-body"></div>
+                <div class="fc-card__footer" id="ca-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Profile</span>
+              <select class="ctrl-select" id="ca-type" onchange="caReset(this.value)">
+                <option value="personal">Personal account</option>
+                <option value="business">Business entity</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Remaining Balance</span>
+              <select class="ctrl-select" onchange="caState.balance=Number(this.value);caState.error='';renderCa();">
+                <option value="420.5">USD 420.50 (requires sweep)</option>
+                <option value="0">USD 0.00 (zero balance)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="caReset(caState.accountType)" style="cursor:pointer;">Reset Flow</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add close-account-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { CloseAccountFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;CloseAccountFlow
+      accountType="personal"
+      remainingBalance={420.5}
+      onConfirmClose={(res) =&gt; console.log('Closed', res.reference)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('close-account-flow');
+
+    const CA_ICONS = {
+      left: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>',
+      right: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      alert: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>',
+      x: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'
+    };
+
+    const caState = {
+      accountType: 'personal',
+      step: 1,
+      status: 'selecting-reason',
+      balance: 420.5,
+      reason: 'no_longer_needed',
+      feedback: '',
+      dest: 'Chase External Checking (•••• 7731)',
+      sweep: true,
+      ack: false,
+      error: '',
+      ref: ''
+    };
+
+    function caReset(type) {
+      caState.accountType = type || 'personal';
+      document.getElementById('ca-type').value = caState.accountType;
+      caState.step = 1;
+      caState.status = 'selecting-reason';
+      caState.ack = false;
+      caState.error = '';
+      caState.ref = '';
+      renderCa();
+    }
+
+    function caContinue() {
+      caState.error = '';
+      if (caState.step === 1) {
+        caState.step = 2;
+        caState.status = 'confirming';
+      } else if (caState.step === 2) {
+        if (caState.balance > 0 && !caState.sweep) {
+          caState.status = 'error';
+          caState.error = 'Balance remaining (USD ' + caState.balance.toFixed(2) + '). Authorize the final balance sweep before closing.';
+          renderCa();
+          return;
+        }
+        caState.step = 3;
+      } else {
+        if (!caState.ack) {
+          caState.status = 'error';
+          caState.error = 'Acknowledge that closing this account is permanent.';
+          renderCa();
+          return;
+        }
+        caState.ref = 'CLS-' + Math.floor(100000 + Math.random() * 900000);
+        caState.status = 'success';
+      }
+      renderCa();
+    }
+
+    function renderCa() {
+      const isBiz = caState.accountType === 'business';
+      const badge = document.getElementById('ca-badge');
+      badge.className = 'fc-badge fc-badge--' + (caState.status === 'success' ? 'success' : caState.balance > 0 ? 'warning' : 'success');
+      badge.textContent = caState.status === 'success' ? `Closed · ${caState.ref}` : `Balance: USD ${caState.balance.toFixed(2)}`;
+
+      const top = `<div class="fc-close-flow__top-row">
+        <div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="caReset('personal')">Personal account</button><button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="caReset('business')">Business entity</button></div></div>
+      </div>`;
+
+      const stepper = `<nav aria-label="Account closure steps"><ol class="fc-close-flow__stepper" aria-live="polite">${['Reason','Final balance','Review & close'].map((l,i)=>{
+        const s=i+1; const done = caState.step>s || caState.status==='success'; const act = !done && caState.step===s;
+        return `<li class="fc-close-flow__step ${act?'fc-close-flow__step--active':''} ${done?'fc-close-flow__step--done':''}"><span class="fc-close-flow__step-num" aria-hidden="true">${done?'✓':s}</span><span class="fc-close-flow__step-label">${l}</span></li>`;
+      }).join('')}</ol></nav>`;
+      const err = caState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Cannot close account yet</p><div class="fc-alert__message">${caState.error}</div></div>` : '';
+
+      let inner = '';
+      if (caState.status === 'success') {
+        inner = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Account closed (${caState.ref})</p><div class="fc-alert__message">Account closure confirmed. ${caState.balance>0?'USD '+caState.balance.toFixed(2)+' swept to '+caState.dest+'.':'Zero balance confirmed.'}</div></div>`;
+      } else if (caState.step === 1) {
+        inner = `<div class="fc-close-flow__stack">
+          <div class="fc-select"><label class="fc-select__label">Reason for closing</label><div class="fc-select__control"><select class="fc-select__field" onchange="caState.reason=this.value"><option value="no_longer_needed">No longer need this account</option><option value="consolidating">Consolidating entities / banks</option><option value="fees_features">Fees or missing features</option></select></div></div>
+          <div class="fc-textarea"><label class="fc-textarea__label">Additional feedback (optional)</label><div class="fc-textarea__control"><textarea class="fc-textarea__field" rows="3" oninput="caState.feedback=this.value" placeholder="Tell us anything we could improve...">${caState.feedback}</textarea></div></div>
+        </div>`;
+      } else if (caState.step === 2) {
+        inner = caState.balance > 0
+          ? `<div class="fc-close-flow__stack">
+              <div class="fc-alert fc-alert--warning"><p class="fc-alert__title">Final balance settlement</p><div class="fc-alert__message">USD ${caState.balance.toFixed(2)} remains in this account. Select a sweep destination before closing.</div></div>
+              <div class="fc-select"><label class="fc-select__label">Destination bank account</label><div class="fc-select__control"><select class="fc-select__field" onchange="caState.dest=this.value"><option>Chase External Checking (•••• 7731)</option><option>Mercury Operating Account (•••• 4829)</option></select></div></div>
+              <label class="fc-checkbox"><span class="fc-checkbox__control"><input type="checkbox" class="fc-checkbox__field" ${caState.sweep?'checked':''} onchange="caState.sweep=this.checked"><span class="fc-checkbox__box"></span></span><span class="fc-checkbox__label">Sweep USD ${caState.balance.toFixed(2)} to ${caState.dest} upon closure</span></label>
+            </div>`
+          : `<div class="fc-alert fc-alert--info"><p class="fc-alert__title">Zero balance confirmed</p><div class="fc-alert__message">Your account balance is USD 0.00. No final transfer is required.</div></div>`;
+      } else {
+        inner = `<div class="fc-close-flow__stack">
+          <div class="fc-close-flow__summary-box">
+            <div class="fc-close-flow__summary-row"><span>Account</span><strong>Primary USD Checking •••• 4410</strong></div>
+            <div class="fc-close-flow__summary-row"><span>Reason</span><strong>${caState.reason.replace(/_/g,' ')}</strong></div>
+            <div class="fc-close-flow__summary-row"><span>Final balance sweep</span><strong>${caState.balance>0?'USD '+caState.balance.toFixed(2)+' -> '+caState.dest:'USD 0.00'}</strong></div>
+          </div>
+          <label class="fc-checkbox"><span class="fc-checkbox__control"><input type="checkbox" class="fc-checkbox__field" ${caState.ack?'checked':''} onchange="caState.ack=this.checked"><span class="fc-checkbox__box"></span></span><span class="fc-checkbox__label">I understand closure permanently disables associated virtual cards and account numbers.</span></label>
+        </div>`;
+      }
+
+      document.getElementById('ca-body').innerHTML = `<div class="fc-close-flow__stack">${top}${stepper}${err}${inner}</div>`;
+      document.getElementById('ca-footer').innerHTML = caState.status === 'success'
+        ? `<div class="fc-close-flow__actions"><span></span><button type="button" class="fc-button fc-button--secondary" onclick="caReset(caState.accountType)">Done</button></div>`
+        : `<div class="fc-close-flow__actions"><button type="button" class="fc-button fc-button--ghost" onclick="${caState.step===1?'caReset(caState.accountType)':'caState.step=Math.max(1,caState.step-1);caState.error=\'\';renderCa();'}"><span class="fc-close-flow__btn-inner">${caState.step===1?`${CA_ICONS.x} Cancel`:`${CA_ICONS.left} Back`}</span></button><div class="fc-close-flow__actions-right"><button type="button" class="fc-button fc-button--primary" onclick="caContinue()"><span class="fc-close-flow__btn-inner">${caState.step<3?`Continue ${CA_ICONS.right}`:`${CA_ICONS.alert} Confirm Closure`}</span></button></div></div>`;
+    }
+
+    renderCa();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

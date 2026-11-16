@@ -1,0 +1,154 @@
+/*
+ * Sorleed CardManagementFlow — layout-only stylesheet.
+ * Uses Sorleed primitives (Card, Tabs, WalletCard, TransferLimitMeter, Tooltip, Input, Select, Badge, Alert, Button).
+ */
+
+.fc-card-mgmt-flow {
+  width: 100%;
+  max-width: 600px;
+}
+
+.fc-card-mgmt-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-card-mgmt-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-card-mgmt-flow__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-card-mgmt-flow__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--fc-space-4);
+}
+
+.fc-card-mgmt-flow__card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--fc-space-3);
+}
+
+/* Visual frost / freeze state wrapper around WalletCard */
+.fc-card-mgmt-flow__card-frame {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  border-radius: var(--fc-radius-lg);
+  transition: filter 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fc-card-mgmt-flow__card-frame--frozen .fc-wallet-card-container {
+  filter: saturate(0.32) brightness(1.06);
+}
+
+.fc-card-mgmt-flow__card-frame--frozen {
+  box-shadow: 0 0 0 2px var(--fc-blue-300), 0 14px 28px -10px rgba(37, 99, 235, 0.28);
+}
+
+.fc-card-mgmt-flow__frost-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: var(--fc-radius-lg);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 246, 255, 0.44) 0%,
+    rgba(191, 219, 254, 0.3) 50%,
+    rgba(219, 234, 254, 0.48) 100%
+  );
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border: 1px solid rgba(147, 197, 253, 0.85);
+}
+
+.fc-card-mgmt-flow__frost-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-2) var(--fc-space-3);
+  border-radius: 999px;
+  background-color: rgba(15, 23, 42, 0.82);
+  color: var(--fc-white);
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+}
+
+.fc-card-mgmt-flow__icon-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--fc-space-2);
+}
+
+/* CSS tooltip anchor for static docs + shared icon button layout */
+.fc-card-mgmt-flow__tip-anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.fc-card-mgmt-flow__tip-bubble {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.fc-card-mgmt-flow__tip-anchor:hover .fc-card-mgmt-flow__tip-bubble,
+.fc-card-mgmt-flow__tip-anchor:focus-within .fc-card-mgmt-flow__tip-bubble {
+  opacity: 1;
+}
+
+.fc-card-mgmt-flow__btn-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-card-mgmt-flow__summary-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-3) var(--fc-space-4);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface-subtle);
+  border: 1px solid var(--fc-color-border-subtle);
+}
+
+.fc-card-mgmt-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  width: 100%;
+}
+
+.fc-card-mgmt-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}

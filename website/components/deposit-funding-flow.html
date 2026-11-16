@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>DepositFundingFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed DepositFundingFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/deposit-funding-flow">
+  <meta property="og:title" content="DepositFundingFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed DepositFundingFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="deposit-funding-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>DepositFundingFlow</span></div>
+      <h1 class="docs-title">DepositFundingFlow</h1>
+      <p class="docs-lede">
+        Multi-rail deposit journey built with Sorleed primitives: <code>Card</code>, <code>RadioGroup</code>, <code>Input</code>, <code>Select</code>, <code>BankSelector</code>, <code>IbanAccountDetails</code>, <code>FeeBreakdown</code>, <code>Badge</code>, <code>Alert</code>, and <code>Button</code>.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-deposit-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-deposit-flow__header-row">
+                    <div>
+                      <h3 class="fc-card__title">Add money</h3>
+                      <p class="fc-card__description" id="dep-sub">Choose how you want to fund your account.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="dep-bal">Balance: $12,450.00</span>
+                  </div>
+                </div>
+                <div class="fc-card__body">
+                  <div class="fc-deposit-flow__stack" id="dep-root"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Account Type</span>
+              <select class="ctrl-select" onchange="dep.accountType=this.value; renderDep();">
+                <option value="personal">Personal Account</option>
+                <option value="business">Business Treasury</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Currency</span>
+              <select class="ctrl-select" id="dep-curr-panel" onchange="dep.currency=this.value; renderDep();">
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="NGN">NGN (₦)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Outcome Simulation</span>
+              <select class="ctrl-select" onchange="dep.simulateError=this.value;">
+                <option value="">Success (Normal)</option>
+                <option value="Card declined by issuing bank. Try another funding method.">Declined Card</option>
+                <option value="Insufficient funds in the linked account.">Insufficient Funds</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add deposit-funding-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card"><div class="code-card__header">App.tsx</div><pre class="code-card__body">import { DepositFundingFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;DepositFundingFlow
+      currency="USD"
+      availableBalance={12450}
+      quickAmounts={[100, 500, 1000]}
+    /&gt;
+  );
+}</pre></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('deposit-funding-flow');
+
+    const D_SYM = { USD: '$', EUR: '€', GBP: '£', NGN: '₦' };
+    const dep = {
+      accountType: 'personal',
+      method: 'bank',
+      currency: 'USD',
+      amount: 500,
+      bank: 'Mercury Checking',
+      state: 'entering', // entering | confirming | processing | success | error
+      simulateError: '',
+      error: '',
+      ref: 'DEP-492817'
+    };
+
+    function radioOpt(name, val, checked, label, onclick) {
+      return `<label class="fc-radio-group__item"><span class="fc-radio-group__control"><input type="radio" name="${name}" value="${val}" ${checked ? 'checked' : ''} class="fc-radio-group__field" onchange="${onclick}"><span class="fc-radio-group__circle" aria-hidden="true"><span class="fc-radio-group__dot"></span></span></span><span class="fc-radio-group__item-label">${label}</span></label>`;
+    }
+
+    function feeFor(amt, method) {
+      if (method === 'card') return +(amt * 0.015).toFixed(2);
+      if (method === 'wire' && dep.accountType === 'business') return 0;
+      return 0;
+    }
+
+    function etaFor(method) {
+      if (method === 'card') return 'Instant';
+      if (method === 'wire') return 'Same business day';
+      return '1-2 business days';
+    }
+
+    function renderDep() {
+      const sym = D_SYM[dep.currency] || '$';
+      const bal = dep.accountType === 'business' ? 84200 : 12450;
+      document.getElementById('dep-bal').textContent = `Balance: ${sym}${bal.toLocaleString(undefined,{minimumFractionDigits:2})}`;
+      document.getElementById('dep-sub').textContent = dep.accountType === 'business'
+        ? 'Fund your business treasury wallet.'
+        : 'Choose how you want to fund your personal account.';
+
+      const root = document.getElementById('dep-root');
+      const fee = feeFor(dep.amount, dep.method);
+      const net = Math.max(0, dep.amount - fee);
+
+      if (dep.state === 'success') {
+        root.innerHTML = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Deposit confirmed · ${dep.ref}</p><div class="fc-alert__message">${sym}${dep.amount.toFixed(2)} via ${dep.method === 'card' ? 'Debit Card' : dep.method === 'wire' ? 'Wire / IBAN' : dep.bank} · Estimated arrival: ${etaFor(dep.method)}.</div></div><div class="fc-deposit-flow__actions"><button type="button" class="fc-button fc-button--secondary" onclick="dep.state='entering';renderDep();">Add more money</button></div>`;
+        return;
+      }
+
+      if (dep.state === 'confirming' || dep.state === 'processing') {
+        const busy = dep.state === 'processing';
+        root.innerHTML = `
+          ${dep.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Deposit failed</p><div class="fc-alert__message">${dep.error}</div></div>` : ''}
+          <div class="fc-card"><div class="fc-card__header"><h3 class="fc-card__title">Confirm deposit</h3><p class="fc-card__description">Review your funding details before submitting.</p></div><div class="fc-card__body"><div class="fc-deposit-flow__summary-grid"><div><span class="fc-deposit-flow__summary-label">Method</span><span class="fc-deposit-flow__summary-value">${dep.method === 'card' ? 'Debit Card (•••• 4242)' : dep.method === 'wire' ? 'Wire / IBAN' : dep.bank}</span></div><div><span class="fc-deposit-flow__summary-label">Estimated arrival</span><span class="fc-deposit-flow__summary-value">${etaFor(dep.method)}</span></div><div><span class="fc-deposit-flow__summary-label">Amount</span><span class="fc-deposit-flow__summary-value">${sym}${dep.amount.toFixed(2)}</span></div><div><span class="fc-deposit-flow__summary-label">Fee</span><span class="fc-deposit-flow__summary-value">${sym}${fee.toFixed(2)}</span></div></div></div></div>
+          <div class="fc-deposit-flow__actions">
+            <button type="button" class="fc-button fc-button--ghost" ${busy ? 'disabled' : ''} onclick="dep.state='entering';dep.error='';renderDep();">Change method</button>
+            <button type="button" class="fc-button fc-button--primary" ${busy ? 'disabled' : ''} onclick="submitDep()">${busy ? 'Processing...' : `Add ${sym}${dep.amount.toFixed(2)}`}</button>
+          </div>`;
+        return;
+      }
+
+      const methodRadios = `<fieldset class="fc-radio-group"><legend class="fc-radio-group__label">Funding method</legend><div class="fc-radio-group__items">
+        ${radioOpt('dep-m','bank',dep.method==='bank','Bank Link — Free · 1-2 business days',"dep.method='bank';dep.error='';renderDep();")}
+        ${radioOpt('dep-m','card',dep.method==='card','Debit Card — Instant · 1.5% fee',"dep.method='card';dep.error='';renderDep();")}
+        ${radioOpt('dep-m','wire',dep.method==='wire','Wire / IBAN — Same day',"dep.method='wire';dep.error='';renderDep();")}
+      </div></fieldset>`;
+
+      const amountBox = `<div class="fc-deposit-flow__amount-grid">
+        <div class="fc-input"><label class="fc-input__label" for="dep-amt">Amount</label><div class="fc-input__control"><input id="dep-amt" type="number" class="fc-input__field" value="${dep.amount}" oninput="dep.amount=Math.max(0,parseFloat(this.value)||0);renderDepAmounts();"></div></div>
+        <div class="fc-select"><label class="fc-select__label" for="dep-c">Currency</label><div class="fc-select__control"><select id="dep-c" class="fc-select__field" onchange="dep.currency=this.value;document.getElementById('dep-curr-panel').value=this.value;renderDep();">
+          <option value="USD" ${dep.currency==='USD'?'selected':''}>USD</option>
+          <option value="EUR" ${dep.currency==='EUR'?'selected':''}>EUR</option>
+          <option value="GBP" ${dep.currency==='GBP'?'selected':''}>GBP</option>
+          <option value="NGN" ${dep.currency==='NGN'?'selected':''}>NGN</option>
+        </select></div></div>
+      </div>
+      <div class="fc-deposit-flow__chips">
+        ${[100,500,1000].map(c => `<button type="button" class="fc-button fc-button--secondary fc-button--sm" onclick="dep.amount=${c};renderDep();">+${sym}${c.toLocaleString()}</button>`).join('')}
+      </div>
+      <div class="fc-fee-breakdown" id="dep-fee-box">
+        <div class="fc-fee-breakdown__list"><div class="fc-fee-breakdown__item"><span>Processing fee</span><span>${dep.currency} ${fee.toFixed(2)}</span></div></div>
+        <div class="fc-fee-breakdown__divider"></div>
+        <div class="fc-fee-breakdown__recipient-gets"><span>You get</span><span>${dep.currency} ${net.toFixed(2)}</span></div>
+      </div>`;
+
+      const bankPart = dep.method === 'bank' ? `<div class="fc-bank-selector"><div class="fc-bank-selector__search-container"><input type="search" class="fc-bank-selector__search-input" placeholder="Search for your bank..."></div><ul class="fc-bank-selector__list" role="listbox" aria-label="Banks">
+        ${['Mercury Checking','Chase Checking','Revolut Treasury'].map(b => `<li role="presentation"><button type="button" role="option" aria-selected="${dep.bank===b}" class="fc-bank-selector__item ${dep.bank===b?'fc-bank-selector__item--selected':''}" onclick="dep.bank='${b}';renderDep();"><div class="fc-bank-selector__item-info"><div class="fc-bank-selector__bank-icon">${b.slice(0,2).toUpperCase()}</div><span class="fc-bank-selector__bank-name">${b}</span></div><span class="fc-bank-selector__bank-code">${dep.bank===b?'Linked':'Connect'}</span></button></li>`).join('')}
+      </ul></div>` : '';
+
+      const wirePart = dep.method === 'wire' ? `<div class="fc-iban-details" style="max-width:100%;">
+        <div class="fc-iban-details__header"><div><h3 class="fc-iban-details__title">Receiving Account Details</h3><p class="fc-iban-details__subtitle">${dep.accountType==='business'?'Sorleed Business Treasury':'Sorleed Personal Wallet'}</p></div><div class="fc-iban-details__badges"><span class="fc-iban-details__badge">${dep.currency}</span><span class="fc-iban-details__badge">Same day</span></div></div>
+        <ul class="fc-iban-details__list"><li class="fc-iban-details__row"><div class="fc-iban-details__field"><span class="fc-iban-details__label">Account / IBAN</span><span class="fc-iban-details__value">${dep.currency==='EUR'?'DE89 3704 0044 0532 0130 00':'004829104821'}</span></div></li><li class="fc-iban-details__row"><div class="fc-iban-details__field"><span class="fc-iban-details__label">Routing / BIC</span><span class="fc-iban-details__value">${dep.currency==='EUR'?'COBADEFFXXX':'021000021'}</span></div></li></ul>
+      </div>` : '';
+
+      root.innerHTML =
+        (dep.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Unable to proceed</p><div class="fc-alert__message">${dep.error}</div></div>` : '') +
+        methodRadios + amountBox + bankPart + wirePart +
+        `<div class="fc-deposit-flow__actions">
+          <button type="button" class="fc-button fc-button--ghost" onclick="dep.amount=500;dep.error='';renderDep();">Reset</button>
+          <button type="button" class="fc-button fc-button--primary" onclick="goConfirmDep()">Continue</button>
+        </div>`;
+    }
+
+    function renderDepAmounts() {
+      const box = document.getElementById('dep-fee-box');
+      if (!box) return;
+      const fee = feeFor(dep.amount, dep.method);
+      const net = Math.max(0, dep.amount - fee);
+      box.innerHTML = `<div class="fc-fee-breakdown__list"><div class="fc-fee-breakdown__item"><span>Processing fee</span><span>${dep.currency} ${fee.toFixed(2)}</span></div></div><div class="fc-fee-breakdown__divider"></div><div class="fc-fee-breakdown__recipient-gets"><span>You get</span><span>${dep.currency} ${net.toFixed(2)}</span></div>`;
+    }
+
+    function goConfirmDep() {
+      if (dep.amount <= 0) { dep.error = 'Enter an amount greater than 0.'; renderDep(); return; }
+      dep.error = '';
+      dep.state = 'confirming';
+      renderDep();
+    }
+
+    function submitDep() {
+      dep.state = 'processing';
+      renderDep();
+      setTimeout(() => {
+        if (dep.simulateError) {
+          dep.state = 'confirming';
+          dep.error = dep.simulateError;
+        } else {
+          dep.state = 'success';
+          dep.ref = 'DEP-' + Math.floor(100000 + Math.random() * 900000);
+        }
+        renderDep();
+      }, 650);
+    }
+
+    renderDep();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

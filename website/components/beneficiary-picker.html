@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>BeneficiaryPicker — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed BeneficiaryPicker component documentation, interactive playground, and props.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/beneficiary-picker">
+  <meta property="og:title" content="BeneficiaryPicker — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed BeneficiaryPicker component documentation, interactive playground, and props.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BeneficiaryPicker — Sorleed Documentation">
+  <meta name="twitter:description" content="Sorleed BeneficiaryPicker component documentation, interactive playground, and props.">
+  <meta name="twitter:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="beneficiary-picker.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" class="badge-metric" title="Star on GitHub" style="display:inline-flex; align-items:center; gap:6px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span data-github-stars style="font-weight:700; color:var(--text-primary);">1</span>
+      </a>
+      <a href="https://www.npmjs.com/package/@sorleed/react" target="_blank" rel="noreferrer" class="badge-metric" title="npm package downloads" style="display:inline-flex; align-items:center; gap:6px;">
+        <span style="font-weight:700; color:#EF4444;">npm</span>
+        <span data-npm-downloads style="font-weight:700; color:var(--text-primary);">3.4k</span>
+      </a>
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="../components.html">Components</a>
+        <span>/</span>
+        <span>BeneficiaryPicker</span>
+      </div>
+
+      <h1 class="docs-title">BeneficiaryPicker</h1>
+      <p class="docs-lede">
+        Saved recipient and payee selector with Confirmation of Payee (CoP) verification status, payment rail badges, and live filtering.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" id="stage-beneficiary-picker">
+            <div class="fc-beneficiary-picker">
+              <div class="fc-beneficiary-picker__header">
+                <h3 class="fc-beneficiary-picker__title">Select Recipient</h3>
+                <button type="button" class="fc-beneficiary-picker__add-btn" onclick="alert('New beneficiary flow triggered')">+ New Recipient</button>
+              </div>
+              <div class="fc-beneficiary-picker__search-wrap">
+                <svg class="fc-beneficiary-picker__search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="search" class="fc-beneficiary-picker__search" placeholder="Search name, bank, or rail..." oninput="filterBeneficiaries(this.value)">
+              </div>
+              <ul class="fc-beneficiary-picker__list" id="bp-list" role="listbox">
+                <li>
+                  <button type="button" class="fc-beneficiary-picker__item fc-beneficiary-picker__item--selected" data-search="acme cloud ltd mercury ach usd" onclick="selectBp(this)">
+                    <div class="fc-beneficiary-picker__left">
+                      <span class="fc-beneficiary-picker__avatar">AC</span>
+                      <div class="fc-beneficiary-picker__info">
+                        <div class="fc-beneficiary-picker__name">Acme Cloud Ltd</div>
+                        <div class="fc-beneficiary-picker__meta">Mercury Bank · •••• 4829 · USD</div>
+                      </div>
+                    </div>
+                    <div class="fc-beneficiary-picker__right">
+                      <span class="fc-beneficiary-picker__rail">ACH</span>
+                      <span class="fc-beneficiary-picker__status fc-beneficiary-picker__status--verified">CoP Verified</span>
+                    </div>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="fc-beneficiary-picker__item" data-search="nordic payroll ab seb sepa eur" onclick="selectBp(this)">
+                    <div class="fc-beneficiary-picker__left">
+                      <span class="fc-beneficiary-picker__avatar">NP</span>
+                      <div class="fc-beneficiary-picker__info">
+                        <div class="fc-beneficiary-picker__name">Nordic Payroll AB</div>
+                        <div class="fc-beneficiary-picker__meta">SEB Group · •••• 9104 · EUR</div>
+                      </div>
+                    </div>
+                    <div class="fc-beneficiary-picker__right">
+                      <span class="fc-beneficiary-picker__rail">SEPA Instant</span>
+                      <span class="fc-beneficiary-picker__status fc-beneficiary-picker__status--verified">CoP Verified</span>
+                    </div>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="fc-beneficiary-picker__item" data-search="atlas legal llp barclays fps gbp" onclick="selectBp(this)">
+                    <div class="fc-beneficiary-picker__left">
+                      <span class="fc-beneficiary-picker__avatar">AL</span>
+                      <div class="fc-beneficiary-picker__info">
+                        <div class="fc-beneficiary-picker__name">Atlas Legal LLP</div>
+                        <div class="fc-beneficiary-picker__meta">Barclays UK · •••• 1138 · GBP</div>
+                      </div>
+                    </div>
+                    <div class="fc-beneficiary-picker__right">
+                      <span class="fc-beneficiary-picker__rail">FPS</span>
+                      <span class="fc-beneficiary-picker__status fc-beneficiary-picker__status--pending">Pending Check</span>
+                    </div>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Interaction</span>
+              <span style="font-size:13px; color:var(--text-secondary);">Type to filter or click any payee row</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add beneficiary-picker</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { BeneficiaryPicker } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;BeneficiaryPicker
+      beneficiaries={[
+        { id: "1", name: "Acme Cloud Ltd", bankName: "Mercury Bank", accountMask: "•••• 4829", rail: "ACH", currency: "USD", verificationStatus: "verified" }
+      ]}
+      onSelect={(b) =&gt; console.log(b)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('beneficiary-picker');
+    function selectBp(btn) {
+      document.querySelectorAll('#bp-list .fc-beneficiary-picker__item').forEach(el => el.classList.remove('fc-beneficiary-picker__item--selected'));
+      btn.classList.add('fc-beneficiary-picker__item--selected');
+    }
+    function filterBeneficiaries(q) {
+      const term = q.trim().toLowerCase();
+      document.querySelectorAll('#bp-list > li').forEach(li => {
+        const hay = li.querySelector('button').getAttribute('data-search') || '';
+        li.style.display = !term || hay.includes(term) ? '' : 'none';
+      });
+    }
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>
+

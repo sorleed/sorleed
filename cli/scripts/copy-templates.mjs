@@ -558,6 +558,177 @@ export const templateManifest = [
     source: path.resolve(repoRoot, "components/chart-of-accounts-tree/chart-of-accounts-tree.css"),
     dest: path.resolve(templatesDir, "styles/chart-of-accounts-tree.css")
   },
+  // iban-account-details
+  {
+    source: path.resolve(repoRoot, "react/iban-account-details/index.tsx"),
+    dest: path.resolve(templatesDir, "components/iban-account-details/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/iban-account-details/iban-account-details.css"),
+    dest: path.resolve(templatesDir, "styles/iban-account-details.css")
+  },
+  // beneficiary-picker
+  {
+    source: path.resolve(repoRoot, "react/beneficiary-picker/index.tsx"),
+    dest: path.resolve(templatesDir, "components/beneficiary-picker/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/beneficiary-picker/beneficiary-picker.css"),
+    dest: path.resolve(templatesDir, "styles/beneficiary-picker.css")
+  },
+  // transfer-limit-meter
+  {
+    source: path.resolve(repoRoot, "react/transfer-limit-meter/index.tsx"),
+    dest: path.resolve(templatesDir, "components/transfer-limit-meter/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/transfer-limit-meter/transfer-limit-meter.css"),
+    dest: path.resolve(templatesDir, "styles/transfer-limit-meter.css")
+  },
+  // standing-order-card
+  {
+    source: path.resolve(repoRoot, "react/standing-order-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/standing-order-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/standing-order-card/standing-order-card.css"),
+    dest: path.resolve(templatesDir, "styles/standing-order-card.css")
+  },
+  // kyc-verification-flow
+  {
+    source: path.resolve(repoRoot, "react/kyc-verification-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/kyc-verification-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/kyc-verification-flow/kyc-verification-flow.css"),
+    dest: path.resolve(templatesDir, "styles/kyc-verification-flow.css")
+  },
+  // deposit-funding-flow
+  {
+    source: path.resolve(repoRoot, "react/deposit-funding-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/deposit-funding-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/deposit-funding-flow/deposit-funding-flow.css"),
+    dest: path.resolve(templatesDir, "styles/deposit-funding-flow.css")
+  },
+  // money-transfer-flow
+  {
+    source: path.resolve(repoRoot, "react/money-transfer-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/money-transfer-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/money-transfer-flow/money-transfer-flow.css"),
+    dest: path.resolve(templatesDir, "styles/money-transfer-flow.css")
+  },
+  // withdrawal-payout-flow
+  {
+    source: path.resolve(repoRoot, "react/withdrawal-payout-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/withdrawal-payout-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/withdrawal-payout-flow/withdrawal-payout-flow.css"),
+    dest: path.resolve(templatesDir, "styles/withdrawal-payout-flow.css")
+  },
+  // step-up-auth-flow
+  {
+    source: path.resolve(repoRoot, "react/step-up-auth-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/step-up-auth-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/step-up-auth-flow/step-up-auth-flow.css"),
+    dest: path.resolve(templatesDir, "styles/step-up-auth-flow.css")
+  },
+  // account-opening-flow
+  {
+    source: path.resolve(repoRoot, "react/account-opening-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/account-opening-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/account-opening-flow/account-opening-flow.css"),
+    dest: path.resolve(templatesDir, "styles/account-opening-flow.css")
+  },
+  // bill-payment-flow
+  {
+    source: path.resolve(repoRoot, "react/bill-payment-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/bill-payment-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/bill-payment-flow/bill-payment-flow.css"),
+    dest: path.resolve(templatesDir, "styles/bill-payment-flow.css")
+  },
+  // card-management-flow
+  {
+    source: path.resolve(repoRoot, "react/card-management-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/card-management-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/card-management-flow/card-management-flow.css"),
+    dest: path.resolve(templatesDir, "styles/card-management-flow.css")
+  },
+  // dispute-claim-flow
+  {
+    source: path.resolve(repoRoot, "react/dispute-claim-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/dispute-claim-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/dispute-claim-flow/dispute-claim-flow.css"),
+    dest: path.resolve(templatesDir, "styles/dispute-claim-flow.css")
+  },
+  // recurring-payment-flow
+  {
+    source: path.resolve(repoRoot, "react/recurring-payment-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/recurring-payment-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/recurring-payment-flow/recurring-payment-flow.css"),
+    dest: path.resolve(templatesDir, "styles/recurring-payment-flow.css")
+  },
+  // fx-conversion-flow
+  {
+    source: path.resolve(repoRoot, "react/fx-conversion-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/fx-conversion-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/fx-conversion-flow/fx-conversion-flow.css"),
+    dest: path.resolve(templatesDir, "styles/fx-conversion-flow.css")
+  },
+  // loan-application-flow
+  {
+    source: path.resolve(repoRoot, "react/loan-application-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/loan-application-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/loan-application-flow/loan-application-flow.css"),
+    dest: path.resolve(templatesDir, "styles/loan-application-flow.css")
+  },
+  // beneficiary-management-flow
+  {
+    source: path.resolve(repoRoot, "react/beneficiary-management-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/beneficiary-management-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/beneficiary-management-flow/beneficiary-management-flow.css"),
+    dest: path.resolve(templatesDir, "styles/beneficiary-management-flow.css")
+  },
+  // statement-export-flow
+  {
+    source: path.resolve(repoRoot, "react/statement-export-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/statement-export-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/statement-export-flow/statement-export-flow.css"),
+    dest: path.resolve(templatesDir, "styles/statement-export-flow.css")
+  },
+  // close-account-flow
+  {
+    source: path.resolve(repoRoot, "react/close-account-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/close-account-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/close-account-flow/close-account-flow.css"),
+    dest: path.resolve(templatesDir, "styles/close-account-flow.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

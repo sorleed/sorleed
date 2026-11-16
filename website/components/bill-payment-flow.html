@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>BillPaymentFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed BillPaymentFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/bill-payment-flow">
+  <meta property="og:title" content="BillPaymentFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed BillPaymentFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="bill-payment-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>BillPaymentFlow</span></div>
+      <h1 class="docs-title">BillPaymentFlow</h1>
+      <p class="docs-lede">
+        Personal utility bill and business vendor invoice settlement workflow composing <code>Card</code>, <code>Tabs</code>, <code>Select</code>, <code>Input</code>, <code>FeeBreakdown</code>, <code>TransferReceipt</code>, <code>Alert</code>, and <code>Button</code>.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-bill-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-bill-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Pay a bill or invoice</h3>
+                      <p class="fc-card__description" id="bp-desc">Pay utility, telecom, and household bills in seconds.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="bp-badge">USD 148.40</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="bp-body"></div>
+                <div class="fc-card__footer" id="bp-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Profile</span>
+              <select class="ctrl-select" id="bp-profile" onchange="bpReset(this.value)">
+                <option value="personal">Personal bills</option>
+                <option value="business">Business invoices</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Pay Outcome</span>
+              <select class="ctrl-select" onchange="bpState.outcome=this.value;">
+                <option value="success">Payment Succeeds</option>
+                <option value="error">Biller Rejected Error</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="bpReset(bpState.accountType)" style="cursor:pointer;">Reset Flow</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add bill-payment-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { BillPaymentFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;BillPaymentFlow
+      accountType="business"
+      currency="USD"
+      feeAmount={1.5}
+      onPayBill={(tx) =&gt; console.log(tx.reference)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('bill-payment-flow');
+
+    const BP_ICONS = {
+      left: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>',
+      right: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      send: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>',
+      share: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>'
+    };
+
+    const bpBillers = [
+      { id: 'coned', name: 'ConEdison Electric', cat: 'Utilities', mask: '•••• 8821', due: 'Nov 28', amt: 148.40 },
+      { id: 'aws', name: 'Amazon Web Services', cat: 'Cloud & Infra', mask: 'INV-4092', due: 'Nov 30', amt: 1240.00 },
+      { id: 'vzw', name: 'Verizon Business Fiber', cat: 'Telecom', mask: '•••• 3190', due: 'Dec 02', amt: 219.00 }
+    ];
+
+    const bpState = {
+      accountType: 'personal',
+      currency: 'USD',
+      mode: 'saved',
+      billerId: 'coned',
+      customName: '',
+      customRef: '',
+      amount: '148.40',
+      memo: '',
+      step: 1,
+      status: 'selecting',
+      outcome: 'success',
+      error: '',
+      ref: ''
+    };
+
+    function bpReset(type) {
+      bpState.accountType = type || 'personal';
+      document.getElementById('bp-profile').value = bpState.accountType;
+      bpState.step = 1;
+      bpState.status = 'selecting';
+      bpState.error = '';
+      bpState.ref = '';
+      renderBp();
+    }
+
+    function bpContinue() {
+      bpState.error = '';
+      const biller = bpBillers.find(b => b.id === bpState.billerId);
+      const bName = bpState.mode === 'saved' ? biller.name : bpState.customName.trim();
+      const bRef = bpState.mode === 'saved' ? biller.mask : bpState.customRef.trim();
+      if (bpState.step === 1) {
+        if (!bName || !bRef) { bpState.error = 'Select a saved biller or enter payee details.'; renderBp(); return; }
+        bpState.step = 2; bpState.status = 'entering-amount'; renderBp(); return;
+      }
+      if (bpState.step === 2) {
+        if ((Number(bpState.amount) || 0) <= 0) { bpState.error = 'Enter a valid amount above zero.'; renderBp(); return; }
+        bpState.step = 3; bpState.status = 'reviewing'; renderBp(); return;
+      }
+      if (bpState.outcome === 'error') {
+        bpState.status = 'error';
+        bpState.error = 'Biller rejected invoice reference. Verify account number and try again.';
+        renderBp();
+        return;
+      }
+      bpState.ref = 'BIL-' + Math.floor(100000 + Math.random() * 900000);
+      bpState.status = 'success';
+      renderBp();
+    }
+
+    function renderBp() {
+      const isBiz = bpState.accountType === 'business';
+      document.getElementById('bp-desc').textContent = isBiz
+        ? 'Settle vendor invoices with remittance reference tracking.'
+        : 'Pay utility, telecom, and household bills in seconds.';
+
+      const biller = bpBillers.find(b => b.id === bpState.billerId) || bpBillers[0];
+      const bName = bpState.mode === 'saved' ? biller.name : bpState.customName;
+      const bRef = bpState.mode === 'saved' ? biller.mask : bpState.customRef;
+      const amt = Number(bpState.amount) || 0;
+      const fee = isBiz ? 1.5 : 0;
+      const total = amt + fee;
+
+      const badge = document.getElementById('bp-badge');
+      badge.className = 'fc-badge fc-badge--' + (bpState.status === 'success' ? 'success' : 'info');
+      badge.textContent = bpState.status === 'success' ? 'Paid' : `${bpState.currency} ${total.toFixed(2)}`;
+
+      const top = `<div class="fc-bill-flow__top-row">
+        <div class="fc-tabs"><div class="fc-tabs__list" role="tablist">
+          <button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="bpReset('personal')">Personal bills</button>
+          <button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="bpReset('business')">Business invoices</button>
+        </div></div>
+        <div class="fc-bill-flow__currency-wrap"><div class="fc-select"><label class="fc-select__label">Currency</label><div class="fc-select__control"><select class="fc-select__field" onchange="bpState.currency=this.value;renderBp();">${['USD','EUR','GBP','NGN'].map(c=>`<option value="${c}" ${bpState.currency===c?'selected':''}>${c}</option>`).join('')}</select></div></div></div>
+      </div>`;
+
+      const stepper = `<nav aria-label="Bill payment steps"><ol class="fc-bill-flow__stepper" aria-live="polite">${['Select biller','Amount','Review & pay'].map((lbl,i)=>{
+        const s=i+1; const done = bpState.step>s || bpState.status==='success'; const active = !done && bpState.step===s;
+        return `<li class="fc-bill-flow__step ${active?'fc-bill-flow__step--active':''} ${done?'fc-bill-flow__step--done':''}"><span class="fc-bill-flow__step-num" aria-hidden="true">${done?'✓':s}</span><span class="fc-bill-flow__step-label">${lbl}</span></li>`;
+      }).join('')}</ol></nav>`;
+
+      const err = bpState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Unable to process bill</p><div class="fc-alert__message">${bpState.error}</div></div>` : '';
+
+      let inner = '';
+      if (bpState.status === 'success') {
+        inner = `<div class="fc-transfer-receipt">
+          <div class="fc-transfer-receipt__header"><span class="fc-badge fc-badge--success">Completed</span><div class="fc-transfer-receipt__amount">${bpState.currency} ${total.toFixed(2)}</div><div class="fc-transfer-receipt__meta">Reference ${bpState.ref} · Paid just now</div></div>
+          <div class="fc-transfer-receipt__rows">
+            <div class="fc-transfer-receipt__row"><span>Payee</span><strong>${bName}</strong></div>
+            <div class="fc-transfer-receipt__row"><span>Account / Invoice</span><strong>${bRef}</strong></div>
+            <div class="fc-transfer-receipt__row"><span>Clearing fee</span><strong>${bpState.currency} ${fee.toFixed(2)}</strong></div>
+          </div>
+          <div class="fc-transfer-receipt__actions"><button type="button" class="fc-button fc-button--secondary fc-button--sm" onclick="alert('Receipt link copied: '+bpState.ref)"><span class="fc-bill-flow__btn-inner">${BP_ICONS.share} Share Receipt</span></button></div>
+        </div>`;
+      } else if (bpState.step === 1) {
+        inner = `<div class="fc-bill-flow__stack">
+          <div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${bpState.mode==='saved'?'active':'inactive'}" onclick="bpState.mode='saved';renderBp();">Saved billers</button><button type="button" class="fc-tabs__trigger" data-state="${bpState.mode==='manual'?'active':'inactive'}" onclick="bpState.mode='manual';renderBp();">New payee / invoice</button></div></div>
+          ${bpState.mode==='saved' ? `<div class="fc-bill-flow__option-list">${bpBillers.map(b=>`<div class="fc-bill-flow__select-row ${b.id===bpState.billerId?'fc-bill-flow__select-row--selected':''}"><div><div class="fc-bill-flow__select-title">${b.name}</div><div class="fc-bill-flow__select-meta">${b.cat} · ${b.mask} · Due ${b.due}</div></div><div class="fc-bill-flow__select-right"><span class="fc-badge fc-badge--info">${bpState.currency} ${b.amt.toFixed(2)}</span><button type="button" class="fc-button fc-button--sm fc-button--${b.id===bpState.billerId?'primary':'secondary'}" onclick="bpState.billerId='${b.id}';bpState.amount='${b.amt}';renderBp();">${b.id===bpState.billerId?'Selected':'Select'}</button></div></div>`).join('')}</div>`
+          : `<div class="fc-bill-flow__grid-2"><div class="fc-input"><label class="fc-input__label">Biller name</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${bpState.customName}" placeholder="Cloudflare Inc." oninput="bpState.customName=this.value"></div></div><div class="fc-input"><label class="fc-input__label">Invoice / reference</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${bpState.customRef}" placeholder="INV-2026-991" oninput="bpState.customRef=this.value"></div></div></div>`}
+        </div>`;
+      } else if (bpState.step === 2) {
+        inner = `<div class="fc-bill-flow__stack"><div class="fc-bill-flow__grid-2"><div class="fc-input"><label class="fc-input__label">Amount (${bpState.currency})</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="${bpState.amount}" oninput="bpState.amount=this.value"></div></div><div class="fc-input"><label class="fc-input__label">${isBiz?'Invoice memo':'Payment note'}</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${bpState.memo}" placeholder="Q4 hosting settlement" oninput="bpState.memo=this.value"></div></div></div><div class="fc-bill-flow__chips">${['50','150','500','1250'].map(c=>`<button type="button" class="fc-button fc-button--sm fc-button--secondary" onclick="bpState.amount='${c}';renderBp();">${bpState.currency} ${c}</button>`).join('')}</div></div>`;
+      } else {
+        inner = `<div class="fc-fee-breakdown"><div class="fc-fee-breakdown__row"><span>Payee (${bName})</span><span>${bpState.currency} ${amt.toFixed(2)}</span></div><div class="fc-fee-breakdown__row"><span>${isBiz?'Vendor clearing fee':'Consumer bill fee'}</span><span>${bpState.currency} ${fee.toFixed(2)}</span></div><div class="fc-fee-breakdown__total"><span>Total debit</span><strong>${bpState.currency} ${total.toFixed(2)}</strong></div></div>`;
+      }
+
+      document.getElementById('bp-body').innerHTML = `<div class="fc-bill-flow__stack">${top}${stepper}${err}${inner}</div>`;
+      document.getElementById('bp-footer').innerHTML = bpState.status === 'success'
+        ? `<div class="fc-bill-flow__actions"><span></span><button type="button" class="fc-button fc-button--secondary" onclick="bpReset(bpState.accountType)">New payment</button></div>`
+        : `<div class="fc-bill-flow__actions"><button type="button" class="fc-button fc-button--ghost" ${bpState.step===1?'disabled':''} onclick="bpState.step=Math.max(1,bpState.step-1);bpState.error='';renderBp();"><span class="fc-bill-flow__btn-inner">${BP_ICONS.left} Back</span></button><div class="fc-bill-flow__actions-right"><button type="button" class="fc-button fc-button--primary" onclick="bpContinue()"><span class="fc-bill-flow__btn-inner">${bpState.step<3?`Continue ${BP_ICONS.right}`:`${BP_ICONS.send} Pay`}</span></button></div></div>`;
+    }
+
+    renderBp();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

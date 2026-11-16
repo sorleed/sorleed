@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>RecurringPaymentFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed RecurringPaymentFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/recurring-payment-flow">
+  <meta property="og:title" content="RecurringPaymentFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed RecurringPaymentFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="recurring-payment-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>RecurringPaymentFlow</span></div>
+      <h1 class="docs-title">RecurringPaymentFlow</h1>
+      <p class="docs-lede">
+        Automated personal and business standing order setup workflow composing <code>Card</code>, <code>Tabs</code>, <code>Select</code>, <code>BeneficiaryPicker</code>, <code>Input</code>, <code>StandingOrderCard</code>, <code>Alert</code>, and <code>Button</code>.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-recurring-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-recurring-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Schedule recurring payment</h3>
+                      <p class="fc-card__description" id="rp-desc">Set up automatic rent, savings, or family allowance transfers.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="rp-badge">Step 1/2</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="rp-body"></div>
+                <div class="fc-card__footer" id="rp-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Order Profile</span>
+              <select class="ctrl-select" id="rp-profile" onchange="rpReset(this.value)">
+                <option value="personal">Personal order</option>
+                <option value="business">Business order</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="rpReset(rpState.accountType)" style="cursor:pointer;">Reset Schedule</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add recurring-payment-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { RecurringPaymentFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;RecurringPaymentFlow
+      accountType="business"
+      currency="USD"
+      onCreateSchedule={(s) =&gt; console.log(s.scheduleId)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('recurring-payment-flow');
+
+    const RP_ICONS = {
+      left: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>',
+      right: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      cal: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>'
+    };
+
+    const rpPayees = [
+      { id: 'rent', name: 'Oakwood Properties LLC', bank: 'Chase Bank', mask: '•••• 2291' },
+      { id: 'payroll', name: 'Rippling Payroll Clearing', bank: 'Silicon Valley Bank', mask: '•••• 9044' },
+      { id: 'linear', name: 'Linear Software Inc.', bank: 'Mercury', mask: '•••• 1180' }
+    ];
+
+    const rpState = {
+      accountType: 'personal',
+      currency: 'USD',
+      payeeId: 'rent',
+      amount: '1250',
+      frequency: 'monthly',
+      startDate: '2026-12-01',
+      endDate: '',
+      step: 1,
+      status: 'configuring',
+      orderState: 'active',
+      error: ''
+    };
+
+    function rpReset(type) {
+      rpState.accountType = type || 'personal';
+      document.getElementById('rp-profile').value = rpState.accountType;
+      rpState.step = 1;
+      rpState.status = 'configuring';
+      rpState.orderState = 'active';
+      rpState.error = '';
+      renderRp();
+    }
+
+    function rpContinue() {
+      rpState.error = '';
+      if (rpState.step === 1) {
+        if ((Number(rpState.amount) || 0) <= 0 || !rpState.startDate.trim()) {
+          rpState.error = 'Enter a valid recurring amount and start date (YYYY-MM-DD).';
+          renderRp();
+          return;
+        }
+        if (rpState.endDate.trim() && rpState.endDate < rpState.startDate) {
+          rpState.error = 'End date cannot be earlier than start date.';
+          renderRp();
+          return;
+        }
+        rpState.step = 2;
+        rpState.status = 'reviewing';
+      } else {
+        rpState.status = 'success';
+      }
+      renderRp();
+    }
+
+    function renderRp() {
+      const isBiz = rpState.accountType === 'business';
+      document.getElementById('rp-desc').textContent = isBiz
+        ? 'Automate recurring supplier, payroll, or rent standing orders.'
+        : 'Set up automatic rent, savings, or family allowance transfers.';
+
+      const badge = document.getElementById('rp-badge');
+      badge.className = 'fc-badge fc-badge--' + (rpState.status === 'success' ? 'success' : 'info');
+      badge.textContent = rpState.status === 'success' ? 'Scheduled' : `Step ${rpState.step}/2`;
+
+      const payee = rpPayees.find(p => p.id === rpState.payeeId) || rpPayees[0];
+      const top = `<div class="fc-recurring-flow__top-row">
+        <div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="rpReset('personal')">Personal order</button><button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="rpReset('business')">Business order</button></div></div>
+        <div class="fc-recurring-flow__currency-wrap"><div class="fc-select"><label class="fc-select__label">Currency</label><div class="fc-select__control"><select class="fc-select__field" onchange="rpState.currency=this.value;renderRp();">${['USD','EUR','GBP','NGN'].map(c=>`<option value="${c}" ${rpState.currency===c?'selected':''}>${c}</option>`).join('')}</select></div></div></div>
+      </div>`;
+
+      const stepper = `<nav aria-label="Standing order steps"><ol class="fc-recurring-flow__stepper" aria-live="polite">${['Schedule details','Review & confirm'].map((l,i)=>{
+        const s=i+1; const done = rpState.step>s || rpState.status==='success'; const act = !done && rpState.step===s;
+        return `<li class="fc-recurring-flow__step ${act?'fc-recurring-flow__step--active':''} ${done?'fc-recurring-flow__step--done':''}"><span class="fc-recurring-flow__step-num" aria-hidden="true">${done?'✓':s}</span><span class="fc-recurring-flow__step-label">${l}</span></li>`;
+      }).join('')}</ol></nav>`;
+
+      const err = rpState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Check schedule settings</p><div class="fc-alert__message">${rpState.error}</div></div>` : '';
+
+      let body = '';
+      if (rpState.status === 'success') {
+        body = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Standing order active</p><div class="fc-alert__message">Your ${rpState.frequency} payment of ${rpState.currency} ${(Number(rpState.amount)||0).toFixed(2)} to ${payee.name} starts ${rpState.startDate}.</div></div>
+        <div class="fc-standing-order">
+          <div class="fc-standing-order__header"><div><strong>${payee.name}</strong><div style="font-size:13px; color:var(--fc-color-content-secondary);">${payee.bank} ${payee.mask}</div></div><span class="fc-badge fc-badge--${rpState.orderState==='active'?'success':rpState.orderState==='paused'?'warning':'error'}">${rpState.orderState}</span></div>
+          <div class="fc-standing-order__meta" style="display:flex; justify-content:space-between; margin:12px 0;"><span>${rpState.currency} ${(Number(rpState.amount)||0).toFixed(2)} · ${rpState.frequency}</span><span>Next run: ${rpState.startDate}</span></div>
+          <div style="display:flex; gap:8px;"><button type="button" class="fc-button fc-button--sm fc-button--secondary" onclick="rpState.orderState=rpState.orderState==='active'?'paused':'active';renderRp();">${rpState.orderState==='active'?'Pause':'Resume'}</button><button type="button" class="fc-button fc-button--sm fc-button--ghost" onclick="rpState.orderState='cancelled';renderRp();">Cancel order</button></div>
+        </div>`;
+      } else if (rpState.step === 1) {
+        body = `<div class="fc-recurring-flow__stack">
+          <div class="fc-beneficiary-picker"><div class="fc-beneficiary-picker__list">${rpPayees.map(p=>`<button type="button" class="fc-beneficiary-picker__item ${p.id===rpState.payeeId?'fc-beneficiary-picker__item--selected':''}" onclick="rpState.payeeId='${p.id}';renderRp();"><div><div class="fc-beneficiary-picker__name">${p.name}</div><div class="fc-beneficiary-picker__meta">${p.bank} · ${p.mask}</div></div><span class="fc-badge fc-badge--${p.id===rpState.payeeId?'info':'default'}">${p.id===rpState.payeeId?'Selected':'Select'}</span></button>`).join('')}</div></div>
+          <div class="fc-recurring-flow__grid-2">
+            <div class="fc-input"><label class="fc-input__label">Amount (${rpState.currency})</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="${rpState.amount}" oninput="rpState.amount=this.value"></div></div>
+            <div class="fc-select"><label class="fc-select__label">Frequency</label><div class="fc-select__control"><select class="fc-select__field" onchange="rpState.frequency=this.value"><option value="weekly" ${rpState.frequency==='weekly'?'selected':''}>Weekly</option><option value="biweekly" ${rpState.frequency==='biweekly'?'selected':''}>Every 2 weeks</option><option value="monthly" ${rpState.frequency==='monthly'?'selected':''}>Monthly</option><option value="quarterly" ${rpState.frequency==='quarterly'?'selected':''}>Quarterly</option></select></div></div>
+            <div class="fc-input"><label class="fc-input__label">Start date</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${rpState.startDate}" placeholder="YYYY-MM-DD" oninput="rpState.startDate=this.value"></div></div>
+            <div class="fc-input"><label class="fc-input__label">End date (optional)</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${rpState.endDate}" placeholder="YYYY-MM-DD" oninput="rpState.endDate=this.value"></div></div>
+          </div>
+        </div>`;
+      } else {
+        body = `<div class="fc-recurring-flow__summary-box">
+          <div class="fc-recurring-flow__summary-row"><span>Payee</span><strong>${payee.name} (${payee.mask})</strong></div>
+          <div class="fc-recurring-flow__summary-row"><span>Amount & cadence</span><strong>${rpState.currency} ${(Number(rpState.amount)||0).toFixed(2)} · ${rpState.frequency}</strong></div>
+          <div class="fc-recurring-flow__summary-row"><span>Schedule window</span><strong>${rpState.startDate}${rpState.endDate?' -> '+rpState.endDate:' (until cancelled)'}</strong></div>
+        </div>`;
+      }
+
+      document.getElementById('rp-body').innerHTML = `<div class="fc-recurring-flow__stack">${top}${stepper}${err}${body}</div>`;
+      document.getElementById('rp-footer').innerHTML = rpState.status === 'success'
+        ? `<div class="fc-recurring-flow__actions"><span></span><button type="button" class="fc-button fc-button--secondary" onclick="rpReset(rpState.accountType)">New standing order</button></div>`
+        : `<div class="fc-recurring-flow__actions"><button type="button" class="fc-button fc-button--ghost" onclick="${rpState.step===1?'rpReset(rpState.accountType)':'rpState.step=1;renderRp();'}"><span class="fc-recurring-flow__btn-inner">${rpState.step===1?'Cancel':`${RP_ICONS.left} Back`}</span></button><div class="fc-recurring-flow__actions-right"><button type="button" class="fc-button fc-button--primary" onclick="rpContinue()"><span class="fc-recurring-flow__btn-inner">${rpState.step===1?`Continue ${RP_ICONS.right}`:`${RP_ICONS.cal} Create Schedule`}</span></button></div></div>`;
+    }
+
+    renderRp();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

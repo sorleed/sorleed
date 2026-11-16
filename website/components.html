@@ -60,6 +60,7 @@
 
       <div class="sl-chips">
         <button class="sl-chip active" onclick="filterCat('all', this)">All components</button>
+        <button class="sl-chip" onclick="filterCat('flows', this)">Flows &amp; Journeys</button>
         <button class="sl-chip" onclick="filterCat('banking', this)">Banking & Wallets</button>
         <button class="sl-chip" onclick="filterCat('accounting', this)">Accounting & Ledgers</button>
         <button class="sl-chip" onclick="filterCat('credit', this)">Credit & Wealth</button>
@@ -137,13 +138,13 @@
       </div>
     </a>
   
-    <a href="components/spending-meter.html" class="sl-card" data-category="credit">
+    <a href="components/spending-meter.html" class="sl-card" data-category="accounting">
       <div class="sl-card__stage">
         <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='25' width='140' height='50' rx='8' fill='#FFFFFF' stroke='#BFDBFE'/><rect x='32' y='35' width='60' height='6' rx='1' fill='#60A5FA'/><rect x='32' y='49' width='116' height='8' rx='4' fill='#EFF6FF'/><rect x='32' y='49' width='88' height='8' rx='4' fill='#2563EB'/></svg>
       </div>
       <div class="sl-card__body">
         <div class="sl-card__meta">
-          <span class="sl-card__tag">credit</span>
+          <span class="sl-card__tag">accounting</span>
         </div>
         <h3 class="sl-card__title">SpendingMeter</h3>
         <p class="sl-card__desc">Budget expenditure progress tracker with threshold warnings.</p>
@@ -323,7 +324,235 @@
         </div>
       </div>
     </a>
-  
+
+    <a href="components/iban-account-details.html" class="sl-card" data-category="banking">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='28' width='76' height='8' rx='2' fill='#2563EB'/><rect x='32' y='44' width='116' height='12' rx='3' fill='#EFF6FF'/><rect x='32' y='62' width='90' height='12' rx='3' fill='#EFF6FF'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">banking</span></div>
+        <h3 class="sl-card__title">IbanAccountDetails</h3>
+        <p class="sl-card__desc">Local and international receiving account details (IBAN, Routing, SWIFT) with mask &amp; copy.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add iban-account-details</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/beneficiary-picker.html" class="sl-card" data-category="banking">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='14' width='140' height='72' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><circle cx='42' cy='38' r='10' fill='#2563EB'/><rect x='60' y='32' width='76' height='6' rx='2' fill='#1E40AF'/><rect x='60' y='42' width='52' height='5' rx='2' fill='#93C5FD'/><circle cx='42' cy='66' r='10' fill='#60A5FA'/><rect x='60' y='60' width='76' height='6' rx='2' fill='#64748B'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">banking</span></div>
+        <h3 class="sl-card__title">BeneficiaryPicker</h3>
+        <p class="sl-card__desc">Saved payee selector with Confirmation of Payee (CoP) verification and payment rail badges.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add beneficiary-picker</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/transfer-limit-meter.html" class="sl-card" data-category="banking">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='20' width='140' height='60' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='34' width='116' height='8' rx='4' fill='#EFF6FF'/><rect x='32' y='34' width='92' height='8' rx='4' fill='#D97706'/><rect x='32' y='56' width='116' height='8' rx='4' fill='#EFF6FF'/><rect x='32' y='56' width='40' height='8' rx='4' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">banking</span></div>
+        <h3 class="sl-card__title">TransferLimitMeter</h3>
+        <p class="sl-card__desc">Daily and monthly transfer, wire, and ATM cash velocity limit tracker with reset windows.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add transfer-limit-meter</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/standing-order-card.html" class="sl-card" data-category="banking">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='28' width='70' height='7' rx='2' fill='#1E40AF'/><rect x='114' y='26' width='34' height='11' rx='5' fill='#DCFCE7'/><rect x='32' y='46' width='116' height='14' rx='3' fill='#EFF6FF'/><rect x='32' y='67' width='54' height='8' rx='2' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">banking</span></div>
+        <h3 class="sl-card__title">StandingOrderCard</h3>
+        <p class="sl-card__desc">Scheduled recurring payment and standing order card with pause, resume, and cancel controls.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add standing-order-card</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/kyc-verification-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='26' height='4' rx='2' fill='#059669'/><rect x='62' y='26' width='26' height='4' rx='2' fill='#2563EB'/><rect x='92' y='26' width='26' height='4' rx='2' fill='#E2E8F0'/><rect x='122' y='26' width='26' height='4' rx='2' fill='#E2E8F0'/><rect x='32' y='40' width='116' height='14' rx='3' fill='#EFF6FF'/><rect x='96' y='62' width='52' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">KycVerificationFlow</h3>
+        <p class="sl-card__desc">Multi-step KYC/KYB verification journey with document upload, biometric liveness, and review fallback.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add kyc-verification-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/deposit-funding-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='30' y='26' width='36' height='16' rx='3' fill='#EFF6FF' stroke='#2563EB'/><rect x='72' y='26' width='36' height='16' rx='3' fill='#F8FAFC' stroke='#CBD5E1'/><rect x='114' y='26' width='36' height='16' rx='3' fill='#F8FAFC' stroke='#CBD5E1'/><rect x='30' y='50' width='120' height='14' rx='3' fill='#EFF6FF'/><rect x='96' y='68' width='54' height='10' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">DepositFundingFlow</h3>
+        <p class="sl-card__desc">Multi-rail deposit journey (Open Banking, Debit Card, Wire/IBAN) with fee disclosure and settlement tracker.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add deposit-funding-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/money-transfer-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='116' height='4' rx='2' fill='#2563EB'/><rect x='32' y='38' width='80' height='10' rx='2' fill='#1E40AF'/><rect x='32' y='54' width='116' height='10' rx='2' fill='#EFF6FF'/><rect x='96' y='68' width='52' height='10' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">MoneyTransferFlow</h3>
+        <p class="sl-card__desc">End-to-end send money flow composing BeneficiaryPicker, FX rate-lock, FeeBreakdown, auth, and receipt.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add money-transfer-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/withdrawal-payout-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='76' height='8' rx='2' fill='#1E40AF'/><rect x='32' y='42' width='116' height='8' rx='4' fill='#EFF6FF'/><rect x='32' y='42' width='80' height='8' rx='4' fill='#D97706'/><rect x='92' y='62' width='56' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">WithdrawalPayoutFlow</h3>
+        <p class="sl-card__desc">Payout flow with available/pending balance check, TransferLimitMeter velocity guardrails, and confirmation.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add withdrawal-payout-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/step-up-auth-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='116' height='14' rx='3' fill='#EFF6FF'/><rect x='32' y='46' width='36' height='10' rx='2' fill='#2563EB'/><rect x='72' y='46' width='36' height='10' rx='2' fill='#E2E8F0'/><rect x='112' y='46' width='36' height='10' rx='2' fill='#E2E8F0'/><rect x='50' y='64' width='80' height='12' rx='3' fill='#059669'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">StepUpAuthFlow</h3>
+        <p class="sl-card__desc">PSD2/SCA step-up verification with action summary, passkey biometric, OTP, and PIN fallback.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add step-up-auth-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/account-opening-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='56' height='8' rx='2' fill='#2563EB'/><rect x='32' y='40' width='116' height='12' rx='3' fill='#EFF6FF'/><rect x='96' y='62' width='52' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">AccountOpeningFlow</h3>
+        <p class="sl-card__desc">Personal and business account onboarding with ID/corporate documents, selfie check, and IBAN provisioning.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add account-opening-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/bill-payment-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='116' height='14' rx='3' fill='#EFF6FF'/><rect x='32' y='46' width='76' height='10' rx='2' fill='#1E40AF'/><rect x='96' y='62' width='52' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">BillPaymentFlow</h3>
+        <p class="sl-card__desc">Personal utility bill and business vendor invoice settlement with saved billers, fee breakdown, and receipt.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add bill-payment-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/card-management-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='30' y='26' width='68' height='42' rx='6' fill='#0F172A'/><rect x='106' y='28' width='44' height='10' rx='3' fill='#DBEAFE'/><rect x='106' y='44' width='44' height='10' rx='3' fill='#EFF6FF'/><rect x='106' y='60' width='44' height='10' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">CardManagementFlow</h3>
+        <p class="sl-card__desc">Card controls journey for activation, freeze/unfreeze, spend limits, and instant card replacement.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add card-management-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/dispute-claim-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='116' height='12' rx='3' fill='#FEF3C7'/><rect x='32' y='44' width='116' height='12' rx='3' fill='#EFF6FF'/><rect x='92' y='62' width='56' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">DisputeClaimFlow</h3>
+        <p class="sl-card__desc">Chargeback and transaction dispute filing with reason capture, evidence uploader, and submission tracking.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add dispute-claim-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/recurring-payment-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='80' height='8' rx='2' fill='#1E40AF'/><rect x='32' y='40' width='116' height='14' rx='3' fill='#ECFDF5'/><rect x='96' y='62' width='52' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">RecurringPaymentFlow</h3>
+        <p class="sl-card__desc">Personal and business standing order setup with payee selection, cadence schedule, and StandingOrderCard.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add recurring-payment-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/fx-conversion-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='48' height='16' rx='3' fill='#EFF6FF' stroke='#2563EB'/><rect x='100' y='26' width='48' height='16' rx='3' fill='#EFF6FF' stroke='#2563EB'/><rect x='32' y='50' width='116' height='10' rx='2' fill='#DBEAFE'/><rect x='96' y='64' width='52' height='10' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">FXConversionFlow</h3>
+        <p class="sl-card__desc">Live FX wallet conversion with currency swap, rate-lock countdown, FeeBreakdown, and instant receipt.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add fx-conversion-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/loan-application-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='76' height='10' rx='2' fill='#1E40AF'/><rect x='32' y='42' width='116' height='14' rx='3' fill='#EFF6FF'/><rect x='46' y='62' width='44' height='12' rx='3' fill='#E2E8F0'/><rect x='96' y='62' width='52' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">LoanApplicationFlow</h3>
+        <p class="sl-card__desc">Personal loan and business credit underwriting with income/financials, documents, and APR offer acceptance.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add loan-application-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/beneficiary-management-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='116' height='12' rx='3' fill='#EFF6FF'/><rect x='32' y='42' width='116' height='12' rx='3' fill='#F8FAFC' stroke='#CBD5E1'/><rect x='88' y='62' width='60' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">BeneficiaryManagementFlow</h3>
+        <p class="sl-card__desc">Trusted payee and vendor directory with BankSelector routing, 6-digit OTP verification, and removal guard.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add beneficiary-management-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/statement-export-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='64' height='12' rx='3' fill='#EFF6FF'/><rect x='104' y='26' width='44' height='12' rx='3' fill='#DBEAFE'/><rect x='32' y='44' width='116' height='10' rx='2' fill='#F1F5F9'/><rect x='92' y='62' width='56' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">StatementExportFlow</h3>
+        <p class="sl-card__desc">Account statement exporter with custom date range, signed PDF/CSV options, and download or email delivery.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add statement-export-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
+    <a href="components/close-account-flow.html" class="sl-card" data-category="flows">
+      <div class="sl-card__stage">
+        <svg width='180' height='100' viewBox='0 0 180 100' fill='none'><rect x='20' y='16' width='140' height='68' rx='8' fill='#FFFFFF' stroke='#BFDBFE' stroke-width='2'/><rect x='32' y='26' width='116' height='12' rx='3' fill='#FEE2E2'/><rect x='32' y='44' width='116' height='12' rx='3' fill='#EFF6FF'/><rect x='88' y='62' width='60' height='12' rx='3' fill='#2563EB'/></svg>
+      </div>
+      <div class="sl-card__body">
+        <div class="sl-card__meta"><span class="sl-card__tag">flows</span></div>
+        <h3 class="sl-card__title">CloseAccountFlow</h3>
+        <p class="sl-card__desc">Account closure offboarding with exit reason, mandatory balance sweep check, and permanent confirmation.</p>
+        <div class="sl-card__cli"><code>npx @sorleed/cli add close-account-flow</code><span style="color: #1D4ED8; font-weight: 700;">Open →</span></div>
+      </div>
+    </a>
+
       </div>
     </main>
   </div>

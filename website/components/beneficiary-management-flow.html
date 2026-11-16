@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>BeneficiaryManagementFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed BeneficiaryManagementFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/beneficiary-management-flow">
+  <meta property="og:title" content="BeneficiaryManagementFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed BeneficiaryManagementFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="beneficiary-management-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>BeneficiaryManagementFlow</span></div>
+      <h1 class="docs-title">BeneficiaryManagementFlow</h1>
+      <p class="docs-lede">
+        Beneficiary and vendor directory workflow composing <code>Card</code>, <code>Tabs</code>, <code>Input</code>, <code>Select</code>, <code>BankSelector</code>, <code>OTP</code>, <code>Tooltip</code>, <code>Alert</code>, <code>Badge</code>, and <code>Button</code> with add, OTP verification, and removal confirmation.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-ben-mgmt-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-ben-mgmt-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Manage beneficiaries</h3>
+                      <p class="fc-card__description">Add, verify, and remove trusted bank recipients.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="bm-badge">2 saved</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="bm-body"></div>
+                <div class="fc-card__footer" id="bm-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Directory Profile</span>
+              <select class="ctrl-select" id="bm-type" onchange="bmState.accountType=this.value;renderBm();">
+                <option value="personal">Personal payees</option>
+                <option value="business">Business vendors</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="bmReset()" style="cursor:pointer;">Reset Directory</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add beneficiary-management-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { BeneficiaryManagementFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;BeneficiaryManagementFlow
+      accountType="business"
+      onSaveBeneficiary={(b) =&gt; console.log('Saved', b.name)}
+      onRemoveBeneficiary={(id) =&gt; console.log('Removed', id)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('beneficiary-management-flow');
+
+    const BM_ICONS = {
+      userPlus: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>',
+      trash: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>',
+      shield: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>',
+      x: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'
+    };
+
+    const bmBanks = ['Mercury Bank', 'JPMorgan Chase', 'Revolut Business', 'GTBank'];
+    const bmState = {
+      accountType: 'personal',
+      status: 'listing',
+      list: [
+        { id: 'b1', name: 'Acme Cloud Ltd', bank: 'Mercury Bank', mask: '•••• 4829', currency: 'USD', verified: true },
+        { id: 'b2', name: 'Elena Rostova', bank: 'Revolut Business', mask: '•••• 9104', currency: 'EUR', verified: true }
+      ],
+      name: '',
+      bank: 'Mercury Bank',
+      accountNo: '',
+      currency: 'USD',
+      otp: '123456',
+      removeId: null,
+      error: '',
+      success: ''
+    };
+
+    function bmReset() {
+      bmState.status = 'listing';
+      bmState.error = '';
+      bmState.success = '';
+      bmState.removeId = null;
+      renderBm();
+    }
+
+    function bmStartAdd() {
+      bmState.name = 'Northstar Design Co.';
+      bmState.accountNo = '0049281942';
+      bmState.otp = '123456';
+      bmState.error = '';
+      bmState.success = '';
+      bmState.status = 'adding';
+      renderBm();
+    }
+
+    function bmSaveStep() {
+      bmState.error = '';
+      if (!bmState.name.trim() || bmState.accountNo.trim().length < 6) {
+        bmState.status = 'error';
+        bmState.error = 'Enter a recipient name and valid account/IBAN (min 6 characters).';
+        renderBm();
+        return;
+      }
+      bmState.status = 'verifying';
+      renderBm();
+    }
+
+    function bmVerifySave() {
+      bmState.error = '';
+      if (bmState.otp.trim().length < 6) {
+        bmState.status = 'error';
+        bmState.error = 'Enter a 6-digit verification code (e.g. 123456).';
+        renderBm();
+        return;
+      }
+      const next = {
+        id: 'b' + Date.now(),
+        name: bmState.name.trim(),
+        bank: bmState.bank,
+        mask: '•••• ' + bmState.accountNo.trim().slice(-4),
+        currency: bmState.currency,
+        verified: true
+      };
+      bmState.list.unshift(next);
+      bmState.success = next.name + ' (' + next.bank + ') verified and saved.';
+      bmState.status = 'success';
+      renderBm();
+    }
+
+    function bmConfirmRemove() {
+      const target = bmState.list.find(x => x.id === bmState.removeId);
+      bmState.list = bmState.list.filter(x => x.id !== bmState.removeId);
+      bmState.removeId = null;
+      bmState.success = (target ? target.name : 'Beneficiary') + ' removed from trusted list.';
+      bmState.status = 'success';
+      renderBm();
+    }
+
+    function renderBm() {
+      const isBiz = bmState.accountType === 'business';
+      document.getElementById('bm-badge').textContent = `${bmState.list.length} saved`;
+
+      const tabs = `<div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="bmState.accountType='personal';document.getElementById('bm-type').value='personal';renderBm();">Personal payees</button><button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="bmState.accountType='business';document.getElementById('bm-type').value='business';renderBm();">Business vendors</button></div></div>`;
+      const err = bmState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Action required</p><div class="fc-alert__message">${bmState.error}</div></div>` : '';
+      const ok = bmState.status === 'success' && bmState.success ? `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Directory updated</p><div class="fc-alert__message">${bmState.success}</div></div>` : '';
+
+      let inner = '';
+      if (bmState.status === 'confirm-remove') {
+        const target = bmState.list.find(x => x.id === bmState.removeId);
+        inner = `<div class="fc-alert fc-alert--warning" role="alert"><p class="fc-alert__title">Remove ${target ? target.name : 'beneficiary'}?</p><div class="fc-alert__message">Removing this payee clears saved payout shortcuts for ${target ? target.bank + ' ' + target.mask : ''}.</div></div>`;
+      } else if (bmState.status === 'adding' || (bmState.status === 'error' && bmState.otp.length === 6 && !bmState.name)) {
+        inner = `<div class="fc-ben-mgmt-flow__stack">
+          <div class="fc-ben-mgmt-flow__grid-2">
+            <div class="fc-input"><label class="fc-input__label">${isBiz?'Vendor legal name':'Recipient name'}</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${bmState.name}" oninput="bmState.name=this.value"></div></div>
+            <div class="fc-select"><label class="fc-select__label">Currency</label><div class="fc-select__control"><select class="fc-select__field" onchange="bmState.currency=this.value">${['USD','EUR','GBP','NGN'].map(c=>`<option value="${c}" ${bmState.currency===c?'selected':''}>${c}</option>`).join('')}</select></div></div>
+          </div>
+          <div class="fc-bank-selector"><div class="fc-bank-selector__search-container"><input type="search" class="fc-bank-selector__search-input" placeholder="Select receiving institution..." readonly></div><ul class="fc-bank-selector__list" role="listbox">${bmBanks.map(b=>`<li role="presentation"><button type="button" class="fc-bank-selector__item ${bmState.bank===b?'fc-bank-selector__item--selected':''}" onclick="bmState.bank='${b}';renderBm();"><div class="fc-bank-selector__item-info"><div class="fc-bank-selector__bank-icon">${b.slice(0,2).toUpperCase()}</div><span class="fc-bank-selector__bank-name">${b}</span></div><span class="fc-bank-selector__bank-code">${bmState.bank===b?'Selected':'Select'}</span></button></li>`).join('')}</ul></div>
+          <div class="fc-input"><label class="fc-input__label">Account number or IBAN</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${bmState.accountNo}" oninput="bmState.accountNo=this.value"></div></div>
+        </div>`;
+      } else if (bmState.status === 'verifying') {
+        inner = `<div class="fc-ben-mgmt-flow__stack">
+          <div class="fc-alert fc-alert--info"><p class="fc-alert__title">Verify new recipient</p><div class="fc-alert__message">Enter your 6-digit security code to whitelist ${bmState.name}.</div></div>
+          <div class="fc-input"><label class="fc-input__label">6-digit verification code</label><div class="fc-input__control"><input type="text" maxlength="6" class="fc-input__field" value="${bmState.otp}" oninput="bmState.otp=this.value"></div></div>
+        </div>`;
+      } else {
+        inner = `<div class="fc-ben-mgmt-flow__option-list">${bmState.list.map(b=>`<div class="fc-ben-mgmt-flow__select-row"><div><div class="fc-ben-mgmt-flow__select-title">${b.name}</div><div class="fc-ben-mgmt-flow__select-meta">${b.bank} · ${b.mask} · ${b.currency}</div></div><div class="fc-ben-mgmt-flow__select-right"><span class="fc-badge fc-badge--success">Verified</span><div class="fc-ben-mgmt-flow__tip-anchor"><span class="fc-tooltip fc-ben-mgmt-flow__tip-bubble" role="tooltip">Remove ${b.name}</span><button type="button" class="fc-button fc-button--sm fc-button--ghost" aria-label="Remove ${b.name}" onclick="bmState.removeId='${b.id}';bmState.status='confirm-remove';bmState.error='';renderBm();">${BM_ICONS.trash}</button></div></div></div>`).join('')}</div>`;
+      }
+
+      document.getElementById('bm-body').innerHTML = `<div class="fc-ben-mgmt-flow__stack">${tabs}${err}${ok}${inner}</div>`;
+      const footer = document.getElementById('bm-footer');
+      if (bmState.status === 'listing' || bmState.status === 'success') {
+        footer.innerHTML = `<div class="fc-ben-mgmt-flow__actions"><span></span><button type="button" class="fc-button fc-button--primary" onclick="bmStartAdd()"><span class="fc-ben-mgmt-flow__btn-inner">${BM_ICONS.userPlus} Add Beneficiary</span></button></div>`;
+      } else {
+        footer.innerHTML = `<div class="fc-ben-mgmt-flow__actions"><button type="button" class="fc-button fc-button--ghost" onclick="bmReset()"><span class="fc-ben-mgmt-flow__btn-inner">${BM_ICONS.x} Cancel</span></button><div class="fc-ben-mgmt-flow__actions-right">${
+          bmState.status === 'adding' ? `<button type="button" class="fc-button fc-button--primary" onclick="bmSaveStep()">Save</button>` :
+          bmState.status === 'verifying' ? `<button type="button" class="fc-button fc-button--primary" onclick="bmVerifySave()"><span class="fc-ben-mgmt-flow__btn-inner">${BM_ICONS.shield} Verify &amp; Save</span></button>` :
+          bmState.status === 'confirm-remove' ? `<button type="button" class="fc-button fc-button--primary" onclick="bmConfirmRemove()"><span class="fc-ben-mgmt-flow__btn-inner">${BM_ICONS.trash} Confirm Remove</span></button>` : ''
+        }</div></div>`;
+      }
+    }
+
+    renderBm();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

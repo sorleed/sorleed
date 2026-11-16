@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>FXConversionFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed FXConversionFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/fx-conversion-flow">
+  <meta property="og:title" content="FXConversionFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed FXConversionFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="fx-conversion-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>FXConversionFlow</span></div>
+      <h1 class="docs-title">FXConversionFlow</h1>
+      <p class="docs-lede">
+        Multi-currency wallet conversion flow composing <code>Card</code>, <code>Tabs</code>, <code>Select</code>, <code>Input</code>, <code>Tooltip</code>, <code>FeeBreakdown</code>, <code>TransferReceipt</code>, <code>Alert</code>, <code>Badge</code>, and <code>Button</code> with currency swap and rate-lock expiry simulation.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-fx-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-fx-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Convert currency</h3>
+                      <p class="fc-card__description">Convert balances between wallet currencies with live transparent FX pricing.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="fx-badge">Rate lock 45s</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="fx-body"></div>
+                <div class="fc-card__footer" id="fx-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Account Tier</span>
+              <select class="ctrl-select" id="fx-tier" onchange="fxReset(this.value)">
+                <option value="personal">Personal wallet (0.35% fee)</option>
+                <option value="business">Treasury FX (0.25% fee)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Simulate Rate Expiry</span>
+              <button type="button" class="ctrl-select" onclick="fxExpire()" style="cursor:pointer;">Trigger Rate Expired</button>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="fxReset(fxState.accountType)" style="cursor:pointer;">Restart Flow</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add fx-conversion-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { FXConversionFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;FXConversionFlow
+      accountType="business"
+      fromCurrency="USD"
+      toCurrency="EUR"
+      availableBalance={25000}
+      onConvert={(fx) =&gt; console.log(fx.reference)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('fx-conversion-flow');
+
+    const FX_ICONS = {
+      swap: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>',
+      refresh: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>',
+      left: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>',
+      right: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      check: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>'
+    };
+
+    const fxRatesUsd = { USD: 1, EUR: 0.92, GBP: 0.79, NGN: 1580, CAD: 1.38 };
+    const fxState = {
+      accountType: 'personal',
+      from: 'USD',
+      to: 'EUR',
+      amount: '1000',
+      step: 1,
+      status: 'entering-amount',
+      seconds: 45,
+      error: '',
+      ref: ''
+    };
+
+    function fxRate() {
+      return (fxRatesUsd[fxState.to] || 1) / (fxRatesUsd[fxState.from] || 1);
+    }
+
+    function fxReset(type) {
+      fxState.accountType = type || 'personal';
+      document.getElementById('fx-tier').value = fxState.accountType;
+      fxState.step = 1;
+      fxState.status = 'entering-amount';
+      fxState.seconds = 45;
+      fxState.error = '';
+      fxState.ref = '';
+      renderFx();
+    }
+
+    function fxExpire() {
+      fxState.seconds = 0;
+      fxState.step = 2;
+      fxState.status = 'rate-expired';
+      fxState.error = 'Your quoted exchange rate expired. Refresh quote to continue.';
+      renderFx();
+    }
+
+    function fxSwap() {
+      const tmp = fxState.from;
+      fxState.from = fxState.to;
+      fxState.to = tmp;
+      fxState.seconds = 45;
+      fxState.error = '';
+      if (fxState.status === 'rate-expired') fxState.status = 'entering-amount';
+      renderFx();
+    }
+
+    function fxContinue() {
+      fxState.error = '';
+      const amt = Number(fxState.amount) || 0;
+      if (fxState.step === 1) {
+        if (fxState.from === fxState.to) { fxState.error = 'Source and target currencies must differ.'; renderFx(); return; }
+        if (amt <= 0 || amt > 25000) { fxState.error = 'Enter an amount between 1 and 25,000.'; renderFx(); return; }
+        fxState.step = 2;
+        fxState.status = 'reviewing';
+        fxState.seconds = 45;
+      } else {
+        if (fxState.seconds <= 0 || fxState.status === 'rate-expired') { fxExpire(); return; }
+        fxState.ref = 'FX-' + Math.floor(100000 + Math.random() * 900000);
+        fxState.status = 'success';
+      }
+      renderFx();
+    }
+
+    function renderFx() {
+      const isBiz = fxState.accountType === 'business';
+      const amt = Number(fxState.amount) || 0;
+      const feePct = isBiz ? 0.25 : 0.35;
+      const fee = (amt * feePct) / 100;
+      const rate = fxRate();
+      const receive = Math.max(0, amt - fee) * rate;
+      const curs = ['USD','EUR','GBP','NGN','CAD'];
+
+      const badge = document.getElementById('fx-badge');
+      badge.className = 'fc-badge fc-badge--' + (fxState.status === 'success' ? 'success' : fxState.seconds > 10 ? 'info' : 'warning');
+      badge.textContent = fxState.status === 'success' ? 'Converted' : `Rate lock ${fxState.seconds}s`;
+
+      const top = `<div class="fc-fx-flow__top-row">
+        <div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="fxReset('personal')">Personal wallet</button><button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="fxReset('business')">Treasury FX</button></div></div>
+      </div>`;
+
+      const stepper = `<nav aria-label="Conversion steps"><ol class="fc-fx-flow__stepper" aria-live="polite">${['Currencies & amount','Review quote','Receipt'].map((l,i)=>{
+        const s=i+1; const done = fxState.step>s || fxState.status==='success'; const act = !done && fxState.step===s;
+        return `<li class="fc-fx-flow__step ${act?'fc-fx-flow__step--active':''} ${done?'fc-fx-flow__step--done':''}"><span class="fc-fx-flow__step-num" aria-hidden="true">${done?'✓':s}</span><span class="fc-fx-flow__step-label">${l}</span></li>`;
+      }).join('')}</ol></nav>`;
+
+      const err = fxState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">${fxState.status==='rate-expired'?'Rate expired':'Conversion error'}</p><div class="fc-alert__message">${fxState.error}</div></div>` : '';
+
+      let body = '';
+      if (fxState.status === 'success') {
+        body = `<div class="fc-transfer-receipt">
+          <div class="fc-transfer-receipt__header"><span class="fc-badge fc-badge--success">Converted</span><div class="fc-transfer-receipt__amount">${fxState.to} ${receive.toFixed(2)}</div><div class="fc-transfer-receipt__meta">Reference ${fxState.ref} · Settled instantly</div></div>
+          <div class="fc-transfer-receipt__rows">
+            <div class="fc-transfer-receipt__row"><span>Sold</span><strong>${fxState.from} ${amt.toFixed(2)}</strong></div>
+            <div class="fc-transfer-receipt__row"><span>Exchange rate</span><strong>1 ${fxState.from} = ${rate.toFixed(4)} ${fxState.to}</strong></div>
+            <div class="fc-transfer-receipt__row"><span>FX fee</span><strong>${fxState.from} ${fee.toFixed(2)}</strong></div>
+          </div>
+        </div>`;
+      } else if (fxState.step === 1) {
+        body = `<div class="fc-fx-flow__stack">
+          <div class="fc-fx-flow__pair-grid">
+            <div class="fc-select"><label class="fc-select__label">From currency</label><div class="fc-select__control"><select class="fc-select__field" onchange="fxState.from=this.value;renderFx();">${curs.map(c=>`<option value="${c}" ${fxState.from===c?'selected':''}>${c}</option>`).join('')}</select></div></div>
+            <div class="fc-fx-flow__tip-anchor">
+              <span class="fc-tooltip fc-fx-flow__tip-bubble" role="tooltip">Swap source &amp; target currencies</span>
+              <button type="button" class="fc-button fc-button--secondary" aria-label="Swap currencies" onclick="fxSwap()"><span class="fc-fx-flow__btn-inner">${FX_ICONS.swap} Swap</span></button>
+            </div>
+            <div class="fc-select"><label class="fc-select__label">To currency</label><div class="fc-select__control"><select class="fc-select__field" onchange="fxState.to=this.value;renderFx();">${curs.map(c=>`<option value="${c}" ${fxState.to===c?'selected':''}>${c}</option>`).join('')}</select></div></div>
+          </div>
+          <div class="fc-fx-flow__grid-2">
+            <div class="fc-input"><label class="fc-input__label">Amount (${fxState.from})</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="${fxState.amount}" oninput="fxState.amount=this.value;renderFx();"></div></div>
+            <div class="fc-input"><label class="fc-input__label">Estimated receive (${fxState.to})</label><div class="fc-input__control"><input type="text" class="fc-input__field" value="${receive.toFixed(2)}" readonly></div><p class="fc-input__message">1 ${fxState.from} = ${rate.toFixed(4)} ${fxState.to}</p></div>
+          </div>
+        </div>`;
+      } else {
+        body = `<div class="fc-fee-breakdown">
+          <div class="fc-fee-breakdown__row"><span>Source amount</span><span>${fxState.from} ${amt.toFixed(2)}</span></div>
+          <div class="fc-fee-breakdown__row"><span>Conversion fee (${feePct}%)</span><span>${fxState.from} ${fee.toFixed(2)}</span></div>
+          <div class="fc-fee-breakdown__total"><span>You receive (${fxState.to})</span><strong>${fxState.to} ${receive.toFixed(2)}</strong></div>
+        </div>`;
+      }
+
+      document.getElementById('fx-body').innerHTML = `<div class="fc-fx-flow__stack">${top}${stepper}${err}${body}</div>`;
+      document.getElementById('fx-footer').innerHTML = fxState.status === 'success'
+        ? `<div class="fc-fx-flow__actions"><span></span><button type="button" class="fc-button fc-button--secondary" onclick="fxReset(fxState.accountType)"><span class="fc-fx-flow__btn-inner">${FX_ICONS.refresh} New conversion</span></button></div>`
+        : `<div class="fc-fx-flow__actions"><button type="button" class="fc-button fc-button--ghost" onclick="${fxState.step===1?'fxReset(fxState.accountType)':'fxState.step=1;fxState.status=\'entering-amount\';renderFx();'}"><span class="fc-fx-flow__btn-inner">${fxState.step===1?`${FX_ICONS.refresh} Restart`:`${FX_ICONS.left} Back`}</span></button><div class="fc-fx-flow__actions-right">${fxState.status==='rate-expired'?`<button type="button" class="fc-button fc-button--secondary" onclick="fxState.seconds=45;fxState.status='reviewing';fxState.error='';renderFx();"><span class="fc-fx-flow__btn-inner">${FX_ICONS.refresh} Refresh quote</span></button>`:''}<button type="button" class="fc-button fc-button--primary" ${fxState.status==='rate-expired'?'disabled':''} onclick="fxContinue()"><span class="fc-fx-flow__btn-inner">${fxState.step===1?`Continue ${FX_ICONS.right}`:`${FX_ICONS.check} Convert`}</span></button></div></div>`;
+    }
+
+    renderFx();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

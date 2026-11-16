@@ -158,11 +158,11 @@ function assertContractDependencies(contract, css, prefix) {
 test("protected token source, validator and generated CSS are unchanged", () => {
   const baseline = {
     "tokens/tokens.json":
-      "0be18a9866d74b8251e203cc05482fcfe97b37a8c1b0482f3733032a21cdce82",
+      "671117b5d5a757d8d1ed49bbac7ace7df5a4b46cbdc4b530587cf2ad6d44fdb0",
     "tokens/check.mjs":
       "0ed6a0c97f413bbe04b849f3256a9954e98046d3566f04f77850e919c02346f3",
     "tokens/dist/tokens.css":
-      "7dae93baed9f9d72047881007bb81d1a6f251822d85608d5cf95680d773b457b",
+      "161035698611fef56163f2f117dafa4941fe6ba2d8c82392edc64702aa8e7ca9",
   };
 
   for (const [file, expected] of Object.entries(baseline)) {

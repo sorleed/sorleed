@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>StepUpAuthFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed StepUpAuthFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/step-up-auth-flow">
+  <meta property="og:title" content="StepUpAuthFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed StepUpAuthFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="step-up-auth-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>StepUpAuthFlow</span></div>
+      <h1 class="docs-title">StepUpAuthFlow</h1>
+      <p class="docs-lede">
+        Step-up authorization challenge built from <code>Card</code>, <code>Alert</code>, <code>Badge</code>, <code>Tabs</code>, <code>OTP</code>, <code>PinInput</code>, and <code>Button</code> with retry tracking and lockout guard.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-stepup-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-stepup-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Confirm it's you</h3>
+                      <p class="fc-card__description">Quick security check before completing this action.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="su-retries">3 attempts left</span>
+                  </div>
+                </div>
+                <div class="fc-card__body">
+                  <div class="fc-stepup-flow__stack" id="su-root"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Currency</span>
+              <select class="ctrl-select" onchange="su.currency=this.value; renderSu();">
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="NGN">NGN (₦)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Test Behavior</span>
+              <button type="button" class="ctrl-select" onclick="suWrongAttempt()" style="cursor:pointer;">Simulate Failed Check</button>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="suReset()" style="cursor:pointer;">Reset Flow</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add step-up-auth-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card"><div class="code-card__header">App.tsx</div><pre class="code-card__body">import { StepUpAuthFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;StepUpAuthFlow
+      actionSummary="Approve transfer of $25,000.00 to Acme Cloud Ltd"
+      amount={25000}
+      currency="USD"
+      recipient="Acme Cloud Ltd"
+      maxAttempts={3}
+    /&gt;
+  );
+}</pre></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('step-up-auth-flow');
+
+    const S_SYM = { USD: '$', EUR: '€', GBP: '£', NGN: '₦' };
+    const su = {
+      currency: 'USD',
+      method: 'passkey', // passkey | otp | pin
+      phase: 'ready', // ready | verifying | success | error | locked
+      attemptsLeft: 3,
+      maxAttempts: 3,
+      otp: '123456',
+      pin: '4829',
+      resentMsg: ''
+    };
+
+    function suReset() {
+      su.phase = 'ready'; su.attemptsLeft = 3; su.resentMsg = ''; su.method = 'passkey';
+      renderSu();
+    }
+
+    function suWrongAttempt() {
+      if (su.phase === 'locked' || su.phase === 'success') return;
+      su.attemptsLeft = Math.max(0, su.attemptsLeft - 1);
+      su.phase = su.attemptsLeft === 0 ? 'locked' : 'error';
+      renderSu();
+    }
+
+    function suApprove() {
+      if (su.phase === 'locked') return;
+      su.phase = 'verifying';
+      renderSu();
+      setTimeout(() => {
+        su.phase = 'success';
+        renderSu();
+      }, 500);
+    }
+
+    function renderSu() {
+      const sym = S_SYM[su.currency] || '$';
+      const badge = document.getElementById('su-retries');
+      if (su.phase === 'locked') {
+        badge.className = 'fc-badge fc-badge--error';
+        badge.textContent = 'Locked';
+      } else if (su.phase === 'success') {
+        badge.className = 'fc-badge fc-badge--success';
+        badge.textContent = 'Approved';
+      } else {
+        badge.className = 'fc-badge ' + (su.attemptsLeft === 1 ? 'fc-badge--warning' : 'fc-badge--info');
+        badge.textContent = `${su.attemptsLeft} of ${su.maxAttempts} attempts left`;
+      }
+
+      const root = document.getElementById('su-root');
+      const contextBanner = `<div class="fc-alert fc-alert--info" role="status"><p class="fc-alert__title">Approve transfer of ${sym}25,000.00 to Acme Cloud Ltd</p><div class="fc-alert__message">Funds leave immediately once verified.</div></div>`;
+
+      if (su.phase === 'success') {
+        root.innerHTML = `${contextBanner}<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Verification approved</p><div class="fc-alert__message">Your transfer to Acme Cloud Ltd is now processing.</div></div><div><button type="button" class="fc-button fc-button--secondary" onclick="suReset()">Reset</button></div>`;
+        return;
+      }
+
+      if (su.phase === 'locked') {
+        root.innerHTML = `${contextBanner}<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Verification locked</p><div class="fc-alert__message">Too many incorrect attempts. Reset the check or try again in 15 minutes.</div></div><div><button type="button" class="fc-button fc-button--secondary" onclick="suReset()">Reset check</button></div>`;
+        return;
+      }
+
+      const errorAlert = su.phase === 'error'
+        ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Verification failed</p><div class="fc-alert__message">Code or credential didn't match. ${su.attemptsLeft} attempt${su.attemptsLeft===1?'':'s'} remaining.</div></div>`
+        : '';
+
+      const busy = su.phase === 'verifying';
+      const tabsHtml = `<div class="fc-tabs"><div class="fc-tabs__list" role="tablist">
+        <button type="button" class="fc-tabs__trigger" data-state="${su.method==='passkey'?'active':'inactive'}" onclick="su.method='passkey';renderSu();">Face / Touch ID</button>
+        <button type="button" class="fc-tabs__trigger" data-state="${su.method==='otp'?'active':'inactive'}" onclick="su.method='otp';renderSu();">Text / App Code</button>
+        <button type="button" class="fc-tabs__trigger" data-state="${su.method==='pin'?'active':'inactive'}" onclick="su.method='pin';renderSu();">Account PIN</button>
+      </div>
+      <div class="fc-stepup-flow__tab-panel">
+        ${su.method==='passkey'
+          ? `<p style="margin:0;font-size:13.5px;color:var(--fc-color-content-secondary);">Use your device passkey, Face ID, or Touch ID to approve this transfer.</p>`
+          : su.method==='otp'
+          ? `<div class="fc-otp"><span class="fc-otp__label">Enter the 6-digit code sent to •••• 9412</span><div class="fc-otp__cells">${[0,1,2,3,4,5].map(i=>`<div class="fc-otp__cell-wrapper"><input class="fc-otp__cell" maxlength="1" value="${su.otp[i]||''}" oninput="let c=su.otp.split('');c[${i}]=this.value.slice(-1);su.otp=c.join('');"></div>`).join('')}</div>${su.resentMsg?`<p class="fc-otp__message">${su.resentMsg}</p>`:''}</div>
+             <div><button type="button" class="fc-button fc-button--ghost fc-button--sm" onclick="su.resentMsg='New 6-digit code sent.';renderSu();">Resend code</button></div>`
+          : `<div class="fc-pin-input" role="group" aria-label="Account PIN">${[0,1,2,3].map(i=>`<input type="password" class="fc-pin-input__cell" maxlength="1" value="${su.pin[i]||''}" oninput="let p=su.pin.split('');p[${i}]=this.value.slice(-1);su.pin=p.join('');">`).join('')}</div>`
+        }
+      </div></div>`;
+
+      root.innerHTML = `${contextBanner}${errorAlert}${tabsHtml}
+        <div class="fc-stepup-flow__actions">
+          <button type="button" class="fc-button fc-button--ghost" ${busy?'disabled':''} onclick="suReset()">Reset</button>
+          <button type="button" class="fc-button fc-button--primary" ${busy?'disabled':''} onclick="suApprove()">${busy ? 'Verifying...' : 'Approve'}</button>
+        </div>`;
+    }
+
+    renderSu();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

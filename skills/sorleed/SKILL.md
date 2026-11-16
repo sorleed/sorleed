@@ -1,6 +1,6 @@
 ---
 name: sorleed
-description: Official AI coding agent skill for Sorleed FinTech UI Infrastructure. Teaches agents how to select, install, and write bug-free code for all 61 financial, banking, and wealth components with exact TypeScript props, pure CSS design tokens, WCAG 2.2 AA accessibility, and Radix modal safety.
+description: Official AI coding agent skill for Sorleed FinTech UI Infrastructure. Teaches agents how to select, install, and write bug-free code for all 80 financial, banking, wealth, and end-to-end flow components with exact TypeScript props, pure CSS design tokens, WCAG 2.2 AA accessibility, and Radix modal safety.
 ---
 
 # Sorleed AI Agent Skill
@@ -39,6 +39,25 @@ When building user flows, select the canonical Sorleed component:
 | **Credit Rating / Score Dial** | `<CreditScoreGauge />` | `npx @sorleed/cli add credit-score-gauge` |
 | **Loan & Mortgage EMI Calculator** | `<LoanCalculator />` | `npx @sorleed/cli add loan-calculator` |
 | **Currency Conversion & FX Swap** | `<CurrencyExchange />` | `npx @sorleed/cli add currency-exchange` |
+| **IBAN / Local Account Details** | `<IbanAccountDetails />` | `npx @sorleed/cli add iban-account-details` |
+| **Saved Payee / Beneficiary Picker** | `<BeneficiaryPicker />` | `npx @sorleed/cli add beneficiary-picker` |
+| **Daily / Monthly Transfer Limit Meter** | `<TransferLimitMeter />` | `npx @sorleed/cli add transfer-limit-meter` |
+| **Standing Order Management Card** | `<StandingOrderCard />` | `npx @sorleed/cli add standing-order-card` |
+| **KYC / KYB Identity Verification Flow** | `<KycVerificationFlow />` | `npx @sorleed/cli add kyc-verification-flow` |
+| **Deposit & Account Funding Flow** | `<DepositFundingFlow />` | `npx @sorleed/cli add deposit-funding-flow` |
+| **International / Domestic Money Transfer Flow** | `<MoneyTransferFlow />` | `npx @sorleed/cli add money-transfer-flow` |
+| **Bank Withdrawal & Payout Flow** | `<WithdrawalPayoutFlow />` | `npx @sorleed/cli add withdrawal-payout-flow` |
+| **Step-Up Authentication Flow** | `<StepUpAuthFlow />` | `npx @sorleed/cli add step-up-auth-flow` |
+| **Personal & Business Account Opening Flow** | `<AccountOpeningFlow />` | `npx @sorleed/cli add account-opening-flow` |
+| **Utility Bill & Vendor Invoice Payment Flow** | `<BillPaymentFlow />` | `npx @sorleed/cli add bill-payment-flow` |
+| **Card Activation, Freeze & Limit Flow** | `<CardManagementFlow />` | `npx @sorleed/cli add card-management-flow` |
+| **Transaction Dispute & Chargeback Flow** | `<DisputeClaimFlow />` | `npx @sorleed/cli add dispute-claim-flow` |
+| **Recurring Payment / Standing Order Flow** | `<RecurringPaymentFlow />` | `npx @sorleed/cli add recurring-payment-flow` |
+| **Multi-Currency FX Conversion Flow** | `<FXConversionFlow />` | `npx @sorleed/cli add fx-conversion-flow` |
+| **Personal Loan & Business Credit Flow** | `<LoanApplicationFlow />` | `npx @sorleed/cli add loan-application-flow` |
+| **Beneficiary Directory & Whitelist Flow** | `<BeneficiaryManagementFlow />` | `npx @sorleed/cli add beneficiary-management-flow` |
+| **PDF / CSV Statement Export Flow** | `<StatementExportFlow />` | `npx @sorleed/cli add statement-export-flow` |
+| **Account Closure & Balance Sweep Flow** | `<CloseAccountFlow />` | `npx @sorleed/cli add close-account-flow` |
 
 ---
 
@@ -150,6 +169,6 @@ export function TwoFactorVerification() {
 ---
 
 ## 5. Machine-Readable Registry Reference
-The complete machine-readable registry of all 61 components is available at:
+The complete machine-readable registry of all 80 components is available at:
 `https://sorleed.com/registry.json`
 

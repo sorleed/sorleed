@@ -92,6 +92,25 @@ import expenseReceiptUploaderRegistry from '../registry/expense-receipt-uploader
 import journalEntryLedgerRegistry from '../registry/journal-entry-ledger.js';
 import taxSummaryCardRegistry from '../registry/tax-summary-card.js';
 import chartOfAccountsTreeRegistry from '../registry/chart-of-accounts-tree.js';
+import { ibanAccountDetailsRegistry } from '../registry/iban-account-details.js';
+import { beneficiaryPickerRegistry } from '../registry/beneficiary-picker.js';
+import { transferLimitMeterRegistry } from '../registry/transfer-limit-meter.js';
+import { standingOrderCardRegistry } from '../registry/standing-order-card.js';
+import { kycVerificationFlowRegistry } from '../registry/kyc-verification-flow.js';
+import { depositFundingFlowRegistry } from '../registry/deposit-funding-flow.js';
+import { moneyTransferFlowRegistry } from '../registry/money-transfer-flow.js';
+import { withdrawalPayoutFlowRegistry } from '../registry/withdrawal-payout-flow.js';
+import { stepUpAuthFlowRegistry } from '../registry/step-up-auth-flow.js';
+import { accountOpeningFlowRegistry } from '../registry/account-opening-flow.js';
+import { billPaymentFlowRegistry } from '../registry/bill-payment-flow.js';
+import { cardManagementFlowRegistry } from '../registry/card-management-flow.js';
+import { disputeClaimFlowRegistry } from '../registry/dispute-claim-flow.js';
+import { recurringPaymentFlowRegistry } from '../registry/recurring-payment-flow.js';
+import { fxConversionFlowRegistry } from '../registry/fx-conversion-flow.js';
+import { loanApplicationFlowRegistry } from '../registry/loan-application-flow.js';
+import { beneficiaryManagementFlowRegistry } from '../registry/beneficiary-management-flow.js';
+import { statementExportFlowRegistry } from '../registry/statement-export-flow.js';
+import { closeAccountFlowRegistry } from '../registry/close-account-flow.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -156,6 +175,25 @@ function getRegistry(component) {
   if (component === 'journal-entry-ledger' || component === 'journalentryledger') return journalEntryLedgerRegistry;
   if (component === 'tax-summary-card' || component === 'taxsummarycard') return taxSummaryCardRegistry;
   if (component === 'chart-of-accounts-tree' || component === 'chartofaccountstree') return chartOfAccountsTreeRegistry;
+  if (component === 'iban-account-details' || component === 'ibanaccountdetails') return ibanAccountDetailsRegistry;
+  if (component === 'beneficiary-picker' || component === 'beneficiarypicker') return beneficiaryPickerRegistry;
+  if (component === 'transfer-limit-meter' || component === 'transferlimitmeter') return transferLimitMeterRegistry;
+  if (component === 'standing-order-card' || component === 'standingordercard') return standingOrderCardRegistry;
+  if (component === 'kyc-verification-flow' || component === 'kycverificationflow') return kycVerificationFlowRegistry;
+  if (component === 'deposit-funding-flow' || component === 'depositfundingflow') return depositFundingFlowRegistry;
+  if (component === 'money-transfer-flow' || component === 'moneytransferflow') return moneyTransferFlowRegistry;
+  if (component === 'withdrawal-payout-flow' || component === 'withdrawalpayoutflow') return withdrawalPayoutFlowRegistry;
+  if (component === 'step-up-auth-flow' || component === 'stepupauthflow') return stepUpAuthFlowRegistry;
+  if (component === 'account-opening-flow' || component === 'accountopeningflow') return accountOpeningFlowRegistry;
+  if (component === 'bill-payment-flow' || component === 'billpaymentflow') return billPaymentFlowRegistry;
+  if (component === 'card-management-flow' || component === 'cardmanagementflow') return cardManagementFlowRegistry;
+  if (component === 'dispute-claim-flow' || component === 'disputeclaimflow') return disputeClaimFlowRegistry;
+  if (component === 'recurring-payment-flow' || component === 'recurringpaymentflow') return recurringPaymentFlowRegistry;
+  if (component === 'fx-conversion-flow' || component === 'fxconversionflow') return fxConversionFlowRegistry;
+  if (component === 'loan-application-flow' || component === 'loanapplicationflow') return loanApplicationFlowRegistry;
+  if (component === 'beneficiary-management-flow' || component === 'beneficiarymanagementflow') return beneficiaryManagementFlowRegistry;
+  if (component === 'statement-export-flow' || component === 'statementexportflow') return statementExportFlowRegistry;
+  if (component === 'close-account-flow' || component === 'closeaccountflow') return closeAccountFlowRegistry;
   return null;
 }
 

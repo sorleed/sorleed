@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>LoanApplicationFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed LoanApplicationFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/loan-application-flow">
+  <meta property="og:title" content="LoanApplicationFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed LoanApplicationFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="loan-application-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>LoanApplicationFlow</span></div>
+      <h1 class="docs-title">LoanApplicationFlow</h1>
+      <p class="docs-lede">
+        Personal loan and business credit underwriting workflow composing <code>Card</code>, <code>Tabs</code>, <code>Select</code>, <code>Input</code>, <code>KycDocUploader</code>, <code>Checkbox</code>, <code>Alert</code>, <code>Badge</code>, and <code>Button</code>.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-loan-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-loan-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Apply for credit</h3>
+                      <p class="fc-card__description">Get a tailored personal or business credit offer in 4 clear steps.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--info" id="ln-badge">11.2% APR</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="ln-body"></div>
+                <div class="fc-card__footer" id="ln-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Borrower Type</span>
+              <select class="ctrl-select" id="ln-type" onchange="lnReset(this.value)">
+                <option value="personal">Personal loan (11.2% APR)</option>
+                <option value="business">Business credit (9.4% APR)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Reset</span>
+              <button type="button" class="ctrl-select" onclick="lnReset(lnState.accountType)" style="cursor:pointer;">Restart Application</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add loan-application-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { LoanApplicationFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;LoanApplicationFlow
+      accountType="business"
+      currency="USD"
+      onAcceptOffer={(offer) =&gt; console.log(offer.applicationId)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('loan-application-flow');
+
+    const LN_ICONS = {
+      left: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>',
+      right: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>',
+      check: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+      x: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
+      refresh: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>'
+    };
+
+    const lnState = {
+      accountType: 'personal',
+      currency: 'USD',
+      step: 1,
+      status: 'applying',
+      amount: '15000',
+      term: '24',
+      purpose: 'debt_consolidation',
+      income: '6800',
+      revenue: '420000',
+      doc: 'Income_Statement.pdf',
+      consent: true,
+      error: '',
+      appId: ''
+    };
+
+    function lnReset(type) {
+      lnState.accountType = type || 'personal';
+      document.getElementById('ln-type').value = lnState.accountType;
+      lnState.step = 1;
+      lnState.status = 'applying';
+      lnState.error = '';
+      lnState.appId = '';
+      renderLn();
+    }
+
+    function lnNext() {
+      lnState.error = '';
+      const amt = Number(lnState.amount) || 0;
+      if (lnState.step === 1 && (amt < 500 || amt > 250000)) {
+        lnState.error = 'Loan amount must be between 500 and 250,000.';
+        renderLn();
+        return;
+      }
+      if (lnState.step === 3 && !lnState.doc) {
+        lnState.error = 'Upload financial verification document to proceed.';
+        renderLn();
+        return;
+      }
+      lnState.step = Math.min(4, lnState.step + 1);
+      renderLn();
+    }
+
+    function lnAccept() {
+      lnState.error = '';
+      if (!lnState.consent) { lnState.error = 'Accept the repayment terms first.'; renderLn(); return; }
+      lnState.appId = 'LN-' + Math.floor(100000 + Math.random() * 900000);
+      lnState.status = 'accepted';
+      renderLn();
+    }
+
+    function lnDecline() {
+      lnState.status = 'rejected';
+      renderLn();
+    }
+
+    function renderLn() {
+      const isBiz = lnState.accountType === 'business';
+      const principal = Number(lnState.amount) || 0;
+      const months = Number(lnState.term) || 24;
+      const apr = isBiz ? 9.4 : 11.2;
+      const mr = apr / 100 / 12;
+      const monthly = principal > 0 ? (principal * mr) / (1 - Math.pow(1 + mr, -months)) : 0;
+
+      const badge = document.getElementById('ln-badge');
+      badge.className = 'fc-badge fc-badge--' + (lnState.status === 'accepted' ? 'success' : lnState.status === 'rejected' ? 'warning' : 'info');
+      badge.textContent = lnState.status === 'accepted' ? `Approved · ${lnState.appId}` : lnState.status === 'rejected' ? 'Declined' : `${apr}% APR`;
+
+      const top = `<div class="fc-loan-flow__top-row">
+        <div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="lnReset('personal')">Personal loan</button><button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="lnReset('business')">Business credit</button></div></div>
+        <div class="fc-loan-flow__currency-wrap"><div class="fc-select"><label class="fc-select__label">Currency</label><div class="fc-select__control"><select class="fc-select__field" onchange="lnState.currency=this.value;renderLn();">${['USD','EUR','GBP','NGN'].map(c=>`<option value="${c}" ${lnState.currency===c?'selected':''}>${c}</option>`).join('')}</select></div></div></div>
+      </div>`;
+
+      const labels = ['Amount & purpose', isBiz ? 'Financials' : 'Income', 'Documents', 'Offer review'];
+      const stepper = `<nav aria-label="Loan application steps"><ol class="fc-loan-flow__stepper" aria-live="polite">${labels.map((l,i)=>{
+        const s=i+1; const done = lnState.step>s || lnState.status==='accepted'; const act = !done && lnState.step===s && lnState.status==='applying';
+        return `<li class="fc-loan-flow__step ${act?'fc-loan-flow__step--active':''} ${done?'fc-loan-flow__step--done':''}"><span class="fc-loan-flow__step-num" aria-hidden="true">${done?'✓':s}</span><span class="fc-loan-flow__step-label">${l}</span></li>`;
+      }).join('')}</ol></nav>`;
+      const err = lnState.error ? `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Check application details</p><div class="fc-alert__message">${lnState.error}</div></div>` : '';
+
+      let body = '';
+      if (lnState.status === 'accepted') {
+        body = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Offer accepted (${lnState.appId})</p><div class="fc-alert__message">Disbursement of ${lnState.currency} ${principal.toLocaleString()} is scheduled within 1 business day. Est. monthly payment: ${lnState.currency} ${monthly.toFixed(2)}.</div></div>`;
+      } else if (lnState.status === 'rejected') {
+        body = `<div class="fc-alert fc-alert--warning" role="status"><p class="fc-alert__title">Offer declined</p><div class="fc-alert__message">You have declined this offer with zero impact to your credit score.</div></div>`;
+      } else if (lnState.step === 1) {
+        body = `<div class="fc-loan-flow__grid-2">
+          <div class="fc-input"><label class="fc-input__label">Requested amount (${lnState.currency})</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="${lnState.amount}" oninput="lnState.amount=this.value"></div></div>
+          <div class="fc-select"><label class="fc-select__label">Repayment term</label><div class="fc-select__control"><select class="fc-select__field" onchange="lnState.term=this.value"><option value="12" ${lnState.term==='12'?'selected':''}>12 months</option><option value="24" ${lnState.term==='24'?'selected':''}>24 months</option><option value="36" ${lnState.term==='36'?'selected':''}>36 months</option></select></div></div>
+          <div class="fc-select"><label class="fc-select__label">Purpose</label><div class="fc-select__control"><select class="fc-select__field" onchange="lnState.purpose=this.value"><option value="debt_consolidation">${isBiz?'Working capital':'Debt consolidation'}</option><option value="equipment">${isBiz?'Equipment / inventory':'Home improvement'}</option></select></div></div>
+        </div>`;
+      } else if (lnState.step === 2) {
+        body = `<div class="fc-loan-flow__grid-2">${
+          !isBiz
+            ? `<div class="fc-input"><label class="fc-input__label">Monthly net income (${lnState.currency})</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="${lnState.income}" oninput="lnState.income=this.value"></div></div><div class="fc-select"><label class="fc-select__label">Employment</label><div class="fc-select__control"><select class="fc-select__field"><option>Full-time salaried</option><option>Self-employed</option></select></div></div>`
+            : `<div class="fc-input"><label class="fc-input__label">Annual revenue (${lnState.currency})</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="${lnState.revenue}" oninput="lnState.revenue=this.value"></div></div><div class="fc-input"><label class="fc-input__label">Years operating</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="4"></div></div>`
+        }</div>`;
+      } else if (lnState.step === 3) {
+        body = `<div class="fc-kyc-doc-uploader"><div class="fc-kyc-doc-uploader__header"><h3 class="fc-kyc-doc-uploader__title">${isBiz?'Upload company P&L or 3-month statement':'Upload income verification'}</h3><p class="fc-kyc-doc-uploader__subtitle">PDF, PNG, JPG up to 10MB</p></div>${
+          lnState.doc ? `<div class="fc-kyc-doc-uploader__preview"><span>${lnState.doc}</span><button type="button" class="fc-kyc-doc-uploader__remove-btn" onclick="lnState.doc='';renderLn();">Remove</button></div>`
+          : `<div class="fc-kyc-doc-uploader__dropzone" role="button" tabindex="0" onclick="lnState.doc='Financial_Statement.pdf';renderLn();"><p class="fc-kyc-doc-uploader__prompt">Click to upload sample document</p></div>`
+        }</div>`;
+      } else {
+        body = `<div class="fc-loan-flow__stack"><div class="fc-loan-flow__summary-box">
+          <div class="fc-loan-flow__summary-row"><span>Approved principal</span><strong>${lnState.currency} ${principal.toLocaleString()}</strong></div>
+          <div class="fc-loan-flow__summary-row"><span>Fixed APR & term</span><strong>${apr}% APR · ${months} months</strong></div>
+          <div class="fc-loan-flow__summary-row"><span>Estimated monthly payment</span><strong>${lnState.currency} ${monthly.toFixed(2)} / mo</strong></div>
+        </div>
+        <label class="fc-checkbox"><span class="fc-checkbox__control"><input type="checkbox" class="fc-checkbox__field" ${lnState.consent?'checked':''} onchange="lnState.consent=this.checked"><span class="fc-checkbox__box"></span></span><span class="fc-checkbox__label">I accept the loan APR, installment schedule, and repayment terms.</span></label></div>`;
+      }
+
+      document.getElementById('ln-body').innerHTML = `<div class="fc-loan-flow__stack">${top}${stepper}${err}${body}</div>`;
+      document.getElementById('ln-footer').innerHTML = lnState.status !== 'applying'
+        ? `<div class="fc-loan-flow__actions"><span></span><button type="button" class="fc-button fc-button--secondary" onclick="lnReset(lnState.accountType)"><span class="fc-loan-flow__btn-inner">${LN_ICONS.refresh} Restart</span></button></div>`
+        : `<div class="fc-loan-flow__actions"><button type="button" class="fc-button fc-button--ghost" ${lnState.step===1?'disabled':''} onclick="lnState.step=Math.max(1,lnState.step-1);renderLn();"><span class="fc-loan-flow__btn-inner">${LN_ICONS.left} Back</span></button><div class="fc-loan-flow__actions-right">${
+          lnState.step < 4
+            ? `<button type="button" class="fc-button fc-button--primary" onclick="lnNext()"><span class="fc-loan-flow__btn-inner">Next ${LN_ICONS.right}</span></button>`
+            : `<button type="button" class="fc-button fc-button--secondary" onclick="lnDecline()"><span class="fc-loan-flow__btn-inner">${LN_ICONS.x} Decline</span></button><button type="button" class="fc-button fc-button--primary" onclick="lnAccept()"><span class="fc-loan-flow__btn-inner">${LN_ICONS.check} Accept Offer</span></button>`
+        }</div></div>`;
+    }
+
+    renderLn();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

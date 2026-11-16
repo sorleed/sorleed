@@ -79,79 +79,152 @@ function renderStripeSidebar(activeId) {
     {
       name: 'Getting Started',
       items: [
-        { id: 'docs-home', label: 'Overview', href: root + 'docs#overview' },
-        { id: 'cli', label: 'Sorleed CLI', href: root + 'docs#cli' },
-        { id: 'tokens', label: 'Design Tokens', href: root + 'docs#tokens' },
-        { id: 'accessibility', label: 'Accessibility (AA)', href: root + 'docs#accessibility' },
-        { id: 'ai-skill', label: 'AI Agent Skill', href: root + 'docs#ai-skill' }
+        { id: 'docs-home', label: 'Overview', href: root + 'docs.html#overview' },
+        { id: 'cli', label: 'Sorleed CLI', href: root + 'docs.html#cli' },
+        { id: 'tokens', label: 'Design Tokens', href: root + 'docs.html#tokens' },
+        { id: 'accessibility', label: 'Accessibility (AA)', href: root + 'docs.html#accessibility' },
+        { id: 'ai-skill', label: 'AI Agent Skill', href: root + 'docs.html#ai-skill' }
       ]
     },
     {
       name: 'Component Categories',
       categories: [
         {
+          id: 'cat-flows',
+          name: 'Flows & Journeys',
+          open: [
+            'kyc-verification-flow',
+            'deposit-funding-flow',
+            'money-transfer-flow',
+            'withdrawal-payout-flow',
+            'step-up-auth-flow',
+            'account-opening-flow',
+            'bill-payment-flow',
+            'card-management-flow',
+            'dispute-claim-flow',
+            'recurring-payment-flow',
+            'fx-conversion-flow',
+            'loan-application-flow',
+            'beneficiary-management-flow',
+            'statement-export-flow',
+            'close-account-flow'
+          ].includes(activeId),
+          items: [
+            { id: 'kyc-verification-flow', label: 'KycVerificationFlow', href: root + 'components/kyc-verification-flow.html' },
+            { id: 'deposit-funding-flow', label: 'DepositFundingFlow', href: root + 'components/deposit-funding-flow.html' },
+            { id: 'money-transfer-flow', label: 'MoneyTransferFlow', href: root + 'components/money-transfer-flow.html' },
+            { id: 'withdrawal-payout-flow', label: 'WithdrawalPayoutFlow', href: root + 'components/withdrawal-payout-flow.html' },
+            { id: 'step-up-auth-flow', label: 'StepUpAuthFlow', href: root + 'components/step-up-auth-flow.html' },
+            { id: 'account-opening-flow', label: 'AccountOpeningFlow', href: root + 'components/account-opening-flow.html' },
+            { id: 'bill-payment-flow', label: 'BillPaymentFlow', href: root + 'components/bill-payment-flow.html' },
+            { id: 'card-management-flow', label: 'CardManagementFlow', href: root + 'components/card-management-flow.html' },
+            { id: 'dispute-claim-flow', label: 'DisputeClaimFlow', href: root + 'components/dispute-claim-flow.html' },
+            { id: 'recurring-payment-flow', label: 'RecurringPaymentFlow', href: root + 'components/recurring-payment-flow.html' },
+            { id: 'fx-conversion-flow', label: 'FXConversionFlow', href: root + 'components/fx-conversion-flow.html' },
+            { id: 'loan-application-flow', label: 'LoanApplicationFlow', href: root + 'components/loan-application-flow.html' },
+            { id: 'beneficiary-management-flow', label: 'BeneficiaryManagementFlow', href: root + 'components/beneficiary-management-flow.html' },
+            { id: 'statement-export-flow', label: 'StatementExportFlow', href: root + 'components/statement-export-flow.html' },
+            { id: 'close-account-flow', label: 'CloseAccountFlow', href: root + 'components/close-account-flow.html' }
+          ]
+        },
+        {
           id: 'cat-banking',
           name: 'Banking & Wallets',
-          open: ['balance-card', 'account-summary', 'wallet-card', 'currency-exchange', 'bank-selector', 'transfer-receipt'].includes(activeId),
+          open: ['account-summary', 'amount-display', 'balance-card', 'bank-selector', 'beneficiary-picker', 'card-controls', 'currency', 'currency-exchange', 'fee-breakdown', 'iban-account-details', 'split-bill-calculator', 'standing-order-card', 'transaction-item', 'transfer-limit-meter', 'transfer-receipt', 'virtual-card-generator', 'wallet-card'].includes(activeId),
           items: [
-            { id: 'balance-card', label: 'BalanceCard', href: root + 'components/balance-card.html' },
             { id: 'account-summary', label: 'AccountSummary', href: root + 'components/account-summary.html' },
-            { id: 'wallet-card', label: 'WalletCard', href: root + 'components/wallet-card.html' },
-            { id: 'currency-exchange', label: 'CurrencyExchange', href: root + 'components/currency-exchange.html' },
+            { id: 'amount-display', label: 'AmountDisplay', href: root + 'components/amount-display.html' },
+            { id: 'balance-card', label: 'BalanceCard', href: root + 'components/balance-card.html' },
             { id: 'bank-selector', label: 'BankSelector', href: root + 'components/bank-selector.html' },
-            { id: 'transfer-receipt', label: 'TransferReceipt', href: root + 'components/transfer-receipt.html' }
+            { id: 'beneficiary-picker', label: 'BeneficiaryPicker', href: root + 'components/beneficiary-picker.html' },
+            { id: 'card-controls', label: 'CardControls', href: root + 'components/card-controls.html' },
+            { id: 'currency', label: 'Currency', href: root + 'components/currency.html' },
+            { id: 'currency-exchange', label: 'CurrencyExchange', href: root + 'components/currency-exchange.html' },
+            { id: 'fee-breakdown', label: 'FeeBreakdown', href: root + 'components/fee-breakdown.html' },
+            { id: 'iban-account-details', label: 'IbanAccountDetails', href: root + 'components/iban-account-details.html' },
+            { id: 'split-bill-calculator', label: 'SplitBillCalculator', href: root + 'components/split-bill-calculator.html' },
+            { id: 'standing-order-card', label: 'StandingOrderCard', href: root + 'components/standing-order-card.html' },
+            { id: 'transaction-item', label: 'TransactionItem', href: root + 'components/transaction-item.html' },
+            { id: 'transfer-limit-meter', label: 'TransferLimitMeter', href: root + 'components/transfer-limit-meter.html' },
+            { id: 'transfer-receipt', label: 'TransferReceipt', href: root + 'components/transfer-receipt.html' },
+            { id: 'virtual-card-generator', label: 'VirtualCardGenerator', href: root + 'components/virtual-card-generator.html' },
+            { id: 'wallet-card', label: 'WalletCard', href: root + 'components/wallet-card.html' }
           ]
         },
         {
           id: 'cat-accounting',
           name: 'Accounting & Ledgers',
-          open: ['invoice-viewer', 'spending-meter', 'journal-entry-ledger', 'tax-summary-card', 'chart-of-accounts-tree', 'expense-receipt-uploader'].includes(activeId),
+          open: ['chart-of-accounts-tree', 'expense-receipt-uploader', 'invoice-viewer', 'journal-entry-ledger', 'spending-meter', 'tax-summary-card'].includes(activeId),
           items: [
-            { id: 'invoice-viewer', label: 'InvoiceViewer', href: root + 'components/invoice-viewer.html' },
-            { id: 'spending-meter', label: 'SpendingMeter', href: root + 'components/spending-meter.html' },
-            { id: 'journal-entry-ledger', label: 'JournalEntryLedger', href: root + 'components/journal-entry-ledger.html' },
-            { id: 'tax-summary-card', label: 'TaxSummaryCard', href: root + 'components/tax-summary-card.html' },
             { id: 'chart-of-accounts-tree', label: 'ChartOfAccountsTree', href: root + 'components/chart-of-accounts-tree.html' },
-            { id: 'expense-receipt-uploader', label: 'ExpenseReceiptUploader', href: root + 'components/expense-receipt-uploader.html' }
+            { id: 'expense-receipt-uploader', label: 'ExpenseReceiptUploader', href: root + 'components/expense-receipt-uploader.html' },
+            { id: 'invoice-viewer', label: 'InvoiceViewer', href: root + 'components/invoice-viewer.html' },
+            { id: 'journal-entry-ledger', label: 'JournalEntryLedger', href: root + 'components/journal-entry-ledger.html' },
+            { id: 'spending-meter', label: 'SpendingMeter', href: root + 'components/spending-meter.html' },
+            { id: 'tax-summary-card', label: 'TaxSummaryCard', href: root + 'components/tax-summary-card.html' }
           ]
         },
         {
           id: 'cat-credit',
           name: 'Credit & Wealth',
-          open: ['loan-calculator', 'credit-score-gauge', 'portfolio-summary', 'yield-curve-table', 'asset-allocation'].includes(activeId),
+          open: ['asset-allocation', 'credit-score-gauge', 'loan-calculator', 'portfolio-summary', 'repayment-schedule', 'yield-curve-table'].includes(activeId),
           items: [
-            { id: 'loan-calculator', label: 'LoanCalculator', href: root + 'components/loan-calculator.html' },
+            { id: 'asset-allocation', label: 'AssetAllocation', href: root + 'components/asset-allocation.html' },
             { id: 'credit-score-gauge', label: 'CreditScoreGauge', href: root + 'components/credit-score-gauge.html' },
+            { id: 'loan-calculator', label: 'LoanCalculator', href: root + 'components/loan-calculator.html' },
             { id: 'portfolio-summary', label: 'PortfolioSummary', href: root + 'components/portfolio-summary.html' },
-            { id: 'yield-curve-table', label: 'YieldCurveTable', href: root + 'components/yield-curve-table.html' },
-            { id: 'asset-allocation', label: 'AssetAllocation', href: root + 'components/asset-allocation.html' }
+            { id: 'repayment-schedule', label: 'RepaymentSchedule', href: root + 'components/repayment-schedule.html' },
+            { id: 'yield-curve-table', label: 'YieldCurveTable', href: root + 'components/yield-curve-table.html' }
           ]
         },
         {
           id: 'cat-security',
           name: 'Security & Identity',
-          open: ['biometric-auth-prompt', 'kyc-doc-uploader', 'direct-debit-mandate', 'pin-input', 'otp'].includes(activeId),
+          open: ['biometric-auth-prompt', 'cvv', 'direct-debit-mandate', 'kyc-doc-uploader', 'otp', 'password-input', 'pin-input'].includes(activeId),
           items: [
             { id: 'biometric-auth-prompt', label: 'BiometricAuthPrompt', href: root + 'components/biometric-auth-prompt.html' },
-            { id: 'kyc-doc-uploader', label: 'KycDocUploader', href: root + 'components/kyc-doc-uploader.html' },
+            { id: 'cvv', label: 'CVV', href: root + 'components/cvv.html' },
             { id: 'direct-debit-mandate', label: 'DirectDebitMandate', href: root + 'components/direct-debit-mandate.html' },
-            { id: 'pin-input', label: 'PinInput', href: root + 'components/pin-input.html' },
-            { id: 'otp', label: 'OTP', href: root + 'components/otp.html' }
+            { id: 'kyc-doc-uploader', label: 'KycDocUploader', href: root + 'components/kyc-doc-uploader.html' },
+            { id: 'otp', label: 'OTP', href: root + 'components/otp.html' },
+            { id: 'password-input', label: 'PasswordInput', href: root + 'components/password-input.html' },
+            { id: 'pin-input', label: 'PinInput', href: root + 'components/pin-input.html' }
           ]
         },
         {
           id: 'cat-forms',
           name: 'Forms & Core Controls',
-          open: ['button', 'input', 'tabs', 'card', 'alert', 'select', 'checkbox', 'switch'].includes(activeId),
+          open: ['accordion', 'alert', 'avatar', 'badge', 'button', 'card', 'checkbox', 'container', 'date-picker', 'divider', 'drawer', 'empty-state', 'inline', 'input', 'modal', 'pagination', 'phone-input', 'popover', 'radio-group', 'select', 'skeleton', 'stack', 'status-indicator', 'switch', 'table', 'tabs', 'textarea', 'toast', 'tooltip'].includes(activeId),
           items: [
-            { id: 'button', label: 'Button', href: root + 'components/button.html' },
-            { id: 'input', label: 'Input', href: root + 'components/input.html' },
-            { id: 'tabs', label: 'Tabs', href: root + 'components/tabs.html' },
-            { id: 'card', label: 'Card', href: root + 'components/card.html' },
+            { id: 'accordion', label: 'Accordion', href: root + 'components/accordion.html' },
             { id: 'alert', label: 'Alert', href: root + 'components/alert.html' },
-            { id: 'select', label: 'Select', href: root + 'components/select.html' },
+            { id: 'avatar', label: 'Avatar', href: root + 'components/avatar.html' },
+            { id: 'badge', label: 'Badge', href: root + 'components/badge.html' },
+            { id: 'button', label: 'Button', href: root + 'components/button.html' },
+            { id: 'card', label: 'Card', href: root + 'components/card.html' },
             { id: 'checkbox', label: 'Checkbox', href: root + 'components/checkbox.html' },
-            { id: 'switch', label: 'Switch', href: root + 'components/switch.html' }
+            { id: 'container', label: 'Container', href: root + 'components/container.html' },
+            { id: 'date-picker', label: 'DatePicker', href: root + 'components/date-picker.html' },
+            { id: 'divider', label: 'Divider', href: root + 'components/divider.html' },
+            { id: 'drawer', label: 'Drawer', href: root + 'components/drawer.html' },
+            { id: 'empty-state', label: 'EmptyState', href: root + 'components/empty-state.html' },
+            { id: 'inline', label: 'Inline', href: root + 'components/inline.html' },
+            { id: 'input', label: 'Input', href: root + 'components/input.html' },
+            { id: 'modal', label: 'Modal', href: root + 'components/modal.html' },
+            { id: 'pagination', label: 'Pagination', href: root + 'components/pagination.html' },
+            { id: 'phone-input', label: 'PhoneInput', href: root + 'components/phone-input.html' },
+            { id: 'popover', label: 'Popover', href: root + 'components/popover.html' },
+            { id: 'radio-group', label: 'RadioGroup', href: root + 'components/radio-group.html' },
+            { id: 'select', label: 'Select', href: root + 'components/select.html' },
+            { id: 'skeleton', label: 'Skeleton', href: root + 'components/skeleton.html' },
+            { id: 'stack', label: 'Stack', href: root + 'components/stack.html' },
+            { id: 'status-indicator', label: 'StatusIndicator', href: root + 'components/status-indicator.html' },
+            { id: 'switch', label: 'Switch', href: root + 'components/switch.html' },
+            { id: 'table', label: 'Table', href: root + 'components/table.html' },
+            { id: 'tabs', label: 'Tabs', href: root + 'components/tabs.html' },
+            { id: 'textarea', label: 'Textarea', href: root + 'components/textarea.html' },
+            { id: 'toast', label: 'Toast', href: root + 'components/toast.html' },
+            { id: 'tooltip', label: 'Tooltip', href: root + 'components/tooltip.html' }
           ]
         }
       ]
@@ -165,7 +238,7 @@ function renderStripeSidebar(activeId) {
   html += `<div class="sidebar-group__header">${groups[0].name}</div>`;
   for (const item of groups[0].items) {
     const isActive = item.id === activeId ? 'active' : '';
-    const clickHandler = item.href.includes('docs#') ? `onclick="if(window.location.pathname.endsWith('docs')){ switchDocsSection('${item.id === 'docs-home' ? 'overview' : item.id}'); return false; }"` : '';
+    const clickHandler = item.href.includes('docs.html#') ? `onclick="if((window.location.pathname.endsWith('docs') || window.location.pathname.endsWith('docs.html'))){ switchDocsSection('${item.id === 'docs-home' ? 'overview' : item.id}'); return false; }"` : '';
     html += `<a href="${item.href}" ${clickHandler} data-nav-id="${item.id}" class="sidebar-link ${isActive}">${item.label}</a>`;
   }
   html += `</div>`;

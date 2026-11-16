@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>CardManagementFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed CardManagementFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/card-management-flow">
+  <meta property="og:title" content="CardManagementFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed CardManagementFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="card-management-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>CardManagementFlow</span></div>
+      <h1 class="docs-title">CardManagementFlow</h1>
+      <p class="docs-lede">
+        Card lifecycle control flow composing <code>Card</code>, <code>Tabs</code>, <code>WalletCard</code>, <code>Tooltip</code>, <code>TransferLimitMeter</code>, <code>Input</code>, <code>Select</code>, <code>Alert</code>, <code>Badge</code>, and <code>Button</code> with frosted visual freeze feedback and icon tooltips.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-card-mgmt-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-card-mgmt-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Manage your card</h3>
+                      <p class="fc-card__description">Inspect card details, adjust spending caps, freeze/unfreeze, or order a replacement.</p>
+                    </div>
+                    <span class="fc-badge fc-badge--success" id="cm-badge">Active</span>
+                  </div>
+                </div>
+                <div class="fc-card__body" id="cm-body"></div>
+                <div class="fc-card__footer" id="cm-footer"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Card Program</span>
+              <select class="ctrl-select" id="cm-type" onchange="cmState.accountType=this.value;renderCm();">
+                <option value="personal">Personal card</option>
+                <option value="business">Business team card</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Initial Card State</span>
+              <select class="ctrl-select" id="cm-status-sel" onchange="cmState.cardStatus=this.value;cmState.flowState='viewing';cmState.pendingAction=null;renderCm();">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive (needs activation)</option>
+                <option value="frozen">Frozen</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Simulate Network</span>
+              <select class="ctrl-select" onchange="cmState.outcome=this.value;">
+                <option value="success">Updates Succeed</option>
+                <option value="error">Network Declined Error</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add card-management-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { CardManagementFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;CardManagementFlow
+      accountType="business"
+      dailyLimit={5000}
+      usedToday={1120}
+      onCardAction={({ action, limit }) =&gt; console.log(action, limit)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('card-management-flow');
+
+    const CM_ICONS = {
+      snowflake: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>',
+      sun: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>',
+      sliders: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="11" cy="18" r="2"/></svg>',
+      refresh: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>',
+      zap: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+      eye: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>'
+    };
+
+    const cmState = {
+      accountType: 'personal',
+      cardStatus: 'active',
+      flowState: 'viewing',
+      pendingAction: null,
+      dailyLimit: 2500,
+      draftLimit: '2500',
+      last4: '8841',
+      replaceReason: 'damaged',
+      flipped: false,
+      feedback: '',
+      outcome: 'success'
+    };
+
+    function cmStart(action) {
+      cmState.pendingAction = action;
+      cmState.flowState = 'confirming';
+      cmState.feedback = '';
+      if (action === 'set_limit') cmState.draftLimit = String(cmState.dailyLimit);
+      renderCm();
+    }
+
+    function cmConfirm() {
+      if (cmState.outcome === 'error') {
+        cmState.flowState = 'error';
+        cmState.feedback = 'Card network declined this update. Retry in a moment.';
+        renderCm();
+        return;
+      }
+      const act = cmState.pendingAction;
+      if (act === 'set_limit') {
+        const val = Number(cmState.draftLimit);
+        if (!val || val < 100 || val > 50000) {
+          cmState.flowState = 'error';
+          cmState.feedback = 'Daily limit must be between USD 100 and USD 50,000.';
+          renderCm();
+          return;
+        }
+        cmState.dailyLimit = val;
+        cmState.feedback = 'Daily spending limit updated to USD ' + val.toLocaleString() + '.';
+      } else if (act === 'freeze') {
+        cmState.cardStatus = 'frozen';
+        cmState.feedback = 'Card temporarily frozen until you unfreeze it.';
+      } else if (act === 'unfreeze' || act === 'activate') {
+        cmState.cardStatus = 'active';
+        cmState.feedback = 'Card is active and ready for payments.';
+      } else if (act === 'replace') {
+        cmState.cardStatus = 'replacing';
+        cmState.last4 = '3914';
+        cmState.feedback = 'Replacement virtual card ending in 3914 issued immediately.';
+      }
+      cmState.pendingAction = null;
+      cmState.flowState = 'success';
+      renderCm();
+    }
+
+    function cmTipBtn(tipText, variant, iconHtml, label, onclickExpr, ariaLabel) {
+      return `<div class="fc-card-mgmt-flow__tip-anchor">
+        <span class="fc-tooltip fc-card-mgmt-flow__tip-bubble" role="tooltip">${tipText}</span>
+        <button type="button" class="fc-button fc-button--sm fc-button--${variant}" aria-label="${ariaLabel || tipText}" onclick="${onclickExpr}">
+          <span class="fc-card-mgmt-flow__btn-inner">${iconHtml}${label ? `<span>${label}</span>` : ''}</span>
+        </button>
+      </div>`;
+    }
+
+    function renderCm() {
+      const isBiz = cmState.accountType === 'business';
+      const isFrozen = cmState.cardStatus === 'frozen';
+      const pct = Math.min(100, Math.round((640 / cmState.dailyLimit) * 100));
+      const badgeCls = cmState.cardStatus === 'active' ? 'success' : isFrozen ? 'warning' : cmState.cardStatus === 'replacing' ? 'info' : 'default';
+
+      const headerBadge = document.getElementById('cm-badge');
+      headerBadge.className = 'fc-badge fc-badge--' + badgeCls;
+      headerBadge.textContent = cmState.cardStatus.charAt(0).toUpperCase() + cmState.cardStatus.slice(1);
+
+      const cardPreview = `<div class="fc-card-mgmt-flow__card-wrap">
+        <div class="fc-card-mgmt-flow__card-frame ${isFrozen ? 'fc-card-mgmt-flow__card-frame--frozen' : ''}">
+          ${isFrozen ? `<div class="fc-card-mgmt-flow__frost-overlay" aria-label="Card is frozen">${`<span class="fc-card-mgmt-flow__frost-pill">${CM_ICONS.snowflake} Card Frozen</span>`}</div>` : ''}
+          <div class="fc-wallet-card-container" data-theme="midnight">
+            <div class="fc-wallet-card ${cmState.flipped ? 'fc-wallet-card--flipped' : ''}" role="button" tabindex="0" onclick="cmState.flipped=!cmState.flipped;renderCm();" aria-label="Virtual card ending in ${cmState.last4}. Click to flip.">
+              <div class="fc-wallet-card__front">
+                <div class="fc-wallet-card__top">
+                  <div class="fc-wallet-card__chip" aria-hidden="true"></div>
+                  <div class="fc-wallet-card__brand" aria-label="Visa Debit">VISA</div>
+                </div>
+                <div class="fc-wallet-card__number">4532 •••• •••• ${cmState.last4}</div>
+                <div class="fc-wallet-card__bottom">
+                  <div class="fc-wallet-card__holder">
+                    <span class="fc-wallet-card__label">Cardholder</span>
+                    <span class="fc-wallet-card__name">${isBiz ? 'ALEX RIVERA · CORP' : 'ALEX RIVERA'}</span>
+                  </div>
+                  <div class="fc-wallet-card__expiry">
+                    <span class="fc-wallet-card__label">Expires</span>
+                    <span class="fc-wallet-card__expiry-val">09/29</span>
+                  </div>
+                </div>
+              </div>
+              <div class="fc-wallet-card__back">
+                <div class="fc-wallet-card__magnetic-strip"></div>
+                <div class="fc-wallet-card__cvv-row">
+                  <div class="fc-wallet-card__signature"></div>
+                  <div class="fc-wallet-card__cvv" aria-label="CVV 482">482</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-card-mgmt-flow__icon-bar">
+          ${cmState.cardStatus==='inactive'||cmState.cardStatus==='replacing' ? cmTipBtn('Activate card', 'primary', CM_ICONS.zap, 'Activate', "cmStart('activate')") : ''}
+          ${isFrozen
+            ? cmTipBtn('Unfreeze card to resume spending', 'primary', CM_ICONS.sun, 'Unfreeze', "cmStart('unfreeze')", 'Unfreeze card')
+            : cmTipBtn('Freeze card immediately', 'secondary', CM_ICONS.snowflake, '', "cmStart('freeze')", 'Freeze card')}
+          ${cmTipBtn('Adjust daily & monthly spend limits', 'secondary', CM_ICONS.sliders, '', "cmStart('set_limit')", 'Set spending limits')}
+          ${cmTipBtn('Order a replacement card', 'ghost', CM_ICONS.refresh, '', "cmStart('replace')", 'Order replacement card')}
+          ${cmTipBtn(cmState.flipped ? 'Show card front' : 'Reveal CVV code', 'ghost', CM_ICONS.eye, '', 'cmState.flipped=!cmState.flipped;renderCm();', 'Toggle CVV visibility')}
+        </div>
+      </div>`;
+
+      const meter = `<div class="fc-transfer-limit"><div class="fc-transfer-limit__header"><span class="fc-transfer-limit__title">Daily spend limit</span><span class="fc-transfer-limit__meta">USD 640 / ${cmState.dailyLimit.toLocaleString()}</span></div><div class="fc-transfer-limit__track"><div class="fc-transfer-limit__fill" style="width:${pct}%"></div></div></div>`;
+
+      let alertHtml = '';
+      if (cmState.flowState === 'success') {
+        alertHtml = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Card updated</p><div class="fc-alert__message">${cmState.feedback}</div></div>`;
+      } else if (cmState.flowState === 'error') {
+        alertHtml = `<div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Update failed</p><div class="fc-alert__message">${cmState.feedback}</div></div>`;
+      }
+
+      let confirmHtml = '';
+      if (cmState.flowState === 'confirming') {
+        if (cmState.pendingAction === 'set_limit') {
+          confirmHtml = `<div class="fc-card-mgmt-flow__summary-box"><div class="fc-input"><label class="fc-input__label">New daily limit (USD)</label><div class="fc-input__control"><input type="number" class="fc-input__field" value="${cmState.draftLimit}" oninput="cmState.draftLimit=this.value"></div></div></div>`;
+        } else if (cmState.pendingAction === 'replace') {
+          confirmHtml = `<div class="fc-card-mgmt-flow__summary-box"><div class="fc-select"><label class="fc-select__label">Replacement reason</label><div class="fc-select__control"><select class="fc-select__field" onchange="cmState.replaceReason=this.value"><option value="damaged">Card damaged</option><option value="lost">Lost card</option><option value="compromised">Compromised</option></select></div></div></div>`;
+        } else {
+          confirmHtml = `<div class="fc-alert fc-alert--info"><p class="fc-alert__title">Confirm ${cmState.pendingAction}</p><div class="fc-alert__message">Click Confirm below to apply this card status change.</div></div>`;
+        }
+      }
+
+      document.getElementById('cm-body').innerHTML = `<div class="fc-card-mgmt-flow__stack">
+        <div class="fc-card-mgmt-flow__top-row">
+          <div class="fc-tabs"><div class="fc-tabs__list"><button type="button" class="fc-tabs__trigger" data-state="${!isBiz?'active':'inactive'}" onclick="cmState.accountType='personal';document.getElementById('cm-type').value='personal';renderCm();">Personal card</button><button type="button" class="fc-tabs__trigger" data-state="${isBiz?'active':'inactive'}" onclick="cmState.accountType='business';document.getElementById('cm-type').value='business';renderCm();">Business team card</button></div></div>
+        </div>
+        <div class="fc-card-mgmt-flow__layout">${cardPreview}${meter}</div>
+        ${alertHtml}${confirmHtml}
+      </div>`;
+
+      document.getElementById('cm-footer').innerHTML = cmState.flowState === 'confirming'
+        ? `<div class="fc-card-mgmt-flow__actions"><button type="button" class="fc-button fc-button--ghost" onclick="cmState.flowState='viewing';cmState.pendingAction=null;renderCm();">Cancel</button><div class="fc-card-mgmt-flow__actions-right"><button type="button" class="fc-button fc-button--primary" onclick="cmConfirm()">Confirm</button></div></div>`
+        : `<div class="fc-card-mgmt-flow__actions"><span></span><div class="fc-card-mgmt-flow__actions-right">${cmState.flowState!=='viewing'?`<button type="button" class="fc-button fc-button--secondary" onclick="cmState.flowState='viewing';renderCm();">Done</button>`:''}</div></div>`;
+    }
+
+    renderCm();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

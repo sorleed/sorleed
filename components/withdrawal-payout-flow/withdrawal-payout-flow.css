@@ -1,0 +1,59 @@
+/*
+ * Sorleed WithdrawalPayoutFlow — layout-only stylesheet.
+ * All interactive controls use Sorleed primitives (Card, Badge, RadioGroup, Input, Select, TransferLimitMeter, Checkbox, Alert, Button).
+ */
+
+.fc-withdrawal-flow {
+  width: 100%;
+  max-width: 580px;
+}
+
+.fc-withdrawal-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-withdrawal-flow__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-withdrawal-flow__balances {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fc-space-2);
+  justify-content: flex-end;
+}
+
+.fc-withdrawal-flow__amount-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 128px;
+  gap: var(--fc-space-3);
+  align-items: start;
+}
+
+.fc-withdrawal-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+  padding-top: var(--fc-space-2);
+}
+
+.fc-withdrawal-flow__actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+@media (max-width: 540px) {
+  .fc-withdrawal-flow__amount-grid,
+  .fc-withdrawal-flow__header {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}

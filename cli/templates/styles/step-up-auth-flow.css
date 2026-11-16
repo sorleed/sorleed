@@ -1,0 +1,36 @@
+/*
+ * Sorleed StepUpAuthFlow — layout-only stylesheet.
+ * All controls use Sorleed primitives (Card, Badge, Alert, Tabs, BiometricAuthPrompt, OTP, PinInput, Button).
+ */
+
+.fc-stepup-flow {
+  width: 100%;
+  max-width: 500px;
+}
+
+.fc-stepup-flow__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+}
+
+.fc-stepup-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-stepup-flow__tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+  padding-top: var(--fc-space-3);
+}
+
+.fc-stepup-flow__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}

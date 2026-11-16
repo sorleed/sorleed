@@ -1263,6 +1263,404 @@ export interface ChartOfAccountsTreeProps extends Omit<React.HTMLAttributes<HTML
   onSelectAccount?: (account: ChartAccountNode) => void;
 }
 
+export interface IbanAccountField {
+  label: string;
+  value: string;
+  copyable?: boolean;
+  sensitive?: boolean;
+}
+
+export interface IbanAccountDetailsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title" | "onCopy"> {
+  title?: React.ReactNode;
+  accountHolder: string;
+  currency?: string;
+  railBadge?: string;
+  bankName?: string;
+  bankAddress?: string;
+  fields: IbanAccountField[];
+  onCopy?: (label: string, value: string) => void;
+}
+
+export interface BeneficiaryItem {
+  id: string;
+  name: string;
+  bankName: string;
+  accountMask: string;
+  rail: string;
+  currency?: string;
+  verificationStatus?: "verified" | "pending";
+}
+
+export interface BeneficiaryPickerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title" | "onSelect"> {
+  title?: React.ReactNode;
+  beneficiaries: BeneficiaryItem[];
+  selectedId?: string;
+  searchable?: boolean;
+  onSelect?: (beneficiary: BeneficiaryItem) => void;
+  onAddNew?: () => void;
+}
+
+export interface TransferLimitItem {
+  id: string;
+  label: string;
+  rail?: string;
+  used: number;
+  max: number;
+  currency?: string;
+  resetText?: string;
+}
+
+export interface TransferLimitMeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  limits: TransferLimitItem[];
+  onRequestIncrease?: (limitId: string) => void;
+}
+
+export type StandingOrderStatus = "active" | "paused" | "cancelled";
+
+export interface StandingOrderCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  recipient: string;
+  recipientAccount: string;
+  amount: number;
+  currency?: string;
+  frequency: string;
+  nextRunDate: string;
+  fundingAccount: string;
+  reference?: string;
+  status?: StandingOrderStatus;
+  onTogglePause?: (nextStatus: "active" | "paused") => void;
+  onCancel?: () => void;
+}
+
+/* --- Flows & End-to-End Journeys --- */
+
+export type FlowStepVariant = "pills" | "numbered" | "progress";
+export type KycVerificationStep = "details" | "verify" | "complete" | "profile" | "document" | "liveness" | "review";
+export type KycReviewOutcome = "verified" | "manual_review";
+export type KycDocType = "passport" | "national_id" | "drivers_license";
+export type KycPersonalMethod = "document_selfie" | "bank_id" | "passkey_id";
+export type KycBusinessMethod = "upload_bundle" | "invite_director" | "registry_bank";
+
+export interface KycVerificationFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "individual" | "business";
+  allowAccountTypeSwitch?: boolean;
+  stepVariant?: FlowStepVariant;
+  defaultPersonalMethod?: KycPersonalMethod;
+  defaultBusinessMethod?: KycBusinessMethod;
+  initialCountry?: string;
+  countries?: string[];
+  estimatedTimeText?: string;
+  onComplete?: (payload: {
+    country: string;
+    accountType: "individual" | "business";
+    verificationMethod: KycPersonalMethod | KycBusinessMethod;
+    fullName: string;
+    taxId: string;
+    address: string;
+    dobOrIncorporationDate?: string;
+    documentType?: KycDocType;
+    documentFileName?: string;
+    secondaryDocumentFileName?: string;
+    beneficialOwnerName?: string;
+    beneficialOwnerEmail?: string;
+    beneficialOwnerOwnership?: string;
+    biometricVerified: boolean;
+    outcome: KycReviewOutcome;
+  }) => void;
+}
+
+export type DepositMethod = "card" | "open_banking" | "wire";
+
+export interface DepositFundingFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  currency?: string;
+  currencies?: string[];
+  availableBalance?: number;
+  quickAmounts?: number[];
+  banks?: BankInstitution[];
+  wireDetails?: IbanAccountDetailsProps;
+  instantFeePercent?: number;
+  simulateError?: "insufficient_funds" | "card_declined" | null;
+  onConfirmDeposit?: (payload: {
+    method: DepositMethod;
+    currency: string;
+    amount: number;
+    fee: number;
+    reference: string;
+    bankId?: string;
+  }) => Promise<boolean> | boolean | void;
+}
+
+export type TransferRail = "ach" | "wire" | "sepa_instant";
+
+export interface MoneyTransferFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  stepVariant?: FlowStepVariant;
+  senderName?: string;
+  senderAccount?: string;
+  sourceCurrency?: string;
+  targetCurrency?: string;
+  currencies?: string[];
+  targetCurrencies?: string[];
+  availableBalance?: number;
+  dailyLimit?: number;
+  exchangeRate?: number;
+  rateLockSeconds?: number;
+  beneficiaries: BeneficiaryItem[];
+  onCompleteTransfer?: (payload: {
+    beneficiary: BeneficiaryItem;
+    currency: string;
+    amount: number;
+    rail: TransferRail;
+    fee: number;
+    reference: string;
+  }) => void;
+}
+
+export interface WithdrawalDestination {
+  id: string;
+  label: string;
+  mask: string;
+  type: "bank" | "debit_card";
+  eta: string;
+  fee: number;
+}
+
+export interface WithdrawalPayoutFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  currency?: string;
+  currencies?: string[];
+  availableBalance: number;
+  pendingBalance?: number;
+  destinations: WithdrawalDestination[];
+  limits: TransferLimitItem[];
+  requireConfirmationCheck?: boolean;
+  onConfirmWithdrawal?: (payload: {
+    destination: WithdrawalDestination;
+    currency: string;
+    amount: number;
+    fee: number;
+    reference: string;
+  }) => Promise<boolean> | boolean | void;
+}
+
+export type StepUpFactor = "biometric" | "otp" | "pin";
+
+export interface StepUpAuthFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  actionSummary: string;
+  amount?: number;
+  currency?: string;
+  recipient?: string;
+  defaultFactor?: StepUpFactor;
+  maxAttempts?: number;
+  onVerify?: (payload: { factor: StepUpFactor; code?: string }) => Promise<boolean> | boolean;
+  onResendCode?: () => void;
+  onCancel?: () => void;
+}
+
+export interface AccountOpeningFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "individual" | "business";
+  initialCurrency?: string;
+  currencies?: string[];
+  countries?: string[];
+  onComplete?: (payload: {
+    accountType: "individual" | "business";
+    name: string;
+    country: string;
+    currency: string;
+    accountNumber: string;
+    status: "created" | "manual_review";
+  }) => void;
+}
+
+export interface BillBillerItem {
+  id: string;
+  name: string;
+  category: string;
+  accountMask: string;
+  dueDate?: string;
+  suggestedAmount?: number;
+}
+
+export interface BillPaymentFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  currency?: string;
+  currencies?: string[];
+  billers?: BillBillerItem[];
+  feeAmount?: number;
+  onPayBill?: (payload: {
+    billerName: string;
+    accountReference: string;
+    currency: string;
+    amount: number;
+    fee: number;
+    reference: string;
+  }) => Promise<boolean> | boolean | void;
+}
+
+export type ManagedCardStatus = "inactive" | "active" | "frozen" | "replacing";
+
+export interface CardManagementFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  brand?: "visa" | "mastercard" | "verve" | "amex" | string;
+  cardNumber?: string;
+  cardHolder?: string;
+  expiry?: string;
+  cvv?: string;
+  currency?: string;
+  initialStatus?: ManagedCardStatus;
+  dailyLimit?: number;
+  monthlyLimit?: number;
+  usedToday?: number;
+  onCardAction?: (payload: {
+    action: "activate" | "freeze" | "unfreeze" | "set_limit" | "replace";
+    limit?: number;
+    reason?: string;
+  }) => Promise<boolean> | boolean | void;
+}
+
+export interface DisputeTransactionItem {
+  id: string;
+  merchant: string;
+  date: string;
+  amount: number;
+  currency?: string;
+  cardMask?: string;
+}
+
+export interface DisputeClaimFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  currency?: string;
+  transactions?: DisputeTransactionItem[];
+  onSubmitClaim?: (payload: {
+    transaction: DisputeTransactionItem;
+    reason: string;
+    notes: string;
+    evidenceFileName?: string;
+    claimId: string;
+  }) => void;
+}
+
+export type RecurringFrequency = "weekly" | "biweekly" | "monthly" | "quarterly";
+
+export interface RecurringPaymentFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  currency?: string;
+  currencies?: string[];
+  fundingAccount?: string;
+  beneficiaries?: BeneficiaryItem[];
+  onCreateSchedule?: (payload: {
+    payee: string;
+    account: string;
+    amount: number;
+    currency: string;
+    frequency: RecurringFrequency;
+    startDate: string;
+    endDate?: string;
+    scheduleId: string;
+  }) => void;
+}
+
+export interface FXConversionFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  fromCurrency?: string;
+  toCurrency?: string;
+  currencies?: string[];
+  availableBalance?: number;
+  exchangeRate?: number;
+  feePercent?: number;
+  rateLockSeconds?: number;
+  onConvert?: (payload: {
+    fromCurrency: string;
+    toCurrency: string;
+    fromAmount: number;
+    toAmount: number;
+    fee: number;
+    rate: number;
+    reference: string;
+  }) => void;
+}
+
+export interface LoanApplicationFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  currency?: string;
+  currencies?: string[];
+  onAcceptOffer?: (payload: {
+    accountType: "personal" | "business";
+    amount: number;
+    currency: string;
+    purpose: string;
+    termMonths: number;
+    aprPercent: number;
+    monthlyPayment: number;
+    applicationId: string;
+  }) => void;
+  onDeclineOffer?: () => void;
+}
+
+export interface BeneficiaryManagementFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  currencies?: string[];
+  initialBeneficiaries?: BeneficiaryItem[];
+  requireVerifyCode?: boolean;
+  onSaveBeneficiary?: (beneficiary: BeneficiaryItem) => void;
+  onRemoveBeneficiary?: (beneficiaryId: string) => void;
+}
+
+export interface StatementAccountOption {
+  id: string;
+  label: string;
+  mask: string;
+  currency: string;
+}
+
+export interface StatementExportFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  accounts?: StatementAccountOption[];
+  defaultEmail?: string;
+  onExport?: (payload: {
+    accountId: string;
+    dateRange: string;
+    format: "pdf" | "csv";
+    delivery: "download" | "email";
+    email?: string;
+    fileName: string;
+  }) => void;
+}
+
+export interface CloseAccountFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  accountType?: "personal" | "business";
+  accountName?: string;
+  currency?: string;
+  remainingBalance?: number;
+  destinations?: { id: string; label: string; mask: string }[];
+  onConfirmClose?: (payload: {
+    reason: string;
+    feedback?: string;
+    destinationId?: string;
+    reference: string;
+  }) => void;
+  onCancel?: () => void;
+}
+
+
+
+
 
 
 

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>WithdrawalPayoutFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed WithdrawalPayoutFlow documentation, interactive playground, and React composition.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/withdrawal-payout-flow">
+  <meta property="og:title" content="WithdrawalPayoutFlow — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed WithdrawalPayoutFlow documentation, interactive playground, and React composition.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css?v=20261114">
+  <link rel="stylesheet" href="../components-dist/all-components.css?v=20261114">
+  <link rel="stylesheet" href="../assets/stripe-docs.css?v=20261114">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand"><div class="docs-header__brand-badge">S</div><span>Sorleed</span></a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="withdrawal-payout-flow.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API &amp; CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right"><a href="../docs.html" class="btn-header-cta">Get started</a></div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>WithdrawalPayoutFlow</span></div>
+      <h1 class="docs-title">WithdrawalPayoutFlow</h1>
+      <p class="docs-lede">
+        Cash-out flow composing <code>Card</code>, <code>Badge</code>, <code>RadioGroup</code>, <code>Input</code>, <code>Select</code>, <code>TransferLimitMeter</code>, <code>Checkbox</code>, <code>Alert</code>, and <code>Button</code>.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage">
+            <div class="fc-withdrawal-flow">
+              <div class="fc-card">
+                <div class="fc-card__header">
+                  <div class="fc-withdrawal-flow__header">
+                    <div>
+                      <h3 class="fc-card__title">Withdraw money</h3>
+                      <p class="fc-card__description" id="wpf-sub">Move funds to your linked bank account.</p>
+                    </div>
+                    <div class="fc-withdrawal-flow__balances">
+                      <span class="fc-badge fc-badge--success" id="wpf-avail">Available: $8,500.00</span>
+                      <span class="fc-badge fc-badge--default" id="wpf-pend">Pending: $1,200.00</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="fc-card__body">
+                  <div class="fc-withdrawal-flow__stack" id="wpf-root"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Account Type</span>
+              <select class="ctrl-select" onchange="wpf.accountType=this.value; renderWpf();">
+                <option value="personal">Personal Account</option>
+                <option value="business">Business Treasury</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Currency</span>
+              <select class="ctrl-select" id="wpf-curr-panel" onchange="wpf.currency=this.value; renderWpf();">
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="NGN">NGN (₦)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Test Limit Guard</span>
+              <button type="button" class="ctrl-select" onclick="wpf.amount=6500; wpf.phase='over_limit'; renderWpf();" style="cursor:pointer;">Test Over-Limit</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card"><div class="code-card__header">Terminal</div><pre class="code-card__body">npx @sorleed/cli add withdrawal-payout-flow</pre></div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card"><div class="code-card__header">App.tsx</div><pre class="code-card__body">import { WithdrawalPayoutFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+
+export function Example() {
+  return (
+    &lt;WithdrawalPayoutFlow
+      currency="USD"
+      availableBalance={8500}
+      pendingBalance={1200}
+      destinations={[{ id: "1", label: "Chase Checking", mask: "•••• 7741", type: "bank", eta: "1-2 days", fee: 0 }]}
+      limits={[{ id: "daily", label: "Daily Payout Limit", used: 1500, max: 5000 }]}
+    /&gt;
+  );
+}</pre></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer"><div>© 2026 Sorleed UI Infrastructure.</div><div>Typography: <strong>IBM Plex Sans</strong></div></footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>
+    renderStripeSidebar('withdrawal-payout-flow');
+
+    const W_SYM = { USD: '$', EUR: '€', GBP: '£', NGN: '₦' };
+    const wpf = {
+      accountType: 'personal',
+      currency: 'USD',
+      destId: 'chase',
+      amount: 500,
+      confirmed: false,
+      phase: 'entering', // entering | over_limit | processing | success
+      ref: 'WDL-620419'
+    };
+
+    const DESTS = [
+      { id: 'chase', label: 'Chase Checking (•••• 7741) — Free · 1-2 business days', short: 'Chase Checking (•••• 7741)', eta: '1-2 business days' },
+      { id: 'mercury', label: 'Mercury Business (•••• 4829) — Instant · $2.50 fee', short: 'Mercury Business (•••• 4829)', eta: 'Within minutes' }
+    ];
+
+    function wpfLimits() {
+      return wpf.accountType === 'business'
+        ? { avail: 42500, pending: 4800, used: 5000, max: 25000 }
+        : { avail: 8500, pending: 1200, used: 1500, max: 5000 };
+    }
+
+    function wpfErrorMsg() {
+      const L = wpfLimits();
+      const sym = W_SYM[wpf.currency] || '$';
+      const remaining = Math.max(0, L.max - L.used);
+      if (wpf.amount > L.avail) return `Amount exceeds available balance (${sym}${L.avail.toLocaleString(undefined,{minimumFractionDigits:2})}).`;
+      if (wpf.amount > remaining) return `Amount exceeds remaining daily payout limit (${sym}${remaining.toLocaleString(undefined,{minimumFractionDigits:2})}).`;
+      return '';
+    }
+
+    function renderWpf() {
+      const sym = W_SYM[wpf.currency] || '$';
+      const L = wpfLimits();
+      document.getElementById('wpf-avail').textContent = `Available: ${sym}${L.avail.toLocaleString(undefined,{minimumFractionDigits:2})}`;
+      document.getElementById('wpf-pend').textContent = `Pending: ${sym}${L.pending.toLocaleString(undefined,{minimumFractionDigits:2})}`;
+      document.getElementById('wpf-sub').textContent = wpf.accountType === 'business'
+        ? 'Initiate treasury payout to a verified corporate bank account.'
+        : 'Move funds to your linked bank account.';
+
+      const root = document.getElementById('wpf-root');
+      const dest = DESTS.find(d => d.id === wpf.destId) || DESTS[0];
+
+      if (wpf.phase === 'success') {
+        root.innerHTML = `<div class="fc-alert fc-alert--success" role="status"><p class="fc-alert__title">Withdrawal initiated · ${wpf.ref}</p><div class="fc-alert__message">${sym}${wpf.amount.toLocaleString(undefined,{minimumFractionDigits:2})} sent to ${dest.short}. Expected arrival: ${dest.eta}.</div></div><div><button type="button" class="fc-button fc-button--secondary" onclick="wpf.phase='entering';wpf.confirmed=false;wpf.amount=500;renderWpf();">Reset</button></div>`;
+        return;
+      }
+
+      const projectedUsed = L.used + Math.max(0, wpf.amount);
+      const pct = Math.min(100, (projectedUsed / L.max) * 100);
+      const errMsg = wpfErrorMsg();
+      const fillClass = errMsg || pct >= 100 ? 'fc-transfer-limit__fill--exceeded' : pct >= 80 ? 'fc-transfer-limit__fill--warning' : '';
+      const busy = wpf.phase === 'processing';
+      const canSubmit = !busy && !errMsg && wpf.amount > 0 && wpf.confirmed;
+
+      root.innerHTML = `
+        <fieldset class="fc-radio-group"><legend class="fc-radio-group__label">Destination account</legend><div class="fc-radio-group__items">
+          ${DESTS.map(d => `<label class="fc-radio-group__item"><span class="fc-radio-group__control"><input type="radio" name="wpf-dest" value="${d.id}" ${wpf.destId===d.id?'checked':''} class="fc-radio-group__field" onchange="wpf.destId='${d.id}';renderWpf();"><span class="fc-radio-group__circle" aria-hidden="true"><span class="fc-radio-group__dot"></span></span></span><span class="fc-radio-group__item-label">${d.label}</span></label>`).join('')}
+        </div></fieldset>
+
+        <div class="fc-withdrawal-flow__amount-grid">
+          <div class="fc-input"><label class="fc-input__label" for="wpf-amt">Amount to withdraw</label><div class="fc-input__control"><input id="wpf-amt" type="number" class="fc-input__field" value="${wpf.amount}" ${errMsg?'aria-invalid="true"':''} oninput="wpf.amount=Math.max(0,parseFloat(this.value)||0);renderWpfLive();"></div></div>
+          <div class="fc-select"><label class="fc-select__label" for="wpf-curr-sel">Currency</label><div class="fc-select__control"><select id="wpf-curr-sel" class="fc-select__field" onchange="wpf.currency=this.value;document.getElementById('wpf-curr-panel').value=this.value;renderWpf();"><option ${wpf.currency==='USD'?'selected':''}>USD</option><option ${wpf.currency==='EUR'?'selected':''}>EUR</option><option ${wpf.currency==='GBP'?'selected':''}>GBP</option><option ${wpf.currency==='NGN'?'selected':''}>NGN</option></select></div></div>
+        </div>
+
+        <div class="fc-transfer-limit" id="wpf-meter">
+          <div class="fc-transfer-limit__list"><div class="fc-transfer-limit__item">
+            <div class="fc-transfer-limit__row-top"><div class="fc-transfer-limit__label-group"><span class="fc-transfer-limit__label">Daily Payout Limit</span><span class="fc-transfer-limit__rail">ACH</span></div><span class="fc-transfer-limit__amounts">${sym}${projectedUsed.toLocaleString()} / ${sym}${L.max.toLocaleString()}</span></div>
+            <div class="fc-transfer-limit__track" role="progressbar" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100"><div class="fc-transfer-limit__fill ${fillClass}" style="width:${pct}%"></div></div>
+            <div class="fc-transfer-limit__row-bottom"><span class="fc-transfer-limit__remaining">${sym}${Math.max(0, L.max - projectedUsed).toLocaleString()} remaining after withdrawal</span></div>
+          </div></div>
+        </div>
+
+        <div id="wpf-guard" style="display:${errMsg?'block':'none'};">
+          <div class="fc-alert fc-alert--error" role="alert"><p class="fc-alert__title">Withdrawal blocked</p><div class="fc-alert__message" id="wpf-guard-msg">${errMsg}</div></div>
+        </div>
+
+        <div class="fc-checkbox"><label class="fc-checkbox__body" for="wpf-chk"><span class="fc-checkbox__control"><input id="wpf-chk" type="checkbox" class="fc-checkbox__field" ${wpf.confirmed?'checked':''} onchange="wpf.confirmed=this.checked;renderWpfActions();"><span class="fc-checkbox__box" aria-hidden="true"><svg class="fc-checkbox__icon" viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></span></span><span class="fc-checkbox__label" id="wpf-chk-lbl">I confirm this withdrawal of ${sym}${wpf.amount.toFixed(2)} to ${dest.short}</span></label></div>
+
+        <div class="fc-withdrawal-flow__actions" id="wpf-actions">
+          <button type="button" class="fc-button fc-button--ghost" onclick="wpf.amount=500;wpf.confirmed=false;wpf.phase='entering';renderWpf();">Reset</button>
+          <div class="fc-withdrawal-flow__actions-right">
+            <button type="button" class="fc-button fc-button--secondary" onclick="wpf.amount=${wpf.accountType==='business'?22000:6500};wpf.phase='over_limit';renderWpf();">Test Over-Limit</button>
+            <button type="button" class="fc-button fc-button--primary" id="wpf-submit" ${canSubmit?'':'disabled'} onclick="submitWpf()">${busy ? 'Processing...' : `Withdraw ${sym}${wpf.amount.toFixed(2)}`}</button>
+          </div>
+        </div>`;
+    }
+
+    function renderWpfLive() {
+      const sym = W_SYM[wpf.currency] || '$';
+      const L = wpfLimits();
+      const errMsg = wpfErrorMsg();
+      const projectedUsed = L.used + Math.max(0, wpf.amount);
+      const pct = Math.min(100, (projectedUsed / L.max) * 100);
+      const fillClass = errMsg || pct >= 100 ? 'fc-transfer-limit__fill--exceeded' : pct >= 80 ? 'fc-transfer-limit__fill--warning' : '';
+      const dest = DESTS.find(d => d.id === wpf.destId) || DESTS[0];
+      document.getElementById('wpf-meter').innerHTML = `<div class="fc-transfer-limit__list"><div class="fc-transfer-limit__item"><div class="fc-transfer-limit__row-top"><div class="fc-transfer-limit__label-group"><span class="fc-transfer-limit__label">Daily Payout Limit</span><span class="fc-transfer-limit__rail">ACH</span></div><span class="fc-transfer-limit__amounts">${sym}${projectedUsed.toLocaleString()} / ${sym}${L.max.toLocaleString()}</span></div><div class="fc-transfer-limit__track" role="progressbar" aria-valuenow="${Math.round(pct)}" aria-valuemin="0" aria-valuemax="100"><div class="fc-transfer-limit__fill ${fillClass}" style="width:${pct}%"></div></div><div class="fc-transfer-limit__row-bottom"><span class="fc-transfer-limit__remaining">${sym}${Math.max(0, L.max - projectedUsed).toLocaleString()} remaining after withdrawal</span></div></div></div>`;
+      const guard = document.getElementById('wpf-guard');
+      guard.style.display = errMsg ? 'block' : 'none';
+      document.getElementById('wpf-guard-msg').textContent = errMsg;
+      document.getElementById('wpf-chk-lbl').textContent = `I confirm this withdrawal of ${sym}${wpf.amount.toFixed(2)} to ${dest.short}`;
+      renderWpfActions();
+    }
+
+    function renderWpfActions() {
+      const sym = W_SYM[wpf.currency] || '$';
+      const btn = document.getElementById('wpf-submit');
+      if (!btn) return;
+      const errMsg = wpfErrorMsg();
+      btn.disabled = Boolean(errMsg) || wpf.amount <= 0 || !wpf.confirmed;
+      btn.textContent = `Withdraw ${sym}${wpf.amount.toFixed(2)}`;
+    }
+
+    function submitWpf() {
+      wpf.phase = 'processing';
+      renderWpf();
+      setTimeout(() => {
+        wpf.phase = 'success';
+        wpf.ref = 'WDL-' + Math.floor(100000 + Math.random() * 900000);
+        renderWpf();
+      }, 650);
+    }
+
+    renderWpf();
+  </script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>
