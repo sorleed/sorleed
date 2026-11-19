@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import type { BankSelectorProps, BankInstitution } from "../types";
+import type { BankSelectorProps } from "../types";
 
 export const BankSelector = React.forwardRef<HTMLDivElement, BankSelectorProps>(
   (

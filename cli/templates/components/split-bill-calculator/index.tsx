@@ -24,7 +24,7 @@ export const SplitBillCalculator = React.forwardRef<HTMLDivElement, SplitBillCal
   ) => {
     const [billAmount, setBillAmount] = useState<number>(initialBill);
     const [tipPercent, setTipPercent] = useState<number>(15);
-    const [participants, setParticipants] = useState(initialParticipants);
+    const [participants] = useState(initialParticipants);
 
     const tipAmount = (billAmount * tipPercent) / 100;
     const totalAmount = billAmount + tipAmount;

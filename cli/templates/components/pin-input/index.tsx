@@ -43,13 +43,19 @@ export const PinInput = React.forwardRef<HTMLDivElement, PinInputProps>(
         return;
       }
 
+      if (char === (value[index] || "") && raw.length <= 1) {
+        return;
+      }
+
       const chars = Array.from({ length }, (_, i) => value[i] || "");
       chars[index] = char || "";
       const nextVal = chars.join("").trim();
       updateValue(nextVal);
 
       if (char && index < length - 1) {
-        inputRefs.current[index + 1]?.focus();
+        setTimeout(() => {
+          inputRefs.current[index + 1]?.focus();
+        }, 0);
       }
     };
 

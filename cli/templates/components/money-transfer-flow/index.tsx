@@ -238,7 +238,19 @@ export const MoneyTransferFlow = React.forwardRef<HTMLDivElement, MoneyTransferF
 
             {rateExpired && !sent && (
               <Alert variant="warning" title="Exchange rate quote expired">
-                Refresh the rate quote before confirming this transfer.
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+                  <span>Refresh the rate quote to continue with the latest rate.</span>
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    onClick={() => {
+                      setSecondsLeft(rateLockSeconds);
+                      setErrorMsg(null);
+                    }}
+                  >
+                    Refresh quote
+                  </Button>
+                </div>
               </Alert>
             )}
 
@@ -509,6 +521,17 @@ export const MoneyTransferFlow = React.forwardRef<HTMLDivElement, MoneyTransferF
                   <Button variant="ghost" onClick={() => setStep(1)}>
                     Back
                   </Button>
+                  {rateExpired && (
+                    <Button
+                      variant="secondary"
+                      onClick={() => {
+                        setSecondsLeft(rateLockSeconds);
+                        setErrorMsg(null);
+                      }}
+                    >
+                      Refresh quote
+                    </Button>
+                  )}
                 </div>
               </div>
             )}
