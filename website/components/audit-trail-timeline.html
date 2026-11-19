@@ -39,7 +39,7 @@
       <p class="docs-lede">Immutable financial and administrative event log displaying actor avatars, roles, severity badges, 2FA verification tags, and source IP addresses.</p>
 
       <section>
-        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Preview</h2>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" style="padding:24px;">
             <div class="fc-audit-timeline">
@@ -47,25 +47,55 @@
                 <h3 class="fc-audit-timeline__title">Audit Trail</h3>
                 <p class="fc-audit-timeline__desc">Immutable ledger of administrative, treasury, and security actions</p>
               </div>
-              <ol class="fc-audit-timeline__list">
-                <li class="fc-audit-timeline__item">
-                  <div class="fc-audit-timeline__body">
-                    <div class="fc-audit-timeline__top">
-                      <div><span class="fc-audit-timeline__actor">Elena Vance</span><span class="fc-audit-timeline__role">(Treasury Admin)</span></div>
-                      <time class="fc-audit-timeline__time">2026-11-19 14:22 UTC</time>
-                    </div>
-                    <div class="fc-audit-timeline__action">Approved wire transfer — TX-99412</div>
-                    <div class="fc-audit-timeline__tags">
-                      <span class="fc-badge fc-badge--error">CRITICAL</span>
-                      <span class="fc-badge fc-badge--success">2FA Verified</span>
-                      <span class="fc-audit-timeline__ip">IP 10.24.18.4</span>
-                    </div>
-                  </div>
-                </li>
-              </ol>
+              <ol id="att-list" class="fc-audit-timeline__list"></ol>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Filter Severity</span>
+              <select class="ctrl-select" id="att-filter">
+                <option value="all" selected>All Events</option>
+                <option value="critical">Critical</option>
+                <option value="warning">Warning</option>
+                <option value="info">Info</option>
+              </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const events = [
+              { actor: 'Elena Vance', role: 'Treasury Admin', action: 'Approved wire transfer — TX-99412', time: '2026-11-19 14:22 UTC', ip: '10.24.18.4', sev: 'critical', mfa: true },
+              { actor: 'Marcus Chen', role: 'Controller', action: 'Updated daily ACH payout limit', time: '2026-11-19 11:05 UTC', ip: '10.24.18.19', sev: 'warning', mfa: true },
+              { actor: 'System Bot', role: 'Automated', action: 'Exported monthly reconciliation ledger', time: '2026-11-19 08:00 UTC', ip: '127.0.0.1', sev: 'info', mfa: false }
+            ];
+            const clsMap = { critical: 'error', warning: 'warning', info: 'info' };
+            const list = document.getElementById('att-list');
+            const filter = document.getElementById('att-filter');
+            function render() {
+              const f = filter.value;
+              const rows = f === 'all' ? events : events.filter(e => e.sev === f);
+              list.innerHTML = rows.map(e => `
+                <li class="fc-audit-timeline__item">
+                  <div class="fc-audit-timeline__body">
+                    <div class="fc-audit-timeline__top">
+                      <div><span class="fc-audit-timeline__actor">${e.actor}</span><span class="fc-audit-timeline__role">(${e.role})</span></div>
+                      <time class="fc-audit-timeline__time">${e.time}</time>
+                    </div>
+                    <div class="fc-audit-timeline__action">${e.action}</div>
+                    <div class="fc-audit-timeline__tags">
+                      <span class="fc-badge fc-badge--${clsMap[e.sev]}">${e.sev.toUpperCase()}</span>
+                      ${e.mfa ? '<span class="fc-badge fc-badge--success">2FA Verified</span>' : ''}
+                      <span class="fc-audit-timeline__ip">IP ${e.ip}</span>
+                    </div>
+                  </div>
+                </li>
+              `).join('');
+            }
+            filter.addEventListener('change', render);
+            render();
+          })();
+        </script>
       </section>
 
       <section>
@@ -117,3 +147,4 @@ export function Example() {
   <script src="../assets/metrics.js"></script>
 </body>
 </html>
+

@@ -57,7 +57,7 @@
       </p>
 
       <section>
-        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Preview</h2>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" id="stage-device-management-card" style="padding:32px; display:flex; justify-content:center;">
             <div class="fc-device-management-card fc-card" style="max-width:540px; width:100%;">
@@ -66,26 +66,54 @@
                   <h3 class="fc-device-management-card__title">Active Sessions</h3>
                   <p class="fc-device-management-card__subtitle">Manage devices currently signed in to your account.</p>
                 </div>
-                <button type="button" class="fc-button fc-button--ghost fc-button--sm">Sign Out Others</button>
+                <button type="button" id="dmc-revoke-all" class="fc-button fc-button--ghost fc-button--sm">Sign Out Others</button>
               </div>
-              <div class="fc-device-management-card__list">
-                <div class="fc-device-management-card__item">
-                  <div class="fc-device-management-card__info">
-                    <div class="fc-device-management-card__name">MacBook Pro 16" <span class="fc-badge fc-badge--success">This Device</span></div>
-                    <div class="fc-device-management-card__meta">Chrome · macOS · London, UK · 192.168.1.42</div>
-                  </div>
-                </div>
-                <div class="fc-device-management-card__item">
-                  <div class="fc-device-management-card__info">
-                    <div class="fc-device-management-card__name">iPhone 15 Pro</div>
-                    <div class="fc-device-management-card__meta">iOS App · New York, US · Active 2h ago</div>
-                  </div>
-                  <button type="button" class="fc-button fc-button--secondary fc-button--sm">Revoke</button>
-                </div>
-              </div>
+              <div id="dmc-list" class="fc-device-management-card__list"></div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <button type="button" id="dmc-reset" class="fc-button fc-button--secondary fc-button--sm">Restore Demo Devices</button>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const initial = [
+              { id: '1', name: 'MacBook Pro 16"', meta: 'Chrome · macOS · London, UK · 192.168.1.42', current: true },
+              { id: '2', name: 'iPhone 15 Pro', meta: 'iOS App · New York, US · Active 2h ago', current: false },
+              { id: '3', name: 'Windows Desktop', meta: 'Edge · Berlin, DE · Active 1d ago', current: false }
+            ];
+            let items = initial.slice();
+            const list = document.getElementById('dmc-list');
+            function render() {
+              list.innerHTML = items.map(d => `
+                <div class="fc-device-management-card__item">
+                  <div class="fc-device-management-card__info">
+                    <div class="fc-device-management-card__name">${d.name} ${d.current ? '<span class="fc-badge fc-badge--success">This Device</span>' : ''}</div>
+                    <div class="fc-device-management-card__meta">${d.meta}</div>
+                  </div>
+                  ${d.current ? '' : `<button type="button" data-revoke="${d.id}" class="fc-button fc-button--secondary fc-button--sm">Revoke</button>`}
+                </div>
+              `).join('');
+              list.querySelectorAll('[data-revoke]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                  items = items.filter(x => x.id !== btn.getAttribute('data-revoke'));
+                  render();
+                });
+              });
+            }
+            document.getElementById('dmc-revoke-all').addEventListener('click', () => {
+              items = items.filter(x => x.current);
+              render();
+            });
+            document.getElementById('dmc-reset').addEventListener('click', () => {
+              items = initial.slice();
+              render();
+            });
+            render();
+          })();
+        </script>
       </section>
 
       <section>
@@ -130,3 +158,4 @@ export function Example() {
   <script src="../assets/metrics.js"></script>
 </body>
 </html>
+

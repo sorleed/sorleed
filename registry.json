@@ -2,7 +2,7 @@
   "$schema": "https://sorleed.com/schema/registry.json",
   "name": "@sorleed/registry",
   "version": "0.1.0-alpha.13",
-  "description": "Machine-readable registry of all 89 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
+  "description": "Machine-readable registry of all 92 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
   "homepage": "https://sorleed.com",
   "components": {
     "accordion": {
@@ -892,6 +892,51 @@
       ],
       "docsUrl": "https://sorleed.com/components/audit-trail-timeline.html",
       "cliCommand": "npx @sorleed/cli add audit-trail-timeline"
+    },
+    "trade-execution-flow": {
+      "name": "trade-execution-flow",
+      "description": "End-to-end brokerage trade journey combining PerformanceChartCard, OrderEntryTicket, review step, and execution receipt",
+      "category": "flows",
+      "dependencies": [
+        "alert",
+        "badge",
+        "button",
+        "order-entry-ticket",
+        "performance-chart-card"
+      ],
+      "docsUrl": "https://sorleed.com/components/trade-execution-flow.html",
+      "cliCommand": "npx @sorleed/cli add trade-execution-flow"
+    },
+    "month-end-close-flow": {
+      "name": "month-end-close-flow",
+      "description": "End-to-end accounting close workflow combining BankReconciliationMatcher, CashFlowForecastCard, AuditTrailTimeline, and period lock sign-off",
+      "category": "flows",
+      "dependencies": [
+        "alert",
+        "audit-trail-timeline",
+        "badge",
+        "bank-reconciliation-matcher",
+        "button",
+        "cash-flow-forecast-card"
+      ],
+      "docsUrl": "https://sorleed.com/components/month-end-close-flow.html",
+      "cliCommand": "npx @sorleed/cli add month-end-close-flow"
+    },
+    "security-center-flow": {
+      "name": "security-center-flow",
+      "description": "End-to-end account security hub combining DeviceManagementCard, VirtualCardReveal, SessionTimeoutModal, and emergency lockdown",
+      "category": "flows",
+      "dependencies": [
+        "alert",
+        "badge",
+        "button",
+        "device-management-card",
+        "session-timeout-modal",
+        "tabs",
+        "virtual-card-reveal"
+      ],
+      "docsUrl": "https://sorleed.com/components/security-center-flow.html",
+      "cliCommand": "npx @sorleed/cli add security-center-flow"
     }
   }
 }

@@ -88,3 +88,6 @@
 @import "bank-reconciliation-matcher/bank-reconciliation-matcher.css";
 @import "cash-flow-forecast-card/cash-flow-forecast-card.css";
 @import "audit-trail-timeline/audit-trail-timeline.css";
+@import "trade-execution-flow/trade-execution-flow.css";
+@import "month-end-close-flow/month-end-close-flow.css";
+@import "security-center-flow/security-center-flow.css";

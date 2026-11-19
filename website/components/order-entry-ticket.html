@@ -39,7 +39,7 @@
       <p class="docs-lede">Brokerage order entry ticket with Buy/Sell tabs, Market/Limit/Stop order types, real-time buying power validation, and estimated total breakdown.</p>
 
       <section>
-        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Preview</h2>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" style="padding:32px; display:flex; justify-content:center;">
             <div class="fc-order-ticket" style="max-width:400px; width:100%;">
@@ -53,14 +53,65 @@
                   <div class="fc-order-ticket__quote-label">Last Price</div>
                 </div>
               </div>
+              <div class="fc-tabs__list" id="oet-side-tabs" role="tablist">
+                <button type="button" class="fc-tabs__trigger" data-side="buy" data-state="active">Buy MSFT</button>
+                <button type="button" class="fc-tabs__trigger" data-side="sell">Sell MSFT</button>
+              </div>
+              <div class="fc-order-ticket__types" id="oet-types">
+                <button type="button" class="fc-order-ticket__type-btn fc-order-ticket__type-btn--active" data-type="market">Market</button>
+                <button type="button" class="fc-order-ticket__type-btn" data-type="limit">Limit</button>
+                <button type="button" class="fc-order-ticket__type-btn" data-type="stop">Stop</button>
+              </div>
+              <div class="fc-input">
+                <label class="fc-input__label" for="oet-qty">Quantity (Shares)</label>
+                <input id="oet-qty" class="fc-input__field" type="number" min="1" value="2" />
+              </div>
+              <div id="oet-alert" class="fc-alert fc-alert--error" style="display:none;">Insufficient buying power (max \$5,000.00)</div>
               <div class="fc-order-ticket__summary">
                 <div class="fc-order-ticket__row"><span class="fc-order-ticket__row-label">Buying Power</span><span>USD 5,000.00</span></div>
-                <div class="fc-order-ticket__row fc-order-ticket__row--total"><span>Estimated Total</span><span>USD 420.00</span></div>
+                <div class="fc-order-ticket__row fc-order-ticket__row--total"><span>Estimated Total</span><span id="oet-total">USD 840.00</span></div>
               </div>
-              <button type="button" class="fc-button fc-button--primary" style="width:100%;">Place Buy Order</button>
+              <button type="button" id="oet-submit" class="fc-button fc-button--primary" style="width:100%;">Place Buy Order</button>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            let side = 'buy', type = 'market';
+            const price = 420, power = 5000;
+            const qtyEl = document.getElementById('oet-qty');
+            const totalEl = document.getElementById('oet-total');
+            const alertEl = document.getElementById('oet-alert');
+            const submitEl = document.getElementById('oet-submit');
+            function recalc() {
+              const q = Math.max(0, Number(qtyEl.value) || 0);
+              const total = q * price;
+              totalEl.textContent = 'USD ' + total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              const over = side === 'buy' && total > power;
+              alertEl.style.display = over ? 'block' : 'none';
+              submitEl.disabled = over || q <= 0;
+              submitEl.textContent = 'Place ' + (side === 'buy' ? 'Buy' : 'Sell') + ' (' + type.toUpperCase() + ')';
+            }
+            document.querySelectorAll('#oet-side-tabs [data-side]').forEach(b => b.addEventListener('click', () => {
+              document.querySelectorAll('#oet-side-tabs [data-side]').forEach(x => x.removeAttribute('data-state'));
+              b.setAttribute('data-state', 'active');
+              side = b.getAttribute('data-side');
+              recalc();
+            }));
+            document.querySelectorAll('#oet-types [data-type]').forEach(b => b.addEventListener('click', () => {
+              document.querySelectorAll('#oet-types [data-type]').forEach(x => x.classList.remove('fc-order-ticket__type-btn--active'));
+              b.classList.add('fc-order-ticket__type-btn--active');
+              type = b.getAttribute('data-type');
+              recalc();
+            }));
+            qtyEl.addEventListener('input', recalc);
+            submitEl.addEventListener('click', () => {
+              submitEl.textContent = 'Order Submitted ✓';
+              setTimeout(recalc, 1400);
+            });
+            recalc();
+          })();
+        </script>
       </section>
 
       <section>
@@ -105,3 +156,4 @@ export function Example() {
   <script src="../assets/metrics.js"></script>
 </body>
 </html>
+

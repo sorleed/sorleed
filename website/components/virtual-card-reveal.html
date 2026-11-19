@@ -57,23 +57,64 @@
       </p>
 
       <section>
-        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Preview</h2>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" id="stage-virtual-card-reveal" style="padding:32px; display:flex; justify-content:center;">
-            <div class="fc-virtual-card-reveal fc-virtual-card-reveal--dark" style="max-width:400px; width:100%;">
+            <div id="vcr-card" class="fc-virtual-card-reveal fc-virtual-card-reveal--dark" style="max-width:400px; width:100%;">
               <div class="fc-virtual-card-reveal__header">
                 <span class="fc-virtual-card-reveal__brand">VISA</span>
-                <span class="fc-badge fc-badge--neutral">Masked</span>
+                <span id="vcr-status" class="fc-badge fc-badge--default">Masked</span>
               </div>
-              <div class="fc-virtual-card-reveal__pan">•••• •••• •••• 8841</div>
+              <div id="vcr-pan" class="fc-virtual-card-reveal__pan">•••• •••• •••• 8841</div>
               <div class="fc-virtual-card-reveal__meta">
                 <div><div class="fc-virtual-card-reveal__label">Cardholder</div><div class="fc-virtual-card-reveal__value">ALEX MORGAN</div></div>
                 <div><div class="fc-virtual-card-reveal__label">Expires</div><div class="fc-virtual-card-reveal__value">08/29</div></div>
-                <div><div class="fc-virtual-card-reveal__label">CVV</div><div class="fc-virtual-card-reveal__value">•••</div></div>
+                <div><div class="fc-virtual-card-reveal__label">CVV</div><div id="vcr-cvv" class="fc-virtual-card-reveal__value">•••</div></div>
+              </div>
+              <div style="display:flex; gap:8px; margin-top:16px;">
+                <button type="button" id="vcr-toggle-btn" class="fc-button fc-button--primary fc-button--sm">Reveal Details</button>
+                <button type="button" id="vcr-copy-btn" class="fc-button fc-button--secondary fc-button--sm">Copy PAN</button>
               </div>
             </div>
           </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Card Theme</span>
+              <select class="ctrl-select" id="vcr-theme-select">
+                <option value="dark" selected>Dark</option>
+                <option value="gradient">Gradient</option>
+                <option value="emerald">Emerald</option>
+                <option value="platinum">Platinum</option>
+              </select>
+            </div>
+          </div>
         </div>
+        <script>
+          (function() {
+            let revealed = false;
+            const card = document.getElementById('vcr-card');
+            const pan = document.getElementById('vcr-pan');
+            const cvv = document.getElementById('vcr-cvv');
+            const status = document.getElementById('vcr-status');
+            const toggleBtn = document.getElementById('vcr-toggle-btn');
+            const copyBtn = document.getElementById('vcr-copy-btn');
+            toggleBtn.addEventListener('click', () => {
+              revealed = !revealed;
+              pan.textContent = revealed ? '4532 8920 1029 8841' : '•••• •••• •••• 8841';
+              cvv.textContent = revealed ? '412' : '•••';
+              status.textContent = revealed ? 'Visible' : 'Masked';
+              status.className = 'fc-badge ' + (revealed ? 'fc-badge--warning' : 'fc-badge--default');
+              toggleBtn.textContent = revealed ? 'Hide Details' : 'Reveal Details';
+            });
+            copyBtn.addEventListener('click', () => {
+              copyBtn.textContent = 'Copied!';
+              setTimeout(() => { copyBtn.textContent = 'Copy PAN'; }, 1500);
+            });
+            document.getElementById('vcr-theme-select').addEventListener('change', (e) => {
+              card.className = 'fc-virtual-card-reveal fc-virtual-card-reveal--' + e.target.value;
+            });
+          })();
+        </script>
       </section>
 
       <section>
@@ -120,3 +161,4 @@ export function Example() {
   <script src="../assets/metrics.js"></script>
 </body>
 </html>
+

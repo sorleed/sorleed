@@ -50,3 +50,4 @@ export const virtualCardRevealRegistry = {
     peer: ['react >=18.0.0', 'react-dom >=18.0.0', '@radix-ui/react-tooltip >=1.0.0']
   }
 };
+

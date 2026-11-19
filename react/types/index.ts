@@ -1855,6 +1855,47 @@ export interface AuditTrailTimelineProps extends Omit<React.HTMLAttributes<HTMLD
   events: AuditTrailEvent[];
 }
 
+export interface TradeExecutionFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  symbol: string;
+  companyName: string;
+  currentPrice: number;
+  buyingPower: number;
+  availableShares?: number;
+  currency?: string;
+  returnPercent: number;
+  returnAmount: number;
+  benchmarkName?: string;
+  benchmarkReturn?: number;
+  dataPoints: PerformanceDataPoint[];
+  estimatedFee?: number;
+  onExecuteOrder?: (order: OrderSubmissionPayload) => Promise<{ orderId?: string } | void> | void;
+}
+
+export interface MonthEndCloseFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  periodLabel: string;
+  currency?: string;
+  bankEntries: ReconciliationEntry[];
+  ledgerEntries: ReconciliationEntry[];
+  startingCash: number;
+  monthlyBurnRate: number;
+  cashFlowPeriods: CashFlowPeriod[];
+  auditEvents: AuditTrailEvent[];
+  onClosePeriod?: (summary: { periodLabel: string; matchedCount: number }) => Promise<void> | void;
+}
+
+export interface SecurityCenterFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  devices: DeviceSessionItem[];
+  cardNumber: string;
+  cardHolder: string;
+  cardExpiry: string;
+  cardCvv: string;
+  cardBrand?: VirtualCardBrand;
+  sessionTimeoutSeconds?: number;
+  onRevokeDevice?: (deviceId: string) => Promise<boolean> | void;
+  onEmergencyLockdown?: () => Promise<void> | void;
+}
+
 
 
 

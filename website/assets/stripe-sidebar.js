@@ -107,7 +107,10 @@ function renderStripeSidebar(activeId) {
             'loan-application-flow',
             'beneficiary-management-flow',
             'statement-export-flow',
-            'close-account-flow'
+            'close-account-flow',
+            'trade-execution-flow',
+            'month-end-close-flow',
+            'security-center-flow'
           ].includes(activeId),
           items: [
             { id: 'kyc-verification-flow', label: 'KycVerificationFlow', href: root + 'components/kyc-verification-flow.html' },
@@ -124,7 +127,10 @@ function renderStripeSidebar(activeId) {
             { id: 'loan-application-flow', label: 'LoanApplicationFlow', href: root + 'components/loan-application-flow.html' },
             { id: 'beneficiary-management-flow', label: 'BeneficiaryManagementFlow', href: root + 'components/beneficiary-management-flow.html' },
             { id: 'statement-export-flow', label: 'StatementExportFlow', href: root + 'components/statement-export-flow.html' },
-            { id: 'close-account-flow', label: 'CloseAccountFlow', href: root + 'components/close-account-flow.html' }
+            { id: 'close-account-flow', label: 'CloseAccountFlow', href: root + 'components/close-account-flow.html' },
+            { id: 'trade-execution-flow', label: 'TradeExecutionFlow', href: root + 'components/trade-execution-flow.html' },
+            { id: 'month-end-close-flow', label: 'MonthEndCloseFlow', href: root + 'components/month-end-close-flow.html' },
+            { id: 'security-center-flow', label: 'SecurityCenterFlow', href: root + 'components/security-center-flow.html' }
           ]
         },
         {

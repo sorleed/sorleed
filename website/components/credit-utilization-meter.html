@@ -39,7 +39,7 @@
       <p class="docs-lede">Revolving credit limit utilization bar with FICO risk bands (&lt;30% Optimal, 30–49% Moderate, 50%+ High), available credit, minimum due, and statement close date.</p>
 
       <section>
-        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Preview</h2>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" style="padding:32px; display:flex; justify-content:center;">
             <div class="fc-credit-utilization" style="max-width:460px; width:100%;">
@@ -48,18 +48,58 @@
                   <h3 class="fc-credit-utilization__title">Credit Utilization</h3>
                   <p class="fc-credit-utilization__subtitle">Keep utilization below 30% to protect your credit score</p>
                 </div>
-                <span class="fc-badge fc-badge--success">Optimal (&lt;30%)</span>
+                <span id="cum-badge" class="fc-badge fc-badge--success">Optimal (&lt;30%)</span>
               </div>
               <div class="fc-credit-utilization__hero">
-                <span class="fc-credit-utilization__percent fc-credit-utilization__percent--optimal">24%</span>
-                <span class="fc-credit-utilization__balance"><strong>USD 2,400.00</strong> / USD 10,000.00</span>
+                <span id="cum-pct" class="fc-credit-utilization__percent fc-credit-utilization__percent--optimal">24%</span>
+                <span id="cum-bal" class="fc-credit-utilization__balance"><strong>USD 2,400.00</strong> / USD 10,000.00</span>
               </div>
               <div class="fc-credit-utilization__bar-wrap">
-                <div class="fc-credit-utilization__track"><div class="fc-credit-utilization__fill fc-credit-utilization__fill--optimal" style="width:24%;"></div></div>
+                <div class="fc-credit-utilization__track"><div id="cum-fill" class="fc-credit-utilization__fill fc-credit-utilization__fill--optimal" style="width:24%;"></div></div>
+                <div class="fc-credit-utilization__bands"><span>0% Optimal</span><span>30%</span><span>50%</span><span>100%</span></div>
+              </div>
+              <div class="fc-credit-utilization__meta-grid">
+                <div class="fc-credit-utilization__stat"><span class="fc-credit-utilization__stat-label">Available Credit</span><span id="cum-avail" class="fc-credit-utilization__stat-value">USD 7,600.00</span></div>
+                <div class="fc-credit-utilization__stat"><span class="fc-credit-utilization__stat-label">Statement Closes</span><span class="fc-credit-utilization__stat-value">Nov 28</span></div>
               </div>
             </div>
           </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Current Balance (Limit: \$10,000)</span>
+              <input id="cum-slider" type="range" min="0" max="10000" step="100" value="2400" style="width:220px;">
+            </div>
+          </div>
         </div>
+        <script>
+          (function() {
+            const limit = 10000;
+            const slider = document.getElementById('cum-slider');
+            const pctEl = document.getElementById('cum-pct');
+            const balEl = document.getElementById('cum-bal');
+            const fillEl = document.getElementById('cum-fill');
+            const badgeEl = document.getElementById('cum-badge');
+            const availEl = document.getElementById('cum-avail');
+            const fmt = (n) => 'USD ' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            function update() {
+              const bal = Number(slider.value);
+              const pct = Math.round((bal / limit) * 100);
+              const band = pct >= 50 ? 'high' : pct >= 30 ? 'moderate' : 'optimal';
+              const badgeCls = pct >= 50 ? 'error' : pct >= 30 ? 'warning' : 'success';
+              const label = pct >= 50 ? 'High Utilization' : pct >= 30 ? 'Moderate (30–49%)' : 'Optimal (<30%)';
+              pctEl.textContent = pct + '%';
+              pctEl.className = 'fc-credit-utilization__percent fc-credit-utilization__percent--' + band;
+              fillEl.style.width = pct + '%';
+              fillEl.className = 'fc-credit-utilization__fill fc-credit-utilization__fill--' + band;
+              badgeEl.textContent = label;
+              badgeEl.className = 'fc-badge fc-badge--' + badgeCls;
+              balEl.innerHTML = '<strong>' + fmt(bal) + '</strong> / ' + fmt(limit);
+              availEl.textContent = fmt(limit - bal);
+            }
+            slider.addEventListener('input', update);
+            update();
+          })();
+        </script>
       </section>
 
       <section>
@@ -102,3 +142,4 @@ export function Example() {
   <script src="../assets/metrics.js"></script>
 </body>
 </html>
+

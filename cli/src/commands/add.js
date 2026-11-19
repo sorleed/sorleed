@@ -120,6 +120,9 @@ import { orderEntryTicketRegistry } from '../registry/order-entry-ticket.js';
 import { bankReconciliationMatcherRegistry } from '../registry/bank-reconciliation-matcher.js';
 import { cashFlowForecastCardRegistry } from '../registry/cash-flow-forecast-card.js';
 import { auditTrailTimelineRegistry } from '../registry/audit-trail-timeline.js';
+import { tradeExecutionFlowRegistry } from '../registry/trade-execution-flow.js';
+import { monthEndCloseFlowRegistry } from '../registry/month-end-close-flow.js';
+import { securityCenterFlowRegistry } from '../registry/security-center-flow.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -212,6 +215,9 @@ function getRegistry(component) {
   if (component === 'bank-reconciliation-matcher' || component === 'bankreconciliationmatcher') return bankReconciliationMatcherRegistry;
   if (component === 'cash-flow-forecast-card' || component === 'cashflowforecastcard') return cashFlowForecastCardRegistry;
   if (component === 'audit-trail-timeline' || component === 'audittrailtimeline') return auditTrailTimelineRegistry;
+  if (component === 'trade-execution-flow' || component === 'tradeexecutionflow') return tradeExecutionFlowRegistry;
+  if (component === 'month-end-close-flow' || component === 'monthendcloseflow') return monthEndCloseFlowRegistry;
+  if (component === 'security-center-flow' || component === 'securitycenterflow') return securityCenterFlowRegistry;
   return null;
 }
 

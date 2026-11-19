@@ -57,26 +57,81 @@
       </p>
 
       <section>
-        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Preview</h2>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" id="stage-session-timeout-modal" style="padding:32px; display:flex; justify-content:center;">
             <div class="fc-session-timeout-modal" role="alertdialog" style="position:relative; top:auto; left:auto; transform:none; max-width:420px; width:100%;">
               <div class="fc-session-timeout-modal__ring-wrap">
                 <svg class="fc-session-timeout-modal__ring" viewBox="0 0 88 88" width="88" height="88">
                   <circle class="fc-session-timeout-modal__ring-track" cx="44" cy="44" r="38" />
-                  <circle class="fc-session-timeout-modal__ring-progress" cx="44" cy="44" r="38" stroke-dasharray="238.76" stroke-dashoffset="60" />
+                  <circle id="stm-ring-progress" class="fc-session-timeout-modal__ring-progress" cx="44" cy="44" r="38" stroke-dasharray="238.76" stroke-dashoffset="0" />
                 </svg>
-                <span class="fc-session-timeout-modal__countdown">00:45</span>
+                <span id="stm-countdown" class="fc-session-timeout-modal__countdown">00:60</span>
               </div>
-              <h3 class="fc-session-timeout-modal__title">Session Expiring Soon</h3>
-              <p class="fc-session-timeout-modal__desc">For your security, you will be automatically signed out due to inactivity.</p>
+              <h3 id="stm-title" class="fc-session-timeout-modal__title">Session Expiring Soon</h3>
+              <p id="stm-desc" class="fc-session-timeout-modal__desc">For your security, you will be automatically signed out due to inactivity.</p>
               <div class="fc-session-timeout-modal__actions">
-                <button type="button" class="fc-button fc-button--primary" style="width:100%;">Stay Signed In</button>
-                <button type="button" class="fc-button fc-button--ghost" style="width:100%;">Log Out Now</button>
+                <button type="button" id="stm-extend-btn" class="fc-button fc-button--primary" style="width:100%;">Stay Signed In</button>
+                <button type="button" id="stm-logout-btn" class="fc-button fc-button--ghost" style="width:100%;">Log Out Now</button>
               </div>
             </div>
           </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Countdown</span>
+              <select class="ctrl-select" id="stm-duration-select">
+                <option value="60" selected>60 seconds</option>
+                <option value="30">30 seconds</option>
+                <option value="10">10 seconds (Urgent)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <button type="button" id="stm-restart-btn" class="fc-button fc-button--secondary fc-button--sm">Restart Timer</button>
+            </div>
+          </div>
         </div>
+        <script>
+          (function() {
+            const C = 238.76;
+            let total = 60, remaining = 60, timer = null;
+            const ring = document.getElementById('stm-ring-progress');
+            const label = document.getElementById('stm-countdown');
+            const title = document.getElementById('stm-title');
+            const desc = document.getElementById('stm-desc');
+            const sel = document.getElementById('stm-duration-select');
+            function render() {
+              const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+              const s = String(remaining % 60).padStart(2, '0');
+              label.textContent = m + ':' + s;
+              ring.style.strokeDashoffset = String(C * (1 - remaining / total));
+            }
+            function start(secs) {
+              clearInterval(timer);
+              total = secs; remaining = secs;
+              title.textContent = 'Session Expiring Soon';
+              desc.textContent = 'For your security, you will be automatically signed out due to inactivity.';
+              render();
+              timer = setInterval(() => {
+                remaining = Math.max(0, remaining - 1);
+                render();
+                if (remaining === 0) {
+                  clearInterval(timer);
+                  title.textContent = 'Session Timed Out';
+                  desc.textContent = 'You have been signed out. Click Restart Timer to preview again.';
+                }
+              }, 1000);
+            }
+            document.getElementById('stm-extend-btn').addEventListener('click', () => start(Number(sel.value)));
+            document.getElementById('stm-logout-btn').addEventListener('click', () => {
+              clearInterval(timer); remaining = 0; render();
+              title.textContent = 'Signed Out';
+              desc.textContent = 'Session terminated safely.';
+            });
+            document.getElementById('stm-restart-btn').addEventListener('click', () => start(Number(sel.value)));
+            sel.addEventListener('change', () => start(Number(sel.value)));
+            start(60);
+          })();
+        </script>
       </section>
 
       <section>
@@ -121,3 +176,4 @@ export function Example() {
   <script src="../assets/metrics.js"></script>
 </body>
 </html>
+

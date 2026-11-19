@@ -1,0 +1,70 @@
+.fc-trade-flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-5);
+  font-family: var(--fc-font-sans);
+  color: var(--fc-color-text-primary);
+}
+
+.fc-trade-flow__steps {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-trade-flow__step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-semibold);
+  color: var(--fc-color-text-tertiary);
+}
+
+.fc-trade-flow__step--active {
+  color: var(--fc-color-accent-primary);
+}
+
+.fc-trade-flow__step--done {
+  color: var(--fc-color-status-success-text);
+}
+
+.fc-trade-flow__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--fc-space-4);
+  align-items: start;
+}
+
+.fc-trade-flow__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  padding: var(--fc-space-5);
+  background-color: var(--fc-color-surface-default);
+  border: 1px solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+}
+
+.fc-trade-flow__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-4);
+  background-color: var(--fc-color-surface-subtle);
+  border-radius: var(--fc-radius-md);
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-trade-flow__row {
+  display: flex;
+  justify-content: space-between;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-trade-flow__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--fc-space-3);
+}

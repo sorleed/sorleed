@@ -810,6 +810,33 @@ export const templateManifest = [
     source: path.resolve(repoRoot, "components/audit-trail-timeline/audit-trail-timeline.css"),
     dest: path.resolve(templatesDir, "styles/audit-trail-timeline.css")
   },
+  // trade-execution-flow
+  {
+    source: path.resolve(repoRoot, "react/trade-execution-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/trade-execution-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/trade-execution-flow/trade-execution-flow.css"),
+    dest: path.resolve(templatesDir, "styles/trade-execution-flow.css")
+  },
+  // month-end-close-flow
+  {
+    source: path.resolve(repoRoot, "react/month-end-close-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/month-end-close-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/month-end-close-flow/month-end-close-flow.css"),
+    dest: path.resolve(templatesDir, "styles/month-end-close-flow.css")
+  },
+  // security-center-flow
+  {
+    source: path.resolve(repoRoot, "react/security-center-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/security-center-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/security-center-flow/security-center-flow.css"),
+    dest: path.resolve(templatesDir, "styles/security-center-flow.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

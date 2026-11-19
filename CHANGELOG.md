@@ -11,7 +11,8 @@ semantic versioning.
 - **Security Pack**: `SessionTimeoutModal`, `VirtualCardReveal`, and `DeviceManagementCard`.
 - **Credit & Wealth Pack**: `CreditUtilizationMeter`, `PerformanceChartCard`, and `OrderEntryTicket`.
 - **Accounting & Treasury Pack**: `BankReconciliationMatcher`, `CashFlowForecastCard`, and `AuditTrailTimeline`.
-- Full CLI registry entries, template parity sync, docs pages, sidebar navigation, and unit tests for all 9 new components (89 total in registry).
+- **End-to-End Flows**: `TradeExecutionFlow`, `MonthEndCloseFlow`, and `SecurityCenterFlow`.
+- Interactive playgrounds on all 12 new docs pages, full CLI registry entries, template parity sync, sidebar navigation, and unit tests (92 total in registry).
 
 ## [Unreleased]
 

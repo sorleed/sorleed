@@ -81,3 +81,4 @@ test("AuditTrailTimeline renders immutable events with actor, severity, and 2FA 
   assert.ok(getByText("2FA Verified"));
   assert.ok(getByText("IP 10.24.18.4"));
 });
+

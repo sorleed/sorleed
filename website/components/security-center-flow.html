@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>SecurityCenterFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed SecurityCenterFlow account security hub documentation and interactive playground.">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="balance-card.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>SecurityCenterFlow</span>
+      </div>
+      <h1 class="docs-title">SecurityCenterFlow</h1>
+      <p class="docs-lede">Unified account security hub composing <code>DeviceManagementCard</code>, <code>VirtualCardReveal</code>, <code>SessionTimeoutModal</code>, and an emergency account lockdown action.</p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" style="padding:24px;">
+            <div class="fc-security-center-flow">
+              <div class="fc-security-center-flow__header">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <h3 class="fc-security-center-flow__title">Security Center</h3>
+                  <span id="scf-badge" class="fc-badge fc-badge--success">Protected</span>
+                </div>
+                <button type="button" id="scf-reset" class="fc-button fc-button--ghost fc-button--sm">Reset Demo</button>
+              </div>
+              <div id="scf-alert" class="fc-alert fc-alert--error" style="display:none;">Emergency Account Lockdown Active — all other sessions terminated.</div>
+              <div class="fc-security-center-flow__lockdown-box">
+                <div>
+                  <h4 class="fc-security-center-flow__lockdown-title">Suspect Unauthorized Access?</h4>
+                  <p class="fc-security-center-flow__lockdown-desc">Immediately sign out all other devices and freeze exposed virtual card credentials.</p>
+                </div>
+                <button type="button" id="scf-lock-btn" class="fc-button fc-button--secondary">Trigger Emergency Lockdown</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function() {
+            const badge = document.getElementById('scf-badge');
+            const alertEl = document.getElementById('scf-alert');
+            const lockBtn = document.getElementById('scf-lock-btn');
+            lockBtn.addEventListener('click', () => {
+              badge.textContent = 'Lockdown Active';
+              badge.className = 'fc-badge fc-badge--error';
+              alertEl.style.display = 'block';
+              lockBtn.disabled = true;
+              lockBtn.textContent = 'Account Locked';
+            });
+            document.getElementById('scf-reset').addEventListener('click', () => {
+              badge.textContent = 'Protected';
+              badge.className = 'fc-badge fc-badge--success';
+              alertEl.style.display = 'none';
+              lockBtn.disabled = false;
+              lockBtn.textContent = 'Trigger Emergency Lockdown';
+            });
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add security-center-flow</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { SecurityCenterFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/security-center-flow.css';
+
+export function Example() {
+  return (
+    &lt;SecurityCenterFlow
+      devices={[]}
+      cardNumber="4532 8920 1029 8841"
+      cardHolder="ALEX MORGAN"
+      cardExpiry="08/29"
+      cardCvv="412"
+      onEmergencyLockdown={() =&gt; console.log('Locked down')}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>renderStripeSidebar('security-center-flow');</script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>
