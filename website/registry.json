@@ -1,8 +1,8 @@
 {
   "$schema": "https://sorleed.com/schema/registry.json",
   "name": "@sorleed/registry",
-  "version": "0.1.0-alpha.12",
-  "description": "Machine-readable registry of all 83 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
+  "version": "0.1.0-alpha.13",
+  "description": "Machine-readable registry of all 89 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
   "homepage": "https://sorleed.com",
   "components": {
     "accordion": {
@@ -824,6 +824,74 @@
       ],
       "docsUrl": "https://sorleed.com/components/device-management-card.html",
       "cliCommand": "npx @sorleed/cli add device-management-card"
+    },
+    "credit-utilization-meter": {
+      "name": "credit-utilization-meter",
+      "description": "Revolving credit limit utilization bar with FICO risk bands, available credit, and statement close metadata",
+      "category": "credit",
+      "dependencies": [
+        "badge"
+      ],
+      "docsUrl": "https://sorleed.com/components/credit-utilization-meter.html",
+      "cliCommand": "npx @sorleed/cli add credit-utilization-meter"
+    },
+    "performance-chart-card": {
+      "name": "performance-chart-card",
+      "description": "Investment performance sparkline card with Radix Tabs timeframe switcher and benchmark comparison",
+      "category": "credit",
+      "dependencies": [
+        "badge",
+        "tabs"
+      ],
+      "docsUrl": "https://sorleed.com/components/performance-chart-card.html",
+      "cliCommand": "npx @sorleed/cli add performance-chart-card"
+    },
+    "order-entry-ticket": {
+      "name": "order-entry-ticket",
+      "description": "Brokerage buy/sell order entry ticket supporting market, limit, and stop orders with buying power validation",
+      "category": "credit",
+      "dependencies": [
+        "alert",
+        "badge",
+        "button",
+        "input",
+        "tabs"
+      ],
+      "docsUrl": "https://sorleed.com/components/order-entry-ticket.html",
+      "cliCommand": "npx @sorleed/cli add order-entry-ticket"
+    },
+    "bank-reconciliation-matcher": {
+      "name": "bank-reconciliation-matcher",
+      "description": "Two-column bank feed vs general ledger reconciliation matcher with discrepancy detection and unmatch support",
+      "category": "accounting",
+      "dependencies": [
+        "badge",
+        "button"
+      ],
+      "docsUrl": "https://sorleed.com/components/bank-reconciliation-matcher.html",
+      "cliCommand": "npx @sorleed/cli add bank-reconciliation-matcher"
+    },
+    "cash-flow-forecast-card": {
+      "name": "cash-flow-forecast-card",
+      "description": "Treasury runway projection card comparing receivables vs payables with Radix Tabs horizon switcher",
+      "category": "accounting",
+      "dependencies": [
+        "badge",
+        "tabs"
+      ],
+      "docsUrl": "https://sorleed.com/components/cash-flow-forecast-card.html",
+      "cliCommand": "npx @sorleed/cli add cash-flow-forecast-card"
+    },
+    "audit-trail-timeline": {
+      "name": "audit-trail-timeline",
+      "description": "Immutable financial and administrative event timeline with actor avatar, severity badge, 2FA verification, and IP metadata",
+      "category": "accounting",
+      "dependencies": [
+        "avatar",
+        "badge"
+      ],
+      "docsUrl": "https://sorleed.com/components/audit-trail-timeline.html",
+      "cliCommand": "npx @sorleed/cli add audit-trail-timeline"
     }
   }
 }

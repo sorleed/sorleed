@@ -756,6 +756,60 @@ export const templateManifest = [
     source: path.resolve(repoRoot, "components/device-management-card/device-management-card.css"),
     dest: path.resolve(templatesDir, "styles/device-management-card.css")
   },
+  // credit-utilization-meter
+  {
+    source: path.resolve(repoRoot, "react/credit-utilization-meter/index.tsx"),
+    dest: path.resolve(templatesDir, "components/credit-utilization-meter/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/credit-utilization-meter/credit-utilization-meter.css"),
+    dest: path.resolve(templatesDir, "styles/credit-utilization-meter.css")
+  },
+  // performance-chart-card
+  {
+    source: path.resolve(repoRoot, "react/performance-chart-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/performance-chart-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/performance-chart-card/performance-chart-card.css"),
+    dest: path.resolve(templatesDir, "styles/performance-chart-card.css")
+  },
+  // order-entry-ticket
+  {
+    source: path.resolve(repoRoot, "react/order-entry-ticket/index.tsx"),
+    dest: path.resolve(templatesDir, "components/order-entry-ticket/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/order-entry-ticket/order-entry-ticket.css"),
+    dest: path.resolve(templatesDir, "styles/order-entry-ticket.css")
+  },
+  // bank-reconciliation-matcher
+  {
+    source: path.resolve(repoRoot, "react/bank-reconciliation-matcher/index.tsx"),
+    dest: path.resolve(templatesDir, "components/bank-reconciliation-matcher/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/bank-reconciliation-matcher/bank-reconciliation-matcher.css"),
+    dest: path.resolve(templatesDir, "styles/bank-reconciliation-matcher.css")
+  },
+  // cash-flow-forecast-card
+  {
+    source: path.resolve(repoRoot, "react/cash-flow-forecast-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/cash-flow-forecast-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/cash-flow-forecast-card/cash-flow-forecast-card.css"),
+    dest: path.resolve(templatesDir, "styles/cash-flow-forecast-card.css")
+  },
+  // audit-trail-timeline
+  {
+    source: path.resolve(repoRoot, "react/audit-trail-timeline/index.tsx"),
+    dest: path.resolve(templatesDir, "components/audit-trail-timeline/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/audit-trail-timeline/audit-trail-timeline.css"),
+    dest: path.resolve(templatesDir, "styles/audit-trail-timeline.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

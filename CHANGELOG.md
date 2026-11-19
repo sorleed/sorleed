@@ -4,6 +4,15 @@ All notable changes to Sorleed are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 semantic versioning.
 
+## [0.1.0-alpha.13] - 2026-11-19
+
+### Added
+
+- **Security Pack**: `SessionTimeoutModal`, `VirtualCardReveal`, and `DeviceManagementCard`.
+- **Credit & Wealth Pack**: `CreditUtilizationMeter`, `PerformanceChartCard`, and `OrderEntryTicket`.
+- **Accounting & Treasury Pack**: `BankReconciliationMatcher`, `CashFlowForecastCard`, and `AuditTrailTimeline`.
+- Full CLI registry entries, template parity sync, docs pages, sidebar navigation, and unit tests for all 9 new components (89 total in registry).
+
 ## [Unreleased]
 
 ### Added

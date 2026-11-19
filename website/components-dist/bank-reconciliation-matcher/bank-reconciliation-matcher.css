@@ -1,0 +1,112 @@
+.fc-bank-reconciliation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  padding: var(--fc-space-5);
+  background-color: var(--fc-color-surface-default);
+  border: 1px solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  font-family: var(--fc-font-sans);
+  color: var(--fc-color-text-primary);
+}
+
+.fc-bank-reconciliation__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-bank-reconciliation__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-semibold);
+}
+
+.fc-bank-reconciliation__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2);
+}
+
+.fc-bank-reconciliation__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--fc-space-4);
+}
+
+.fc-bank-reconciliation__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+}
+
+.fc-bank-reconciliation__col-title {
+  margin: 0;
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fc-color-text-secondary);
+}
+
+.fc-bank-reconciliation__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  padding: var(--fc-space-3);
+  border: 1px solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface-default);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.fc-bank-reconciliation__row--selected {
+  border-color: var(--fc-color-accent-primary);
+  background-color: var(--fc-color-surface-subtle);
+}
+
+.fc-bank-reconciliation__row--matched {
+  border-color: var(--fc-color-status-success-fg);
+  background-color: var(--fc-color-status-success-bg);
+}
+
+.fc-bank-reconciliation__desc {
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-medium);
+  color: var(--fc-color-text-primary);
+}
+
+.fc-bank-reconciliation__meta {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-text-secondary);
+}
+
+.fc-bank-reconciliation__amount {
+  font-size: var(--fc-font-size-sm);
+  font-weight: var(--fc-font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.fc-bank-reconciliation__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  padding-top: var(--fc-space-3);
+  border-top: 1px solid var(--fc-color-border-subtle);
+  flex-wrap: wrap;
+}
+
+.fc-bank-reconciliation__discrepancy {
+  font-size: var(--fc-font-size-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--fc-color-status-warning-text);
+  font-weight: var(--fc-font-weight-medium);
+}

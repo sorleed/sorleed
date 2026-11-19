@@ -154,8 +154,11 @@ function renderStripeSidebar(activeId) {
         {
           id: 'cat-accounting',
           name: 'Accounting & Ledgers',
-          open: ['chart-of-accounts-tree', 'expense-receipt-uploader', 'invoice-viewer', 'journal-entry-ledger', 'spending-meter', 'tax-summary-card'].includes(activeId),
+          open: ['audit-trail-timeline', 'bank-reconciliation-matcher', 'cash-flow-forecast-card', 'chart-of-accounts-tree', 'expense-receipt-uploader', 'invoice-viewer', 'journal-entry-ledger', 'spending-meter', 'tax-summary-card'].includes(activeId),
           items: [
+            { id: 'audit-trail-timeline', label: 'AuditTrailTimeline', href: root + 'components/audit-trail-timeline.html' },
+            { id: 'bank-reconciliation-matcher', label: 'BankReconciliationMatcher', href: root + 'components/bank-reconciliation-matcher.html' },
+            { id: 'cash-flow-forecast-card', label: 'CashFlowForecastCard', href: root + 'components/cash-flow-forecast-card.html' },
             { id: 'chart-of-accounts-tree', label: 'ChartOfAccountsTree', href: root + 'components/chart-of-accounts-tree.html' },
             { id: 'expense-receipt-uploader', label: 'ExpenseReceiptUploader', href: root + 'components/expense-receipt-uploader.html' },
             { id: 'invoice-viewer', label: 'InvoiceViewer', href: root + 'components/invoice-viewer.html' },
@@ -167,11 +170,14 @@ function renderStripeSidebar(activeId) {
         {
           id: 'cat-credit',
           name: 'Credit & Wealth',
-          open: ['asset-allocation', 'credit-score-gauge', 'loan-calculator', 'portfolio-summary', 'repayment-schedule', 'yield-curve-table'].includes(activeId),
+          open: ['asset-allocation', 'credit-score-gauge', 'credit-utilization-meter', 'loan-calculator', 'order-entry-ticket', 'performance-chart-card', 'portfolio-summary', 'repayment-schedule', 'yield-curve-table'].includes(activeId),
           items: [
             { id: 'asset-allocation', label: 'AssetAllocation', href: root + 'components/asset-allocation.html' },
             { id: 'credit-score-gauge', label: 'CreditScoreGauge', href: root + 'components/credit-score-gauge.html' },
+            { id: 'credit-utilization-meter', label: 'CreditUtilizationMeter', href: root + 'components/credit-utilization-meter.html' },
             { id: 'loan-calculator', label: 'LoanCalculator', href: root + 'components/loan-calculator.html' },
+            { id: 'order-entry-ticket', label: 'OrderEntryTicket', href: root + 'components/order-entry-ticket.html' },
+            { id: 'performance-chart-card', label: 'PerformanceChartCard', href: root + 'components/performance-chart-card.html' },
             { id: 'portfolio-summary', label: 'PortfolioSummary', href: root + 'components/portfolio-summary.html' },
             { id: 'repayment-schedule', label: 'RepaymentSchedule', href: root + 'components/repayment-schedule.html' },
             { id: 'yield-curve-table', label: 'YieldCurveTable', href: root + 'components/yield-curve-table.html' }
