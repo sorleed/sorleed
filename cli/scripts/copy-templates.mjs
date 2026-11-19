@@ -729,6 +729,33 @@ export const templateManifest = [
     source: path.resolve(repoRoot, "components/close-account-flow/close-account-flow.css"),
     dest: path.resolve(templatesDir, "styles/close-account-flow.css")
   },
+  // session-timeout-modal
+  {
+    source: path.resolve(repoRoot, "react/session-timeout-modal/index.tsx"),
+    dest: path.resolve(templatesDir, "components/session-timeout-modal/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/session-timeout-modal/session-timeout-modal.css"),
+    dest: path.resolve(templatesDir, "styles/session-timeout-modal.css")
+  },
+  // virtual-card-reveal
+  {
+    source: path.resolve(repoRoot, "react/virtual-card-reveal/index.tsx"),
+    dest: path.resolve(templatesDir, "components/virtual-card-reveal/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/virtual-card-reveal/virtual-card-reveal.css"),
+    dest: path.resolve(templatesDir, "styles/virtual-card-reveal.css")
+  },
+  // device-management-card
+  {
+    source: path.resolve(repoRoot, "react/device-management-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/device-management-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/device-management-card/device-management-card.css"),
+    dest: path.resolve(templatesDir, "styles/device-management-card.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

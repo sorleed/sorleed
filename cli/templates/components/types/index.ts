@@ -1658,6 +1658,87 @@ export interface CloseAccountFlowProps extends Omit<React.HTMLAttributes<HTMLDiv
   onCancel?: () => void;
 }
 
+/* --- Security & Protection Components --- */
+
+export interface SessionTimeoutModalProps {
+  /**
+   * Whether the inactivity dialog is open.
+   */
+  open: boolean;
+  /**
+   * Controlled open state change callback.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * Total warning countdown seconds before forced logout. Defaults to 60.
+   */
+  countdownSeconds?: number;
+  /**
+   * Title shown in the modal header. Defaults to "Session Expiring Soon".
+   */
+  title?: string;
+  /**
+   * Description shown under the title.
+   */
+  description?: string;
+  /**
+   * Callback fired when the user chooses to stay signed in / extend their session.
+   */
+  onExtendSession?: () => void;
+  /**
+   * Callback fired when countdown reaches 0 and the user is timed out.
+   */
+  onTimeout?: () => void;
+  /**
+   * Callback fired when the user explicitly clicks "Log out now".
+   */
+  onLogout?: () => void;
+  /**
+   * Optional custom className.
+   */
+  className?: string;
+}
+
+export type VirtualCardTheme = "dark" | "gradient" | "emerald" | "platinum";
+export type VirtualCardBrand = "visa" | "mastercard" | "amex" | string;
+
+export interface VirtualCardRevealProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title" | "onCopy"> {
+  cardNumber: string;
+  cardHolder: string;
+  expiry: string;
+  cvv: string;
+  brand?: VirtualCardBrand;
+  currency?: string;
+  autoMaskSeconds?: number;
+  defaultRevealed?: boolean;
+  theme?: VirtualCardTheme;
+  onAuthenticate?: () => Promise<boolean> | boolean | void;
+  onCopy?: (field: "pan" | "cvv" | "expiry", value: string) => void;
+}
+
+export type DeviceType = "desktop" | "mobile" | "tablet" | "browser";
+
+export interface DeviceSessionItem {
+  id: string;
+  deviceName: string;
+  deviceType: DeviceType;
+  browser: string;
+  os: string;
+  ipAddress: string;
+  location: string;
+  lastActive: string;
+  isCurrent: boolean;
+}
+
+export interface DeviceManagementCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  description?: string;
+  devices: DeviceSessionItem[];
+  onRevokeDevice?: (deviceId: string) => Promise<boolean> | void;
+  onRevokeAllOthers?: () => Promise<boolean> | void;
+}
+
+
 
 
 

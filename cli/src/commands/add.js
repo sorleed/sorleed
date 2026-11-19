@@ -111,6 +111,9 @@ import { loanApplicationFlowRegistry } from '../registry/loan-application-flow.j
 import { beneficiaryManagementFlowRegistry } from '../registry/beneficiary-management-flow.js';
 import { statementExportFlowRegistry } from '../registry/statement-export-flow.js';
 import { closeAccountFlowRegistry } from '../registry/close-account-flow.js';
+import { sessionTimeoutModalRegistry } from '../registry/session-timeout-modal.js';
+import { virtualCardRevealRegistry } from '../registry/virtual-card-reveal.js';
+import { deviceManagementCardRegistry } from '../registry/device-management-card.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -194,6 +197,9 @@ function getRegistry(component) {
   if (component === 'beneficiary-management-flow' || component === 'beneficiarymanagementflow') return beneficiaryManagementFlowRegistry;
   if (component === 'statement-export-flow' || component === 'statementexportflow') return statementExportFlowRegistry;
   if (component === 'close-account-flow' || component === 'closeaccountflow') return closeAccountFlowRegistry;
+  if (component === 'session-timeout-modal' || component === 'sessiontimeoutmodal') return sessionTimeoutModalRegistry;
+  if (component === 'virtual-card-reveal' || component === 'virtualcardreveal') return virtualCardRevealRegistry;
+  if (component === 'device-management-card' || component === 'devicemanagementcard') return deviceManagementCardRegistry;
   return null;
 }
 

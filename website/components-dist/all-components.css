@@ -79,3 +79,6 @@
 @import "wallet-card/wallet-card.css";
 @import "withdrawal-payout-flow/withdrawal-payout-flow.css";
 @import "yield-curve-table/yield-curve-table.css";
+@import "session-timeout-modal/session-timeout-modal.css";
+@import "virtual-card-reveal/virtual-card-reveal.css";
+@import "device-management-card/device-management-card.css";

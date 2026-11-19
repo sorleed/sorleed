@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Sorleed — Session Timeout Modal
+   Regulatory security session inactivity warning dialog with countdown
+   ========================================================================== */
+
+.fc-session-timeout-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--fc-color-overlay, rgba(0, 0, 0, 0.65));
+  backdrop-filter: blur(4px);
+  z-index: var(--fc-z-modal, 1000);
+  animation: fc-session-timeout-fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fc-session-timeout-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 440px;
+  background-color: var(--fc-color-surface);
+  border: 1px solid var(--fc-color-border);
+  border-radius: var(--fc-radius-xl, 1rem);
+  box-shadow: var(--fc-shadow-lg);
+  padding: var(--fc-space-6, 1.5rem);
+  z-index: calc(var(--fc-z-modal, 1000) + 1);
+  font-family: var(--fc-font-family, system-ui, -apple-system, sans-serif);
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fc-session-timeout-scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fc-session-timeout-modal:focus {
+  outline: none;
+}
+
+.fc-session-timeout__ring-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin-bottom: var(--fc-space-4, 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fc-session-timeout__ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.fc-session-timeout__ring-bg {
+  stroke: var(--fc-color-border, #E5E7EB);
+}
+
+.fc-session-timeout__ring-progress {
+  stroke: var(--fc-color-danger, #DC2626);
+  transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+}
+
+.fc-session-timeout__ring-progress--warning {
+  stroke: var(--fc-color-warning, #D97706);
+}
+
+.fc-session-timeout__ring-progress--info {
+  stroke: var(--fc-color-primary, #2563EB);
+}
+
+.fc-session-timeout__number {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fc-font-size-2xl, 1.5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--fc-color-text-primary, #111827);
+}
+
+.fc-session-timeout__title {
+  margin: 0 0 var(--fc-space-2, 0.5rem);
+  font-size: var(--fc-font-size-xl, 1.25rem);
+  font-weight: 700;
+  color: var(--fc-color-text-primary, #111827);
+  line-height: var(--fc-line-height-tight, 1.25);
+}
+
+.fc-session-timeout__description {
+  margin: 0 0 var(--fc-space-5, 1.25rem);
+  font-size: var(--fc-font-size-sm, 0.875rem);
+  color: var(--fc-color-text-secondary, #4B5563);
+  line-height: var(--fc-line-height-normal, 1.5);
+  max-width: 360px;
+}
+
+.fc-session-timeout__notice {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2, 0.5rem);
+  padding: var(--fc-space-2, 0.5rem) var(--fc-space-3, 0.75rem);
+  background-color: var(--fc-color-surface-hover, #F3F4F6);
+  border-radius: var(--fc-radius-md, 0.375rem);
+  font-size: var(--fc-font-size-xs, 0.75rem);
+  color: var(--fc-color-text-tertiary, #6B7280);
+  margin-bottom: var(--fc-space-5, 1.25rem);
+}
+
+.fc-session-timeout__actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--fc-space-2, 0.5rem);
+}
+
+@keyframes fc-session-timeout-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fc-session-timeout-scale-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+

@@ -180,15 +180,18 @@ function renderStripeSidebar(activeId) {
         {
           id: 'cat-security',
           name: 'Security & Identity',
-          open: ['biometric-auth-prompt', 'cvv', 'direct-debit-mandate', 'kyc-doc-uploader', 'otp', 'password-input', 'pin-input'].includes(activeId),
+          open: ['biometric-auth-prompt', 'cvv', 'device-management-card', 'direct-debit-mandate', 'kyc-doc-uploader', 'otp', 'password-input', 'pin-input', 'session-timeout-modal', 'virtual-card-reveal'].includes(activeId),
           items: [
             { id: 'biometric-auth-prompt', label: 'BiometricAuthPrompt', href: root + 'components/biometric-auth-prompt.html' },
             { id: 'cvv', label: 'CVV', href: root + 'components/cvv.html' },
+            { id: 'device-management-card', label: 'DeviceManagementCard', href: root + 'components/device-management-card.html' },
             { id: 'direct-debit-mandate', label: 'DirectDebitMandate', href: root + 'components/direct-debit-mandate.html' },
             { id: 'kyc-doc-uploader', label: 'KycDocUploader', href: root + 'components/kyc-doc-uploader.html' },
             { id: 'otp', label: 'OTP', href: root + 'components/otp.html' },
             { id: 'password-input', label: 'PasswordInput', href: root + 'components/password-input.html' },
-            { id: 'pin-input', label: 'PinInput', href: root + 'components/pin-input.html' }
+            { id: 'pin-input', label: 'PinInput', href: root + 'components/pin-input.html' },
+            { id: 'session-timeout-modal', label: 'SessionTimeoutModal', href: root + 'components/session-timeout-modal.html' },
+            { id: 'virtual-card-reveal', label: 'VirtualCardReveal', href: root + 'components/virtual-card-reveal.html' }
           ]
         },
         {

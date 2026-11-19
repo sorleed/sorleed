@@ -80,6 +80,9 @@ export {
 } from "./beneficiary-management-flow";
 export { StatementExportFlow, default as StatementExportFlowDefault } from "./statement-export-flow";
 export { CloseAccountFlow, default as CloseAccountFlowDefault } from "./close-account-flow";
+export { SessionTimeoutModal, default as SessionTimeoutModalDefault } from "./session-timeout-modal";
+export { VirtualCardReveal, default as VirtualCardRevealDefault } from "./virtual-card-reveal";
+export { DeviceManagementCard, default as DeviceManagementCardDefault } from "./device-management-card";
 export { formatMoney, type FormatMoneyOptions } from "./utils/format";
 export type {
   AlertProps,
@@ -228,4 +231,11 @@ export type {
   StatementAccountOption,
   StatementExportFlowProps,
   CloseAccountFlowProps,
+  SessionTimeoutModalProps,
+  VirtualCardRevealProps,
+  VirtualCardTheme,
+  VirtualCardBrand,
+  DeviceType,
+  DeviceSessionItem,
+  DeviceManagementCardProps,
 } from "./types";

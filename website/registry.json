@@ -2,7 +2,7 @@
   "$schema": "https://sorleed.com/schema/registry.json",
   "name": "@sorleed/registry",
   "version": "0.1.0-alpha.12",
-  "description": "Machine-readable registry of all 80 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
+  "description": "Machine-readable registry of all 83 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
   "homepage": "https://sorleed.com",
   "components": {
     "accordion": {
@@ -791,6 +791,39 @@
       "dependencies": [],
       "docsUrl": "https://sorleed.com/components/yield-curve-table.html",
       "cliCommand": "npx @sorleed/cli add yield-curve-table"
+    },
+    "session-timeout-modal": {
+      "name": "session-timeout-modal",
+      "description": "PCI/banking inactivity session warning modal with SVG countdown ring powered by Radix Dialog",
+      "category": "security",
+      "dependencies": [
+        "button"
+      ],
+      "docsUrl": "https://sorleed.com/components/session-timeout-modal.html",
+      "cliCommand": "npx @sorleed/cli add session-timeout-modal"
+    },
+    "virtual-card-reveal": {
+      "name": "virtual-card-reveal",
+      "description": "PCI-aware virtual card PAN, expiry, and CVV reveal with auto-remask timer and one-click copy",
+      "category": "security",
+      "dependencies": [
+        "badge",
+        "button"
+      ],
+      "docsUrl": "https://sorleed.com/components/virtual-card-reveal.html",
+      "cliCommand": "npx @sorleed/cli add virtual-card-reveal"
+    },
+    "device-management-card": {
+      "name": "device-management-card",
+      "description": "Active sessions and trusted devices list with IP/location metadata and single or bulk revocation",
+      "category": "security",
+      "dependencies": [
+        "badge",
+        "button",
+        "card"
+      ],
+      "docsUrl": "https://sorleed.com/components/device-management-card.html",
+      "cliCommand": "npx @sorleed/cli add device-management-card"
     }
   }
 }
