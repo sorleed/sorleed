@@ -6,16 +6,16 @@
 .fc-accordion {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--fc-color-border);
+  border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-lg);
   overflow: hidden;
-  background-color: var(--fc-color-surface);
-  font-family: var(--fc-font-family);
+  background-color: var(--fc-color-surface-default);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
 }
 
 .fc-accordion__item {
-  border-bottom: 1px solid var(--fc-color-border);
+  border-bottom: 1px solid var(--fc-color-border-default);
 }
 
 .fc-accordion__item:last-child {
@@ -34,8 +34,8 @@
   padding: var(--fc-space-4) var(--fc-space-5);
   background: none;
   border: none;
-  color: var(--fc-color-text);
-  font-size: var(--fc-font-size-base);
+  color: var(--fc-color-content-primary);
+  font-size: var(--fc-font-size-sm);
   font-weight: 500;
   text-align: left;
   cursor: pointer;
@@ -43,11 +43,11 @@
 }
 
 .fc-accordion__trigger:hover {
-  background-color: var(--fc-color-surface-hover);
+  background-color: var(--fc-color-surface-subtle);
 }
 
 .fc-accordion__trigger:focus-visible {
-  outline: 2px solid var(--fc-color-primary);
+  outline: 2px solid var(--fc-color-action-primary);
   outline-offset: -2px;
 }
 
@@ -69,7 +69,7 @@
 
 .fc-accordion__panel {
   padding: 0 var(--fc-space-5) var(--fc-space-4) var(--fc-space-5);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   font-size: var(--fc-font-size-sm);
   line-height: 1.6;
 }

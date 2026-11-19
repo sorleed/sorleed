@@ -6,8 +6,8 @@
   background-color: var(--fc-color-surface-default);
   border: 1px solid var(--fc-color-border-subtle);
   border-radius: var(--fc-radius-lg);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-order-ticket__header {
@@ -25,7 +25,7 @@
 
 .fc-order-ticket__company {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   margin: 2px 0 0;
 }
 
@@ -41,7 +41,7 @@
 
 .fc-order-ticket__quote-label {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-order-ticket__types {
@@ -55,7 +55,7 @@
   border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-md);
   background-color: var(--fc-color-surface-default);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   font-size: var(--fc-font-size-xs);
   font-weight: var(--fc-font-weight-semibold);
   cursor: pointer;
@@ -64,8 +64,8 @@
 
 .fc-order-ticket__type-btn--active {
   background-color: var(--fc-color-surface-subtle);
-  border-color: var(--fc-color-accent-primary);
-  color: var(--fc-color-text-primary);
+  border-color: var(--fc-color-action-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-order-ticket__fields {
@@ -98,6 +98,6 @@
 }
 
 .fc-order-ticket__row-label {
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 

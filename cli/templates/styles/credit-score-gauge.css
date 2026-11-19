@@ -35,7 +35,7 @@
 .fc-credit-score-gauge__subtitle {
   margin: 0;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-credit-score-gauge__dial {
@@ -70,7 +70,7 @@
 
 .fc-credit-score-gauge__range {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
   margin-top: var(--fc-space-1);
 }
 
@@ -87,7 +87,7 @@
 
 .fc-credit-score-gauge__rating-pill--excellent {
   background-color: var(--fc-green-100);
-  color: var(--fc-color-status-success);
+  color: var(--fc-color-feedback-success);
 }
 
 .fc-credit-score-gauge__rating-pill--good {
@@ -97,17 +97,17 @@
 
 .fc-credit-score-gauge__rating-pill--fair {
   background-color: var(--fc-amber-100);
-  color: var(--fc-color-status-warning);
+  color: var(--fc-color-feedback-warning);
 }
 
 .fc-credit-score-gauge__rating-pill--poor {
   background-color: var(--fc-red-100);
-  color: var(--fc-color-status-error);
+  color: var(--fc-color-feedback-error);
 }
 
 .fc-credit-score-gauge__updated {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
   margin: 0;
 }
 

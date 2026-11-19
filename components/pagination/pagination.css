@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--fc-space-2);
-  font-family: var(--fc-font-family);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
 }
 
@@ -19,10 +19,10 @@
   min-width: 36px;
   height: 36px;
   padding: 0 var(--fc-space-2);
-  border: 1px solid var(--fc-color-border);
+  border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-md);
-  background-color: var(--fc-color-surface);
-  color: var(--fc-color-text);
+  background-color: var(--fc-color-surface-default);
+  color: var(--fc-color-content-primary);
   font-size: var(--fc-font-size-sm);
   font-weight: 500;
   cursor: pointer;
@@ -31,24 +31,24 @@
 }
 
 .fc-pagination__btn:hover:not(:disabled) {
-  background-color: var(--fc-color-surface-hover);
-  border-color: var(--fc-color-border-hover, var(--fc-color-primary));
+  background-color: var(--fc-color-surface-subtle);
+  border-color: var(--fc-color-border-control-hover, var(--fc-color-action-primary));
 }
 
 .fc-pagination__btn:focus-visible {
-  outline: 2px solid var(--fc-color-primary);
+  outline: 2px solid var(--fc-color-action-primary);
   outline-offset: 2px;
 }
 
 .fc-pagination__btn--active {
-  background-color: var(--fc-color-primary);
-  color: var(--fc-color-primary-contrast, #ffffff);
-  border-color: var(--fc-color-primary);
+  background-color: var(--fc-color-action-primary);
+  color: var(--fc-color-action-primary-foreground, #ffffff);
+  border-color: var(--fc-color-action-primary);
   font-weight: 600;
 }
 
 .fc-pagination__btn--active:hover {
-  background-color: var(--fc-color-primary-hover, var(--fc-color-primary));
+  background-color: var(--fc-color-action-primary-hover, var(--fc-color-action-primary));
 }
 
 .fc-pagination__btn:disabled {
@@ -62,7 +62,7 @@
   justify-content: center;
   width: 32px;
   height: 36px;
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   font-weight: 600;
 }
 

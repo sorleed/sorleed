@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--fc-space-5);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-budget-setup-flow__header {
@@ -47,7 +47,7 @@
 
 .fc-budget-setup-flow__kpi-label {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-budget-setup-flow__kpi-value {
@@ -74,3 +74,4 @@
   justify-content: space-between;
   gap: var(--fc-space-3);
 }
+

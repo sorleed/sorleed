@@ -32,7 +32,7 @@
 .fc-repayment-schedule__subtitle {
   margin: 0;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-repayment-schedule__table-wrap {
@@ -50,7 +50,7 @@
   padding: var(--fc-space-2) var(--fc-space-3);
   font-size: var(--fc-font-size-xs);
   text-transform: uppercase;
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
   border-bottom: 1px solid var(--fc-color-border-subtle);
   font-weight: var(--fc-font-weight-medium);
 }
@@ -72,7 +72,7 @@
 
 .fc-repayment-schedule__status-pill--paid {
   background-color: var(--fc-green-100);
-  color: var(--fc-color-status-success);
+  color: var(--fc-color-feedback-success);
 }
 
 .fc-repayment-schedule__status-pill--due {

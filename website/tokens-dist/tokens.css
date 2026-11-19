@@ -1,5 +1,5 @@
 /* Sorleed design tokens — generated file. Do not edit by hand. */
-/* Source: tokens/tokens.json (sha256: 0be18a9866d74b8251e203cc05482fcfe97b37a8c1b0482f3733032a21cdce82) */
+/* Source: tokens/tokens.json (sha256: aa5469ffdfbbb512df13c58ab1eb45078dc6cfe5a7ff2e857d4fb11f96f3f3d1) */
 /* Themes: light (default) and dark ([data-theme="dark"], .dark). */
 /* Regenerate: node tokens/check.mjs --write */
 
@@ -90,20 +90,34 @@
   --fc-space-2: 8px;
   --fc-space-3: 12px;
   --fc-space-4: 16px;
+  --fc-space-5: 20px;
   --fc-space-6: 24px;
+  --fc-space-8: 32px;
+  --fc-space-10: 40px;
   --fc-space-12: 48px;
+  --fc-space-14: 56px;
+  --fc-space-16: 64px;
   --fc-radius-md: 6px;
   --fc-radius-lg: 8px;
+  --fc-radius-sm: 4px;
+  --fc-radius-xl: 12px;
+  --fc-radius-full: 9999px;
   --fc-font-size-xs: 12px;
   --fc-font-size-sm: 14px;
   --fc-font-size-md: 16px;
   --fc-font-size-lg: 24px;
+  --fc-font-size-xl: 20px;
+  --fc-font-size-2xl: 28px;
+  --fc-font-size-3xl: 32px;
   --fc-font-weight-regular: 400;
   --fc-font-weight-medium: 500;
+  --fc-font-weight-semibold: 600;
+  --fc-font-weight-bold: 700;
   --fc-font-line-height-xs: 16px;
   --fc-font-line-height-sm: 20px;
   --fc-font-line-height-md: 24px;
   --fc-font-line-height-lg: 24px;
+  --fc-font-line-height-xl: 28px;
   --fc-size-control-sm: 32px;
   --fc-size-control-md: 40px;
   --fc-size-control-lg: 48px;
@@ -771,18 +785,4 @@
   --fc-color-feedback-info-background: var(--fc-blue-950);
   --fc-color-feedback-info-border: var(--fc-blue-800);
   --fc-color-feedback-info-foreground: var(--fc-blue-300);
-}
-
-/* Fallback & compatibility aliases for financial components */
-:root {
-  --fc-space-5: 20px;
-  --fc-space-8: 32px;
-  --fc-space-10: 40px;
-  --fc-space-14: 56px;
-  --fc-space-16: 64px;
-  --fc-color-text-secondary: var(--fc-color-content-secondary, #475569);
-  --fc-color-text-muted: var(--fc-color-content-tertiary, #64748B);
-  --fc-color-text-primary: var(--fc-color-content-primary, #0F172A);
-  --fc-color-border-subtle: var(--fc-color-border-default, #E2E8F0);
-  --fc-color-surface-subtle: #F8FAFC;
 }

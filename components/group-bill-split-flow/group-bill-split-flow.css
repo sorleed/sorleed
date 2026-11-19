@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--fc-space-5);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-group-split-flow__steps {
@@ -16,15 +16,15 @@
 .fc-group-split-flow__step {
   font-size: var(--fc-font-size-xs);
   font-weight: var(--fc-font-weight-semibold);
-  color: var(--fc-color-text-tertiary);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-group-split-flow__step--active {
-  color: var(--fc-color-accent-primary);
+  color: var(--fc-color-action-primary);
 }
 
 .fc-group-split-flow__step--done {
-  color: var(--fc-color-status-success-text);
+  color: var(--fc-color-feedback-success-foreground);
 }
 
 .fc-group-split-flow__card {
@@ -58,7 +58,7 @@
 }
 
 .fc-group-split-flow__contact--selected {
-  border-color: var(--fc-color-accent-primary);
+  border-color: var(--fc-color-action-primary);
   background-color: var(--fc-color-surface-subtle);
 }
 
@@ -69,7 +69,7 @@
 
 .fc-group-split-flow__handle {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-group-split-flow__share {
@@ -83,3 +83,4 @@
   justify-content: space-between;
   gap: var(--fc-space-3);
 }
+

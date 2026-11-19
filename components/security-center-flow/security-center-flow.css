@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--fc-space-5);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-security-center-flow__header {
@@ -40,8 +40,8 @@
   justify-content: space-between;
   gap: var(--fc-space-4);
   padding: var(--fc-space-4);
-  border: 1px solid var(--fc-color-status-danger-fg);
-  background-color: var(--fc-color-status-danger-bg);
+  border: 1px solid var(--fc-color-feedback-error);
+  background-color: var(--fc-color-feedback-error-background);
   border-radius: var(--fc-radius-lg);
   flex-wrap: wrap;
 }
@@ -50,12 +50,12 @@
   margin: 0;
   font-size: var(--fc-font-size-sm);
   font-weight: var(--fc-font-weight-semibold);
-  color: var(--fc-color-status-danger-text);
+  color: var(--fc-color-feedback-error-foreground);
 }
 
 .fc-security-center-flow__lockdown-desc {
   margin: 2px 0 0;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 

@@ -6,8 +6,8 @@
   background-color: var(--fc-color-surface-default);
   border: 1px solid var(--fc-color-border-subtle);
   border-radius: var(--fc-radius-lg);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-credit-utilization__header {
@@ -21,13 +21,13 @@
   margin: 0;
   font-size: var(--fc-font-size-md);
   font-weight: var(--fc-font-weight-semibold);
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-credit-utilization__subtitle {
   margin: var(--fc-space-1) 0 0;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-credit-utilization__hero {
@@ -46,25 +46,25 @@
 }
 
 .fc-credit-utilization__percent--optimal {
-  color: var(--fc-color-status-success-text);
+  color: var(--fc-color-feedback-success-foreground);
 }
 
 .fc-credit-utilization__percent--moderate {
-  color: var(--fc-color-status-warning-text);
+  color: var(--fc-color-feedback-warning-foreground);
 }
 
 .fc-credit-utilization__percent--high {
-  color: var(--fc-color-status-danger-text);
+  color: var(--fc-color-feedback-error-foreground);
 }
 
 .fc-credit-utilization__balance {
   font-size: var(--fc-font-size-sm);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   font-variant-numeric: tabular-nums;
 }
 
 .fc-credit-utilization__balance strong {
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
   font-weight: var(--fc-font-weight-semibold);
 }
 
@@ -90,22 +90,22 @@
 }
 
 .fc-credit-utilization__fill--optimal {
-  background-color: var(--fc-color-status-success-fg);
+  background-color: var(--fc-color-feedback-success);
 }
 
 .fc-credit-utilization__fill--moderate {
-  background-color: var(--fc-color-status-warning-fg);
+  background-color: var(--fc-color-feedback-warning);
 }
 
 .fc-credit-utilization__fill--high {
-  background-color: var(--fc-color-status-danger-fg);
+  background-color: var(--fc-color-feedback-error);
 }
 
 .fc-credit-utilization__bands {
   display: flex;
   justify-content: space-between;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-tertiary);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-credit-utilization__meta-grid {
@@ -124,12 +124,13 @@
 
 .fc-credit-utilization__stat-label {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-credit-utilization__stat-value {
   font-size: var(--fc-font-size-sm);
   font-weight: var(--fc-font-weight-semibold);
   font-variant-numeric: tabular-nums;
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
+

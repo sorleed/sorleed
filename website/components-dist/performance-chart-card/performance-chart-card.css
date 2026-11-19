@@ -6,8 +6,8 @@
   background-color: var(--fc-color-surface-default);
   border: 1px solid var(--fc-color-border-subtle);
   border-radius: var(--fc-radius-lg);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-performance-chart__header {
@@ -33,12 +33,12 @@
 .fc-performance-chart__symbol {
   font-size: var(--fc-font-size-md);
   font-weight: var(--fc-font-weight-bold);
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-performance-chart__name {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-performance-chart__metrics {
@@ -52,7 +52,7 @@
   font-size: var(--fc-font-size-2xl);
   font-weight: var(--fc-font-weight-bold);
   font-variant-numeric: tabular-nums;
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-performance-chart__return {
@@ -62,11 +62,11 @@
 }
 
 .fc-performance-chart__return--positive {
-  color: var(--fc-color-status-success-text);
+  color: var(--fc-color-feedback-success-foreground);
 }
 
 .fc-performance-chart__return--negative {
-  color: var(--fc-color-status-danger-text);
+  color: var(--fc-color-feedback-error-foreground);
 }
 
 .fc-performance-chart__canvas {
@@ -86,19 +86,19 @@
 }
 
 .fc-performance-chart__line--positive {
-  stroke: var(--fc-color-status-success-fg);
+  stroke: var(--fc-color-feedback-success);
 }
 
 .fc-performance-chart__line--negative {
-  stroke: var(--fc-color-status-danger-fg);
+  stroke: var(--fc-color-feedback-error);
 }
 
 .fc-performance-chart__area--positive {
-  fill: var(--fc-color-status-success-bg);
+  fill: var(--fc-color-feedback-success-background);
 }
 
 .fc-performance-chart__area--negative {
-  fill: var(--fc-color-status-danger-bg);
+  fill: var(--fc-color-feedback-error-background);
 }
 
 .fc-performance-chart__footer {
@@ -110,7 +110,7 @@
   padding-top: var(--fc-space-3);
   border-top: 1px solid var(--fc-color-border-subtle);
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-performance-chart__benchmark {
@@ -119,3 +119,4 @@
   gap: var(--fc-space-2);
   font-variant-numeric: tabular-nums;
 }
+

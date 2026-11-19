@@ -92,7 +92,7 @@
 }
 
 .fc-avatar__status--online {
-  background-color: var(--fc-color-status-success);
+  background-color: var(--fc-color-feedback-success);
 }
 
 .fc-avatar__status--offline {
@@ -100,11 +100,11 @@
 }
 
 .fc-avatar__status--away {
-  background-color: var(--fc-color-status-warning);
+  background-color: var(--fc-color-feedback-warning);
 }
 
 .fc-avatar__status--busy {
-  background-color: var(--fc-color-status-error);
+  background-color: var(--fc-color-feedback-error);
 }
 
 @media (forced-colors: active) {

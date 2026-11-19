@@ -80,7 +80,7 @@
 
 .fc-kyc-doc-uploader__hint {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
   margin: var(--fc-space-1) 0 0;
 }
 
@@ -108,7 +108,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--fc-color-status-error);
+  color: var(--fc-color-feedback-error);
   font-weight: var(--fc-font-weight-medium);
   font-size: var(--fc-font-size-xs);
 }

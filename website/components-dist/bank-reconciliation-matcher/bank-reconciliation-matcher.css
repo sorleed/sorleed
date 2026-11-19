@@ -6,8 +6,8 @@
   background-color: var(--fc-color-surface-default);
   border: 1px solid var(--fc-color-border-subtle);
   border-radius: var(--fc-radius-lg);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-bank-reconciliation__header {
@@ -48,7 +48,7 @@
   font-weight: var(--fc-font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-bank-reconciliation__row {
@@ -67,24 +67,24 @@
 }
 
 .fc-bank-reconciliation__row--selected {
-  border-color: var(--fc-color-accent-primary);
+  border-color: var(--fc-color-action-primary);
   background-color: var(--fc-color-surface-subtle);
 }
 
 .fc-bank-reconciliation__row--matched {
-  border-color: var(--fc-color-status-success-fg);
-  background-color: var(--fc-color-status-success-bg);
+  border-color: var(--fc-color-feedback-success);
+  background-color: var(--fc-color-feedback-success-background);
 }
 
 .fc-bank-reconciliation__desc {
   font-size: var(--fc-font-size-sm);
   font-weight: var(--fc-font-weight-medium);
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-bank-reconciliation__meta {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-bank-reconciliation__amount {
@@ -107,6 +107,7 @@
 .fc-bank-reconciliation__discrepancy {
   font-size: var(--fc-font-size-xs);
   font-variant-numeric: tabular-nums;
-  color: var(--fc-color-status-warning-text);
+  color: var(--fc-color-feedback-warning-foreground);
   font-weight: var(--fc-font-weight-medium);
 }
+

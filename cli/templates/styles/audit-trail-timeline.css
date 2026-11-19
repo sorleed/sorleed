@@ -6,8 +6,8 @@
   background-color: var(--fc-color-surface-default);
   border: 1px solid var(--fc-color-border-subtle);
   border-radius: var(--fc-radius-lg);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-audit-timeline__header {
@@ -25,7 +25,7 @@
 .fc-audit-timeline__desc {
   margin: 0;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-audit-timeline__list {
@@ -70,24 +70,24 @@
 .fc-audit-timeline__actor {
   font-size: var(--fc-font-size-sm);
   font-weight: var(--fc-font-weight-semibold);
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-audit-timeline__role {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   margin-left: var(--fc-space-1);
 }
 
 .fc-audit-timeline__time {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-tertiary);
+  color: var(--fc-color-content-tertiary);
   font-variant-numeric: tabular-nums;
 }
 
 .fc-audit-timeline__action {
   font-size: var(--fc-font-size-sm);
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-audit-timeline__tags {
@@ -100,7 +100,7 @@
 
 .fc-audit-timeline__ip {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
-  font-family: var(--fc-font-mono);
+  color: var(--fc-color-content-secondary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 

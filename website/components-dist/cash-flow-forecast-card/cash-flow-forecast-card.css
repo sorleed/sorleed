@@ -6,8 +6,8 @@
   background-color: var(--fc-color-surface-default);
   border: 1px solid var(--fc-color-border-subtle);
   border-radius: var(--fc-radius-lg);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-cash-flow__header {
@@ -41,7 +41,7 @@
 
 .fc-cash-flow__kpi-label {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-cash-flow__kpi-value {
@@ -71,7 +71,7 @@
 
 .fc-cash-flow__period-label {
   font-weight: var(--fc-font-weight-semibold);
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-cash-flow__bars {
@@ -90,12 +90,13 @@
 
 .fc-cash-flow__bar-inflow {
   height: 100%;
-  background-color: var(--fc-color-status-success-fg);
+  background-color: var(--fc-color-feedback-success);
   border-radius: var(--fc-radius-full);
 }
 
 .fc-cash-flow__bar-outflow {
   height: 100%;
-  background-color: var(--fc-color-status-danger-fg);
+  background-color: var(--fc-color-feedback-error);
   border-radius: var(--fc-radius-full);
 }
+

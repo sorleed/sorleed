@@ -30,7 +30,7 @@
 }
 
 .fc-fee-breakdown__item--discount {
-  color: var(--fc-color-status-success);
+  color: var(--fc-color-feedback-success);
 }
 
 .fc-fee-breakdown__divider {
@@ -59,6 +59,6 @@
 
 .fc-fee-breakdown__notice {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 

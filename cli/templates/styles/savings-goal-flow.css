@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--fc-space-5);
-  font-family: var(--fc-font-sans);
-  color: var(--fc-color-text-primary);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
 }
 
 .fc-savings-goal-flow__steps {
@@ -16,15 +16,15 @@
 .fc-savings-goal-flow__step {
   font-size: var(--fc-font-size-xs);
   font-weight: var(--fc-font-weight-semibold);
-  color: var(--fc-color-text-tertiary);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-savings-goal-flow__step--active {
-  color: var(--fc-color-accent-primary);
+  color: var(--fc-color-action-primary);
 }
 
 .fc-savings-goal-flow__step--done {
-  color: var(--fc-color-status-success-text);
+  color: var(--fc-color-feedback-success-foreground);
 }
 
 .fc-savings-goal-flow__card {
@@ -48,16 +48,16 @@
   border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-full);
   background-color: var(--fc-color-surface-default);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   font-size: var(--fc-font-size-xs);
   font-weight: var(--fc-font-weight-semibold);
   cursor: pointer;
 }
 
 .fc-savings-goal-flow__preset--active {
-  border-color: var(--fc-color-accent-primary);
+  border-color: var(--fc-color-action-primary);
   background-color: var(--fc-color-surface-subtle);
-  color: var(--fc-color-text-primary);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-savings-goal-flow__grid {
@@ -87,3 +87,4 @@
   justify-content: space-between;
   gap: var(--fc-space-3);
 }
+

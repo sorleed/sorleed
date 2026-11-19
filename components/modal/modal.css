@@ -76,7 +76,7 @@
   cursor: pointer;
   padding: var(--fc-space-1);
   border-radius: var(--fc-radius-sm);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-modal__close:hover {

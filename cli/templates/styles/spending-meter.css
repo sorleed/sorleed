@@ -55,11 +55,11 @@
 }
 
 .fc-spending-meter__fill--warning {
-  background-color: var(--fc-color-status-warning);
+  background-color: var(--fc-color-feedback-warning);
 }
 
 .fc-spending-meter__fill--danger {
-  background-color: var(--fc-color-status-error);
+  background-color: var(--fc-color-feedback-error);
 }
 
 .fc-spending-meter__footer {
@@ -67,7 +67,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 @media (forced-colors: active) {

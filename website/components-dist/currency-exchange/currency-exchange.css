@@ -30,7 +30,7 @@
   display: flex;
   justify-content: space-between;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-currency-exchange__box-input-row {
