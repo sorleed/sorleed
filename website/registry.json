@@ -2,7 +2,7 @@
   "$schema": "https://sorleed.com/schema/registry.json",
   "name": "@sorleed/registry",
   "version": "0.1.0-alpha.13",
-  "description": "Machine-readable registry of all 92 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
+  "description": "Machine-readable registry of all 95 Sorleed financial UI components for AI agents, CLI tooling, and automated code generation.",
   "homepage": "https://sorleed.com",
   "components": {
     "accordion": {
@@ -937,6 +937,50 @@
       ],
       "docsUrl": "https://sorleed.com/components/security-center-flow.html",
       "cliCommand": "npx @sorleed/cli add security-center-flow"
+    },
+    "savings-goal-flow": {
+      "name": "savings-goal-flow",
+      "description": "Personal finance savings goal & pot creation journey with auto-save frequency, APY projection, and round-ups",
+      "category": "flows",
+      "dependencies": [
+        "alert",
+        "badge",
+        "button",
+        "input",
+        "switch"
+      ],
+      "docsUrl": "https://sorleed.com/components/savings-goal-flow.html",
+      "cliCommand": "npx @sorleed/cli add savings-goal-flow"
+    },
+    "budget-setup-flow": {
+      "name": "budget-setup-flow",
+      "description": "Personal finance monthly budget builder with income cap validation, SpendingMeter previews, and overspend alert toggles",
+      "category": "flows",
+      "dependencies": [
+        "alert",
+        "badge",
+        "button",
+        "input",
+        "spending-meter",
+        "switch"
+      ],
+      "docsUrl": "https://sorleed.com/components/budget-setup-flow.html",
+      "cliCommand": "npx @sorleed/cli add budget-setup-flow"
+    },
+    "group-bill-split-flow": {
+      "name": "group-bill-split-flow",
+      "description": "Personal finance P2P bill splitting flow combining SplitBillCalculator, friend selection, and payment request tracking",
+      "category": "flows",
+      "dependencies": [
+        "alert",
+        "badge",
+        "button",
+        "empty-state",
+        "input",
+        "split-bill-calculator"
+      ],
+      "docsUrl": "https://sorleed.com/components/group-bill-split-flow.html",
+      "cliCommand": "npx @sorleed/cli add group-bill-split-flow"
     }
   }
 }

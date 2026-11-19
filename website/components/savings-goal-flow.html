@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>SavingsGoalFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed SavingsGoalFlow personal finance savings pot journey documentation and interactive playground.">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="balance-card.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>SavingsGoalFlow</span>
+      </div>
+      <h1 class="docs-title">SavingsGoalFlow</h1>
+      <p class="docs-lede">Personal finance savings goal &amp; pot creation flow with presets, auto-save frequency calculation, APY interest projection, and spare-change round-ups.</p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" style="padding:24px;">
+            <div class="fc-savings-goal-flow">
+              <div class="fc-savings-goal-flow__card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <h3 id="sgf-title" style="margin:0;">Emergency Fund</h3>
+                  <span class="fc-badge fc-badge--success">4.25% APY</span>
+                </div>
+                <div class="fc-savings-goal-flow__presets" id="sgf-presets">
+                  <button type="button" class="fc-savings-goal-flow__preset fc-savings-goal-flow__preset--active" data-name="Emergency Fund" data-target="10000">Emergency Fund</button>
+                  <button type="button" class="fc-savings-goal-flow__preset" data-name="Vacation" data-target="3500">Vacation</button>
+                  <button type="button" class="fc-savings-goal-flow__preset" data-name="Home Down Payment" data-target="45000">Home Down Payment</button>
+                </div>
+                <div class="fc-savings-goal-flow__summary">
+                  <div class="fc-savings-goal-flow__row"><span>Target Amount</span><strong id="sgf-target">USD 10,000.00</strong></div>
+                  <div class="fc-savings-goal-flow__row"><span>Recommended Monthly Save (12 mo)</span><strong id="sgf-monthly">USD 833.34</strong></div>
+                </div>
+                <div class="fc-savings-goal-flow__actions">
+                  <span></span>
+                  <button type="button" id="sgf-activate" class="fc-button fc-button--primary">Activate Savings Goal</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function() {
+            const titleEl = document.getElementById('sgf-title');
+            const targetEl = document.getElementById('sgf-target');
+            const monthlyEl = document.getElementById('sgf-monthly');
+            const btn = document.getElementById('sgf-activate');
+            const fmt = (n) => 'USD ' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.querySelectorAll('#sgf-presets [data-target]').forEach(p => p.addEventListener('click', () => {
+              document.querySelectorAll('#sgf-presets [data-target]').forEach(x => x.classList.remove('fc-savings-goal-flow__preset--active'));
+              p.classList.add('fc-savings-goal-flow__preset--active');
+              const t = Number(p.getAttribute('data-target'));
+              titleEl.textContent = p.getAttribute('data-name');
+              targetEl.textContent = fmt(t);
+              monthlyEl.textContent = fmt(Math.ceil((t / 12) * 100) / 100);
+              btn.textContent = 'Activate Savings Goal';
+            }));
+            btn.addEventListener('click', () => { btn.textContent = 'Goal Activated ✓'; });
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add savings-goal-flow</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { SavingsGoalFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/savings-goal-flow.css';
+
+export function Example() {
+  return (
+    &lt;SavingsGoalFlow
+      apyPercent={4.25}
+      onCreateGoal={(goal) =&gt; console.log(goal)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>renderStripeSidebar('savings-goal-flow');</script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

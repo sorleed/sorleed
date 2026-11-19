@@ -2,7 +2,7 @@ import "./setup.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import {
   TradeExecutionFlow,
   MonthEndCloseFlow,
@@ -34,9 +34,10 @@ test("TradeExecutionFlow progresses from order entry to review and execution rec
   assert.ok(getByText("Review BUY Order"));
 
   fireEvent.click(getByRole("button", { name: "Confirm & Execute Trade" }));
-  await new Promise((r) => setTimeout(r, 10));
+  await waitFor(() => {
+    assert.ok(getByText("Order Executed"));
+  });
   assert.equal(executedQty, 1);
-  assert.ok(getByText("Order Executed"));
   assert.ok(getByText("ORD-778899"));
 });
 
@@ -76,10 +77,11 @@ test("MonthEndCloseFlow reconciles entries, reviews runway/audit, and locks peri
 
   fireEvent.click(getByRole("button", { name: "Proceed to Sign-off" }));
   fireEvent.click(getByRole("button", { name: "Lock & Close November 2026" }));
-  await new Promise((r) => setTimeout(r, 10));
+  await waitFor(() => {
+    assert.ok(getByText("Period Locked"));
+  });
 
   assert.equal(closedPeriod, "November 2026");
-  assert.ok(getByText("Period Locked"));
 });
 
 test("SecurityCenterFlow triggers emergency lockdown and revokes other sessions", async () => {
@@ -122,9 +124,12 @@ test("SecurityCenterFlow triggers emergency lockdown and revokes other sessions"
 
   assert.ok(getByText("Protected"));
   fireEvent.click(getByRole("button", { name: "Trigger Emergency Lockdown" }));
-  await new Promise((r) => setTimeout(r, 10));
+  fireEvent.click(getByRole("button", { name: "Confirm Lockdown" }));
+  await waitFor(() => {
+    assert.ok(getByText("Emergency Account Lockdown Active"));
+  });
 
   assert.equal(locked, true);
   assert.ok(getByText("Lockdown Active"));
-  assert.ok(getByText("Emergency Account Lockdown Active"));
 });
+

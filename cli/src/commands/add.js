@@ -123,6 +123,9 @@ import { auditTrailTimelineRegistry } from '../registry/audit-trail-timeline.js'
 import { tradeExecutionFlowRegistry } from '../registry/trade-execution-flow.js';
 import { monthEndCloseFlowRegistry } from '../registry/month-end-close-flow.js';
 import { securityCenterFlowRegistry } from '../registry/security-center-flow.js';
+import { savingsGoalFlowRegistry } from '../registry/savings-goal-flow.js';
+import { budgetSetupFlowRegistry } from '../registry/budget-setup-flow.js';
+import { groupBillSplitFlowRegistry } from '../registry/group-bill-split-flow.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -218,6 +221,9 @@ function getRegistry(component) {
   if (component === 'trade-execution-flow' || component === 'tradeexecutionflow') return tradeExecutionFlowRegistry;
   if (component === 'month-end-close-flow' || component === 'monthendcloseflow') return monthEndCloseFlowRegistry;
   if (component === 'security-center-flow' || component === 'securitycenterflow') return securityCenterFlowRegistry;
+  if (component === 'savings-goal-flow' || component === 'savingsgoalflow') return savingsGoalFlowRegistry;
+  if (component === 'budget-setup-flow' || component === 'budgetsetupflow') return budgetSetupFlowRegistry;
+  if (component === 'group-bill-split-flow' || component === 'groupbillsplitflow') return groupBillSplitFlowRegistry;
   return null;
 }
 

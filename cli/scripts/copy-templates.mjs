@@ -837,6 +837,33 @@ export const templateManifest = [
     source: path.resolve(repoRoot, "components/security-center-flow/security-center-flow.css"),
     dest: path.resolve(templatesDir, "styles/security-center-flow.css")
   },
+  // savings-goal-flow
+  {
+    source: path.resolve(repoRoot, "react/savings-goal-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/savings-goal-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/savings-goal-flow/savings-goal-flow.css"),
+    dest: path.resolve(templatesDir, "styles/savings-goal-flow.css")
+  },
+  // budget-setup-flow
+  {
+    source: path.resolve(repoRoot, "react/budget-setup-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/budget-setup-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/budget-setup-flow/budget-setup-flow.css"),
+    dest: path.resolve(templatesDir, "styles/budget-setup-flow.css")
+  },
+  // group-bill-split-flow
+  {
+    source: path.resolve(repoRoot, "react/group-bill-split-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/group-bill-split-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/group-bill-split-flow/group-bill-split-flow.css"),
+    dest: path.resolve(templatesDir, "styles/group-bill-split-flow.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),

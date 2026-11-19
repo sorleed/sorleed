@@ -3,6 +3,7 @@ import { Alert } from "../alert";
 import { Badge } from "../badge";
 import { Button } from "../button";
 import { DeviceManagementCard } from "../device-management-card";
+import { EmptyState } from "../empty-state";
 import { SessionTimeoutModal } from "../session-timeout-modal";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../tabs";
 import { VirtualCardReveal } from "../virtual-card-reveal";
@@ -29,7 +30,9 @@ export const SecurityCenterFlow = React.forwardRef<HTMLDivElement, SecurityCente
     const [devices, setDevices] = useState(initialDevices);
     const [timeoutOpen, setTimeoutOpen] = useState(false);
     const [lockedDown, setLockedDown] = useState(false);
+    const [confirmingLockdown, setConfirmingLockdown] = useState(false);
     const [locking, setLocking] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleRevoke = async (id: string) => {
       await onRevokeDevice?.(id);
@@ -45,10 +48,16 @@ export const SecurityCenterFlow = React.forwardRef<HTMLDivElement, SecurityCente
     const handleLockdown = async () => {
       if (locking) return;
       setLocking(true);
+      setErrorMessage(null);
       try {
         await onEmergencyLockdown?.();
         setDevices((prev) => prev.filter((d) => d.isCurrent));
         setLockedDown(true);
+        setConfirmingLockdown(false);
+      } catch (err) {
+        setErrorMessage(
+          err instanceof Error ? err.message : "Unable to activate emergency lockdown. Retry immediately.",
+        );
       } finally {
         setLocking(false);
       }
@@ -82,11 +91,18 @@ export const SecurityCenterFlow = React.forwardRef<HTMLDivElement, SecurityCente
           </div>
         </div>
 
-        {lockedDown && (
-          <Alert variant="error" title="Emergency Account Lockdown Active">
-            All other sessions have been terminated and virtual card credentials have been restricted.
-          </Alert>
-        )}
+        <div aria-live="polite">
+          {errorMessage && (
+            <Alert variant="error" title="Lockdown Error">
+              {errorMessage}
+            </Alert>
+          )}
+          {lockedDown && (
+            <Alert variant="error" title="Emergency Account Lockdown Active">
+              All other sessions have been terminated and virtual card credentials have been restricted.
+            </Alert>
+          )}
+        </div>
 
         <Tabs defaultValue="devices">
           <TabsList aria-label="Security sections">
@@ -96,11 +112,18 @@ export const SecurityCenterFlow = React.forwardRef<HTMLDivElement, SecurityCente
 
           <TabsContent value="devices">
             <div className="fc-security-center-flow__panel">
-              <DeviceManagementCard
-                devices={devices}
-                onRevokeDevice={handleRevoke}
-                onRevokeAllOthers={handleRevokeAllOthers}
-              />
+              {devices.length === 0 ? (
+                <EmptyState
+                  title="No active device sessions"
+                  description="All other sessions have been revoked."
+                />
+              ) : (
+                <DeviceManagementCard
+                  devices={devices}
+                  onRevokeDevice={handleRevoke}
+                  onRevokeAllOthers={handleRevokeAllOthers}
+                />
+              )}
             </div>
           </TabsContent>
 
@@ -126,18 +149,35 @@ export const SecurityCenterFlow = React.forwardRef<HTMLDivElement, SecurityCente
               Immediately sign out all other devices and freeze exposed virtual card credentials.
             </p>
           </div>
-          <Button
-            type="button"
-            variant="secondary"
-            disabled={lockedDown || locking}
-            onClick={handleLockdown}
-          >
-            {lockedDown
-              ? "Account Locked"
-              : locking
-                ? "Locking..."
-                : "Trigger Emergency Lockdown"}
-          </Button>
+          {confirmingLockdown && !lockedDown ? (
+            <div style={{ display: "flex", gap: "8px" }}>
+              <Button
+                type="button"
+                variant="ghost"
+                disabled={locking}
+                onClick={() => setConfirmingLockdown(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="button"
+                variant="primary"
+                disabled={locking}
+                onClick={handleLockdown}
+              >
+                {locking ? "Locking..." : "Confirm Lockdown"}
+              </Button>
+            </div>
+          ) : (
+            <Button
+              type="button"
+              variant="secondary"
+              disabled={lockedDown || locking}
+              onClick={() => setConfirmingLockdown(true)}
+            >
+              {lockedDown ? "Account Locked" : "Trigger Emergency Lockdown"}
+            </Button>
+          )}
         </div>
 
         <SessionTimeoutModal
@@ -155,3 +195,4 @@ export const SecurityCenterFlow = React.forwardRef<HTMLDivElement, SecurityCente
 
 SecurityCenterFlow.displayName = "SecurityCenterFlow";
 export default SecurityCenterFlow;
+

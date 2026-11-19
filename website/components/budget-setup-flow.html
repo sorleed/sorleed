@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>BudgetSetupFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed BudgetSetupFlow personal finance monthly budget builder documentation and interactive playground.">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="balance-card.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>BudgetSetupFlow</span>
+      </div>
+      <h1 class="docs-title">BudgetSetupFlow</h1>
+      <p class="docs-lede">Personal finance monthly budget builder with take-home income cap validation, live <code>SpendingMeter</code> category previews, and 80% overspend alerts.</p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" style="padding:24px;">
+            <div class="fc-budget-setup-flow">
+              <div class="fc-budget-setup-flow__header">
+                <h3 class="fc-budget-setup-flow__title">Monthly Budget Setup</h3>
+                <span id="bsf-badge" class="fc-badge fc-badge--info">USD 1,300 Unallocated</span>
+              </div>
+              <div class="fc-budget-setup-flow__card">
+                <div class="fc-input">
+                  <label class="fc-input__label" for="bsf-income">Monthly Take-Home Income (USD)</label>
+                  <input id="bsf-income" class="fc-input__field" type="number" value="4500" />
+                </div>
+                <div class="fc-budget-setup-flow__kpis">
+                  <div class="fc-budget-setup-flow__kpi"><span class="fc-budget-setup-flow__kpi-label">Allocated (4 Categories)</span><span class="fc-budget-setup-flow__kpi-value">USD 3,200</span></div>
+                  <div class="fc-budget-setup-flow__kpi"><span class="fc-budget-setup-flow__kpi-label">Remaining / Savings</span><span id="bsf-rem" class="fc-budget-setup-flow__kpi-value">USD 1,300</span></div>
+                </div>
+                <div id="bsf-alert" class="fc-alert fc-alert--error" style="display:none;">Allocations exceed monthly income.</div>
+                <div class="fc-budget-setup-flow__actions">
+                  <span></span>
+                  <button type="button" id="bsf-save" class="fc-button fc-button--primary">Save Monthly Budget</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function() {
+            const allocated = 3200;
+            const inc = document.getElementById('bsf-income');
+            const badge = document.getElementById('bsf-badge');
+            const rem = document.getElementById('bsf-rem');
+            const alertEl = document.getElementById('bsf-alert');
+            const saveBtn = document.getElementById('bsf-save');
+            function update() {
+              const v = Number(inc.value) || 0;
+              const diff = v - allocated;
+              const over = diff < 0;
+              rem.textContent = (diff < 0 ? '-' : '') + 'USD ' + Math.abs(diff).toLocaleString();
+              badge.textContent = over ? 'Over Income' : 'USD ' + diff.toLocaleString() + ' Unallocated';
+              badge.className = 'fc-badge ' + (over ? 'fc-badge--error' : 'fc-badge--info');
+              alertEl.style.display = over ? 'block' : 'none';
+              saveBtn.disabled = over || v <= 0;
+            }
+            inc.addEventListener('input', update);
+            saveBtn.addEventListener('click', () => {
+              badge.textContent = 'Budget Active';
+              badge.className = 'fc-badge fc-badge--success';
+              saveBtn.textContent = 'Saved ✓';
+            });
+            update();
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add budget-setup-flow</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { BudgetSetupFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/budget-setup-flow.css';
+
+export function Example() {
+  return (
+    &lt;BudgetSetupFlow
+      defaultIncome={4500}
+      onSaveBudget={(budget) =&gt; console.log(budget)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>renderStripeSidebar('budget-setup-flow');</script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>

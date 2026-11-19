@@ -60,7 +60,7 @@ export function TreasuryOverview() {
 
 ## What's Included (`v0.1.0-alpha.11`)
 
-- **92 Production Components & Flows** across Core Primitives, Security & Identity, Banking & Payments, Credit & Wealth, Accounting & Treasury, and End-to-End Flows:
+- **95 Production Components & Flows** across Core Primitives, Security & Identity, Banking & Payments, Credit & Wealth, Accounting & Treasury, and End-to-End Flows:
   - **Core & Form Primitives:** `Button`, `Input`, `PasswordInput`, `PhoneInput`, `Select`, `Checkbox`, `RadioGroup`, `Textarea`, `Switch`, `Card`, `Alert`, `Tabs`, `Table`, `Badge`, `Tooltip`, `Popover`, `Drawer`, `Modal`, `Toast`, `Accordion`, `Pagination`, `Skeleton`, `EmptyState`, `Avatar`, `Divider`, `Stack`, `Inline`, `Container`
   - **Financial & Banking:** `BalanceCard`, `WalletCard`, `TransactionItem`, `AmountDisplay`, `Currency`, `CurrencyExchange`, `OTP`, `PinInput`, `CVV`, `DatePicker`, `BankSelector`, `CardControls`, `TransferReceipt`, `BiometricAuthPrompt`, `VirtualCardGenerator`, `DirectDebitMandate`, `StatusIndicator`
   - **Lending, Credit & Wealth:** `LoanCalculator`, `RepaymentSchedule`, `CreditScoreGauge`, `PortfolioSummary`, `AssetAllocation`, `YieldCurveTable`, `SpendingMeter`, `SplitBillCalculator`, `FeeBreakdown`, `KycDocUploader`

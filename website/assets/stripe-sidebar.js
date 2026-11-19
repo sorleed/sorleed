@@ -110,7 +110,10 @@ function renderStripeSidebar(activeId) {
             'close-account-flow',
             'trade-execution-flow',
             'month-end-close-flow',
-            'security-center-flow'
+            'security-center-flow',
+            'savings-goal-flow',
+            'budget-setup-flow',
+            'group-bill-split-flow'
           ].includes(activeId),
           items: [
             { id: 'kyc-verification-flow', label: 'KycVerificationFlow', href: root + 'components/kyc-verification-flow.html' },
@@ -130,7 +133,10 @@ function renderStripeSidebar(activeId) {
             { id: 'close-account-flow', label: 'CloseAccountFlow', href: root + 'components/close-account-flow.html' },
             { id: 'trade-execution-flow', label: 'TradeExecutionFlow', href: root + 'components/trade-execution-flow.html' },
             { id: 'month-end-close-flow', label: 'MonthEndCloseFlow', href: root + 'components/month-end-close-flow.html' },
-            { id: 'security-center-flow', label: 'SecurityCenterFlow', href: root + 'components/security-center-flow.html' }
+            { id: 'security-center-flow', label: 'SecurityCenterFlow', href: root + 'components/security-center-flow.html' },
+            { id: 'savings-goal-flow', label: 'SavingsGoalFlow', href: root + 'components/savings-goal-flow.html' },
+            { id: 'budget-setup-flow', label: 'BudgetSetupFlow', href: root + 'components/budget-setup-flow.html' },
+            { id: 'group-bill-split-flow', label: 'GroupBillSplitFlow', href: root + 'components/group-bill-split-flow.html' }
           ]
         },
         {

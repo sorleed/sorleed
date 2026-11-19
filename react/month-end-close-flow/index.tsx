@@ -5,6 +5,7 @@ import { Badge } from "../badge";
 import { BankReconciliationMatcher } from "../bank-reconciliation-matcher";
 import { Button } from "../button";
 import { CashFlowForecastCard } from "../cash-flow-forecast-card";
+import { EmptyState } from "../empty-state";
 import type { MonthEndCloseFlowProps } from "../types";
 
 export const MonthEndCloseFlow = React.forwardRef<HTMLDivElement, MonthEndCloseFlowProps>(
@@ -30,13 +31,19 @@ export const MonthEndCloseFlow = React.forwardRef<HTMLDivElement, MonthEndCloseF
     );
     const [closing, setClosing] = useState(false);
     const [closed, setClosed] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleClosePeriod = async () => {
       if (closing) return;
       setClosing(true);
+      setErrorMessage(null);
       try {
         await onClosePeriod?.({ periodLabel, matchedCount });
         setClosed(true);
+      } catch (err) {
+        setErrorMessage(
+          err instanceof Error ? err.message : "Failed to lock period. Please retry.",
+        );
       } finally {
         setClosing(false);
       }
@@ -55,7 +62,7 @@ export const MonthEndCloseFlow = React.forwardRef<HTMLDivElement, MonthEndCloseF
         <div className="fc-month-close-flow__header">
           <div>
             <h2 className="fc-month-close-flow__title">Month-End Close — {periodLabel}</h2>
-            <div className="fc-month-close-flow__steps">
+            <div className="fc-month-close-flow__steps" aria-live="polite">
               <span
                 className={`fc-month-close-flow__step ${
                   step === 1 ? "fc-month-close-flow__step--active" : "fc-month-close-flow__step--done"
@@ -92,13 +99,20 @@ export const MonthEndCloseFlow = React.forwardRef<HTMLDivElement, MonthEndCloseF
 
         {step === 1 && (
           <>
-            <BankReconciliationMatcher
-              currency={currency}
-              bankEntries={bankEntries}
-              ledgerEntries={ledgerEntries}
-              onMatch={() => setMatchedCount((c) => c + 1)}
-              onUnmatch={() => setMatchedCount((c) => Math.max(0, c - 1))}
-            />
+            {bankEntries.length === 0 ? (
+              <EmptyState
+                title="No bank statement entries"
+                description={`No unreconciled bank feed items found for ${periodLabel}.`}
+              />
+            ) : (
+              <BankReconciliationMatcher
+                currency={currency}
+                bankEntries={bankEntries}
+                ledgerEntries={ledgerEntries}
+                onMatch={() => setMatchedCount((c) => c + 1)}
+                onUnmatch={() => setMatchedCount((c) => Math.max(0, c - 1))}
+              />
+            )}
             <div className="fc-month-close-flow__actions">
               <span />
               <Button type="button" variant="primary" onClick={() => setStep(2)}>
@@ -138,6 +152,11 @@ export const MonthEndCloseFlow = React.forwardRef<HTMLDivElement, MonthEndCloseF
               </Alert>
             ) : (
               <>
+                {errorMessage && (
+                  <Alert variant="error" title="Close Period Failed">
+                    {errorMessage}
+                  </Alert>
+                )}
                 <Alert variant="warning" title="Controller Sign-Off Required">
                   Locking {periodLabel} prevents backdated journal entries. Matched entries: {matchedCount} / {bankEntries.length}.
                 </Alert>
@@ -165,3 +184,4 @@ export const MonthEndCloseFlow = React.forwardRef<HTMLDivElement, MonthEndCloseF
 
 MonthEndCloseFlow.displayName = "MonthEndCloseFlow";
 export default MonthEndCloseFlow;
+

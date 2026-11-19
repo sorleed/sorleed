@@ -31,6 +31,7 @@ export const TradeExecutionFlow = React.forwardRef<HTMLDivElement, TradeExecutio
     const [pendingOrder, setPendingOrder] = useState<OrderSubmissionPayload | null>(null);
     const [orderId, setOrderId] = useState<string>("");
     const [executing, setExecuting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const formatMoney = (val: number) =>
       `${currency} ${val.toLocaleString(undefined, {
@@ -39,6 +40,7 @@ export const TradeExecutionFlow = React.forwardRef<HTMLDivElement, TradeExecutio
       })}`;
 
     const handleTicketSubmit = (payload: OrderSubmissionPayload) => {
+      setErrorMessage(null);
       setPendingOrder(payload);
       setStep(2);
     };
@@ -46,10 +48,15 @@ export const TradeExecutionFlow = React.forwardRef<HTMLDivElement, TradeExecutio
     const handleConfirmExecution = async () => {
       if (!pendingOrder || executing) return;
       setExecuting(true);
+      setErrorMessage(null);
       try {
         const res = await onExecuteOrder?.(pendingOrder);
         setOrderId(res?.orderId || `ORD-${Date.now().toString().slice(-6)}`);
         setStep(3);
+      } catch (err) {
+        setErrorMessage(
+          err instanceof Error ? err.message : "Order execution failed. Please try again.",
+        );
       } finally {
         setExecuting(false);
       }
@@ -65,7 +72,7 @@ export const TradeExecutionFlow = React.forwardRef<HTMLDivElement, TradeExecutio
         aria-label={`${symbol} trade execution flow`}
         {...props}
       >
-        <div className="fc-trade-flow__steps" aria-label="Trade steps">
+        <div className="fc-trade-flow__steps" aria-label="Trade steps" aria-live="polite">
           <span
             className={`fc-trade-flow__step ${
               step === 1 ? "fc-trade-flow__step--active" : "fc-trade-flow__step--done"
@@ -141,6 +148,11 @@ export const TradeExecutionFlow = React.forwardRef<HTMLDivElement, TradeExecutio
                 <strong>{formatMoney(pendingOrder.estimatedTotal)}</strong>
               </div>
             </div>
+            {errorMessage && (
+              <Alert variant="error" title="Execution Error">
+                {errorMessage}
+              </Alert>
+            )}
             <Alert variant="info" title="Best Execution Notice">
               Market orders execute immediately at the prevailing NBBO price.
             </Alert>
@@ -202,3 +214,4 @@ export const TradeExecutionFlow = React.forwardRef<HTMLDivElement, TradeExecutio
 
 TradeExecutionFlow.displayName = "TradeExecutionFlow";
 export default TradeExecutionFlow;
+

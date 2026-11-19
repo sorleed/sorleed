@@ -1896,6 +1896,68 @@ export interface SecurityCenterFlowProps extends Omit<React.HTMLAttributes<HTMLD
   onEmergencyLockdown?: () => Promise<void> | void;
 }
 
+export type SavingsGoalFrequency = "weekly" | "biweekly" | "monthly";
+
+export interface SavingsGoalPayload {
+  goalName: string;
+  category: string;
+  targetAmount: number;
+  initialDeposit: number;
+  targetMonths: number;
+  frequency: SavingsGoalFrequency;
+  autoSaveAmount: number;
+  roundUpsEnabled: boolean;
+}
+
+export interface SavingsGoalFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  currency?: string;
+  apyPercent?: number;
+  defaultGoalName?: string;
+  defaultTargetAmount?: number;
+  onCreateGoal?: (goal: SavingsGoalPayload) => Promise<{ goalId?: string } | void> | void;
+}
+
+export interface BudgetCategoryItem {
+  id: string;
+  name: string;
+  limit: number;
+  currentSpent?: number;
+}
+
+export interface BudgetSetupPayload {
+  monthlyIncome: number;
+  categories: BudgetCategoryItem[];
+  overspendAlerts: boolean;
+  warningThresholdPercent: number;
+}
+
+export interface BudgetSetupFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  currency?: string;
+  defaultIncome?: number;
+  initialCategories?: BudgetCategoryItem[];
+  onSaveBudget?: (budget: BudgetSetupPayload) => Promise<void> | void;
+}
+
+export interface SplitContact {
+  id: string;
+  name: string;
+  handle: string;
+}
+
+export interface GroupBillSplitPayload {
+  title: string;
+  totalAmount: number;
+  participants: { id: string; name: string; share: number }[];
+}
+
+export interface GroupBillSplitFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  currency?: string;
+  defaultBillTitle?: string;
+  defaultTotal?: number;
+  contacts: SplitContact[];
+  onSendRequests?: (payload: GroupBillSplitPayload) => Promise<void> | void;
+}
+
 
 
 

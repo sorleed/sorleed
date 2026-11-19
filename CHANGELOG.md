@@ -11,8 +11,9 @@ semantic versioning.
 - **Security Pack**: `SessionTimeoutModal`, `VirtualCardReveal`, and `DeviceManagementCard`.
 - **Credit & Wealth Pack**: `CreditUtilizationMeter`, `PerformanceChartCard`, and `OrderEntryTicket`.
 - **Accounting & Treasury Pack**: `BankReconciliationMatcher`, `CashFlowForecastCard`, and `AuditTrailTimeline`.
-- **End-to-End Flows**: `TradeExecutionFlow`, `MonthEndCloseFlow`, and `SecurityCenterFlow`.
-- Interactive playgrounds on all 12 new docs pages, full CLI registry entries, template parity sync, sidebar navigation, and unit tests (92 total in registry).
+- **End-to-End Flows**: `TradeExecutionFlow`, `MonthEndCloseFlow`, `SecurityCenterFlow`, `SavingsGoalFlow`, `BudgetSetupFlow`, and `GroupBillSplitFlow`.
+- Flow audit hardening: added `try/catch` error Alerts, `EmptyState` guards, `aria-live` step announcements, and two-step emergency lockdown confirmation.
+- Interactive playgrounds on all 15 new docs pages, full CLI registry entries, template parity sync, sidebar navigation, and unit tests (95 total in registry).
 
 ## [Unreleased]
 
