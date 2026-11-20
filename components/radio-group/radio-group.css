@@ -139,6 +139,7 @@
   font-size: var(--fc-radio-group-font-size);
   font-weight: var(--fc-radio-group-label-font-weight);
   line-height: var(--fc-radio-group-line-height);
+  -webkit-user-select: none;
   user-select: none;
 }
 

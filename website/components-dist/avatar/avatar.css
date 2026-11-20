@@ -13,6 +13,7 @@
   color: var(--fc-color-content-primary);
   font-family: inherit;
   font-weight: var(--fc-font-weight-medium);
+  -webkit-user-select: none;
   user-select: none;
   overflow: visible;
   flex-shrink: 0;

@@ -22,8 +22,8 @@ export const IbanAccountDetails = React.forwardRef<HTMLDivElement, IbanAccountDe
 
     const handleCopy = async (label: string, value: string) => {
       try {
-        if (typeof navigator !== "undefined" && navigator.clipboard) {
-          await navigator.clipboard.writeText(value);
+        if (typeof navigator !== "undefined") {
+          await navigator.clipboard?.writeText?.(value);
         }
       } catch {
         // Clipboard write may be unavailable in non-secure contexts

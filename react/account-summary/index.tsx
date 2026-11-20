@@ -23,8 +23,12 @@ export const AccountSummary = React.forwardRef<HTMLDivElement, AccountSummaryPro
     const [hidden, setHidden] = useState(defaultHidden);
 
     const handleCopy = (field: string, value: string) => {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(value).catch(() => {});
+      try {
+        if (typeof navigator !== "undefined") {
+          navigator.clipboard?.writeText?.(value)?.catch?.(() => {});
+        }
+      } catch {
+        // Ignore clipboard errors in restricted contexts
       }
       setCopiedField(field);
       onCopy?.(field, value);

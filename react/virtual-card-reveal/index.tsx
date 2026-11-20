@@ -96,8 +96,12 @@ export const VirtualCardReveal = React.forwardRef<HTMLDivElement, VirtualCardRev
     };
 
     const copyText = (type: "pan" | "cvv", text: string) => {
-      if (typeof navigator !== "undefined" && navigator.clipboard) {
-        navigator.clipboard.writeText(text);
+      try {
+        if (typeof navigator !== "undefined") {
+          navigator.clipboard?.writeText?.(text)?.catch?.(() => {});
+        }
+      } catch {
+        // Ignore clipboard errors in non-secure/restricted contexts
       }
       onCopy?.(type, text);
 

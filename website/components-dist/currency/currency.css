@@ -57,6 +57,7 @@
   font-size: var(--fc-currency-font-size);
   font-weight: var(--fc-currency-font-weight);
   line-height: var(--fc-currency-line-height);
+  -webkit-user-select: none;
   user-select: none;
   flex-shrink: 0;
 }

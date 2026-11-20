@@ -271,7 +271,7 @@ export const RecurringPaymentFlow = React.forwardRef<HTMLDivElement, RecurringPa
                 <div className="fc-recurring-flow__grid-2">
                   <Input
                     label={`Amount (${currency})`}
-                    type="number"
+                    type="text" inputMode="decimal"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     required

@@ -33,6 +33,7 @@
   line-height: var(--fc-tabs-trigger-line-height);
   font-weight: var(--fc-tabs-trigger-font-weight);
   cursor: pointer;
+  -webkit-user-select: none;
   user-select: none;
   transition: all 0.15s ease-in-out;
 }

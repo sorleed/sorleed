@@ -90,6 +90,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   padding: var(--fc-space-2, 0.5rem) var(--fc-space-3, 0.75rem);
   border-radius: var(--fc-radius-md, 0.375rem);
@@ -102,12 +103,14 @@
   letter-spacing: 0.15em;
   font-weight: 600;
   color: #FFFFFF;
+  -webkit-user-select: all;
   user-select: all;
   transition: filter 0.3s ease;
 }
 
 .fc-card-reveal__pan--blurred {
   filter: blur(4px);
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -139,6 +142,7 @@
 
 .fc-card-reveal__meta-val--blurred {
   filter: blur(4px);
+  -webkit-user-select: none;
   user-select: none;
 }
 

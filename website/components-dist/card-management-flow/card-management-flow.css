@@ -70,6 +70,7 @@
     rgba(191, 219, 254, 0.3) 50%,
     rgba(219, 234, 254, 0.48) 100%
   );
+  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   display: flex;
   align-items: center;

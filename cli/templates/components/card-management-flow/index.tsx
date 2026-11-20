@@ -366,7 +366,7 @@ export const CardManagementFlow = React.forwardRef<HTMLDivElement, CardManagemen
                 {pendingAction === "set_limit" ? (
                   <Input
                     label={`New daily spending cap (${currency})`}
-                    type="number"
+                    type="text" inputMode="decimal"
                     value={draftLimit}
                     onChange={(e) => setDraftLimit(e.target.value)}
                     helperText={`Between ${currency} 100 and ${currency} ${monthlyLimitForPath().toLocaleString()}`}

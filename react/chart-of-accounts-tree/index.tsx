@@ -58,6 +58,18 @@ export const ChartOfAccountsTree = React.forwardRef<HTMLDivElement, ChartOfAccou
             className="fc-chart-accounts__item"
             style={{ paddingLeft: `${depth * 20 + 8}px` }}
             onClick={() => onSelectAccount?.(node)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onSelectAccount?.(node);
+              } else if (e.key === "ArrowRight" && hasChildren && !isExpanded) {
+                e.preventDefault();
+                toggleExpand(node.code);
+              } else if (e.key === "ArrowLeft" && hasChildren && isExpanded) {
+                e.preventDefault();
+                toggleExpand(node.code);
+              }
+            }}
             role="treeitem"
             aria-expanded={hasChildren ? isExpanded : undefined}
             tabIndex={0}
