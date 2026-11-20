@@ -1,17 +1,24 @@
-import { copyFileSync, mkdirSync } from 'fs';
+import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '../..');
+const componentsDir = resolve(root, 'components');
 const distStyles = resolve(__dirname, '../dist/styles');
 
 mkdirSync(distStyles, { recursive: true });
 
-copyFileSync(resolve(root, 'components/button/button.css'), resolve(distStyles, 'button.css'));
-copyFileSync(resolve(root, 'components/input/input.css'), resolve(distStyles, 'input.css'));
-copyFileSync(resolve(root, 'components/password-input/password-input.css'), resolve(distStyles, 'password-input.css'));
-copyFileSync(resolve(root, 'components/phone-input/phone-input.css'), resolve(distStyles, 'phone-input.css'));
+let count = 0;
+for (const entry of readdirSync(componentsDir, { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue;
+  const cssFile = resolve(componentsDir, entry.name, `${entry.name}.css`);
+  if (existsSync(cssFile)) {
+    copyFileSync(cssFile, resolve(distStyles, `${entry.name}.css`));
+    count++;
+  }
+}
+
 copyFileSync(resolve(root, 'tokens/dist/tokens.css'), resolve(distStyles, 'tokens.css'));
 
-console.log('Copied CSS assets to dist/styles/');
+console.log(`Copied ${count} component/flow stylesheets + tokens.css to dist/styles/`);
