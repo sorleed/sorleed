@@ -71,21 +71,43 @@
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" id="stage-avatar">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        <span class="fc-avatar fc-avatar--lg" aria-label="Sarah Jenkins"><span class="fc-avatar__fallback" aria-hidden="true">SJ</span><span class="fc-avatar__status fc-avatar__status--online" role="status" aria-label="Status: online"></span></span>
-      </div>
-    </div>
-    <div class="playground-panel">
+            <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:16px 0;">
+              <span id="pg-avatar" class="fc-avatar fc-avatar--lg" aria-label="Sarah Jenkins"><span class="fc-avatar__fallback" aria-hidden="true">SJ</span><span id="pg-avatar-status" class="fc-avatar__status fc-avatar__status--online" role="status" aria-label="Status: online"></span></span>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
+              <span class="ctrl-label">Size</span>
+              <select class="ctrl-select" id="pg-avatar-size">
+                <option value="sm">Small</option>
+                <option value="md">Medium</option>
+                <option value="lg" selected>Large</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Status</span>
+              <select class="ctrl-select" id="pg-avatar-st">
+                <option value="online" selected>Online</option>
+                <option value="away">Away</option>
+                <option value="busy">Busy</option>
+                <option value="offline">Offline</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const av = document.getElementById('pg-avatar');
+            const st = document.getElementById('pg-avatar-status');
+            document.getElementById('pg-avatar-size').addEventListener('change', (e) => {
+              av.className = 'fc-avatar fc-avatar--' + e.target.value;
+            });
+            document.getElementById('pg-avatar-st').addEventListener('change', (e) => {
+              st.className = 'fc-avatar__status fc-avatar__status--' + e.target.value;
+              st.setAttribute('aria-label', 'Status: ' + e.target.value);
+            });
+          })();
+        </script>
       </section>
 
       <section>

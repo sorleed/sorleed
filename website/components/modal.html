@@ -70,25 +70,74 @@
       <section>
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
-          <div class="playground-stage" id="stage-modal">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        <div class="fc-modal-overlay" data-testid="modal-overlay"><div role="dialog" aria-modal="true" aria-label="Wire Transfer Confirmation" class="fc-modal fc-modal--md"><div class="fc-modal__header"><h2 class="fc-modal__title">Wire Transfer Confirmation</h2></div><div class="fc-modal__body"><p style="margin:0;font-size:14px">You are authorizing an irreversible wire transfer of $25,000.00 to Apex Global.</p></div></div></div>
-      </div>
-    </div>
-    <div class="playground-panel">5,000.00 to Apex Global.</p></div></div></div>
-      </div>
-    </div>
-    <div class="playground-panel">
+          <div class="playground-stage" id="stage-modal" style="padding:32px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+            <div id="pg-modal-inline" role="dialog" aria-label="Wire Transfer Confirmation" class="fc-modal fc-modal--md" style="position:relative; z-index:1; width:100%; max-width:440px;">
+              <div class="fc-modal__header">
+                <h2 class="fc-modal__title">Wire Transfer Confirmation</h2>
+                <button type="button" id="pg-modal-inline-close" class="fc-modal__close" aria-label="Close">×</button>
+              </div>
+              <div class="fc-modal__body">
+                <p style="margin:0; font-size:14px;">You are authorizing an irreversible wire transfer of <strong>\$25,000.00</strong> to <strong>Apex Global Ltd</strong>.</p>
+              </div>
+              <div class="fc-modal__footer">
+                <button type="button" id="pg-modal-cancel" class="fc-button fc-button--ghost">Cancel</button>
+                <button type="button" id="pg-modal-confirm" class="fc-button fc-button--primary">Authorize Wire</button>
+              </div>
+            </div>
+            <button type="button" id="pg-modal-open-live" class="fc-button fc-button--secondary">Open Fullscreen Modal Overlay</button>
+          </div>
+          <div id="pg-modal-live-overlay" class="fc-modal-overlay" style="display:none;">
+            <div id="pg-modal-live-box" role="dialog" aria-modal="true" aria-label="Wire Transfer Confirmation" class="fc-modal fc-modal--md">
+              <div class="fc-modal__header">
+                <h2 class="fc-modal__title">Wire Transfer Confirmation</h2>
+                <button type="button" id="pg-modal-live-close" class="fc-modal__close" aria-label="Close">×</button>
+              </div>
+              <div class="fc-modal__body">
+                <p style="margin:0; font-size:14px;">Press <strong>Escape</strong>, click the backdrop, or click Cancel to dismiss this live modal.</p>
+              </div>
+              <div class="fc-modal__footer">
+                <button type="button" id="pg-modal-live-cancel" class="fc-button fc-button--ghost">Cancel</button>
+                <button type="button" id="pg-modal-live-ok" class="fc-button fc-button--primary">Authorize Wire</button>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
+              <span class="ctrl-label">Size</span>
+              <select class="ctrl-select" id="pg-modal-size">
+                <option value="sm">Small (sm)</option>
+                <option value="md" selected>Medium (md)</option>
+                <option value="lg">Large (lg)</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const inlineBox = document.getElementById('pg-modal-inline');
+            const overlay = document.getElementById('pg-modal-live-overlay');
+            const liveBox = document.getElementById('pg-modal-live-box');
+            const openBtn = document.getElementById('pg-modal-open-live');
+            const sizeSel = document.getElementById('pg-modal-size');
+            const confirmBtn = document.getElementById('pg-modal-confirm');
+            function closeLive() { overlay.style.display = 'none'; }
+            openBtn.addEventListener('click', () => { overlay.style.display = 'flex'; });
+            document.getElementById('pg-modal-live-close').addEventListener('click', closeLive);
+            document.getElementById('pg-modal-live-cancel').addEventListener('click', closeLive);
+            document.getElementById('pg-modal-live-ok').addEventListener('click', closeLive);
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeLive(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.style.display === 'flex') closeLive(); });
+            confirmBtn.addEventListener('click', () => {
+              confirmBtn.textContent = 'Authorized ✓';
+              setTimeout(() => { confirmBtn.textContent = 'Authorize Wire'; }, 1400);
+            });
+            sizeSel.addEventListener('change', () => {
+              const s = sizeSel.value;
+              inlineBox.className = 'fc-modal fc-modal--' + s;
+              liveBox.className = 'fc-modal fc-modal--' + s;
+            });
+          })();
+        </script>
       </section>
 
       <section>

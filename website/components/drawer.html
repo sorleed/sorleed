@@ -70,22 +70,53 @@
       <section>
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
-          <div class="playground-stage" id="stage-drawer">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        
-      </div>
-    </div>
-    <div class="playground-panel">
+          <div class="playground-stage" id="stage-drawer" style="position:relative; min-height:280px; overflow:hidden; padding:24px; display:flex; align-items:center; justify-content:center;">
+            <button type="button" id="pg-drawer-open" class="fc-button fc-button--primary">Open Transaction Drawer</button>
+            <div id="pg-drawer-backdrop" style="position:absolute; inset:0; background:rgba(15,23,42,0.35); display:flex; justify-content:flex-end;">
+              <div id="pg-drawer-panel" role="dialog" aria-label="Transaction Details" class="fc-drawer__content" style="position:relative; width:320px; max-width:90%; height:100%; margin:0; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div class="fc-drawer__header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3 class="fc-drawer__title" style="margin:0;">Transaction Details</h3>
+                    <button type="button" id="pg-drawer-close" class="fc-button fc-button--ghost fc-button--sm" aria-label="Close drawer">×</button>
+                  </div>
+                  <p style="font-size:13px; color:var(--fc-color-content-secondary); margin:12px 0 0;">
+                    Settlement Reference: <strong>#TX-984210</strong><br>
+                    Rail: <strong>Fedwire</strong> · Amount: <strong>\$14,500.00</strong>
+                  </p>
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap:8px;">
+                  <button type="button" id="pg-drawer-done" class="fc-button fc-button--primary fc-button--sm">Close Drawer</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
+              <span class="ctrl-label">Side</span>
+              <select class="ctrl-select" id="pg-drawer-side">
+                <option value="right" selected>Right</option>
+                <option value="left">Left</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const backdrop = document.getElementById('pg-drawer-backdrop');
+            const openBtn = document.getElementById('pg-drawer-open');
+            const sideSel = document.getElementById('pg-drawer-side');
+            function close() { backdrop.style.display = 'none'; }
+            function open() { backdrop.style.display = 'flex'; }
+            openBtn.addEventListener('click', open);
+            document.getElementById('pg-drawer-close').addEventListener('click', close);
+            document.getElementById('pg-drawer-done').addEventListener('click', close);
+            backdrop.addEventListener('click', (e) => { if (e.target === backdrop) close(); });
+            sideSel.addEventListener('change', () => {
+              backdrop.style.justifyContent = sideSel.value === 'left' ? 'flex-start' : 'flex-end';
+              open();
+            });
+          })();
+        </script>
       </section>
 
       <section>

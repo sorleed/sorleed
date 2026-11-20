@@ -70,22 +70,57 @@
       <section>
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
-          <div class="playground-stage" id="stage-phone-input">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        
-      </div>
-    </div>
-    <div class="playground-panel">
+          <div class="playground-stage" id="stage-phone-input" style="padding:32px; display:flex; justify-content:center;">
+            <div class="fc-phone-input" style="max-width:380px; width:100%;">
+              <label class="fc-phone-input__label" for="pg-phone-field">Mobile Number (2FA SMS)</label>
+              <div class="fc-phone-input__control" style="display:flex; gap:8px; align-items:center;">
+                <select id="pg-phone-country" class="fc-select__field" aria-label="Country code" style="width:110px;">
+                  <option value="+1" selected>US +1</option>
+                  <option value="+44">UK +44</option>
+                  <option value="+234">NG +234</option>
+                  <option value="+49">DE +49</option>
+                </select>
+                <input id="pg-phone-field" class="fc-input__field" type="tel" inputmode="tel" placeholder="(415) 555-0192" value="415 555 0192" style="flex:1;" />
+              </div>
+              <p id="pg-phone-helper" class="fc-input__message" style="margin:6px 0 0;">Formatted E.164: +14155550192</p>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
               <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
+              <select class="ctrl-select" id="pg-phone-state">
+                <option value="default" selected>Default</option>
+                <option value="error">Invalid Number</option>
                 <option value="disabled">Disabled</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const country = document.getElementById('pg-phone-country');
+            const field = document.getElementById('pg-phone-field');
+            const helper = document.getElementById('pg-phone-helper');
+            const stateSel = document.getElementById('pg-phone-state');
+            function update() {
+              const digits = field.value.replace(/\D/g, '');
+              const st = stateSel.value;
+              field.disabled = st === 'disabled';
+              country.disabled = st === 'disabled';
+              if (st === 'error') {
+                helper.textContent = 'Enter a valid mobile number for SMS verification.';
+                helper.className = 'fc-input__message fc-input__message--error';
+              } else {
+                helper.textContent = 'Formatted E.164: ' + country.value + (digits || '...');
+                helper.className = 'fc-input__message';
+              }
+            }
+            country.addEventListener('change', update);
+            field.addEventListener('input', update);
+            stateSel.addEventListener('change', update);
+            update();
+          })();
+        </script>
       </section>
 
       <section>

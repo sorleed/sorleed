@@ -71,21 +71,34 @@
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" id="stage-badge">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        <span class="fc-badge fc-badge--success">CLEARED</span>
-      </div>
-    </div>
-    <div class="playground-panel">
+            <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; gap:8px; margin:0 auto; padding:16px 0;">
+              <span id="pg-badge" class="fc-badge fc-badge--success">CLEARED</span>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
+              <span class="ctrl-label">Variant</span>
+              <select class="ctrl-select" id="pg-badge-variant">
                 <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
+                <option value="success" selected>Success</option>
+                <option value="warning">Warning</option>
+                <option value="error">Error</option>
+                <option value="info">Info</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const labels = { default: 'DRAFT', success: 'CLEARED', warning: 'PENDING REVIEW', error: 'DECLINED', info: 'PROCESSING' };
+            const badge = document.getElementById('pg-badge');
+            document.getElementById('pg-badge-variant').addEventListener('change', (e) => {
+              const v = e.target.value;
+              badge.className = 'fc-badge fc-badge--' + v;
+              badge.textContent = labels[v];
+            });
+          })();
+        </script>
       </section>
 
       <section>
