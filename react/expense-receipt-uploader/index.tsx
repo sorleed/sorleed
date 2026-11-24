@@ -3,7 +3,7 @@ import { Input } from "../input";
 import { Currency } from "../currency";
 import { Switch } from "../switch";
 import { Button } from "../button";
-import type { ExpenseReceiptUploaderProps, ExpenseReceiptData } from "../types";
+import type { ExpenseReceiptUploaderProps } from "../types";
 
 export const ExpenseReceiptUploader = React.forwardRef<HTMLDivElement, ExpenseReceiptUploaderProps>(
   (

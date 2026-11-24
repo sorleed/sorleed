@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Sorleed — Device Management Card
+   Active login sessions, trusted devices, and security session revocation
+   ========================================================================== */
+
+.fc-device-card {
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fc-device-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3, 0.75rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fc-device-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--fc-space-3, 0.75rem) var(--fc-space-4, 1rem);
+  background-color: var(--fc-color-surface-subtle, #F9FAFB);
+  border: 1px solid var(--fc-color-border-default, #E5E7EB);
+  border-radius: var(--fc-radius-lg, 0.5rem);
+  gap: var(--fc-space-3, 0.75rem);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.fc-device-item--current {
+  border-color: rgba(37, 99, 235, 0.3);
+  background-color: rgba(37, 99, 235, 0.02);
+}
+
+.fc-device-item__left {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-3, 0.75rem);
+  min-width: 0;
+}
+
+.fc-device-item__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--fc-radius-md, 0.375rem);
+  background-color: var(--fc-color-surface-default, #FFFFFF);
+  border: 1px solid var(--fc-color-border-default, #E5E7EB);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fc-color-content-secondary, #4B5563);
+  flex-shrink: 0;
+}
+
+.fc-device-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.fc-device-item__name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2, 0.5rem);
+  flex-wrap: wrap;
+}
+
+.fc-device-item__name {
+  font-size: var(--fc-font-size-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--fc-color-content-primary, #111827);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fc-device-item__meta {
+  font-size: var(--fc-font-size-xs, 0.75rem);
+  color: var(--fc-color-content-secondary, #6B7280);
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-1, 0.25rem);
+  flex-wrap: wrap;
+}
+
+.fc-device-item__right {
+  display: flex;
+  align-items: center;
+  gap: var(--fc-space-2, 0.5rem);
+  flex-shrink: 0;
+}
+
+.fc-device-card__footer {
+  margin-top: var(--fc-space-4, 1rem);
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--fc-space-3, 0.75rem);
+  border-top: 1px solid var(--fc-color-border-default, #E5E7EB);
+}
+

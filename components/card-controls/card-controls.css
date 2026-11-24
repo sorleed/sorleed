@@ -32,7 +32,7 @@
 .fc-card-controls__subtitle {
   margin: 0;
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-card-controls__list {
@@ -65,7 +65,7 @@
 
 .fc-card-controls__item-desc {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 @media (forced-colors: active) {

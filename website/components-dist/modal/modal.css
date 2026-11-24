@@ -31,6 +31,7 @@
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   z-index: 101;
   max-height: calc(100vh - var(--fc-space-12));
+  max-height: calc(100dvh - var(--fc-space-12));
   overflow-y: auto;
 }
 
@@ -50,6 +51,7 @@
 .fc-modal--full {
   max-width: calc(100vw - var(--fc-space-8));
   height: calc(100vh - var(--fc-space-8));
+  height: calc(100dvh - var(--fc-space-8));
 }
 
 .fc-modal__header {
@@ -76,7 +78,7 @@
   cursor: pointer;
   padding: var(--fc-space-1);
   border-radius: var(--fc-radius-sm);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-modal__close:hover {

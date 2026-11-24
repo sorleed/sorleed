@@ -326,7 +326,7 @@ export const LoanApplicationFlow = React.forwardRef<HTMLDivElement, LoanApplicat
               <div className="fc-loan-flow__grid-2">
                 <Input
                   label={`Requested amount (${currency})`}
-                  type="number"
+                  type="text" inputMode="decimal"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                   helperText="Min 500 · Max 250,000"
@@ -365,7 +365,7 @@ export const LoanApplicationFlow = React.forwardRef<HTMLDivElement, LoanApplicat
                   <>
                     <Input
                       label={`Monthly net income (${currency})`}
-                      type="number"
+                      type="text" inputMode="decimal"
                       value={monthlyIncome}
                       onChange={(e) => setMonthlyIncome(e.target.value)}
                       required
@@ -384,14 +384,14 @@ export const LoanApplicationFlow = React.forwardRef<HTMLDivElement, LoanApplicat
                   <>
                     <Input
                       label={`Annual company revenue (${currency})`}
-                      type="number"
+                      type="text" inputMode="decimal"
                       value={annualRevenue}
                       onChange={(e) => setAnnualRevenue(e.target.value)}
                       required
                     />
                     <Input
                       label="Years in operation"
-                      type="number"
+                      type="text" inputMode="decimal"
                       value={operatingYears}
                       onChange={(e) => setOperatingYears(e.target.value)}
                     />

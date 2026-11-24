@@ -72,21 +72,40 @@
         <div class="playground-box">
           <div class="playground-stage" id="stage-button">
             <div class="fc-preview-container" style="width:100%; max-width:540px; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-              <button type="button" class="fc-button fc-button--primary">Continue Payment</button>
+              <button type="button" id="pg-btn" class="fc-button fc-button--primary">Continue Payment</button>
             </div>
           </div>
           <div class="playground-panel">
             <div class="playground-ctrl-group">
+              <span class="ctrl-label">Variant</span>
+              <select class="ctrl-select" id="pg-btn-variant">
+                <option value="primary" selected>Primary</option>
+                <option value="secondary">Secondary</option>
+                <option value="ghost">Ghost</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
               <span class="ctrl-label">State</span>
-              <select class="ctrl-select" onchange="window.updateComponentState && window.updateComponentState(this.value)">
-                <option value="default">Default</option>
-                <option value="hover">Hover</option>
-                <option value="focus">Focus</option>
+              <select class="ctrl-select" id="pg-btn-state">
+                <option value="default" selected>Default</option>
                 <option value="disabled">Disabled</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const btn = document.getElementById('pg-btn');
+            const vSel = document.getElementById('pg-btn-variant');
+            const sSel = document.getElementById('pg-btn-state');
+            function update() {
+              btn.className = 'fc-button fc-button--' + vSel.value;
+              btn.disabled = sSel.value === 'disabled';
+            }
+            vSel.addEventListener('change', update);
+            sSel.addEventListener('change', update);
+          })();
+        </script>
       </section>
 
       <section>

@@ -58,7 +58,7 @@
 
 .fc-account-summary__field-label {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-account-summary__field-value-row {

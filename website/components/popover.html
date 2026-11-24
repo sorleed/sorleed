@@ -70,22 +70,39 @@
       <section>
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
-          <div class="playground-stage" id="stage-popover">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        
-      </div>
-    </div>
-    <div class="playground-panel">
+          <div class="playground-stage" id="stage-popover" style="padding:36px 24px 130px; display:flex; justify-content:center; align-items:flex-start;">
+            <div style="position:relative; display:inline-block;">
+              <button type="button" id="pg-popover-trigger" class="fc-button fc-button--secondary" aria-expanded="true">
+                FX Spread Details ▾
+              </button>
+              <div id="pg-popover-content" role="dialog" aria-label="FX Spread Details" class="fc-popover__content" style="position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); width:260px; z-index:10;">
+                <strong style="display:block; margin-bottom:4px;">Mid-Market Rate Lock</strong>
+                <p style="margin:0; font-size:13px; color:var(--fc-color-content-secondary);">
+                  1 USD = 0.9184 EUR. Rate locked for 60 seconds with 0.20% transparent FX fee.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
-              </select>
+              <button type="button" id="pg-popover-btn" class="fc-button fc-button--secondary fc-button--sm">Toggle Popover</button>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const trigger = document.getElementById('pg-popover-trigger');
+            const content = document.getElementById('pg-popover-content');
+            let open = true;
+            function toggle() {
+              open = !open;
+              content.style.display = open ? 'block' : 'none';
+              trigger.setAttribute('aria-expanded', String(open));
+            }
+            trigger.addEventListener('click', toggle);
+            document.getElementById('pg-popover-btn').addEventListener('click', toggle);
+          })();
+        </script>
       </section>
 
       <section>

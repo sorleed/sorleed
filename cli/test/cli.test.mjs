@@ -282,8 +282,10 @@ test('packed CLI tarball works in isolated consumer without repository access', 
   fs.mkdirSync(consumerDir, { recursive: true });
 
   try {
-    // 1. Pack the CLI into packDir
-    const packRes = spawnSync('npm', ['pack', '--pack-destination', packDir], {
+    // 1. Pack the CLI into packDir using an isolated cache directory
+    const cacheDir = path.join(tmpBase, 'npm-cache');
+    fs.mkdirSync(cacheDir, { recursive: true });
+    const packRes = spawnSync('npm', ['pack', '--pack-destination', packDir, '--cache', cacheDir], {
       cwd: path.resolve(__dirname, '..'),
       encoding: 'utf8',
       timeout: 30000

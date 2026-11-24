@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>SessionTimeoutModal — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed SessionTimeoutModal component documentation, interactive playground, and props.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorleed.com/components/session-timeout-modal">
+  <meta property="og:title" content="SessionTimeoutModal — Sorleed Documentation">
+  <meta property="og:description" content="Sorleed SessionTimeoutModal component documentation, interactive playground, and props.">
+  <meta property="og:site_name" content="Sorleed">
+  <meta property="og:image" content="https://sorleed.com/assets/og-preview.png">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="balance-card.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="https://github.com/sorleed/sorleed" target="_blank" rel="noreferrer" class="badge-metric" title="Star on GitHub" style="display:inline-flex; align-items:center; gap:6px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span data-github-stars style="font-weight:700; color:var(--text-primary);">1</span>
+      </a>
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="../components.html">Components</a>
+        <span>/</span>
+        <span>SessionTimeoutModal</span>
+      </div>
+
+      <h1 class="docs-title">SessionTimeoutModal</h1>
+      <p class="docs-lede">
+        PCI/banking inactivity session warning dialog with an animated SVG countdown ring, built on Radix Dialog with <code>role="alertdialog"</code> and pure CSS tokens.
+      </p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" id="stage-session-timeout-modal" style="padding:32px; display:flex; justify-content:center;">
+            <div class="fc-session-timeout-modal" role="alertdialog" style="position:relative; top:auto; left:auto; transform:none; max-width:420px; width:100%;">
+              <div class="fc-session-timeout-modal__ring-wrap">
+                <svg class="fc-session-timeout-modal__ring" viewBox="0 0 88 88" width="88" height="88">
+                  <circle class="fc-session-timeout-modal__ring-track" cx="44" cy="44" r="38" />
+                  <circle id="stm-ring-progress" class="fc-session-timeout-modal__ring-progress" cx="44" cy="44" r="38" stroke-dasharray="238.76" stroke-dashoffset="0" />
+                </svg>
+                <span id="stm-countdown" class="fc-session-timeout-modal__countdown">00:60</span>
+              </div>
+              <h3 id="stm-title" class="fc-session-timeout-modal__title">Session Expiring Soon</h3>
+              <p id="stm-desc" class="fc-session-timeout-modal__desc">For your security, you will be automatically signed out due to inactivity.</p>
+              <div class="fc-session-timeout-modal__actions">
+                <button type="button" id="stm-extend-btn" class="fc-button fc-button--primary" style="width:100%;">Stay Signed In</button>
+                <button type="button" id="stm-logout-btn" class="fc-button fc-button--ghost" style="width:100%;">Log Out Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Countdown</span>
+              <select class="ctrl-select" id="stm-duration-select">
+                <option value="60" selected>60 seconds</option>
+                <option value="30">30 seconds</option>
+                <option value="10">10 seconds (Urgent)</option>
+              </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <button type="button" id="stm-restart-btn" class="fc-button fc-button--secondary fc-button--sm">Restart Timer</button>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function() {
+            const C = 238.76;
+            let total = 60, remaining = 60, timer = null;
+            const ring = document.getElementById('stm-ring-progress');
+            const label = document.getElementById('stm-countdown');
+            const title = document.getElementById('stm-title');
+            const desc = document.getElementById('stm-desc');
+            const sel = document.getElementById('stm-duration-select');
+            function render() {
+              const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+              const s = String(remaining % 60).padStart(2, '0');
+              label.textContent = m + ':' + s;
+              ring.style.strokeDashoffset = String(C * (1 - remaining / total));
+            }
+            function start(secs) {
+              clearInterval(timer);
+              total = secs; remaining = secs;
+              title.textContent = 'Session Expiring Soon';
+              desc.textContent = 'For your security, you will be automatically signed out due to inactivity.';
+              render();
+              timer = setInterval(() => {
+                remaining = Math.max(0, remaining - 1);
+                render();
+                if (remaining === 0) {
+                  clearInterval(timer);
+                  title.textContent = 'Session Timed Out';
+                  desc.textContent = 'You have been signed out. Click Restart Timer to preview again.';
+                }
+              }, 1000);
+            }
+            document.getElementById('stm-extend-btn').addEventListener('click', () => start(Number(sel.value)));
+            document.getElementById('stm-logout-btn').addEventListener('click', () => {
+              clearInterval(timer); remaining = 0; render();
+              title.textContent = 'Signed Out';
+              desc.textContent = 'Session terminated safely.';
+            });
+            document.getElementById('stm-restart-btn').addEventListener('click', () => start(Number(sel.value)));
+            sel.addEventListener('change', () => start(Number(sel.value)));
+            start(60);
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add session-timeout-modal</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { SessionTimeoutModal } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/session-timeout-modal.css';
+
+export function Example() {
+  return (
+    &lt;SessionTimeoutModal
+      open={true}
+      countdownSeconds={60}
+      onExtendSession={() =&gt; console.log('Extended')}
+      onTimeout={() =&gt; console.log('Timed out')}
+      onLogout={() =&gt; console.log('Logged out')}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>renderStripeSidebar('session-timeout-modal');</script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>
+

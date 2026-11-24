@@ -34,7 +34,7 @@
   border: none;
   cursor: pointer;
   padding: var(--fc-space-1);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
   display: inline-flex;
   align-items: center;
 }
@@ -69,12 +69,12 @@
 
 .fc-portfolio-summary__returns-pill--positive {
   background-color: var(--fc-green-100);
-  color: var(--fc-color-status-success);
+  color: var(--fc-color-feedback-success);
 }
 
 .fc-portfolio-summary__returns-pill--negative {
   background-color: var(--fc-red-100);
-  color: var(--fc-color-status-error);
+  color: var(--fc-color-feedback-error);
 }
 
 .fc-portfolio-summary__breakdown-grid {
@@ -94,7 +94,7 @@
 
 .fc-portfolio-summary__stat-label {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-portfolio-summary__stat-value {

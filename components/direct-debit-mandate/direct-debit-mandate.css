@@ -6,9 +6,10 @@
 .fc-mandate-overlay {
   position: fixed;
   inset: 0;
-  background-color: var(--fc-color-overlay, rgba(0, 0, 0, 0.6));
+  background-color: var(--fc-drawer-overlay-background, rgba(0, 0, 0, 0.6));
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
-  z-index: var(--fc-z-modal, 1000);
+  z-index: 1000;
 }
 
 .fc-mandate-dialog {
@@ -18,13 +19,13 @@
   transform: translate(-50%, -50%);
   width: 90vw;
   max-width: 480px;
-  background-color: var(--fc-color-surface);
-  border: 1px solid var(--fc-color-border);
+  background-color: var(--fc-color-surface-default);
+  border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-xl, 1rem);
-  box-shadow: var(--fc-shadow-lg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
   padding: var(--fc-space-6);
-  z-index: calc(var(--fc-z-modal, 1000) + 1);
-  font-family: var(--fc-font-family);
+  z-index: calc(1000 + 1);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -46,7 +47,7 @@
   height: 40px;
   border-radius: var(--fc-radius-md);
   background-color: rgba(37, 99, 235, 0.1);
-  color: var(--fc-color-primary);
+  color: var(--fc-color-action-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,13 +56,13 @@
 
 .fc-mandate__title {
   margin: 0;
-  font-size: var(--fc-font-size-base);
+  font-size: var(--fc-font-size-sm);
   font-weight: 600;
-  color: var(--fc-color-text);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-mandate__details-box {
-  background-color: var(--fc-color-surface-hover);
+  background-color: var(--fc-color-surface-subtle);
   border-radius: var(--fc-radius-md);
   padding: var(--fc-space-4);
   display: flex;
@@ -76,20 +77,20 @@
 }
 
 .fc-mandate__row-label {
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-mandate__row-value {
   font-weight: 600;
-  color: var(--fc-color-text);
-  font-family: var(--fc-font-mono, monospace);
+  color: var(--fc-color-content-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 .fc-mandate__guarantee-text {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   line-height: 1.5;
-  border-left: 3px solid var(--fc-color-primary);
+  border-left: 3px solid var(--fc-color-action-primary);
   padding-left: var(--fc-space-3);
   margin: 0;
 }

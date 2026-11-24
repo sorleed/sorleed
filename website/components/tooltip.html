@@ -70,22 +70,56 @@
       <section>
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
-          <div class="playground-stage" id="stage-tooltip">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        <span style="text-decoration:underline dotted;cursor:help" data-state="closed">Fedwire Funds Service</span>
-      </div>
-    </div>
-    <div class="playground-panel">
+          <div class="playground-stage" id="stage-tooltip" style="padding:56px 24px; display:flex; justify-content:center; align-items:center;">
+            <div style="position:relative; display:inline-flex; flex-direction:column; align-items:center;">
+              <div id="pg-tooltip-bubble" role="tooltip" class="fc-tooltip__content" style="position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); white-space:nowrap; z-index:10;">
+                Same-day real-time gross settlement via the Federal Reserve.
+              </div>
+              <button type="button" id="pg-tooltip-trigger" class="fc-button fc-button--secondary" aria-describedby="pg-tooltip-bubble">
+                Hover or focus: Fedwire Funds Service
+              </button>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
+              <span class="ctrl-label">Placement</span>
+              <select class="ctrl-select" id="pg-tooltip-side">
+                <option value="top" selected>Top</option>
+                <option value="bottom">Bottom</option>
               </select>
+            </div>
+            <div class="playground-ctrl-group">
+              <button type="button" id="pg-tooltip-toggle" class="fc-button fc-button--secondary fc-button--sm">Toggle Visibility</button>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const trigger = document.getElementById('pg-tooltip-trigger');
+            const bubble = document.getElementById('pg-tooltip-bubble');
+            const sideSel = document.getElementById('pg-tooltip-side');
+            let pinned = true;
+            function show() { bubble.style.display = 'block'; }
+            function hide() { if (!pinned) bubble.style.display = 'none'; }
+            trigger.addEventListener('mouseenter', show);
+            trigger.addEventListener('focus', show);
+            trigger.addEventListener('mouseleave', hide);
+            trigger.addEventListener('blur', hide);
+            document.getElementById('pg-tooltip-toggle').addEventListener('click', () => {
+              pinned = !pinned;
+              bubble.style.display = pinned ? 'block' : 'none';
+            });
+            sideSel.addEventListener('change', () => {
+              if (sideSel.value === 'bottom') {
+                bubble.style.bottom = 'auto';
+                bubble.style.top = 'calc(100% + 8px)';
+              } else {
+                bubble.style.top = 'auto';
+                bubble.style.bottom = 'calc(100% + 8px)';
+              }
+            });
+          })();
+        </script>
       </section>
 
       <section>

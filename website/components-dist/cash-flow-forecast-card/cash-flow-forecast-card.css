@@ -1,0 +1,102 @@
+.fc-cash-flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  padding: var(--fc-space-5);
+  background-color: var(--fc-color-surface-default);
+  border: 1px solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
+}
+
+.fc-cash-flow__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+  flex-wrap: wrap;
+}
+
+.fc-cash-flow__title {
+  margin: 0;
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-semibold);
+}
+
+.fc-cash-flow__kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--fc-space-3);
+}
+
+.fc-cash-flow__kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--fc-space-3);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface-subtle);
+}
+
+.fc-cash-flow__kpi-label {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-cash-flow__kpi-value {
+  font-size: var(--fc-font-size-lg);
+  font-weight: var(--fc-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-cash-flow__periods {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+}
+
+.fc-cash-flow__period {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-1);
+}
+
+.fc-cash-flow__period-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fc-font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-cash-flow__period-label {
+  font-weight: var(--fc-font-weight-semibold);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-cash-flow__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fc-cash-flow__bar-track {
+  height: 7px;
+  width: 100%;
+  background-color: var(--fc-color-surface-subtle);
+  border-radius: var(--fc-radius-full);
+  overflow: hidden;
+}
+
+.fc-cash-flow__bar-inflow {
+  height: 100%;
+  background-color: var(--fc-color-feedback-success);
+  border-radius: var(--fc-radius-full);
+}
+
+.fc-cash-flow__bar-outflow {
+  height: 100%;
+  background-color: var(--fc-color-feedback-error);
+  border-radius: var(--fc-radius-full);
+}
+

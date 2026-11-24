@@ -107,7 +107,13 @@ function renderStripeSidebar(activeId) {
             'loan-application-flow',
             'beneficiary-management-flow',
             'statement-export-flow',
-            'close-account-flow'
+            'close-account-flow',
+            'trade-execution-flow',
+            'month-end-close-flow',
+            'security-center-flow',
+            'savings-goal-flow',
+            'budget-setup-flow',
+            'group-bill-split-flow'
           ].includes(activeId),
           items: [
             { id: 'kyc-verification-flow', label: 'KycVerificationFlow', href: root + 'components/kyc-verification-flow.html' },
@@ -124,7 +130,13 @@ function renderStripeSidebar(activeId) {
             { id: 'loan-application-flow', label: 'LoanApplicationFlow', href: root + 'components/loan-application-flow.html' },
             { id: 'beneficiary-management-flow', label: 'BeneficiaryManagementFlow', href: root + 'components/beneficiary-management-flow.html' },
             { id: 'statement-export-flow', label: 'StatementExportFlow', href: root + 'components/statement-export-flow.html' },
-            { id: 'close-account-flow', label: 'CloseAccountFlow', href: root + 'components/close-account-flow.html' }
+            { id: 'close-account-flow', label: 'CloseAccountFlow', href: root + 'components/close-account-flow.html' },
+            { id: 'trade-execution-flow', label: 'TradeExecutionFlow', href: root + 'components/trade-execution-flow.html' },
+            { id: 'month-end-close-flow', label: 'MonthEndCloseFlow', href: root + 'components/month-end-close-flow.html' },
+            { id: 'security-center-flow', label: 'SecurityCenterFlow', href: root + 'components/security-center-flow.html' },
+            { id: 'savings-goal-flow', label: 'SavingsGoalFlow', href: root + 'components/savings-goal-flow.html' },
+            { id: 'budget-setup-flow', label: 'BudgetSetupFlow', href: root + 'components/budget-setup-flow.html' },
+            { id: 'group-bill-split-flow', label: 'GroupBillSplitFlow', href: root + 'components/group-bill-split-flow.html' }
           ]
         },
         {
@@ -154,8 +166,11 @@ function renderStripeSidebar(activeId) {
         {
           id: 'cat-accounting',
           name: 'Accounting & Ledgers',
-          open: ['chart-of-accounts-tree', 'expense-receipt-uploader', 'invoice-viewer', 'journal-entry-ledger', 'spending-meter', 'tax-summary-card'].includes(activeId),
+          open: ['audit-trail-timeline', 'bank-reconciliation-matcher', 'cash-flow-forecast-card', 'chart-of-accounts-tree', 'expense-receipt-uploader', 'invoice-viewer', 'journal-entry-ledger', 'spending-meter', 'tax-summary-card'].includes(activeId),
           items: [
+            { id: 'audit-trail-timeline', label: 'AuditTrailTimeline', href: root + 'components/audit-trail-timeline.html' },
+            { id: 'bank-reconciliation-matcher', label: 'BankReconciliationMatcher', href: root + 'components/bank-reconciliation-matcher.html' },
+            { id: 'cash-flow-forecast-card', label: 'CashFlowForecastCard', href: root + 'components/cash-flow-forecast-card.html' },
             { id: 'chart-of-accounts-tree', label: 'ChartOfAccountsTree', href: root + 'components/chart-of-accounts-tree.html' },
             { id: 'expense-receipt-uploader', label: 'ExpenseReceiptUploader', href: root + 'components/expense-receipt-uploader.html' },
             { id: 'invoice-viewer', label: 'InvoiceViewer', href: root + 'components/invoice-viewer.html' },
@@ -167,11 +182,14 @@ function renderStripeSidebar(activeId) {
         {
           id: 'cat-credit',
           name: 'Credit & Wealth',
-          open: ['asset-allocation', 'credit-score-gauge', 'loan-calculator', 'portfolio-summary', 'repayment-schedule', 'yield-curve-table'].includes(activeId),
+          open: ['asset-allocation', 'credit-score-gauge', 'credit-utilization-meter', 'loan-calculator', 'order-entry-ticket', 'performance-chart-card', 'portfolio-summary', 'repayment-schedule', 'yield-curve-table'].includes(activeId),
           items: [
             { id: 'asset-allocation', label: 'AssetAllocation', href: root + 'components/asset-allocation.html' },
             { id: 'credit-score-gauge', label: 'CreditScoreGauge', href: root + 'components/credit-score-gauge.html' },
+            { id: 'credit-utilization-meter', label: 'CreditUtilizationMeter', href: root + 'components/credit-utilization-meter.html' },
             { id: 'loan-calculator', label: 'LoanCalculator', href: root + 'components/loan-calculator.html' },
+            { id: 'order-entry-ticket', label: 'OrderEntryTicket', href: root + 'components/order-entry-ticket.html' },
+            { id: 'performance-chart-card', label: 'PerformanceChartCard', href: root + 'components/performance-chart-card.html' },
             { id: 'portfolio-summary', label: 'PortfolioSummary', href: root + 'components/portfolio-summary.html' },
             { id: 'repayment-schedule', label: 'RepaymentSchedule', href: root + 'components/repayment-schedule.html' },
             { id: 'yield-curve-table', label: 'YieldCurveTable', href: root + 'components/yield-curve-table.html' }
@@ -180,15 +198,18 @@ function renderStripeSidebar(activeId) {
         {
           id: 'cat-security',
           name: 'Security & Identity',
-          open: ['biometric-auth-prompt', 'cvv', 'direct-debit-mandate', 'kyc-doc-uploader', 'otp', 'password-input', 'pin-input'].includes(activeId),
+          open: ['biometric-auth-prompt', 'cvv', 'device-management-card', 'direct-debit-mandate', 'kyc-doc-uploader', 'otp', 'password-input', 'pin-input', 'session-timeout-modal', 'virtual-card-reveal'].includes(activeId),
           items: [
             { id: 'biometric-auth-prompt', label: 'BiometricAuthPrompt', href: root + 'components/biometric-auth-prompt.html' },
             { id: 'cvv', label: 'CVV', href: root + 'components/cvv.html' },
+            { id: 'device-management-card', label: 'DeviceManagementCard', href: root + 'components/device-management-card.html' },
             { id: 'direct-debit-mandate', label: 'DirectDebitMandate', href: root + 'components/direct-debit-mandate.html' },
             { id: 'kyc-doc-uploader', label: 'KycDocUploader', href: root + 'components/kyc-doc-uploader.html' },
             { id: 'otp', label: 'OTP', href: root + 'components/otp.html' },
             { id: 'password-input', label: 'PasswordInput', href: root + 'components/password-input.html' },
-            { id: 'pin-input', label: 'PinInput', href: root + 'components/pin-input.html' }
+            { id: 'pin-input', label: 'PinInput', href: root + 'components/pin-input.html' },
+            { id: 'session-timeout-modal', label: 'SessionTimeoutModal', href: root + 'components/session-timeout-modal.html' },
+            { id: 'virtual-card-reveal', label: 'VirtualCardReveal', href: root + 'components/virtual-card-reveal.html' }
           ]
         },
         {

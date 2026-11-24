@@ -7,13 +7,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--fc-space-5);
-  background-color: var(--fc-color-surface);
-  border: 1px solid var(--fc-color-border);
+  background-color: var(--fc-color-surface-default);
+  border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-xl, 1rem);
   padding: var(--fc-space-6);
-  font-family: var(--fc-font-family);
-  box-shadow: var(--fc-shadow-sm);
-  color: var(--fc-color-text);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: var(--fc-color-content-primary);
   box-sizing: border-box;
 }
 
@@ -27,13 +27,13 @@
   margin: 0;
   font-size: var(--fc-font-size-lg);
   font-weight: 600;
-  color: var(--fc-color-text);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-split-bill__hero-total {
   text-align: center;
   padding: var(--fc-space-4);
-  background-color: var(--fc-color-surface-hover);
+  background-color: var(--fc-color-surface-subtle);
   border-radius: var(--fc-radius-lg);
 }
 
@@ -41,14 +41,14 @@
   font-size: var(--fc-font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
 }
 
 .fc-split-bill__hero-amount {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--fc-color-primary);
-  font-family: var(--fc-font-mono, monospace);
+  color: var(--fc-color-action-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   margin-top: var(--fc-space-1);
 }
 
@@ -60,10 +60,10 @@
 .fc-split-bill__tip-btn {
   flex: 1;
   padding: var(--fc-space-2) 0;
-  border: 1px solid var(--fc-color-border);
+  border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-md);
-  background-color: var(--fc-color-surface);
-  color: var(--fc-color-text);
+  background-color: var(--fc-color-surface-default);
+  color: var(--fc-color-content-primary);
   font-size: var(--fc-font-size-sm);
   font-weight: 600;
   cursor: pointer;
@@ -71,17 +71,17 @@
 }
 
 .fc-split-bill__tip-btn:hover {
-  background-color: var(--fc-color-surface-hover);
+  background-color: var(--fc-color-surface-subtle);
 }
 
 .fc-split-bill__tip-btn--selected {
-  background-color: var(--fc-color-primary);
-  color: var(--fc-color-primary-contrast, #ffffff);
-  border-color: var(--fc-color-primary);
+  background-color: var(--fc-color-action-primary);
+  color: var(--fc-color-action-primary-foreground, #ffffff);
+  border-color: var(--fc-color-action-primary);
 }
 
 .fc-split-bill__tip-btn:focus-visible {
-  outline: 2px solid var(--fc-color-primary);
+  outline: 2px solid var(--fc-color-action-primary);
   outline-offset: 2px;
 }
 
@@ -96,7 +96,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--fc-space-3);
-  border: 1px solid var(--fc-color-border);
+  border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-md);
 }
 
@@ -109,14 +109,14 @@
 .fc-split-bill__participant-name {
   font-size: var(--fc-font-size-sm);
   font-weight: 500;
-  color: var(--fc-color-text);
+  color: var(--fc-color-content-primary);
 }
 
 .fc-split-bill__participant-share {
-  font-family: var(--fc-font-mono, monospace);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-weight: 700;
   font-size: var(--fc-font-size-sm);
-  color: var(--fc-color-text);
+  color: var(--fc-color-content-primary);
 }
 
 @media (forced-colors: active) {

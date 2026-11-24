@@ -1658,6 +1658,307 @@ export interface CloseAccountFlowProps extends Omit<React.HTMLAttributes<HTMLDiv
   onCancel?: () => void;
 }
 
+/* --- Security & Protection Components --- */
+
+export interface SessionTimeoutModalProps {
+  /**
+   * Whether the inactivity dialog is open.
+   */
+  open: boolean;
+  /**
+   * Controlled open state change callback.
+   */
+  onOpenChange?: (open: boolean) => void;
+  /**
+   * Total warning countdown seconds before forced logout. Defaults to 60.
+   */
+  countdownSeconds?: number;
+  /**
+   * Title shown in the modal header. Defaults to "Session Expiring Soon".
+   */
+  title?: string;
+  /**
+   * Description shown under the title.
+   */
+  description?: string;
+  /**
+   * Callback fired when the user chooses to stay signed in / extend their session.
+   */
+  onExtendSession?: () => void;
+  /**
+   * Callback fired when countdown reaches 0 and the user is timed out.
+   */
+  onTimeout?: () => void;
+  /**
+   * Callback fired when the user explicitly clicks "Log out now".
+   */
+  onLogout?: () => void;
+  /**
+   * Optional custom className.
+   */
+  className?: string;
+}
+
+export type VirtualCardTheme = "dark" | "gradient" | "emerald" | "platinum";
+export type VirtualCardBrand = "visa" | "mastercard" | "amex" | string;
+
+export interface VirtualCardRevealProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title" | "onCopy"> {
+  cardNumber: string;
+  cardHolder: string;
+  expiry: string;
+  cvv: string;
+  brand?: VirtualCardBrand;
+  currency?: string;
+  autoMaskSeconds?: number;
+  defaultRevealed?: boolean;
+  theme?: VirtualCardTheme;
+  onAuthenticate?: () => Promise<boolean> | boolean | void;
+  onCopy?: (field: "pan" | "cvv" | "expiry", value: string) => void;
+}
+
+export type DeviceType = "desktop" | "mobile" | "tablet" | "browser";
+
+export interface DeviceSessionItem {
+  id: string;
+  deviceName: string;
+  deviceType: DeviceType;
+  browser: string;
+  os: string;
+  ipAddress: string;
+  location: string;
+  lastActive: string;
+  isCurrent: boolean;
+}
+
+export interface DeviceManagementCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  description?: string;
+  devices: DeviceSessionItem[];
+  onRevokeDevice?: (deviceId: string) => Promise<boolean> | void;
+  onRevokeAllOthers?: () => Promise<boolean> | void;
+}
+
+export interface CreditUtilizationMeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  creditLimit: number;
+  currentBalance: number;
+  currency?: string;
+  statementCloseDate?: string;
+  minimumDue?: number;
+  utilizationPercent?: number;
+  optimalThreshold?: number;
+  warningThreshold?: number;
+}
+
+export type PerformanceTimeframe = "1D" | "1W" | "1M" | "1Y" | "ALL";
+
+export interface PerformanceDataPoint {
+  label: string;
+  value: number;
+}
+
+export interface PerformanceChartCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  symbol: string;
+  name: string;
+  currentPrice?: number;
+  timeframe?: PerformanceTimeframe;
+  defaultTimeframe?: PerformanceTimeframe;
+  onTimeframeChange?: (timeframe: PerformanceTimeframe) => void;
+  returnPercent: number;
+  returnAmount: number;
+  currency?: string;
+  benchmarkName?: string;
+  benchmarkReturn?: number;
+  dataPoints: PerformanceDataPoint[];
+}
+
+export type OrderSide = "buy" | "sell";
+export type OrderType = "market" | "limit" | "stop";
+
+export interface OrderSubmissionPayload {
+  symbol: string;
+  side: OrderSide;
+  orderType: OrderType;
+  quantity: number;
+  limitPrice?: number;
+  stopPrice?: number;
+  estimatedTotal: number;
+}
+
+export interface OrderEntryTicketProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSubmit"> {
+  symbol: string;
+  companyName?: string;
+  currentPrice: number;
+  buyingPower: number;
+  availableShares?: number;
+  currency?: string;
+  defaultSide?: OrderSide;
+  defaultOrderType?: OrderType;
+  estimatedFee?: number;
+  onSubmitOrder?: (order: OrderSubmissionPayload) => Promise<void> | void;
+}
+
+export interface ReconciliationEntry {
+  id: string;
+  date: string;
+  description: string;
+  amount: number;
+  reference?: string;
+  matchedWithId?: string;
+}
+
+export interface BankReconciliationMatcherProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  currency?: string;
+  bankEntries: ReconciliationEntry[];
+  ledgerEntries: ReconciliationEntry[];
+  onMatch?: (bankEntryId: string, ledgerEntryId: string) => void;
+  onUnmatch?: (bankEntryId: string, ledgerEntryId: string) => void;
+}
+
+export type CashFlowHorizon = "30D" | "60D" | "90D";
+
+export interface CashFlowPeriod {
+  label: string;
+  inflows: number;
+  outflows: number;
+}
+
+export interface CashFlowForecastCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  currency?: string;
+  startingCash: number;
+  monthlyBurnRate: number;
+  horizon?: CashFlowHorizon;
+  defaultHorizon?: CashFlowHorizon;
+  onHorizonChange?: (horizon: CashFlowHorizon) => void;
+  periods: CashFlowPeriod[];
+}
+
+export type AuditSeverity = "info" | "warning" | "critical";
+
+export interface AuditTrailEvent {
+  id: string;
+  actorName: string;
+  actorRole: string;
+  action: string;
+  resource?: string;
+  timestamp: string;
+  ipAddress?: string;
+  mfaVerified?: boolean;
+  severity?: AuditSeverity;
+}
+
+export interface AuditTrailTimelineProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  description?: string;
+  events: AuditTrailEvent[];
+}
+
+export interface TradeExecutionFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  symbol: string;
+  companyName: string;
+  currentPrice: number;
+  buyingPower: number;
+  availableShares?: number;
+  currency?: string;
+  returnPercent: number;
+  returnAmount: number;
+  benchmarkName?: string;
+  benchmarkReturn?: number;
+  dataPoints: PerformanceDataPoint[];
+  estimatedFee?: number;
+  onExecuteOrder?: (order: OrderSubmissionPayload) => Promise<{ orderId?: string } | void> | void;
+}
+
+export interface MonthEndCloseFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  periodLabel: string;
+  currency?: string;
+  bankEntries: ReconciliationEntry[];
+  ledgerEntries: ReconciliationEntry[];
+  startingCash: number;
+  monthlyBurnRate: number;
+  cashFlowPeriods: CashFlowPeriod[];
+  auditEvents: AuditTrailEvent[];
+  onClosePeriod?: (summary: { periodLabel: string; matchedCount: number }) => Promise<void> | void;
+}
+
+export interface SecurityCenterFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  title?: React.ReactNode;
+  devices: DeviceSessionItem[];
+  cardNumber: string;
+  cardHolder: string;
+  cardExpiry: string;
+  cardCvv: string;
+  cardBrand?: VirtualCardBrand;
+  sessionTimeoutSeconds?: number;
+  onRevokeDevice?: (deviceId: string) => Promise<boolean> | void;
+  onEmergencyLockdown?: () => Promise<void> | void;
+}
+
+export type SavingsGoalFrequency = "weekly" | "biweekly" | "monthly";
+
+export interface SavingsGoalPayload {
+  goalName: string;
+  category: string;
+  targetAmount: number;
+  initialDeposit: number;
+  targetMonths: number;
+  frequency: SavingsGoalFrequency;
+  autoSaveAmount: number;
+  roundUpsEnabled: boolean;
+}
+
+export interface SavingsGoalFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  currency?: string;
+  apyPercent?: number;
+  defaultGoalName?: string;
+  defaultTargetAmount?: number;
+  onCreateGoal?: (goal: SavingsGoalPayload) => Promise<{ goalId?: string } | void> | void;
+}
+
+export interface BudgetCategoryItem {
+  id: string;
+  name: string;
+  limit: number;
+  currentSpent?: number;
+}
+
+export interface BudgetSetupPayload {
+  monthlyIncome: number;
+  categories: BudgetCategoryItem[];
+  overspendAlerts: boolean;
+  warningThresholdPercent: number;
+}
+
+export interface BudgetSetupFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  currency?: string;
+  defaultIncome?: number;
+  initialCategories?: BudgetCategoryItem[];
+  onSaveBudget?: (budget: BudgetSetupPayload) => Promise<void> | void;
+}
+
+export interface SplitContact {
+  id: string;
+  name: string;
+  handle: string;
+}
+
+export interface GroupBillSplitPayload {
+  title: string;
+  totalAmount: number;
+  participants: { id: string; name: string; share: number }[];
+}
+
+export interface GroupBillSplitFlowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+  currency?: string;
+  defaultBillTitle?: string;
+  defaultTotal?: number;
+  contacts: SplitContact[];
+  onSendRequests?: (payload: GroupBillSplitPayload) => Promise<void> | void;
+}
+
+
 
 
 

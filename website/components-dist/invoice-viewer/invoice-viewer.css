@@ -7,13 +7,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--fc-space-6);
-  background-color: var(--fc-color-surface);
-  border: 1px solid var(--fc-color-border);
+  background-color: var(--fc-color-surface-default);
+  border: 1px solid var(--fc-color-border-default);
   border-radius: var(--fc-radius-xl, 1rem);
   padding: var(--fc-space-6);
-  font-family: var(--fc-font-family);
-  box-shadow: var(--fc-shadow-sm);
-  color: var(--fc-color-text);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: var(--fc-color-content-primary);
   box-sizing: border-box;
 }
 
@@ -21,7 +21,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  border-bottom: 1px solid var(--fc-color-border);
+  border-bottom: 1px solid var(--fc-color-border-default);
   padding-bottom: var(--fc-space-5);
 }
 
@@ -39,10 +39,10 @@
 }
 
 .fc-invoice__number {
-  font-family: var(--fc-font-mono, monospace);
-  font-size: var(--fc-font-size-base);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: var(--fc-font-size-sm);
   font-weight: 700;
-  color: var(--fc-color-primary);
+  color: var(--fc-color-action-primary);
 }
 
 .fc-invoice__parties {
@@ -55,7 +55,7 @@
 .fc-invoice__party-title {
   font-size: var(--fc-font-size-xs);
   text-transform: uppercase;
-  color: var(--fc-color-text-secondary);
+  color: var(--fc-color-content-secondary);
   font-weight: 600;
   margin-bottom: var(--fc-space-1);
 }
@@ -73,8 +73,8 @@
 .fc-invoice__th {
   text-align: left;
   padding: var(--fc-space-3);
-  background-color: var(--fc-color-surface-hover);
-  border-bottom: 1px solid var(--fc-color-border);
+  background-color: var(--fc-color-surface-subtle);
+  border-bottom: 1px solid var(--fc-color-border-default);
   font-weight: 600;
 }
 
@@ -85,7 +85,7 @@
 
 .fc-invoice__td {
   padding: var(--fc-space-3);
-  border-bottom: 1px solid var(--fc-color-border);
+  border-bottom: 1px solid var(--fc-color-border-default);
 }
 
 .fc-invoice__summary {
@@ -108,11 +108,11 @@
 }
 
 .fc-invoice__summary-row--total {
-  font-size: var(--fc-font-size-base);
+  font-size: var(--fc-font-size-sm);
   font-weight: 700;
-  border-top: 2px solid var(--fc-color-border);
+  border-top: 2px solid var(--fc-color-border-default);
   padding-top: var(--fc-space-2);
-  color: var(--fc-color-primary);
+  color: var(--fc-color-action-primary);
 }
 
 @media (forced-colors: active) {

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>BankReconciliationMatcher — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed BankReconciliationMatcher component documentation, interactive preview, and props.">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="balance-card.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>BankReconciliationMatcher</span>
+      </div>
+      <h1 class="docs-title">BankReconciliationMatcher</h1>
+      <p class="docs-lede">Two-column bank statement feed vs general ledger reconciliation matcher with discrepancy detection, match/unmatch actions, and status counters.</p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" style="padding:24px;">
+            <div class="fc-bank-reconciliation">
+              <div class="fc-bank-reconciliation__header">
+                <h3 class="fc-bank-reconciliation__title">Bank Reconciliation</h3>
+                <div class="fc-bank-reconciliation__stats">
+                  <span id="brm-matched-badge" class="fc-badge fc-badge--success">0 Matched</span>
+                  <span id="brm-unmatched-badge" class="fc-badge fc-badge--warning">2 Unmatched</span>
+                </div>
+              </div>
+              <div class="fc-bank-reconciliation__grid">
+                <div class="fc-bank-reconciliation__column">
+                  <h4 class="fc-bank-reconciliation__col-title">Bank Statement Feed</h4>
+                  <div id="brm-bank-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+                </div>
+                <div class="fc-bank-reconciliation__column">
+                  <h4 class="fc-bank-reconciliation__col-title">General Ledger Entries</h4>
+                  <div id="brm-ledger-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+                </div>
+              </div>
+              <div class="fc-bank-reconciliation__toolbar">
+                <span id="brm-status" class="fc-bank-reconciliation__meta">Select one bank item and one ledger item to match</span>
+                <button type="button" id="brm-match-btn" class="fc-button fc-button--primary fc-button--sm" disabled>Match Selected</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function() {
+            const bank = [
+              { id: 'b1', date: '2026-11-18', desc: 'Stripe Payout #104', amount: 4250 },
+              { id: 'b2', date: '2026-11-19', desc: 'AWS Cloud Billing', amount: -840 }
+            ];
+            const ledger = [
+              { id: 'l1', date: '2026-11-18', desc: 'AR Settlement - Stripe', amount: 4250 },
+              { id: 'l2', date: '2026-11-19', desc: 'Cloud Infrastructure Exp', amount: -840 }
+            ];
+            let selB = null, selL = null;
+            const matches = {};
+            const bankList = document.getElementById('brm-bank-list');
+            const ledgerList = document.getElementById('brm-ledger-list');
+            const matchBtn = document.getElementById('brm-match-btn');
+            const status = document.getElementById('brm-status');
+            const fmt = (n) => (n < 0 ? '-' : '') + 'USD ' + Math.abs(n).toLocaleString(undefined, { minimumFractionDigits: 2 });
+            function render() {
+              const matchedL = new Set(Object.values(matches));
+              const mCount = Object.keys(matches).length;
+              document.getElementById('brm-matched-badge').textContent = mCount + ' Matched';
+              document.getElementById('brm-unmatched-badge').textContent = (bank.length - mCount) + ' Unmatched';
+              bankList.innerHTML = bank.map(e => {
+                const m = !!matches[e.id], s = selB === e.id;
+                return `<button type="button" data-b="${e.id}" class="fc-bank-reconciliation__row ${m ? 'fc-bank-reconciliation__row--matched' : ''} ${s ? 'fc-bank-reconciliation__row--selected' : ''}"><div><div class="fc-bank-reconciliation__desc">${e.desc}</div><div class="fc-bank-reconciliation__meta">${e.date}${m ? ' · Matched (click to unmatch)' : ''}</div></div><span class="fc-bank-reconciliation__amount">${fmt(e.amount)}</span></button>`;
+              }).join('');
+              ledgerList.innerHTML = ledger.map(e => {
+                const m = matchedL.has(e.id), s = selL === e.id;
+                return `<button type="button" data-l="${e.id}" ${m ? 'disabled' : ''} class="fc-bank-reconciliation__row ${m ? 'fc-bank-reconciliation__row--matched' : ''} ${s ? 'fc-bank-reconciliation__row--selected' : ''}"><div><div class="fc-bank-reconciliation__desc">${e.desc}</div><div class="fc-bank-reconciliation__meta">${e.date}</div></div><span class="fc-bank-reconciliation__amount">${fmt(e.amount)}</span></button>`;
+              }).join('');
+              bankList.querySelectorAll('[data-b]').forEach(el => el.addEventListener('click', () => {
+                const id = el.getAttribute('data-b');
+                if (matches[id]) { delete matches[id]; } else { selB = selB === id ? null : id; }
+                render();
+              }));
+              ledgerList.querySelectorAll('[data-l]').forEach(el => el.addEventListener('click', () => {
+                const id = el.getAttribute('data-l');
+                selL = selL === id ? null : id;
+                render();
+              }));
+              matchBtn.disabled = !(selB && selL);
+              if (selB && selL) {
+                const bObj = bank.find(x => x.id === selB), lObj = ledger.find(x => x.id === selL);
+                const diff = Math.abs(bObj.amount - lObj.amount);
+                status.textContent = diff === 0 ? 'Exact amount match ready' : 'Discrepancy detected: ' + fmt(diff);
+              } else {
+                status.textContent = 'Select one bank item and one ledger item to match';
+              }
+            }
+            matchBtn.addEventListener('click', () => {
+              if (selB && selL) { matches[selB] = selL; selB = null; selL = null; render(); }
+            });
+            render();
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add bank-reconciliation-matcher</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { BankReconciliationMatcher } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/bank-reconciliation-matcher.css';
+
+export function Example() {
+  return (
+    &lt;BankReconciliationMatcher
+      bankEntries={[{ id: 'b1', date: '2026-11-18', description: 'Stripe Payout #104', amount: 4250 }]}
+      ledgerEntries={[{ id: 'l1', date: '2026-11-18', description: 'AR Settlement - Stripe', amount: 4250 }]}
+      onMatch={(bankId, ledgerId) =&gt; console.log(bankId, ledgerId)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>renderStripeSidebar('bank-reconciliation-matcher');</script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>
+

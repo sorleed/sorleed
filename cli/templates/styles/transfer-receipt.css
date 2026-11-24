@@ -37,17 +37,17 @@
 
 .fc-transfer-receipt__status-icon--success {
   background-color: var(--fc-green-100);
-  color: var(--fc-color-status-success);
+  color: var(--fc-color-feedback-success);
 }
 
 .fc-transfer-receipt__status-icon--pending {
   background-color: var(--fc-amber-100);
-  color: var(--fc-color-status-warning);
+  color: var(--fc-color-feedback-warning);
 }
 
 .fc-transfer-receipt__status-icon--failed {
   background-color: var(--fc-red-100);
-  color: var(--fc-color-status-error);
+  color: var(--fc-color-feedback-error);
 }
 
 .fc-transfer-receipt__amount {
@@ -81,7 +81,7 @@
 }
 
 .fc-transfer-receipt__row-label {
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-transfer-receipt__row-value {

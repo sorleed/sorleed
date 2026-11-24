@@ -70,22 +70,59 @@
       <section>
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
-          <div class="playground-stage" id="stage-toast">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        <div role="status" aria-live="polite" class="fc-toast fc-toast--success" message="Wire reference #TX-984210 confirmed on Fedwire network."><div class="fc-toast__content"><h4 class="fc-toast__title">Settlement Instruction Executed</h4></div></div>
-      </div>
-    </div>
-    <div class="playground-panel">
+          <div class="playground-stage" id="stage-toast" style="padding:32px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+            <div id="pg-toast" role="status" aria-live="polite" class="fc-toast fc-toast--success" style="position:relative; top:auto; right:auto; bottom:auto; left:auto; max-width:420px; width:100%;">
+              <div class="fc-toast__content">
+                <h4 id="pg-toast-title" class="fc-toast__title">Settlement Instruction Executed</h4>
+                <p id="pg-toast-desc" class="fc-toast__description">Wire reference #TX-984210 confirmed on Fedwire network.</p>
+              </div>
+              <button type="button" id="pg-toast-close" class="fc-toast__close" aria-label="Dismiss notification">×</button>
+            </div>
+            <button type="button" id="pg-toast-show" class="fc-button fc-button--secondary fc-button--sm" style="display:none;">Show Toast Again</button>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
+              <span class="ctrl-label">Variant</span>
+              <select class="ctrl-select" id="pg-toast-variant">
+                <option value="success" selected>Success</option>
+                <option value="info">Info</option>
+                <option value="warning">Warning</option>
+                <option value="error">Error</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const copy = {
+              success: { title: 'Settlement Instruction Executed', desc: 'Wire reference #TX-984210 confirmed on Fedwire network.' },
+              info: { title: 'FX Quote Locked', desc: 'Rate 1 USD = 0.9184 EUR locked for the next 60 seconds.' },
+              warning: { title: 'Daily Transfer Limit Near Cap', desc: 'You have used 85% of your $50,000 daily wire allowance.' },
+              error: { title: 'ACH Return (R01)', desc: 'Insufficient funds in linked checking account ending in 4821.' }
+            };
+            const toast = document.getElementById('pg-toast');
+            const titleEl = document.getElementById('pg-toast-title');
+            const descEl = document.getElementById('pg-toast-desc');
+            const showBtn = document.getElementById('pg-toast-show');
+            const sel = document.getElementById('pg-toast-variant');
+            document.getElementById('pg-toast-close').addEventListener('click', () => {
+              toast.style.display = 'none';
+              showBtn.style.display = 'inline-flex';
+            });
+            showBtn.addEventListener('click', () => {
+              toast.style.display = 'flex';
+              showBtn.style.display = 'none';
+            });
+            sel.addEventListener('change', () => {
+              const v = sel.value;
+              toast.className = 'fc-toast fc-toast--' + v;
+              titleEl.textContent = copy[v].title;
+              descEl.textContent = copy[v].desc;
+              toast.style.display = 'flex';
+              showBtn.style.display = 'none';
+            });
+          })();
+        </script>
       </section>
 
       <section>

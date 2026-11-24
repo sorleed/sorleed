@@ -19,7 +19,7 @@
 .fc-bank-selector__search-input {
   width: 100%;
   box-sizing: border-box;
-  height: var(--fc-size-height-control-default);
+  height: var(--fc-size-control-md);
   padding: 0 var(--fc-space-4);
   background-color: var(--fc-color-surface-default);
   border: var(--fc-size-border-width) solid var(--fc-color-border-control);
@@ -106,14 +106,14 @@
 
 .fc-bank-selector__bank-code {
   font-size: var(--fc-font-size-xs);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 .fc-bank-selector__empty {
   padding: var(--fc-space-6);
   text-align: center;
   font-size: var(--fc-font-size-sm);
-  color: var(--fc-color-content-muted);
+  color: var(--fc-color-content-tertiary);
 }
 
 @media (forced-colors: active) {

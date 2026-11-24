@@ -113,6 +113,7 @@
   font-size: var(--fc-checkbox-font-size);
   font-weight: var(--fc-checkbox-label-font-weight);
   line-height: var(--fc-checkbox-line-height);
+  -webkit-user-select: none;
   user-select: none;
 }
 

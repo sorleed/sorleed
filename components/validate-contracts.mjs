@@ -12,7 +12,7 @@
  *   node components/validate-contracts.mjs
  */
 
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -1357,6 +1357,27 @@ function collectStrings(value, path = "$", out = []) {
     }
   }
   record("generated CSS variable set matches the token source", problems);
+}
+
+{
+  const problems = [];
+  const componentsDir = join(ROOT, "components");
+  for (const entry of readdirSync(componentsDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const cssFile = join(componentsDir, entry.name, `${entry.name}.css`);
+    if (!existsSync(cssFile)) continue;
+    const css = readFileSync(cssFile, "utf8");
+    const bad = new Set();
+    for (const match of css.matchAll(/var\((--fc-[a-z0-9-]+)/g)) {
+      if (!cssFromSource.has(match[1])) {
+        bad.add(match[1]);
+      }
+    }
+    if (bad.size > 0) {
+      problems.push(`components/${entry.name}/${entry.name}.css: undefined token(s) ${[...bad].join(", ")}`);
+    }
+  }
+  record("all component & flow CSS files reference only defined --fc-* tokens", problems);
 }
 
 // ---------------------------------------------------------------------------

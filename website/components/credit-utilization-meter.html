@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>CreditUtilizationMeter — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed CreditUtilizationMeter component documentation, interactive preview, and props.">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="balance-card.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>CreditUtilizationMeter</span>
+      </div>
+      <h1 class="docs-title">CreditUtilizationMeter</h1>
+      <p class="docs-lede">Revolving credit limit utilization bar with FICO risk bands (&lt;30% Optimal, 30–49% Moderate, 50%+ High), available credit, minimum due, and statement close date.</p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" style="padding:32px; display:flex; justify-content:center;">
+            <div class="fc-credit-utilization" style="max-width:460px; width:100%;">
+              <div class="fc-credit-utilization__header">
+                <div>
+                  <h3 class="fc-credit-utilization__title">Credit Utilization</h3>
+                  <p class="fc-credit-utilization__subtitle">Keep utilization below 30% to protect your credit score</p>
+                </div>
+                <span id="cum-badge" class="fc-badge fc-badge--success">Optimal (&lt;30%)</span>
+              </div>
+              <div class="fc-credit-utilization__hero">
+                <span id="cum-pct" class="fc-credit-utilization__percent fc-credit-utilization__percent--optimal">24%</span>
+                <span id="cum-bal" class="fc-credit-utilization__balance"><strong>USD 2,400.00</strong> / USD 10,000.00</span>
+              </div>
+              <div class="fc-credit-utilization__bar-wrap">
+                <div class="fc-credit-utilization__track"><div id="cum-fill" class="fc-credit-utilization__fill fc-credit-utilization__fill--optimal" style="width:24%;"></div></div>
+                <div class="fc-credit-utilization__bands"><span>0% Optimal</span><span>30%</span><span>50%</span><span>100%</span></div>
+              </div>
+              <div class="fc-credit-utilization__meta-grid">
+                <div class="fc-credit-utilization__stat"><span class="fc-credit-utilization__stat-label">Available Credit</span><span id="cum-avail" class="fc-credit-utilization__stat-value">USD 7,600.00</span></div>
+                <div class="fc-credit-utilization__stat"><span class="fc-credit-utilization__stat-label">Statement Closes</span><span class="fc-credit-utilization__stat-value">Nov 28</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
+            <div class="playground-ctrl-group">
+              <span class="ctrl-label">Current Balance (Limit: \$10,000)</span>
+              <input id="cum-slider" type="range" min="0" max="10000" step="100" value="2400" style="width:220px;">
+            </div>
+          </div>
+        </div>
+        <script>
+          (function() {
+            const limit = 10000;
+            const slider = document.getElementById('cum-slider');
+            const pctEl = document.getElementById('cum-pct');
+            const balEl = document.getElementById('cum-bal');
+            const fillEl = document.getElementById('cum-fill');
+            const badgeEl = document.getElementById('cum-badge');
+            const availEl = document.getElementById('cum-avail');
+            const fmt = (n) => 'USD ' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            function update() {
+              const bal = Number(slider.value);
+              const pct = Math.round((bal / limit) * 100);
+              const band = pct >= 50 ? 'high' : pct >= 30 ? 'moderate' : 'optimal';
+              const badgeCls = pct >= 50 ? 'error' : pct >= 30 ? 'warning' : 'success';
+              const label = pct >= 50 ? 'High Utilization' : pct >= 30 ? 'Moderate (30–49%)' : 'Optimal (<30%)';
+              pctEl.textContent = pct + '%';
+              pctEl.className = 'fc-credit-utilization__percent fc-credit-utilization__percent--' + band;
+              fillEl.style.width = pct + '%';
+              fillEl.className = 'fc-credit-utilization__fill fc-credit-utilization__fill--' + band;
+              badgeEl.textContent = label;
+              badgeEl.className = 'fc-badge fc-badge--' + badgeCls;
+              balEl.innerHTML = '<strong>' + fmt(bal) + '</strong> / ' + fmt(limit);
+              availEl.textContent = fmt(limit - bal);
+            }
+            slider.addEventListener('input', update);
+            update();
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add credit-utilization-meter</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { CreditUtilizationMeter } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/credit-utilization-meter.css';
+
+export function Example() {
+  return (
+    &lt;CreditUtilizationMeter
+      creditLimit={10000}
+      currentBalance={2400}
+      minimumDue={75}
+      statementCloseDate="Nov 28"
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>renderStripeSidebar('credit-utilization-meter');</script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>
+

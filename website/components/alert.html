@@ -72,21 +72,40 @@
         <div class="playground-box">
           <div class="playground-stage" id="stage-alert">
             <div class="fc-preview-container" style="width:100%; max-width:540px; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-              <div role="alert" class="fc-alert fc-alert--warning"><p class="fc-alert__title">High-Value Transfer Verification Required</p><div class="fc-alert__message">Transfers exceeding $10,000 require dual biometric authorization from a workspace administrator.</div></div>
+              <div id="pg-alert" role="alert" class="fc-alert fc-alert--warning"><p id="pg-alert-title" class="fc-alert__title">High-Value Transfer Verification Required</p><div id="pg-alert-msg" class="fc-alert__message">Transfers exceeding \$10,000 require dual biometric authorization from a workspace administrator.</div></div>
             </div>
           </div>
           <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select" onchange="window.updateComponentState && window.updateComponentState(this.value)">
-                <option value="default">Default</option>
-                <option value="hover">Hover</option>
-                <option value="focus">Focus</option>
-                <option value="disabled">Disabled</option>
+              <span class="ctrl-label">Variant</span>
+              <select class="ctrl-select" id="pg-alert-variant">
+                <option value="info">Info</option>
+                <option value="success">Success</option>
+                <option value="warning" selected>Warning</option>
+                <option value="error">Error</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const copy = {
+              info: { t: 'Fedwire Settlement Cutoff', m: 'Domestic wires submitted before 5:00 PM ET settle same business day.' },
+              success: { t: 'Wire Transfer Authorized', m: 'Your $25,000.00 instruction has been queued for immediate settlement.' },
+              warning: { t: 'High-Value Transfer Verification Required', m: 'Transfers exceeding $10,000 require dual biometric authorization from a workspace administrator.' },
+              error: { t: 'Insufficient Available Balance', m: 'Available funds ($8,420.00) do not cover the requested transfer amount.' }
+            };
+            const el = document.getElementById('pg-alert');
+            const t = document.getElementById('pg-alert-title');
+            const m = document.getElementById('pg-alert-msg');
+            document.getElementById('pg-alert-variant').addEventListener('change', (e) => {
+              const v = e.target.value;
+              el.className = 'fc-alert fc-alert--' + v;
+              t.textContent = copy[v].t;
+              m.textContent = copy[v].m;
+            });
+          })();
+        </script>
       </section>
 
       <section>

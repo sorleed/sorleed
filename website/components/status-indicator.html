@@ -71,21 +71,33 @@
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
           <div class="playground-stage" id="stage-status-indicator">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        <span class="fc-status-indicator fc-status-indicator--success fc-status-indicator--md"><span class="fc-status-indicator__dot fc-status-indicator-dot" aria-hidden="true"></span><span class="fc-status-indicator__label fc-status-indicator-label">FEDWIRE Operational</span></span>
-      </div>
-    </div>
-    <div class="playground-panel">
+            <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:16px 0;">
+              <span id="pg-si" class="fc-status-indicator fc-status-indicator--success fc-status-indicator--md"><span class="fc-status-indicator__dot fc-status-indicator-dot" aria-hidden="true"></span><span id="pg-si-label" class="fc-status-indicator__label fc-status-indicator-label">FEDWIRE Operational</span></span>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
+              <span class="ctrl-label">Status</span>
+              <select class="ctrl-select" id="pg-si-variant">
+                <option value="success" selected>Operational (Success)</option>
+                <option value="warning">Degraded (Warning)</option>
+                <option value="error">Outage (Error)</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const labels = { success: 'FEDWIRE Operational', warning: 'ACH Clearing Delayed', error: 'SWIFT Gateway Offline' };
+            const el = document.getElementById('pg-si');
+            const lbl = document.getElementById('pg-si-label');
+            document.getElementById('pg-si-variant').addEventListener('change', (e) => {
+              const v = e.target.value;
+              el.className = 'fc-status-indicator fc-status-indicator--' + v + ' fc-status-indicator--md';
+              lbl.textContent = labels[v];
+            });
+          })();
+        </script>
       </section>
 
       <section>

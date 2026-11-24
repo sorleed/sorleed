@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>GroupBillSplitFlow — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed GroupBillSplitFlow P2P bill splitting flow documentation and interactive playground.">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="balance-card.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>GroupBillSplitFlow</span>
+      </div>
+      <h1 class="docs-title">GroupBillSplitFlow</h1>
+      <p class="docs-lede">Personal finance P2P bill splitting flow composing <code>SplitBillCalculator</code>, interactive friend selection, and a live payment request settlement tracker.</p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" style="padding:24px;">
+            <div class="fc-group-split-flow">
+              <div class="fc-group-split-flow__card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <h3 style="margin:0;">Dinner at Osteria — USD 180.00</h3>
+                  <span id="gbs-share" class="fc-badge fc-badge--info">USD 60.00 / person (3 ways)</span>
+                </div>
+                <div id="gbs-contacts" class="fc-group-split-flow__contacts"></div>
+                <div class="fc-group-split-flow__actions">
+                  <span></span>
+                  <button type="button" id="gbs-send" class="fc-button fc-button--primary">Send 2 Payment Requests</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function() {
+            const total = 180;
+            const contacts = [
+              { id: 'c1', name: 'Maya Lin', handle: '@mayalin' },
+              { id: 'c2', name: 'Devon Brooks', handle: '@devonb' },
+              { id: 'c3', name: 'Priya Nair', handle: '@priyan' }
+            ];
+            let selected = new Set(['c1', 'c2']);
+            const list = document.getElementById('gbs-contacts');
+            const shareBadge = document.getElementById('gbs-share');
+            const sendBtn = document.getElementById('gbs-send');
+            function render() {
+              const ways = selected.size + 1;
+              const share = (total / ways).toFixed(2);
+              shareBadge.textContent = 'USD ' + share + ' / person (' + ways + ' ways)';
+              sendBtn.textContent = 'Send ' + selected.size + ' Payment Request' + (selected.size === 1 ? '' : 's');
+              sendBtn.disabled = selected.size === 0;
+              list.innerHTML = contacts.map(c => {
+                const on = selected.has(c.id);
+                return `<button type="button" data-id="${c.id}" class="fc-group-split-flow__contact ${on ? 'fc-group-split-flow__contact--selected' : ''}"><div><div class="fc-group-split-flow__name">${c.name}</div><div class="fc-group-split-flow__handle">${c.handle}</div></div><span class="fc-group-split-flow__share">${on ? 'USD ' + share : 'Not included'}</span></button>`;
+              }).join('');
+              list.querySelectorAll('[data-id]').forEach(el => el.addEventListener('click', () => {
+                const id = el.getAttribute('data-id');
+                if (selected.has(id)) selected.delete(id); else selected.add(id);
+                render();
+              }));
+            }
+            sendBtn.addEventListener('click', () => { sendBtn.textContent = 'Requests Sent ✓'; });
+            render();
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add group-bill-split-flow</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { GroupBillSplitFlow } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/group-bill-split-flow.css';
+
+export function Example() {
+  return (
+    &lt;GroupBillSplitFlow
+      defaultTotal={180}
+      contacts={[
+        { id: 'c1', name: 'Maya Lin', handle: '@mayalin' },
+        { id: 'c2', name: 'Devon Brooks', handle: '@devonb' }
+      ]}
+      onSendRequests={(payload) =&gt; console.log(payload)}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>renderStripeSidebar('group-bill-split-flow');</script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>
+

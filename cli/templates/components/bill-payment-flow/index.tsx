@@ -365,7 +365,7 @@ export const BillPaymentFlow = React.forwardRef<HTMLDivElement, BillPaymentFlowP
                 <div className="fc-bill-flow__grid-2">
                   <Input
                     label={`Payment amount (${currency})`}
-                    type="number"
+                    type="text" inputMode="decimal"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     helperText={`Paying ${billerName} (${accountReference})`}

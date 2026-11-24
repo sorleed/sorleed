@@ -70,22 +70,53 @@
       <section>
         <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
         <div class="playground-box">
-          <div class="playground-stage" id="stage-empty-state">
-      <div class="fc-preview-container" style="width:100%; display:flex; justify-content:center; align-items:center; margin:0 auto; padding:12px 0;">
-        <div class="fc-empty-state" role="region" aria-label="Empty State" actionLabel="Initiate Transfer"><h3 class="fc-empty-state__title">No Pending Transactions</h3><p class="fc-empty-state__description">All inbound and outbound payments for this ledger have been fully reconciled.</p></div>
-      </div>
-    </div>
-    <div class="playground-panel">
+          <div class="playground-stage" id="stage-empty-state" style="padding:32px; display:flex; justify-content:center;">
+            <div class="fc-empty-state" role="region" aria-label="Empty State" style="max-width:440px; width:100%;">
+              <div class="fc-empty-state__icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              </div>
+              <h3 id="pg-es-title" class="fc-empty-state__title">No Pending Transactions</h3>
+              <p id="pg-es-desc" class="fc-empty-state__description">All inbound and outbound payments for this ledger have been reconciled.</p>
+              <div class="fc-empty-state__action">
+                <button type="button" id="pg-es-cta" class="fc-button fc-button--primary">Initiate Transfer</button>
+              </div>
+            </div>
+          </div>
+          <div class="playground-panel">
             <div class="playground-ctrl-group">
-              <span class="ctrl-label">State</span>
-              <select class="ctrl-select">
-                <option value="default">Default</option>
-                <option value="active">Active</option>
-                <option value="disabled">Disabled</option>
+              <span class="ctrl-label">Scenario</span>
+              <select class="ctrl-select" id="pg-es-scenario">
+                <option value="tx" selected>No Pending Transactions</option>
+                <option value="banks">No Linked Payout Accounts</option>
+                <option value="search">Zero Search Results</option>
               </select>
             </div>
           </div>
         </div>
+        <script>
+          (function() {
+            const scenarios = {
+              tx: { title: 'No Pending Transactions', desc: 'All inbound and outbound payments for this ledger have been reconciled.', cta: 'Initiate Transfer' },
+              banks: { title: 'No Payout Accounts Linked', desc: 'Connect a verified bank account or debit card before withdrawing funds.', cta: 'Link Bank Account' },
+              search: { title: 'No Matching Ledger Entries', desc: 'Try clearing your date range or status filters to see more transactions.', cta: 'Reset Filters' }
+            };
+            const sel = document.getElementById('pg-es-scenario');
+            const t = document.getElementById('pg-es-title');
+            const d = document.getElementById('pg-es-desc');
+            const c = document.getElementById('pg-es-cta');
+            sel.addEventListener('change', () => {
+              const s = scenarios[sel.value];
+              t.textContent = s.title;
+              d.textContent = s.desc;
+              c.textContent = s.cta;
+            });
+            c.addEventListener('click', () => {
+              const prev = c.textContent;
+              c.textContent = 'Action Triggered ✓';
+              setTimeout(() => { c.textContent = prev; }, 1200);
+            });
+          })();
+        </script>
       </section>
 
       <section>

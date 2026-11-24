@@ -111,6 +111,21 @@ import { loanApplicationFlowRegistry } from '../registry/loan-application-flow.j
 import { beneficiaryManagementFlowRegistry } from '../registry/beneficiary-management-flow.js';
 import { statementExportFlowRegistry } from '../registry/statement-export-flow.js';
 import { closeAccountFlowRegistry } from '../registry/close-account-flow.js';
+import { sessionTimeoutModalRegistry } from '../registry/session-timeout-modal.js';
+import { virtualCardRevealRegistry } from '../registry/virtual-card-reveal.js';
+import { deviceManagementCardRegistry } from '../registry/device-management-card.js';
+import { creditUtilizationMeterRegistry } from '../registry/credit-utilization-meter.js';
+import { performanceChartCardRegistry } from '../registry/performance-chart-card.js';
+import { orderEntryTicketRegistry } from '../registry/order-entry-ticket.js';
+import { bankReconciliationMatcherRegistry } from '../registry/bank-reconciliation-matcher.js';
+import { cashFlowForecastCardRegistry } from '../registry/cash-flow-forecast-card.js';
+import { auditTrailTimelineRegistry } from '../registry/audit-trail-timeline.js';
+import { tradeExecutionFlowRegistry } from '../registry/trade-execution-flow.js';
+import { monthEndCloseFlowRegistry } from '../registry/month-end-close-flow.js';
+import { securityCenterFlowRegistry } from '../registry/security-center-flow.js';
+import { savingsGoalFlowRegistry } from '../registry/savings-goal-flow.js';
+import { budgetSetupFlowRegistry } from '../registry/budget-setup-flow.js';
+import { groupBillSplitFlowRegistry } from '../registry/group-bill-split-flow.js';
 import { resolveConsumerPath, isPathInside } from '../utils/paths.js';
 
 function getRegistry(component) {
@@ -194,6 +209,21 @@ function getRegistry(component) {
   if (component === 'beneficiary-management-flow' || component === 'beneficiarymanagementflow') return beneficiaryManagementFlowRegistry;
   if (component === 'statement-export-flow' || component === 'statementexportflow') return statementExportFlowRegistry;
   if (component === 'close-account-flow' || component === 'closeaccountflow') return closeAccountFlowRegistry;
+  if (component === 'session-timeout-modal' || component === 'sessiontimeoutmodal') return sessionTimeoutModalRegistry;
+  if (component === 'virtual-card-reveal' || component === 'virtualcardreveal') return virtualCardRevealRegistry;
+  if (component === 'device-management-card' || component === 'devicemanagementcard') return deviceManagementCardRegistry;
+  if (component === 'credit-utilization-meter' || component === 'creditutilizationmeter') return creditUtilizationMeterRegistry;
+  if (component === 'performance-chart-card' || component === 'performancechartcard') return performanceChartCardRegistry;
+  if (component === 'order-entry-ticket' || component === 'orderentryticket') return orderEntryTicketRegistry;
+  if (component === 'bank-reconciliation-matcher' || component === 'bankreconciliationmatcher') return bankReconciliationMatcherRegistry;
+  if (component === 'cash-flow-forecast-card' || component === 'cashflowforecastcard') return cashFlowForecastCardRegistry;
+  if (component === 'audit-trail-timeline' || component === 'audittrailtimeline') return auditTrailTimelineRegistry;
+  if (component === 'trade-execution-flow' || component === 'tradeexecutionflow') return tradeExecutionFlowRegistry;
+  if (component === 'month-end-close-flow' || component === 'monthendcloseflow') return monthEndCloseFlowRegistry;
+  if (component === 'security-center-flow' || component === 'securitycenterflow') return securityCenterFlowRegistry;
+  if (component === 'savings-goal-flow' || component === 'savingsgoalflow') return savingsGoalFlowRegistry;
+  if (component === 'budget-setup-flow' || component === 'budgetsetupflow') return budgetSetupFlowRegistry;
+  if (component === 'group-bill-split-flow' || component === 'groupbillsplitflow') return groupBillSplitFlowRegistry;
   return null;
 }
 

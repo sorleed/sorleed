@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <title>PerformanceChartCard — Sorleed Documentation</title>
+  <meta name="description" content="Sorleed PerformanceChartCard component documentation, interactive preview, and props.">
+  <link rel="stylesheet" href="../tokens-dist/tokens.css">
+  <link rel="stylesheet" href="../components-dist/all-components.css">
+  <link rel="stylesheet" href="../assets/stripe-docs.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="docs-header__left">
+      <a href="../index.html" class="docs-header__brand">
+        <div class="docs-header__brand-badge">S</div>
+        <span>Sorleed</span>
+      </a>
+      <nav class="docs-header__nav">
+        <a href="../docs.html#overview">Documentation</a>
+        <a href="balance-card.html" class="active">Components</a>
+        <a href="../docs.html#ai-skill">AI Skills</a>
+        <a href="../docs.html#cli">API & CLI</a>
+      </nav>
+    </div>
+    <div class="docs-header__right">
+      <a href="../docs.html" class="btn-header-cta">Get started</a>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar"></aside>
+    <main class="docs-content">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a><span>/</span><a href="../components.html">Components</a><span>/</span><span>PerformanceChartCard</span>
+      </div>
+      <h1 class="docs-title">PerformanceChartCard</h1>
+      <p class="docs-lede">Investment performance sparkline card with Radix Tabs timeframe switcher (1D, 1W, 1M, 1Y, ALL), return delta, and benchmark comparison.</p>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 12px;">Interactive Playground</h2>
+        <div class="playground-box">
+          <div class="playground-stage" style="padding:32px; display:flex; justify-content:center;">
+            <div class="fc-performance-chart" style="max-width:500px; width:100%;">
+              <div class="fc-performance-chart__header">
+                <div class="fc-performance-chart__identity">
+                  <div class="fc-performance-chart__symbol-row">
+                    <span class="fc-performance-chart__symbol">AAPL</span>
+                    <span id="pcc-badge" class="fc-badge fc-badge--success">+4.25%</span>
+                  </div>
+                  <span class="fc-performance-chart__name">Apple Inc.</span>
+                </div>
+                <div class="fc-tabs__list" id="pcc-tabs" role="tablist">
+                  <button type="button" class="fc-tabs__trigger" data-tf="1D">1D</button>
+                  <button type="button" class="fc-tabs__trigger" data-tf="1W">1W</button>
+                  <button type="button" class="fc-tabs__trigger" data-tf="1M" data-state="active">1M</button>
+                  <button type="button" class="fc-tabs__trigger" data-tf="1Y">1Y</button>
+                  <button type="button" class="fc-tabs__trigger" data-tf="ALL">ALL</button>
+                </div>
+              </div>
+              <div class="fc-performance-chart__metrics">
+                <span class="fc-performance-chart__price">USD 228.50</span>
+                <span id="pcc-delta" class="fc-performance-chart__return fc-performance-chart__return--positive">+USD 9.32 (1M)</span>
+              </div>
+              <div class="fc-performance-chart__canvas">
+                <svg class="fc-performance-chart__svg" viewBox="0 0 320 112" preserveAspectRatio="none">
+                  <path id="pcc-line" d="M 0,88 L 80,72 L 160,76 L 240,42 L 320,24" fill="none" stroke-width="2.5" stroke-linecap="round" class="fc-performance-chart__line--positive" />
+                </svg>
+              </div>
+              <div class="fc-performance-chart__footer">
+                <span id="pcc-range">Nov 1 — Nov 19</span>
+                <span class="fc-performance-chart__benchmark">vs S&amp;P 500: <strong id="pcc-bench">+2.10%</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function() {
+            const data = {
+              '1D': { pct: -0.64, amt: '-USD 1.48', bench: '+0.12%', range: '09:30 — 16:00', path: 'M 0,36 L 80,44 L 160,52 L 240,60 L 320,68' },
+              '1W': { pct: 1.82, amt: '+USD 4.10', bench: '+0.85%', range: 'Nov 12 — Nov 19', path: 'M 0,74 L 80,66 L 160,58 L 240,48 L 320,38' },
+              '1M': { pct: 4.25, amt: '+USD 9.32', bench: '+2.10%', range: 'Nov 1 — Nov 19', path: 'M 0,88 L 80,72 L 160,76 L 240,42 L 320,24' },
+              '1Y': { pct: 24.60, amt: '+USD 45.12', bench: '+18.40%', range: 'Nov 2025 — Nov 2026', path: 'M 0,96 L 80,82 L 160,64 L 240,36 L 320,16' },
+              'ALL': { pct: 142.30, amt: '+USD 134.20', bench: '+88.10%', range: '2021 — 2026', path: 'M 0,100 L 80,88 L 160,70 L 240,40 L 320,12' }
+            };
+            const badge = document.getElementById('pcc-badge');
+            const delta = document.getElementById('pcc-delta');
+            const line = document.getElementById('pcc-line');
+            const range = document.getElementById('pcc-range');
+            const bench = document.getElementById('pcc-bench');
+            document.querySelectorAll('#pcc-tabs [data-tf]').forEach(btn => {
+              btn.addEventListener('click', () => {
+                document.querySelectorAll('#pcc-tabs [data-tf]').forEach(b => b.removeAttribute('data-state'));
+                btn.setAttribute('data-state', 'active');
+                const tf = btn.getAttribute('data-tf');
+                const d = data[tf];
+                const pos = d.pct >= 0;
+                badge.textContent = (pos ? '+' : '') + d.pct.toFixed(2) + '%';
+                badge.className = 'fc-badge ' + (pos ? 'fc-badge--success' : 'fc-badge--error');
+                delta.textContent = d.amt + ' (' + tf + ')';
+                delta.className = 'fc-performance-chart__return fc-performance-chart__return--' + (pos ? 'positive' : 'negative');
+                line.setAttribute('d', d.path);
+                line.setAttribute('class', 'fc-performance-chart__line--' + (pos ? 'positive' : 'negative'));
+                range.textContent = d.range;
+                bench.textContent = d.bench;
+              });
+            });
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">Installation</h2>
+        <div class="code-card">
+          <div class="code-card__header">Terminal</div>
+          <pre class="code-card__body">npx @sorleed/cli add performance-chart-card</pre>
+        </div>
+      </section>
+
+      <section>
+        <h2 style="font-size:22px; font-weight:700; margin:36px 0 12px;">React Usage</h2>
+        <div class="code-card">
+          <div class="code-card__header">App.tsx</div>
+          <pre class="code-card__body">import { PerformanceChartCard } from '@sorleed/react';
+import '@sorleed/react/styles/tokens.css';
+import '@sorleed/react/styles/performance-chart-card.css';
+
+export function Example() {
+  return (
+    &lt;PerformanceChartCard
+      symbol="AAPL"
+      name="Apple Inc."
+      currentPrice={228.5}
+      returnPercent={4.25}
+      returnAmount={9.32}
+      benchmarkName="S&amp;P 500"
+      benchmarkReturn={2.1}
+      dataPoints={[
+        { label: 'Nov 1', value: 219 },
+        { label: 'Nov 10', value: 224 },
+        { label: 'Nov 19', value: 228.5 }
+      ]}
+    /&gt;
+  );
+}</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="docs-footer">
+    <div>© 2026 Sorleed UI Infrastructure.</div>
+    <div>Typography: <strong>IBM Plex Sans</strong></div>
+  </footer>
+  <script src="../assets/stripe-sidebar.js"></script>
+  <script>renderStripeSidebar('performance-chart-card');</script>
+  <script src="../assets/metrics.js"></script>
+</body>
+</html>
+

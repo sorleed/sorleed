@@ -343,7 +343,7 @@ export const FXConversionFlow = React.forwardRef<HTMLDivElement, FXConversionFlo
                 <div className="fc-fx-flow__grid-2">
                   <Input
                     label={`Amount to convert (${fromCurrency})`}
-                    type="number"
+                    type="text" inputMode="decimal"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     helperText={`Available: ${fromCurrency} ${availableBalance.toLocaleString()}`}

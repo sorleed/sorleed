@@ -519,7 +519,7 @@ export const AccountOpeningFlow = React.forwardRef<HTMLDivElement, AccountOpenin
                       />
                       <Input
                         label="Ownership stake (%)"
-                        type="number"
+                        type="text" inputMode="decimal"
                         value={ownershipPct}
                         onChange={(e) => setOwnershipPct(e.target.value)}
                         helperText="Owners holding 25% or more require verification"

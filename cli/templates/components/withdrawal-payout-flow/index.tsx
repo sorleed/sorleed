@@ -9,6 +9,7 @@ import { TransferLimitMeter } from "../transfer-limit-meter";
 import { Checkbox } from "../checkbox";
 import { Alert } from "../alert";
 import { Button } from "../button";
+import { EmptyState } from "../empty-state";
 import { formatMoney } from "../utils/format";
 
 export const WithdrawalPayoutFlow = React.forwardRef<HTMLDivElement, WithdrawalPayoutFlowProps>(
@@ -114,23 +115,30 @@ export const WithdrawalPayoutFlow = React.forwardRef<HTMLDivElement, WithdrawalP
           }
         >
           <div className="fc-withdrawal-flow__stack">
-            <RadioGroup
-              label="Payout destination"
-              name="withdrawal-destination"
-              value={selectedDestId}
-              onChange={(val) => {
-                setSelectedDestId(val);
-                if (flowState === "success") setFlowState("idle");
-              }}
-              options={destinations.map((d) => ({
-                value: d.id,
-                label: `${d.label} (${d.mask}) · ${d.eta} · ${
-                  d.fee === 0 ? "Free" : formatMoney(d.fee, { currency })
-                }`,
-              }))}
-            />
+            {destinations.length === 0 ? (
+              <EmptyState
+                title="No payout destinations linked"
+                description="Link a verified bank account or debit card to initiate withdrawals from this balance."
+              />
+            ) : (
+              <>
+                <RadioGroup
+                  label="Payout destination"
+                  name="withdrawal-destination"
+                  value={selectedDestId}
+                  onChange={(val) => {
+                    setSelectedDestId(val);
+                    if (flowState === "success") setFlowState("idle");
+                  }}
+                  options={destinations.map((d) => ({
+                    value: d.id,
+                    label: `${d.label} (${d.mask}) · ${d.eta} · ${
+                      d.fee === 0 ? "Free" : formatMoney(d.fee, { currency })
+                    }`,
+                  }))}
+                />
 
-            <div className="fc-withdrawal-flow__amount-grid">
+                <div className="fc-withdrawal-flow__amount-grid">
               <Input
                 label="Amount to withdraw"
                 inputMode="decimal"
@@ -210,7 +218,9 @@ export const WithdrawalPayoutFlow = React.forwardRef<HTMLDivElement, WithdrawalP
                 Withdraw {formatMoney(amount, { currency })}
               </Button>
             </div>
-          </div>
+          </>
+        )}
+      </div>
         </Card>
       </div>
     );

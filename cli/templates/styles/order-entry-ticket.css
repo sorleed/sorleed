@@ -1,0 +1,103 @@
+.fc-order-ticket {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-4);
+  padding: var(--fc-space-5);
+  background-color: var(--fc-color-surface-default);
+  border: 1px solid var(--fc-color-border-subtle);
+  border-radius: var(--fc-radius-lg);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  color: var(--fc-color-content-primary);
+}
+
+.fc-order-ticket__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fc-space-3);
+}
+
+.fc-order-ticket__symbol {
+  font-size: var(--fc-font-size-lg);
+  font-weight: var(--fc-font-weight-bold);
+  margin: 0;
+}
+
+.fc-order-ticket__company {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+  margin: 2px 0 0;
+}
+
+.fc-order-ticket__quote {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-order-ticket__price {
+  font-size: var(--fc-font-size-md);
+  font-weight: var(--fc-font-weight-semibold);
+}
+
+.fc-order-ticket__quote-label {
+  font-size: var(--fc-font-size-xs);
+  color: var(--fc-color-content-secondary);
+}
+
+.fc-order-ticket__types {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--fc-space-2);
+}
+
+.fc-order-ticket__type-btn {
+  padding: var(--fc-space-2) var(--fc-space-3);
+  border: 1px solid var(--fc-color-border-default);
+  border-radius: var(--fc-radius-md);
+  background-color: var(--fc-color-surface-default);
+  color: var(--fc-color-content-secondary);
+  font-size: var(--fc-font-size-xs);
+  font-weight: var(--fc-font-weight-semibold);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.fc-order-ticket__type-btn--active {
+  background-color: var(--fc-color-surface-subtle);
+  border-color: var(--fc-color-action-primary);
+  color: var(--fc-color-content-primary);
+}
+
+.fc-order-ticket__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-3);
+}
+
+.fc-order-ticket__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-space-2);
+  padding: var(--fc-space-3);
+  background-color: var(--fc-color-surface-subtle);
+  border-radius: var(--fc-radius-md);
+  font-size: var(--fc-font-size-sm);
+}
+
+.fc-order-ticket__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-order-ticket__row--total {
+  padding-top: var(--fc-space-2);
+  border-top: 1px solid var(--fc-color-border-subtle);
+  font-weight: var(--fc-font-weight-semibold);
+}
+
+.fc-order-ticket__row-label {
+  color: var(--fc-color-content-secondary);
+}
+

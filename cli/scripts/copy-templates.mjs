@@ -729,6 +729,141 @@ export const templateManifest = [
     source: path.resolve(repoRoot, "components/close-account-flow/close-account-flow.css"),
     dest: path.resolve(templatesDir, "styles/close-account-flow.css")
   },
+  // session-timeout-modal
+  {
+    source: path.resolve(repoRoot, "react/session-timeout-modal/index.tsx"),
+    dest: path.resolve(templatesDir, "components/session-timeout-modal/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/session-timeout-modal/session-timeout-modal.css"),
+    dest: path.resolve(templatesDir, "styles/session-timeout-modal.css")
+  },
+  // virtual-card-reveal
+  {
+    source: path.resolve(repoRoot, "react/virtual-card-reveal/index.tsx"),
+    dest: path.resolve(templatesDir, "components/virtual-card-reveal/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/virtual-card-reveal/virtual-card-reveal.css"),
+    dest: path.resolve(templatesDir, "styles/virtual-card-reveal.css")
+  },
+  // device-management-card
+  {
+    source: path.resolve(repoRoot, "react/device-management-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/device-management-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/device-management-card/device-management-card.css"),
+    dest: path.resolve(templatesDir, "styles/device-management-card.css")
+  },
+  // credit-utilization-meter
+  {
+    source: path.resolve(repoRoot, "react/credit-utilization-meter/index.tsx"),
+    dest: path.resolve(templatesDir, "components/credit-utilization-meter/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/credit-utilization-meter/credit-utilization-meter.css"),
+    dest: path.resolve(templatesDir, "styles/credit-utilization-meter.css")
+  },
+  // performance-chart-card
+  {
+    source: path.resolve(repoRoot, "react/performance-chart-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/performance-chart-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/performance-chart-card/performance-chart-card.css"),
+    dest: path.resolve(templatesDir, "styles/performance-chart-card.css")
+  },
+  // order-entry-ticket
+  {
+    source: path.resolve(repoRoot, "react/order-entry-ticket/index.tsx"),
+    dest: path.resolve(templatesDir, "components/order-entry-ticket/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/order-entry-ticket/order-entry-ticket.css"),
+    dest: path.resolve(templatesDir, "styles/order-entry-ticket.css")
+  },
+  // bank-reconciliation-matcher
+  {
+    source: path.resolve(repoRoot, "react/bank-reconciliation-matcher/index.tsx"),
+    dest: path.resolve(templatesDir, "components/bank-reconciliation-matcher/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/bank-reconciliation-matcher/bank-reconciliation-matcher.css"),
+    dest: path.resolve(templatesDir, "styles/bank-reconciliation-matcher.css")
+  },
+  // cash-flow-forecast-card
+  {
+    source: path.resolve(repoRoot, "react/cash-flow-forecast-card/index.tsx"),
+    dest: path.resolve(templatesDir, "components/cash-flow-forecast-card/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/cash-flow-forecast-card/cash-flow-forecast-card.css"),
+    dest: path.resolve(templatesDir, "styles/cash-flow-forecast-card.css")
+  },
+  // audit-trail-timeline
+  {
+    source: path.resolve(repoRoot, "react/audit-trail-timeline/index.tsx"),
+    dest: path.resolve(templatesDir, "components/audit-trail-timeline/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/audit-trail-timeline/audit-trail-timeline.css"),
+    dest: path.resolve(templatesDir, "styles/audit-trail-timeline.css")
+  },
+  // trade-execution-flow
+  {
+    source: path.resolve(repoRoot, "react/trade-execution-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/trade-execution-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/trade-execution-flow/trade-execution-flow.css"),
+    dest: path.resolve(templatesDir, "styles/trade-execution-flow.css")
+  },
+  // month-end-close-flow
+  {
+    source: path.resolve(repoRoot, "react/month-end-close-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/month-end-close-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/month-end-close-flow/month-end-close-flow.css"),
+    dest: path.resolve(templatesDir, "styles/month-end-close-flow.css")
+  },
+  // security-center-flow
+  {
+    source: path.resolve(repoRoot, "react/security-center-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/security-center-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/security-center-flow/security-center-flow.css"),
+    dest: path.resolve(templatesDir, "styles/security-center-flow.css")
+  },
+  // savings-goal-flow
+  {
+    source: path.resolve(repoRoot, "react/savings-goal-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/savings-goal-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/savings-goal-flow/savings-goal-flow.css"),
+    dest: path.resolve(templatesDir, "styles/savings-goal-flow.css")
+  },
+  // budget-setup-flow
+  {
+    source: path.resolve(repoRoot, "react/budget-setup-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/budget-setup-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/budget-setup-flow/budget-setup-flow.css"),
+    dest: path.resolve(templatesDir, "styles/budget-setup-flow.css")
+  },
+  // group-bill-split-flow
+  {
+    source: path.resolve(repoRoot, "react/group-bill-split-flow/index.tsx"),
+    dest: path.resolve(templatesDir, "components/group-bill-split-flow/index.tsx")
+  },
+  {
+    source: path.resolve(repoRoot, "components/group-bill-split-flow/group-bill-split-flow.css"),
+    dest: path.resolve(templatesDir, "styles/group-bill-split-flow.css")
+  },
   // Shared types
   {
     source: path.resolve(repoRoot, "react/types/index.ts"),
